@@ -312,7 +312,7 @@ Letting $C_0 = \frac{1}{C}$ completes the proof.
 \end{thm}
 \begin{enumerate}
 \item $T$ is continuous, i.e. $T \in \L(X;Y)$.
-\item The graph of $T$, $\Gamma(T) = \{(x,Tx) \st x \in X\} \subseteq X \times Y$, is closed in $X \times Y$, where $X \times Y$ is endowed with any of the usual $p$-norms.
+\item The graph of $T$, $\Gamma(T) = \{(x,Tx) : x \in X\} \subseteq X \times Y$, is closed in $X \times Y$, where $X \times Y$ is endowed with any of the usual $p$-norms.
 \end{enumerate}
 
 \begin{proof}
@@ -379,16 +379,32 @@ HINT: Prove that $(1) \implies (2) \implies (3) \implies (1)$.
   complete.
 \end{proof}
 
+\subsubsection*{Putting it together...}
+
+\begin{thm}
+  Let $X$ and $Y$ be Banach spaces over a common field. 
+  Then, the following subsets of $\L(X; Y)$ are open:
+  \begin{enumerate}
+    \item $\left\{ T \in \L(X; Y) : \text{$T$ is surjective} \right\}$,
+    \item $\left\{ T \in \L(X; Y) : \text{$T$ is injective with closed range} \right\}$,
+    \item $\H(X; Y) = \left\{ T \in \L(X; Y) : \text{$T$ is a homeomorphism} \right\}$.
+  \end{enumerate}
+\end{thm}
+
+\begin{proof}
+  ***TO-DO***
+\end{proof}
+
 \begin{thm}
 Let $X$ and $Y$ be Banach spaces over a common field. Then the following holds.
 \begin{enumerate}
     \item The sets 
     \[
-    \L_L(X; Y) = \left\{ T \in \L(X; Y) : \text{there exists $S \in \L(Y; X)$ such that $ST = I_X$} \right\}
+    \L_R(X; Y) = \left\{ T \in \L(X; Y) : \text{there exists $S \in \L(Y; X)$ such that $ST = I_X$} \right\}
     \]
     and 
     \[
-    \L_R(X; Y) = \left\{ T \in \L(X; Y) : \text{there exists $S \in \L(Y; X)$ such that $TS = I_Y$} \right\}
+    \L_L(X; Y) = \left\{ T \in \L(X; Y) : \text{there exists $S \in \L(Y; X)$ such that $TS = I_Y$} \right\}
     \]
     are open.
     \item The following inclusion holds: 
@@ -404,7 +420,51 @@ Let $X$ and $Y$ be Banach spaces over a common field. Then the following holds.
 \end{thm}
 
 \begin{proof}
-  ***TO-DO***
+\begin{enumerate}
+\item Let $T_0 \in \L_R$ and $S_0 \in \L(Y; X)$ be such that 
+$T_0 S_0 = I_Y$. Note that $I_X \in \H(X)$ and when $\norm{P} < 1$
+for $P \in \L(X)$, we have $I_X + P \in \H(X)$. Suppose now 
+$T \in \L(X; Y)$ and $\norm{T} < \norm{S_0}^{-1}$. It follows that 
+$I_X + S_0 T \in \H(X)$. For such $T$, we then have 
+\[
+T_0 + T = T_0 (I_X + S_0 T).
+\]
+Also, 
+\[
+(T_0 + T) (I_X + S_0 T)^{-1} S_0 = T_0 (I_X + S_0 T) (I_X + S_0 T)^{-1} S_0
+= T_0 S_0 = I_Y.
+\]
+Therefore, $T_0 + T \in \L_R$ for $T \in B(T_0, \norm{S_0}^{-1})$ 
+and $\L_R$ is open.
+
+Now let $T_0 \in \L_L$ and $S_0 \in \L(Y; X)$ be such that 
+$S_0 T_0 = I_X$. Again, for $T \in \L(X; Y)$ with 
+$\norm{T} < \norm{S_0}^{-1}$, we have 
+\[
+T_0 + T = (I_X + T S_0) T_0.
+\]
+and 
+\[
+S_0 (I_X + T S_0)^{-1} (T_0 + T) = I_X.
+\]
+Therefore, $\L_R$ is also open.
+
+\item Let $T \in \L_R$ and $S \in \L(Y; X)$ be such that 
+$TS = I_Y$. Then for any $y \in Y$ let $x = Sy$. It follows 
+that $Tx = TSy = y$. Also, $\norm{x} \leq \norm{S} \norm{y}$
+so the 4th item in open mapping theorem guarantees that $T$ is 
+surjective. Hence, $\L_L \subset \left\{ T \in \L(X; Y) :  
+\text{$T$ is surjective}\right\}$.
+
+Now let $T \in \L_L$ and $S \in \L(Y; X)$ such that 
+$ST = I_X$. Now for any $x \in X$, we have $\norm{x} 
+= \norm{STx} \leq \norm{S} \norm{Tx}$. Then the closed 
+range theorem guarantees that $T$ is injective with closed 
+range. Hence, $\L_R \subset \left\{ T \in \L_R(X; Y) : 
+\text{$T$ is injective with closed range} \right\}$.
+
+\item ***TO-DO***
+\end{enumerate}
 \end{proof}
 
 \section{Practice problems}
@@ -421,10 +481,10 @@ and the space
 \[
 C^{0, \omega} (X; Z) = \left\{ f: X \to Z \mid [f]_\omega < \infty \right\}.
 \]
-\begin{enumerate}
 {
-  \newcommand{\cw}{{C^{0, \omega}}}
-  \newcommand{\cwb}{{C^{0, \omega}_b}}
+\newcommand{\cw}{{C^{0, \omega}}}
+\newcommand{\cwb}{{C^{0, \omega}_b}}
+\begin{enumerate}
   \item Prove that $\cw(X; Z) \subset C^0(X; Z)$.
   \begin{proof}
     Let $x \in X$ and $\epsilon > 0$. It follws that for 
@@ -462,7 +522,9 @@ C^{0, \omega} (X; Z) = \left\{ f: X \to Z \mid [f]_\omega < \infty \right\}.
       < \epsilon.
     \end{aligned}
     \]
-    Take $m \to \infty$ and take supremum completes the proof.
+    Take $m \to \infty$ and take supremum of all 
+    $x, y \in X$ with $x \neq y$
+    completes the proof.
   \end{proof}
 
   \item Suppose that $X$ is compact and $d \in \N$, show that 
@@ -482,7 +544,7 @@ C^{0, \omega} (X; Z) = \left\{ f: X \to Z \mid [f]_\omega < \infty \right\}.
   Use this to show that $\cw(X; \R^d)$ is dense in $C^0(X; \R)$,
   and conclude $(\cw(X; \R^d), \norm{\cdot}_{C^0})$ 
   is not complete.
-}
 \end{enumerate}
+}
 
 \end{document}
