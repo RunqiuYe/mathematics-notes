@@ -379,8 +379,6 @@ HINT: Prove that $(1) \implies (2) \implies (3) \implies (1)$.
   complete.
 \end{proof}
 
-\subsubsection*{Putting it together...}
-
 \begin{thm}
   Let $X$ and $Y$ be Banach spaces over a common field. 
   Then, the following subsets of $\L(X; Y)$ are open:
@@ -392,7 +390,69 @@ HINT: Prove that $(1) \implies (2) \implies (3) \implies (1)$.
 \end{thm}
 
 \begin{proof}
-  ***TO-DO***
+\begin{enumerate}
+\item Let $T \in \L(X; Y)$ be surjective. By open mapping 
+theorem, there is $\delta > 0$ such that $B_Y(0, \delta) 
+\subset TB_X(0, 1)$. By homogeneity we have 
+$B_Y(0, r) \subset TB_X(0, \alpha r)$ for all $r > 0$ where 
+$\alpha = \delta^{-1}$. Now let $S \in \L(X; Y)$ be such that 
+$\norm{T - S} < \beta < (2\alpha)^{-1}$. Claim $S$ is surjective.
+
+Let $y \in Y$, inductively construct sequences $\left\{ x_n \right\}$
+and $\left\{ y_n \right\}$. First let $y_0 = y$. Then,
+$\norm{y_0} \in B(0, 2\norm{y_0})$. Select 
+$x_0 \in X$ be such that $T x_0 = y_0$ and $\norm{x_0} 
+\leq 2 \alpha \norm{y_0}$. Suppose we have selected $y_i$,
+$x_i$ for $0 \leq i \leq n$. Set $y_{n+1} = y_n - S x_n$
+and select $x_{n+1}$ be such that $T x_{n+1} = y_{n+1}$
+and $\norm{x_{n+1}} \leq 2\alpha \norm{y_{n+1}}$.
+Then, we have 
+\[
+\norm{y_{n+1}} = \norm{T x_n - S x_n} \leq
+\norm{T - S} \norm{x_n} < 2 \alpha\beta \norm{y_n}
+\]
+and 
+\[
+\norm{x_{n+1}} = 2 \alpha \norm{y_{n+1}} \leq
+2 \alpha \norm{T - S} \norm{x_n} < 2 \alpha \beta \norm{x_n}.
+\]
+Note that $2 \alpha\beta < 1$ and $X$ is Banach, define 
+\[
+x = \sum_{n=0}^\infty x_n = \lim_{N \to \infty} 
+\sum_{n = 0}^N x_n.
+\]
+Also note that $\lim_{n \to \infty} y_n = 0$. It follows 
+that 
+\[
+S x = \sum_{n=0}^\infty S x_n 
+= \sum_{n=0}^\infty (y_n - y_{n+1})
+= y_0 - \lim_{n \to \infty} y_{n+1} = y.
+\]
+Therefore $S$ is surjective and the set of surjective 
+bounded linear maps are open.
+
+\item Suppose $T \in \L(X; Y)$ is injective with closed range.
+Then, closed range theorem gives $C > 0$ such that 
+$\norm{x} \leq C \norm{T x}$ for all $x \in X$. Now supose 
+$S \in \L(X; Y)$ is such that $\norm{T - S} < (2C)^{-1}$.
+Claim that $S$ is also injective with closed range. Indeed,
+\[
+\begin{aligned}
+  \norm{x} &\leq C\norm{T x} \leq C \norm{Sx} + C \norm{(T-S)x} \\
+  & \leq C \norm{Sx} + \frac{1}{2}\norm{x}.
+\end{aligned}
+\]
+This shows that $\norm{x} \leq 2C \norm{Sx}$ for all $x \in X$.
+By closed range theorem, $S$ is injective with closed range.
+This implies that the set of injective bounded linear operator
+with closed range is open.
+
+\item This directly follows from 
+\[
+\H(X; Y) = \left\{ T \in \L(X; Y) : \text{$T$ is surjective} \right\} 
+\cap \left\{ T \in \L(X; Y) : \text{$T$ is injective with closed range} \right\}.
+\]
+\end{enumerate}
 \end{proof}
 
 \begin{thm}
