@@ -1,0 +1,489 @@
+\documentclass[a4paper]{article}
+\usepackage{newpxtext}
+% \usepackage{newpxmath}
+\usepackage{parskip}
+
+\def\npart {21235, 21236}
+\def\nterm {Spring}
+\def\nyear {2025}
+\def\nlecturer {Ian Tice}
+\def\ncourse {Mathematical Studies Analysis}
+
+\input{header}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+\section{Advanced topics in metric space theory}
+
+\subsection{Baire category}
+
+\begin{defi}
+Let $X$ be a metric space.  
+\begin{enumerate}
+ \item We say that $E \subseteq X$ is nowhere dense if $(\bar{E})^\circ = \varnothing$.
+ \item We say that $E \subseteq X$ is meager in $X$ if 
+\begin{equation*}
+ E = \bigcup_{\alpha \in A} E_\alpha,
+\end{equation*}
+where $A$ is a countable set and $E_\alpha \subseteq X$ is nowhere dense for every $\alpha \in A$.
+\end{enumerate}
+\end{defi}
+
+\begin{thm}
+Prove that the following are equivalent for  $E \subseteq X$:
+\begin{enumerate}
+ \item $E$ is nowhere dense
+ \item $\bar{E}$ is nowhere dense
+ \item $(\bar{E})^c$ is open and dense in $X$.
+\end{enumerate}
+\end{thm}
+
+\begin{proof}
+  (a) $\implies$ (b). Suppose $E$ is nowhere dense, then 
+  $(\bar{E})^\circ = \emptyset$. Note that the closure 
+  of $\bar{E}$ is just $\bar{E}$ itself. It follows that 
+  $\bar{E}$ is also nowhere dense. 
+  
+  (b) $\implies$ (c). Suppose $\bar{E}$ is nowhere dense.
+  Note that $\bar{E}$ is closed, so $(\bar{E})^c$ is open.
+  Let $x \in X$ be arbitrary. Since $\bar{E}$ is nowhere dense,
+  $x \notin (\bar{E})^\circ$. This implies that for arbitrary 
+  $\epsilon > 0$, we have $B(x, \epsilon) \nsubset \bar{E}$.
+  This is equivalent to $B(x, \epsilon) \cap (\bar{E})^c \neq 
+  \emptyset$. Hence, $(\bar{E})^c$ is dense in $X$. 
+
+  (c) $\implies$ (a). Suppose $(\bar{E})^c$ is dense in $X$. 
+  Let $x \in X$ and $\epsilon > 0$ be arbitrary. It follows 
+  that $B(x, \epsilon) \cap (\bar{E})^c \neq \emptyset$. 
+  This is equivalent to $B(x, \epsilon) \nsubset \bar{E}$. 
+  Therefore, $(\bar{E})^\circ = \emptyset$ and $E$ is nowhere 
+  dense.
+\end{proof}
+
+\begin{thm}[Baire category thorem]
+Let $X$ be a complete metric space.  Suppose that for each $n \in \N$, $U_n \subseteq X$ is open and dense in $X$.  Prove that $\bigcap_{n=0}^\infty U_n$ is dense in $X$.  Hint: use the shrinking closed set property.
+\end{thm}
+
+\begin{proof}
+  Consider any $x \in X$ and arbitrary $\epsilon > 0$, it
+  suffices to show that $U_n \cap B(x, \epsilon)
+  \neq \emptyset$ for each $n \in \N$. 
+  Now inductively choosing a sequence 
+  $x_i \in X$ and $\epsilon_i > 0$ such that 
+  for each $i \in \N$, $B[x_i, \epsilon_i] \subset U_i$,
+  $B[x_{i+1}, \epsilon_i] \subset B[x_i, \epsilon_i]
+  \subset B(x, \epsilon)$, and $\epsilon_i < 2^{-i} \epsilon$.
+  
+  Since $U_0$ is dense in $X$,
+  $B(x, \epsilon) \cap U_0 \neq \emptyset$.
+  Note that both $U_0$ and $B(x, \epsilon)$ are open, so
+  we can choose $x_0 \in B(x, \epsilon) \cap U_0$ 
+  and $\epsilon_0 > 0$ so small 
+  that $B[x_0, \epsilon_0] \subset B(x, \epsilon) \cap U_0$
+  and $\epsilon_0 < \epsilon$. 
+  Now suppose 
+  for $0 \leq i \leq n$, we have chosen $x_i \in X$ 
+  and $\epsilon_i > 0$ such that 
+  $B[x_i, \epsilon_i] \subset U_i$ 
+  and $\epsilon_i < 2^{-i} \epsilon$ 
+  for all $0 \leq i \leq n$,
+  $B[x_{i+1}, \epsilon_{i+1}] \subset 
+  B[x_i, \epsilon_i]$ for all $0 \leq i < n$.
+  Since $U_{n+1}$ is dense in $X$, $B(x_n, \epsilon_n)
+  \cap U_{n+1} \neq \emptyset$. Note also both $U_{n+1}$ 
+  and $B(x_n, \epsilon_n)$ are open.
+  Therefore, choose 
+  $x_{n+1} \in B(x_n, \epsilon_n) \cap U_{n+1}$ and 
+  $\epsilon_{n+1} > 0$ so small that 
+  $B[x_{n+1}, \epsilon_{n+1}] \subset B(x_n, \epsilon_n) 
+  \cap U_{n+1}$ and $\epsilon_{n+1} < \frac{\epsilon_n}{2}$. 
+  It follows that 
+  $B[x_{n+1}, \epsilon_{n+1}] \subset U_{n+1}$ and 
+  $B[x_{n+1}, \epsilon_{n+1}] \subset B[x_n, \epsilon_n]
+  \subset B(x, \epsilon)$. Also, 
+  $\epsilon < \frac{\epsilon_n}{2} < 2^{-n-1} \epsilon$.
+  Now we have successfully constructing the desired sequence.
+  
+  Since $X$ is complete, $\bigcap_{n=0}^\infty B[x_n, \epsilon_n]
+  = \left\{ z \right\}$ for some $z \in X$. Note that 
+  for each $n$, we have $z \in B[x_n, \epsilon_n] \subset U_n$. 
+  Also,
+  $z \in B[x_n, \epsilon_n] \subset B(x, \epsilon)$. 
+  Therefore, $z \in U_n \cap B(x, \epsilon)$ for each $n \in \N$
+  and $\bigcap_{n=0}^\infty U_n$ is dense in $X$.
+\end{proof}
+
+\begin{remark}
+    An equivalent statement of the theorem is the following: \\
+    Let $X$ be a complete metric space and $\{C_n\}$ a countable collection of closed subsets of $X$ such that $X = \bigcup_{n \in \N} C_n $. Then at least one of the $C_n$ contains an open ball.
+\end{remark}
+
+\subsection{Open Mapping Theorem}
+
+\subsubsection*{Linear surjections}
+
+\begin{thm}[Open mapping theorem]
+Let $X,Y$ be Banach spaces over a common field and assume that $T \in \L(X;Y)$.  Prove that the following are equivalent.
+\begin{enumerate}
+ \item $T$ is surjective.
+ 
+ \item There exists $\delta >0$ such that $B_Y(0,\delta) \subseteq \overline{T(B_X(0,1))}$.
+ 
+ \item For every $\epsilon >0$ there exists $\delta >0$ such that $B_Y(0,\delta) \subseteq T(B_X(0,\ep))$.
+ 
+ \item $T$ is an open map: if $U\subseteq X$ is open, then $T(U) \subseteq Y$ is open.
+
+  \item There exists $C \ge 0$ such that for each $y \in Y$ there exists $x \in X$ such that $Tx=y$ and 
+\begin{equation*}
+ \norm{x}_X \le C \norm{y}_Y.
+\end{equation*}
+\end{enumerate}
+HINT: Prove that  $(1) \implies (2) \implies (3) \implies (4) \implies (5)  \implies (1)$, keeping in mind the following suggestions.  
+\begin{enumerate}
+ \item For (1) $\implies$ (2): Study the sets $C_n = \overline{T(B_X(0,n))} \subseteq Y$ for $n \ge 1$.
+ \item For (2) $\implies$ (3):  Prove that $\overline{T(B_X(0,1)  )} \subseteq T(B_X(0,3))$ by considering $y \in\overline{T(B_X(0,1)  )}$ and  inductively constructing $\{x_j\}_{j=0}^\infty \subseteq X$ such that $\norm{x_j}_X < 2^{-j}$ and $y - \sum_{j=0}^m T x_j \in B_Y(0,2^{-m-1} R)$  for all $m \in \N$.
+\end{enumerate}
+\end{thm}
+
+\begin{proof}
+  (1) $\implies$ (2). Following the hint, for $n \geq 1$ let 
+  $C_n = \bar{T(B_X(0, n))}$. Then each of the $C_n$ are closed.
+  Since $T$ is surjective, $Y = \bigcup_{n=1}^\infty C_n$. 
+  Suppose for contradiction that each $C_n$ are nowhere dense.
+  It then follows that $C_n^c$ are dense in $Y$. By Baire Category
+  Theorem, $\bigcap_{n=1}^\infty C_n^c$ is dense in $Y$. However,
+  $\bigcap_{n=1}^\infty C_n^c = \left( \bigcup_{n=1}^\infty C_n \right)^c 
+  = \emptyset$, a contradiction. Therefore, at least one $C_n$
+  is not nowhere dense. That is, there exists some $n \geq 1$, 
+  $\bar{T(B_X(0, n))}$ contains an open ball. However, 
+  this is the same set as $n \bar{T(B_X(0, 1))}$. Therefore, 
+  $\bar{T(B_X(0, 1))}$ contains an open ball $B_Y(y_0, 4 r)$
+  for some $y_0 \in Y$ and $r > 0$.
+
+  Let $y_1 = T x_1$ for some $x_1 \in B_Y(0,1)$ such that 
+  $\norm{y_0 - y_1} < 2 r$. It follows that 
+  $B_Y(y_1, 2 r) \subset B_Y(y_0, 4 r) \subset \bar{T(B_X(0,1))}$. 
+  For any $y \in Y$ such that 
+  $\norm{y} < r$, we have 
+  \[
+  y = -\frac{1}{2} y_1 + \frac{1}{2} (2 y + y_1) = 
+  - T \left( \frac{x_1}{2} \right) + \frac{1}{2} (2 y + y_1).
+  \]
+  However, notice that 
+  \[
+  \frac{1}{2} (2 y + y_1) \subset \frac{1}{2} B_Y(y_1, 2r) 
+  \subset \frac{1}{2} \bar{T(B_X(0, 1))} 
+  = \bar{T(B_X(0, \tfrac{1}{2}))} .
+  \]
+  It follows that 
+  \[
+  y = - T \left( \frac{x_1}{2} \right) + \frac{1}{2} (2 y + y_1)
+  \in - T \left( \frac{x_1}{2} \right) + \bar{T(B_X(0, \tfrac{1}{2}))}.
+  \]
+  Note that $- T(\frac{x_1}{2}) \in T(B_X(0, \frac{1}{2}))$. Therefore, 
+  $y \in \bar{T(B_X(0, 1))}$. Since $y$ is arbitrary with 
+  $\norm{y} < r$, we have $B_Y(0, r) \subset \bar{T(B_X(0,1))}$.
+
+  (2) $\implies$ (3). Following the hint, we first show 
+  $\bar{T(B_X(0, 1))} \subset T(B_X(0, 3))$.
+  By assumption, we have 
+  $B_Y(0, R) \subset \bar{T(B_X(0, 1))}$ for some $R > 0$. 
+  It follows from homogeneity that for each $m \in \N$, we have 
+  \[
+    2^{-m} B_Y(0, R) = B_Y(0, 2^{-m} R) \subset 
+    2^{-m} \bar{T(B_X(0, 1))} = \bar{T(B_X(0, 2^{-m}))}.
+  \]
+  Let 
+  $y \in \bar{T(B_X(0, 1))}$ and pick $x_0 \in X$ with 
+  $\norm{x} < 1$ such that $\norm{y - Tx} < 2^{-1} R$. Now 
+  suppose we have chosen $x_j$ for $0 \leq j \leq m$ such that 
+  $\norm{x_j} < 2^{-j}$ and $y - \sum_{j=0}^m T x_j \in B_Y(0, 
+  2^{-m - 1} R) $ for all $m \in \N$. By the inclusion above, 
+  we can pick $x_{m+1} \in X$ with $\norm{x_{m+1}} 
+  < 2^{-m-1}$ such that
+  \[
+  \norm{y - \sum_{j=0}^m T x_j - T x_{m+1}} 
+  = \norm{y - \sum_{j=0}^{m+1} T x_j} < 2^{-m-2} R.
+  \]
+  Therefore, $y - \sum_{j=0}^{m+1} T x_j \in B_Y(0, 2^{-m-2}) R$.
+  This completes the inductive construction, and we have
+  found a sequence $\left\{ x_j \right\}$ such that 
+  $\norm{x_j} < 2^{-j}$ and 
+  $y - \sum_{j=0}^m T x_j \in B_Y (0, 2^{-m-1} R)$
+  for each $m \in \N$. Note that 
+  \[
+  \sum_{j=0}^\infty \norm{x_j} \leq \sum_{j=0}^{\infty} 2^{-j} 
+  = 2,
+  \]
+  so $\sum_{j=0}^\infty x_j$ converges absolutely. Since $X$ 
+  is Banach, $\sum_{j=0}^\infty x_j$ converges
+  to some $x \in X$ with $\norm{x} \leq 2$. Also, since 
+  $y - \sum_{j=0}^m T x_j \in B_Y(0, 2^{-m-1}R)$, taking the
+  limit where $m$ approaches infinity we obtain 
+  \[
+  y = \sum_{j=0}^\infty T x_j = T \left( \sum_{j=0}^\infty x_j \right)
+  = T x.
+  \]
+  Therefore, $y \in T(B_X(0, 3))$ and thus $\bar{T(B_X(0, 1))}
+  \subset T(B_X (0,3))$.
+
+  Now for every $\epsilon > 0$, we have 
+  $\frac{\epsilon}{3} \bar{T(B_X(0, 1))} \subset \frac{\epsilon}{3}
+  T(B_X(0, 3)) = T(B_X(0, \epsilon))$. By assumption, there exists
+  $\delta > 0$ such that $B_Y(0, \delta) \subset \bar{T(B_X(0, 1))}$.
+  Therefore,
+  \[
+  B_Y \left( 0, \frac{\delta \epsilon}{3} \right) = \frac{\epsilon}{3} 
+  B_Y(0, \delta) \subset \frac{\epsilon}{3} \bar{T(B_X(0, 1))}
+  \subset T(B_X(0, \epsilon)).
+  \]
+
+  (3) $\implies$ (4). Let $U \subset X$ be open and $y \in T(U)$.
+  There exists $x \in U$ such that $T x = y$. Since $U$ is open,
+  there exists $\epsilon > 0$ such that $B_X(x, \epsilon)
+  \subset U$. By assumption, there exists $\delta > 0$
+  such that $B_Y(0, \delta) \subset T(B_X(0, \epsilon))$.
+  It follows that 
+  \[
+  B_Y(y, \delta) = y + B_Y(0, \delta) \subset Tx + T(B_X(0, \epsilon)) 
+  = T(x + B_X(0, \epsilon)) \subset T(U).
+  \]
+  Therefore, $T(U)$ is open and $T$ is an open map.
+
+  (4) $\implies$ (5). Since $T$ is an open map, $T(B_X(0, 1))$ is 
+  open. Also, $T(0) = 0$ so there exists $r > 0$ such that 
+  $B_Y(0, r) \subset T(B_X(0, 1))$. Now let $y \in Y$. Then, 
+  $\frac{r}{2 \norm{y}} y \in B_Y(0, r)$ and there exists 
+  $x \in B_X(0, 1)$ such that $Tx = \frac{r}{2 \norm{y}} y$. 
+  It follows that 
+  \[
+  T \left( \frac{2\norm{y}}{r} x \right) = y,
+  \]
+  and since $x \in B_X(0, 1)$,
+  \[
+  \norm{\frac{2 \norm{y}}{r} x} = \frac{2 \norm{y} \norm{x}}{r}
+  < \frac{2}{r} \norm{y}.
+  \]
+  Letting $C = \frac{2}{r}$ completes the proof.
+
+  (5) $\implies$ (1). Since for each $y \in Y$ there exists 
+  $x \in X$ such that $T x = y$, $T$ is surjective.
+\end{proof}
+
+\subsubsection*{Linear homeomorphisms, norm equivalence, and closed graphs }
+\begin{thm}
+    Let $X$ and $Y$ be Banach spaces and suppose that $T \in \L(X,Y)$ is a bijection.  Prove that $T^{-1} \in \L(Y,X)$, and in particular $T$ is a linear (and thus bi-Lipschitz) homeomorphism.
+\end{thm}
+
+\begin{proof}
+  Since $T \in \L(X, Y)$ is a bijection, $T$ is a surjection. 
+  It follows that $T$ is an open map. In particular, for any 
+  $U \subset X$ open, $T(U) = (T^{-1})^{-1}(U)$ is open. Therfore,
+  $T^{-1}$ is continuous and thus $T$ is a linear homeomorphism.
+\end{proof}
+
+\begin{thm}
+Let $X$ be a vector space that is complete when equipped with both of the norms $\norm{\cdot}_1$ and 
+$\norm{\cdot}_2$.  Prove that if there exists a constant $C_1>0$ such that $\norm{x}_2 \le C_1 \norm{x}_1$ for all $x \in X$, then there exists a constant $C_0 >0$ such that $C_0 \norm{x}_1 \le \norm{x}_2 \le C_1 \norm{x}_1$ for all $x \in X$.    
+\end{thm}
+
+\begin{proof}
+Let $T: X_1 \to X_2$, where $X_1$ and $X_2$
+are $X$ equipped with norms $\norm{\cdot}_1$ and $\norm{\cdot}_2$,
+respectively, be the identity map. Then for any $x \in X$ 
+with $\norm{x}_1 = 1$, we have 
+\[
+\norm{T x}_2 = \norm{x}_2 \leq C_1 \norm{x}_1 = C_1.
+\]
+Therefore, $T \in \L(X_1, X_2)$. $T$ is also surjective.
+Therefore, there exists a constant $C \geq 0$ such that 
+each $\norm{x}_1 \leq C \norm{x}_2$. Hence, for each 
+$x \in X$
+\[
+\frac{1}{C} \norm{x}_1 \leq \norm{x}_2 \leq C_1 \norm{x}_1.
+\]
+Letting $C_0 = \frac{1}{C}$ completes the proof.
+\end{proof}
+
+\begin{thm}
+    Let $X$ and $Y$ be Banach spaces and let $T : X \to Y$ be linear (just the algebraic condition).  Prove that the following are equivalent
+\end{thm}
+\begin{enumerate}
+\item $T$ is continuous, i.e. $T \in \L(X;Y)$.
+\item The graph of $T$, $\Gamma(T) = \{(x,Tx) \st x \in X\} \subseteq X \times Y$, is closed in $X \times Y$, where $X \times Y$ is endowed with any of the usual $p$-norms.
+\end{enumerate}
+
+\begin{proof}
+  (a) $\implies$ (b). Let $\left\{ (x_n, T x_n) \right\}$ be a convergent sequence 
+  in $\Gamma(T)$. Since $X$ is Banach, $x_n \to x$ for some $x \in X$.
+  Since $T \in \L(X ; Y)$, we have 
+  \[
+  \lim_{n \to \infty} T x_n = T \left( \lim_{n \to \infty} x_n \right) = T x.
+  \]
+  Therefore, $(x_n, T x_n) \to (x, T x) \in \Gamma(T)$, and thus 
+  $\Gamma(T)$ is closed.
+
+  (b) $\implies$ (a). Let $\pi_1 : \Gamma(T) \to X$ and 
+  $\pi_2 : \Gamma(T) \to Y$ by 
+  $\pi_1 (x, T x) = x$ and $\pi_2 (x, T x) = Tx$. Since 
+  $\Gamma(T)$ is a closed in Banach space $Y$, 
+  $\Gamma(T)$ is Banach space. It is clear that both $\pi_1$
+  and $\pi_2$ are bounded linear maps. Moreover, $\pi_1$ is a 
+  bijection. It follows that $S = \pi_1^{-1}$ is a bounded linear 
+  map. Therefore, $T = \pi_2 \circ S$ is a bounded linear map. 
+\end{proof}
+
+\subsubsection*{Linear injections with closed range}
+\begin{thm}
+    Let $X$ and $Y$ be Banach spaces and $T \in \L(X,Y)$.  Prove the following are equivalent.
+\begin{enumerate}
+ \item $T$ is injective and $\ran(T)$ is closed.
+ \item $T : X \to \ran(T)$ is a linear homeomorphism.
+ \item There exists $C\ge 0$ such that $\norm{x}_X \le C \norm{Tx}_Y$ for all $x \in X$.
+\end{enumerate}
+HINT: Prove that $(1) \implies (2) \implies (3) \implies (1)$.
+\end{thm}
+
+\begin{proof}
+  (1) $\implies$ (2). If $T$ is injective and $\ran(T)$ is closed,
+  then $\Gamma(T) = \left\{ (x, Tx) : x \in X \right\}$ is closed in 
+  $X \times Y$. Therefore, $T : X \to \ran (T)$ is a bounded linear 
+  map. Since $T$ is injective, this map is actually bijective from 
+  $X$ to $\ran (T)$. Therefore, $T$ is a linaer homeomorphism. 
+
+  (2) $\implies$ (3). Since $T$ is a bijective bounded linear map,
+  from $X$ to $\ran(T)$. There exists a contant $C \geq 0$
+  such that for each $y \in \ran(T)$ there exists 
+  a unique $x \in X$ such that $T x = y$ and $\norm{x} \leq
+  C \norm{y} = C \norm{T x}$. Since $T$ is a bijection, 
+  $\norm{x} \leq C \norm{T x}$ for all $x \in X$. 
+
+  (3) $\implies$ (1). Let $x \in X$ be such that $T x = 0$.
+  It follows that $\norm{x} \leq C \norm{T x} = 0$. Therefore, 
+  $x = 0$ and $T$ is injective. To show that 
+  $\ran(T)$ is closed, consider a convergent sequence 
+  $\left\{ y_n \right\} \subset \ran(T)$ with 
+  $y_n = T x_n$. Since for any $n, m \in \N$ we have 
+  \[
+  \norm{x_n - x_m} \leq C \norm{T (x_n - x_m)} = C \norm{y_n - y_m},
+  \]
+  $\left\{ x_n \right\}$ is Cauchy. Since $X$ is Banach, 
+  $x_n \to x$ for some $x \in X$. Therefore, for 
+  all $n \in \N$ we have
+  \[
+  \norm{y_n - T x} = \norm{T (x_n - x)} \leq \norm{T} \norm{x_n - x},
+  \]
+  and $y_n \to T x$. Hence, $\ran(T)$ is closed and the proof is
+  complete.
+\end{proof}
+
+\begin{thm}
+Let $X$ and $Y$ be Banach spaces over a common field. Then the following holds.
+\begin{enumerate}
+    \item The sets 
+    \[
+    \L_L(X; Y) = \left\{ T \in \L(X; Y) : \text{there exists $S \in \L(Y; X)$ such that $ST = I_X$} \right\}
+    \]
+    and 
+    \[
+    \L_R(X; Y) = \left\{ T \in \L(X; Y) : \text{there exists $S \in \L(Y; X)$ such that $TS = I_Y$} \right\}
+    \]
+    are open.
+    \item The following inclusion holds: 
+    \[
+    \L_L(X; Y) \subset \left\{ T \in \L(X; Y) : \text{$T$ is surjective} \right\}
+    \]
+    and 
+    \[
+    \L_R(X; Y) \subset \left\{ T \in \L(X; Y) : \text{$T$ is injective with closed range} \right\}.
+    \]
+    \item The sets $\L_L(X; Y) \setminus \L_R(X; Y)$ and $\L_R(X; Y) \setminus \L_L(X; Y)$ are open.
+\end{enumerate}
+\end{thm}
+
+\begin{proof}
+  ***TO-DO***
+\end{proof}
+
+\section{21235 finals practice}
+\subsubsection*{Problem 1}
+Suppose $\omega: [0, \infty) \to [0, \infty]$ any function 
+such that $\omega(x) = 0$ if and only if $x = 0$, 
+$\omega$ continuous at 
+$0$, and $\omega$ is nondecreasing. For $f: X \to Z$ define
+\[
+[f]_\omega = \sup\left\{ \frac{d(f(x),f(y))}{\omega(d(x,y))} :
+x, y \in X, x \neq y \right\}
+\]
+and the space 
+\[
+C^{0, \omega} (X; Z) = \left\{ f: X \to Z \mid [f]_\omega < \infty \right\}.
+\]
+\begin{enumerate}
+{
+  \newcommand{\cw}{{C^{0, \omega}}}
+  \newcommand{\cwb}{{C^{0, \omega}_b}}
+  \item Prove that $\cw(X; Z) \subset C^0(X; Z)$.
+  \begin{proof}
+    Let $x \in X$ and $\epsilon > 0$. It follws that for 
+    any $x \neq y$ we have 
+    \[
+    d(f(x), f(y)) \leq [f]_\omega \omega(d(x, y)).
+    \]
+    Since $\omega(0) = 0$, $\omega$ continuous
+    at $0$, and $\omega$ is nondecreasing, we can find 
+    $\delta > 0$ such that $0 \leq t < \delta$ implies 
+    $0 \leq \omega(t) < \epsilon$. 
+    Therefore,
+    $d(x, y) < \delta$ implies $d(f(x), f(y)) < \epsilon [f]_{\omega}$.
+    Since $[f]_{\omega} < \infty$, $f$ is continuous and 
+    $\cw (X; Z) \subset C^0(X; Z)$.
+  \end{proof}
+
+  \item Suppose $Z$ Banach. Show that $\norm{f}_{\cw} = \norm{f}_{C^0} + [f]_\omega$
+  is a norm on $\cwb(X; Z) = C^0_b(X; Z) \cap \cw(X; Z)$, and 
+  that $\cwb(X;Z)$ is complete with respect to this norm.
+
+  \begin{proof}
+    It is easy to show that $\norm{\cdot}_{\cw}$ is indeed a
+    norm on $\cwb(X; Z)$. Now we show that $\cwb(X; Z)$
+    is complete with respect to this norm.
+    Suppose $\left\{ f_n \right\} \subset \cwb$ Cauchy. Then 
+    it is also Cauchy in $C^0_b$. Therefore there is $f \in C^0_b$
+    such that $f_n \to f$ under $C^0$ norm. Remain to show 
+    $[f - f_n]_\omega \to 0$. Let $x, y \in X$ and $x \neq y$
+    and $m, n \geq N$ implies $[f_m - f_n]_\omega < \epsilon$.
+    Then, 
+    \[
+    \begin{aligned}
+      \frac{\norm{f_m(x) - f_m(y) - f_n(x) + f_n(y)}_Z}{\omega(d(x, y))}
+      < \epsilon.
+    \end{aligned}
+    \]
+    Take $m \to \infty$ and take supremum completes the proof.
+  \end{proof}
+
+  \item Suppose that $X$ is compact and $d \in \N$, show that 
+  $B_{C^{0, \omega}(X; \R^d)} [0, 1] \subset C^0(X; \R^d)$
+  is compact.
+
+  \item Suppose $X$ compact and infinte, and $d \in \N$.
+  Show that $B_{\cw}[0,1] \subset \cw$ is not compact.
+  Conclude that $\id: (\cw, \norm{\cdot}_{C^0}) \to (\cw, \norm{\cdot}_{\cw})$
+  is not continuous. Also conclude that $(\cw, \norm{\cdot}_{C^0})$ 
+  is not complete.
+
+  \item Another way to see this last fact is to first prove 
+  $\cw(X; \R^d)$ is a strict subset of $C^0(X; \R^d)$. It is helpful 
+  to study the sets $E_n = \left\{ f \in C^0(X; \R^d) : [f]_\omega \leq n \right\}$.
+  Show that $\cw(X; \R)$ is dense in $C^0(X; \R)$. 
+  Use this to show that $\cw(X; \R^d)$ is dense in $C^0(X; \R)$,
+  and conclude $(\cw(X; \R^d), \norm{\cdot}_{C^0})$ 
+  is not complete.
+}
+\end{enumerate}
+
+\end{document}
