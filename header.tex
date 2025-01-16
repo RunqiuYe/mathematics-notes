@@ -4,7 +4,7 @@
 \else
 \fi
 
-\author{Based on lectures by \nlecturer \vspace{5pt}\\ Notes taken by \nauthor\vspace{5pt}\\ Carnegie Mellon University}
+\author{\nauthor\vspace{5pt}\\ Carnegie Mellon University}
 \date{\nterm\ \nyear}
 
 \usepackage{alltt}
@@ -40,10 +40,10 @@
   \usepackage[pdftex,
     hidelinks,
     pdfauthor={Dexter Chua},
-    pdfsubject={\npart\ - \ncourse},
-    pdftitle={\npart\ - \ncourse},
+    pdfsubject={\ncourse},
+    pdftitle={\ncourse},
   pdfkeywords={Cambridge Mathematics Maths Math \npart\ \nterm\ \nyear\ \ncourse}]{hyperref}
-  \title{\npart\ --- \ncourse}
+  \title{\ncourse}
 \else
   \usepackage[pdftex,
     hidelinks,
@@ -68,7 +68,7 @@
   \rhead{
     \ifnum\thepage=1
     \else
-      \npart\ \ncoursehead
+      \ncoursehead
     \fi}
 \else
   \rhead{
@@ -171,7 +171,7 @@
 
 \renewcommand{\labelitemi}{--}
 \renewcommand{\labelitemii}{$\circ$}
-\renewcommand{\labelenumi}{(\roman{*})}
+% \renewcommand{\labelenumi}{(\roman{*})}
 
 \let\stdsection\section
 \renewcommand\section{\newpage\stdsection}
