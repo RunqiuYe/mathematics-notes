@@ -22,17 +22,20 @@
 \begin{defi}
 Let $X$ be a metric space.  
 \begin{enumerate}
- \item We say that $E \subseteq X$ is nowhere dense if $(\bar{E})^\circ = \varnothing$.
- \item We say that $E \subseteq X$ is meager in $X$ if 
+ \item We say that $E \subset X$ is nowhere dense if 
+ $(\bar{E})^\circ = \varnothing$.
+ \item We say that $E \subset X$ is meager in $X$ if 
 \begin{equation*}
  E = \bigcup_{\alpha \in A} E_\alpha,
 \end{equation*}
-where $A$ is a countable set and $E_\alpha \subseteq X$ is nowhere dense for every $\alpha \in A$.
+where $A$ is a countable set and $E_\alpha \subset X$ 
+is nowhere dense for every $\alpha \in A$.
 \end{enumerate}
 \end{defi}
 
 \begin{thm}
-Prove that the following are equivalent for  $E \subseteq X$:
+Prove that the following are equivalent for  
+$E \subset X$:
 \begin{enumerate}
  \item $E$ is nowhere dense
  \item $\bar{E}$ is nowhere dense
@@ -63,7 +66,10 @@ Prove that the following are equivalent for  $E \subseteq X$:
 \end{proof}
 
 \begin{thm}[Baire category thorem]
-Let $X$ be a complete metric space.  Suppose that for each $n \in \N$, $U_n \subseteq X$ is open and dense in $X$.  Prove that $\bigcap_{n=0}^\infty U_n$ is dense in $X$.  Hint: use the shrinking closed set property.
+Let $X$ be a complete metric space.  Suppose that for each 
+$n \in \N$, $U_n \subset X$ is open and dense in $X$. 
+Prove that $\bigcap_{n=0}^\infty U_n$ is dense in $X$.  
+Hint: use the shrinking closed set property.
 \end{thm}
 
 \begin{proof}
@@ -117,7 +123,10 @@ Let $X$ be a complete metric space.  Suppose that for each $n \in \N$, $U_n \sub
 
 \begin{remark}
     An equivalent statement of the theorem is the following: \\
-    Let $X$ be a complete metric space and $\{C_n\}$ a countable collection of closed subsets of $X$ such that $X = \bigcup_{n \in \N} C_n $. Then at least one of the $C_n$ contains an open ball.
+    Let $X$ be a complete metric space and $\{C_n\}$ a countable 
+    collection of closed subsets of $X$ such that $X = 
+    \bigcup_{n \in \N} C_n $. Then at least one of the $C_n$ 
+    contains an open ball.
 \end{remark}
 
 \subsection{Open Mapping Theorem}
@@ -125,25 +134,39 @@ Let $X$ be a complete metric space.  Suppose that for each $n \in \N$, $U_n \sub
 \subsubsection*{Linear surjections}
 
 \begin{thm}[Open mapping theorem]
-Let $X,Y$ be Banach spaces over a common field and assume that $T \in \L(X;Y)$.  Prove that the following are equivalent.
+Let $X,Y$ be Banach spaces over a common field and assume that 
+$T \in \L(X;Y)$.  Prove that the following are equivalent.
 \begin{enumerate}
  \item $T$ is surjective.
  
- \item There exists $\delta >0$ such that $B_Y(0,\delta) \subseteq \overline{T(B_X(0,1))}$.
+ \item There exists $\delta >0$ such that $B_Y(0,\delta) \subset 
+ \overline{T(B_X(0,1))}$.
  
- \item For every $\epsilon >0$ there exists $\delta >0$ such that $B_Y(0,\delta) \subseteq T(B_X(0,\ep))$.
+ \item For every $\epsilon >0$ there exists $\delta >0$ 
+ such that $B_Y(0,\delta) \subset T(B_X(0,\ep))$.
  
- \item $T$ is an open map: if $U\subseteq X$ is open, then $T(U) \subseteq Y$ is open.
+ \item $T$ is an open map: if $U\subset X$ is open, then 
+ $T(U) \subset Y$ is open.
 
-  \item There exists $C \ge 0$ such that for each $y \in Y$ there exists $x \in X$ such that $Tx=y$ and 
+  \item There exists $C \ge 0$ such that for each $y \in Y$ 
+  there exists $x \in X$ such that $Tx=y$ and 
 \begin{equation*}
  \norm{x}_X \le C \norm{y}_Y.
 \end{equation*}
 \end{enumerate}
-HINT: Prove that  $(1) \implies (2) \implies (3) \implies (4) \implies (5)  \implies (1)$, keeping in mind the following suggestions.  
+HINT: Prove that  $(1) \implies (2) \implies (3) 
+\implies (4) \implies (5)  \implies (1)$, keeping 
+in mind the following suggestions.  
 \begin{enumerate}
- \item For (1) $\implies$ (2): Study the sets $C_n = \overline{T(B_X(0,n))} \subseteq Y$ for $n \ge 1$.
- \item For (2) $\implies$ (3):  Prove that $\overline{T(B_X(0,1)  )} \subseteq T(B_X(0,3))$ by considering $y \in\overline{T(B_X(0,1)  )}$ and  inductively constructing $\{x_j\}_{j=0}^\infty \subseteq X$ such that $\norm{x_j}_X < 2^{-j}$ and $y - \sum_{j=0}^m T x_j \in B_Y(0,2^{-m-1} R)$  for all $m \in \N$.
+ \item For (1) $\implies$ (2): Study the sets $C_n = 
+ \overline{T(B_X(0,n))} \subset Y$ for $n \ge 1$.
+ \item For (2) $\implies$ (3):  Prove that 
+ $\overline{T(B_X(0,1)  )} \subset T(B_X(0,3))$ 
+ by considering $y \in\overline{T(B_X(0,1)  )}$ and  
+ inductively constructing $\{x_j\}_{j=0}^\infty \subset X$
+such that $\norm{x_j}_X < 2^{-j}$ and 
+$y - \sum_{j=0}^m T x_j \in B_Y(0,2^{-m-1} R)$  
+for all $m \in \N$.
 \end{enumerate}
 \end{thm}
 
@@ -285,8 +308,13 @@ HINT: Prove that  $(1) \implies (2) \implies (3) \implies (4) \implies (5)  \imp
 \end{proof}
 
 \begin{thm}
-Let $X$ be a vector space that is complete when equipped with both of the norms $\norm{\cdot}_1$ and 
-$\norm{\cdot}_2$.  Prove that if there exists a constant $C_1>0$ such that $\norm{x}_2 \le C_1 \norm{x}_1$ for all $x \in X$, then there exists a constant $C_0 >0$ such that $C_0 \norm{x}_1 \le \norm{x}_2 \le C_1 \norm{x}_1$ for all $x \in X$.    
+Let $X$ be a vector space that is complete when equipped 
+with both of the norms $\norm{\cdot}_1$ and 
+$\norm{\cdot}_2$.  Prove that if there exists a constant 
+$C_1>0$ such that $\norm{x}_2 \le C_1 \norm{x}_1$ for all 
+$x \in X$, then there exists a constant $C_0 >0$ such that 
+$C_0 \norm{x}_1 \le \norm{x}_2 \le C_1 \norm{x}_1$ for all 
+$x \in X$.    
 \end{thm}
 
 \begin{proof}
@@ -308,11 +336,15 @@ Letting $C_0 = \frac{1}{C}$ completes the proof.
 \end{proof}
 
 \begin{thm}
-    Let $X$ and $Y$ be Banach spaces and let $T : X \to Y$ be linear (just the algebraic condition).  Prove that the following are equivalent
+    Let $X$ and $Y$ be Banach spaces and let $T : X \to Y$ 
+    be linear (just the algebraic condition).  
+    Prove that the following are equivalent
 \end{thm}
 \begin{enumerate}
 \item $T$ is continuous, i.e. $T \in \L(X;Y)$.
-\item The graph of $T$, $\Gamma(T) = \{(x,Tx) : x \in X\} \subseteq X \times Y$, is closed in $X \times Y$, where $X \times Y$ is endowed with any of the usual $p$-norms.
+\item The graph of $T$, $\Gamma(T) = \{(x,Tx) : x \in X\} 
+\subset X \times Y$, is closed in $X \times Y$, where 
+$X \times Y$ is endowed with any of the usual $p$-norms.
 \end{enumerate}
 
 \begin{proof}
@@ -337,13 +369,16 @@ Letting $C_0 = \frac{1}{C}$ completes the proof.
 
 \subsubsection*{Linear injections with closed range}
 \begin{thm}
-    Let $X$ and $Y$ be Banach spaces and $T \in \L(X,Y)$.  Prove the following are equivalent.
+    Let $X$ and $Y$ be Banach spaces and $T \in \L(X,Y)$.  
+    Prove the following are equivalent.
 \begin{enumerate}
  \item $T$ is injective and $\ran(T)$ is closed.
  \item $T : X \to \ran(T)$ is a linear homeomorphism.
- \item There exists $C\ge 0$ such that $\norm{x}_X \le C \norm{Tx}_Y$ for all $x \in X$.
+ \item There exists $C\ge 0$ such that $\norm{x}_X \le C 
+ \norm{Tx}_Y$ for all $x \in X$.
 \end{enumerate}
-HINT: Prove that $(1) \implies (2) \implies (3) \implies (1)$.
+HINT: Prove that $(1) \implies (2) \implies (3) \implies 
+(1)$.
 \end{thm}
 
 \begin{proof}
@@ -458,24 +493,24 @@ with closed range is open.
 \begin{thm}
 Let $X$ and $Y$ be Banach spaces over a common field. Then the following holds.
 \begin{enumerate}
-    \item The sets 
-    \[
-    \L_R(X; Y) = \left\{ T \in \L(X; Y) : \text{there exists $S \in \L(Y; X)$ such that $ST = I_X$} \right\}
-    \]
-    and 
-    \[
-    \L_L(X; Y) = \left\{ T \in \L(X; Y) : \text{there exists $S \in \L(Y; X)$ such that $TS = I_Y$} \right\}
-    \]
-    are open.
-    \item The following inclusion holds: 
-    \[
-    \L_L(X; Y) \subset \left\{ T \in \L(X; Y) : \text{$T$ is surjective} \right\}
-    \]
-    and 
-    \[
-    \L_R(X; Y) \subset \left\{ T \in \L(X; Y) : \text{$T$ is injective with closed range} \right\}.
-    \]
-    \item The sets $\L_L(X; Y) \setminus \L_R(X; Y)$ and $\L_R(X; Y) \setminus \L_L(X; Y)$ are open.
+\item The sets 
+\[
+\L_R(X; Y) = \left\{ T \in \L(X; Y) : \text{there exists $S \in \L(Y; X)$ such that $ST = I_X$} \right\}
+\]
+and 
+\[
+\L_L(X; Y) = \left\{ T \in \L(X; Y) : \text{there exists $S \in \L(Y; X)$ such that $TS = I_Y$} \right\}
+\]
+are open.
+\item The following inclusion holds: 
+\[
+\L_L(X; Y) \subset \left\{ T \in \L(X; Y) : \text{$T$ is surjective} \right\}
+\]
+and 
+\[
+\L_R(X; Y) \subset \left\{ T \in \L(X; Y) : \text{$T$ is injective with closed range} \right\}.
+\]
+\item The sets $\L_L(X; Y) \setminus \L_R(X; Y)$ and $\L_R(X; Y) \setminus \L_L(X; Y)$ are open.
 \end{enumerate}
 \end{thm}
 

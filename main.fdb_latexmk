@@ -1,11 +1,11 @@
 # Fdb version 3
-["makeindex main.idx"] 1737049756 "main.idx" "main.ind" "main" 1737050220
+["makeindex main.idx"] 1737049756 "main.idx" "main.ind" "main" 1737079438
   "main.idx" 0 -1 0 "pdflatex"
   (generated)
   "main.ilg"
   "main.ind"
-["pdflatex"] 1737050217 "/Users/runqiuye/Desktop/studies/mathematics/analysis & geometry/analysis-notes/main.tex" "main.pdf" "main" 1737050220
-  "/Users/runqiuye/Desktop/studies/mathematics/analysis & geometry/analysis-notes/main.tex" 1737050216 23680 53798a2f1f674da5f75c0311238825ea ""
+["pdflatex"] 1737079434 "/Users/runqiuye/Desktop/studies/mathematics/analysis & geometry/analysis-notes/main.tex" "main.pdf" "main" 1737079438
+  "/Users/runqiuye/Desktop/studies/mathematics/analysis & geometry/analysis-notes/main.tex" 1737079433 23650 30c4054ea1b11123a65038738325955a ""
   "/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf.enc" 1640468671 2914 8283dfc24eaf1964346f843d7605c2b0 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/tfm/jknappen/ec/ecrm1000.tfm" 1136768653 3584 adb004a0c8e7c46ee66cad73671f37b4 ""
@@ -345,11 +345,11 @@
   "/usr/local/texlive/2022/texmf-var/web2c/pdftex/pdflatex.fmt" 1678448550 2826436 192ceea0118c32aad5ddcb5f5712f0af ""
   "/usr/local/texlive/2022/texmf.cnf" 1647878952 577 209b46be99c9075fd74d4c0369380e8c ""
   "header.tex" 1737037144 15097 c8892eb306538d656a66277d3d2f53ae ""
-  "main.aux" 1737050220 1183 58b24a9872f9b3587e46fc52abd43ebc "pdflatex"
+  "main.aux" 1737079437 1183 58b24a9872f9b3587e46fc52abd43ebc "pdflatex"
   "main.ind" 0 -1 0 "makeindex main.idx"
-  "main.out" 1737050220 672 7574a6aa9a8d33c1bea22e5965036f8f "pdflatex"
-  "main.tex" 1737050216 23680 53798a2f1f674da5f75c0311238825ea ""
-  "main.toc" 1737050220 333 9975fecf100347f2736088b3f540e14c "pdflatex"
+  "main.out" 1737079437 672 7574a6aa9a8d33c1bea22e5965036f8f "pdflatex"
+  "main.tex" 1737079433 23650 30c4054ea1b11123a65038738325955a ""
+  "main.toc" 1737079437 333 9975fecf100347f2736088b3f540e14c "pdflatex"
   (generated)
   "main.aux"
   "main.idx"
