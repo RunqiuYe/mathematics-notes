@@ -4,7 +4,8 @@
 \else
 \fi
 
-\author{Based on lectures by \nlecturer \vspace{5pt}\\ Notes taken by \nauthor\vspace{5pt}\\ Carnegie Mellon University}
+\author{Notes taken by \nauthor\vspace{5pt}\\ 
+Carnegie Mellon University}
 \date{\nterm\ \nyear}
 
 \usepackage{alltt}
@@ -42,17 +43,17 @@
     pdfauthor={Dexter Chua},
     pdfsubject={\ncourse},
     pdftitle={\ncourse},
-  pdfkeywords={Cambridge Mathematics Maths Math \npart\ \nterm\ \nyear\ \ncourse}]{hyperref}
+  pdfkeywords={Cambridge Mathematics Maths Math \nterm\ \nyear\ \ncourse}]{hyperref}
   \title{\ncourse}
 \else
   \usepackage[pdftex,
     hidelinks,
     pdfauthor={Dexter Chua},
-    pdfsubject={Cambridge Maths Notes: Part \npart\ - \ncourse\ (\nextra)},
-    pdftitle={\npart\ - \ncourse\ (\nextra)},
-  pdfkeywords={Cambridge Mathematics Maths Math \npart\ \nterm\ \nyear\ \ncourse\ \nextra}]{hyperref}
+    pdfsubject={Cambridge Maths Notes: \ncourse\ (\nextra)},
+    pdftitle={\ncourse\ (\nextra)},
+  pdfkeywords={Cambridge Mathematics Maths Math \nterm\ \nyear\ \ncourse\ \nextra}]{hyperref}
 
-  \title{\npart\ --- \ncourse \\ {\Large \nextra}}
+  \title{\ncourse \\ {\Large \nextra}}
   \renewcommand\printindex{}
 \fi
 
@@ -74,7 +75,7 @@
   \rhead{
     \ifnum\thepage=1
     \else
-      \npart\ \ncoursehead \ (\nextra)
+      \ncoursehead \ (\nextra)
     \fi}
 \fi
 \usetikzlibrary{arrows.meta}
@@ -184,14 +185,22 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%% Maths Symbols %%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%
+\def\st{\;\vert\;}
+\DeclareMathOperator{\step}{Step}
+\DeclareMathOperator{\reg}{Reg}
+\newcommand{\nab}{\nabla}
 \renewcommand{\varnothing}{\emptyset}
 \newcommand{\nsubset}{\not\subset}
 \renewcommand{\epsilon}{\varepsilon}
 \newcommand{\ep}{\varepsilon}
-\renewcommand{\bar}{\overline}
+\renewcommand{\bar}[1]{\overline{#1}}
 \def\L{\mathcal{L}}
 \def\H{\mathcal{H}}
 \DeclareMathOperator{\ran}{range}
+\renewcommand{\tilde}[1]{\widetilde{#1}}
+\renewcommand{\phi}{\varphi}
+\newcommand{\mf}{\mathfrak{M}}
+\newcommand{\nf}{\mathfrak{N}}
 
 % Matrix groups
 \newcommand{\GL}{\mathrm{GL}}
@@ -229,6 +238,8 @@
 % \renewcommand{\H}{\mathbb{H}}
 
 % Brackets
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
 \newcommand{\abs}[1]{\left\lvert #1\right\rvert}
 \newcommand{\bket}[1]{\left\lvert #1\right\rangle}
 \newcommand{\brak}[1]{\left\langle #1 \right\rvert}
@@ -239,6 +250,9 @@
 \newcommand{\normalorder}[1]{\mathop{:}\nolimits\!#1\!\mathop{:}\nolimits}
 \newcommand{\tv}[1]{|#1|}
 \renewcommand{\vec}[1]{\boldsymbol{\mathbf{#1}}}
+\DeclareMathOperator{\curl}{curl}
+\DeclareMathOperator{\diverge}{div}
+\DeclareMathOperator{\dist}{dist}
 
 % not-math
 \newcommand{\bolds}[1]{{\bfseries #1}}
