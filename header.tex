@@ -182,25 +182,34 @@ Carnegie Mellon University}
 \def\st{\bgroup \ULdepth=-.55ex \ULset}
 
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%% Maths Symbols %%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%
-\def\st{\;\vert\;}
-\DeclareMathOperator{\step}{Step}
-\DeclareMathOperator{\reg}{Reg}
-\newcommand{\nab}{\nabla}
-\renewcommand{\varnothing}{\emptyset}
-\newcommand{\nsubset}{\not\subset}
-\renewcommand{\epsilon}{\varepsilon}
-\newcommand{\ep}{\varepsilon}
-\renewcommand{\bar}[1]{\overline{#1}}
-\def\L{\mathcal{L}}
-\def\H{\mathcal{H}}
-\DeclareMathOperator{\ran}{range}
-\renewcommand{\tilde}[1]{\widetilde{#1}}
-\renewcommand{\phi}{\varphi}
+\newcommand{\cupinfn}{\bigcup_{n=0}^\infty}
+\newcommand{\capinfn}{\bigcap_{n=0}^\infty}
+\newcommand{\sumn}{\sum_{n=0}^\infty}
+\newcommand{\cupinfk}{\bigcup_{k=0}^\infty}
+\newcommand{\sumk}{\sum_{k=0}^\infty}
+\newcommand{\capinfk}{\bigcap_{k=0}^\infty}
+
+% Analysis
+\newcommand{\om}{\mu^*}
+\newcommand{\cale}{\mathcal{E}}
+\newcommand{\calf}{\mathcal{F}}
 \newcommand{\mf}{\mathfrak{M}}
 \newcommand{\nf}{\mathfrak{N}}
+\def\L{\mathcal{L}}
+\def\H{\mathcal{H}}
+\renewcommand{\P}{\mathcal{P}}
+\DeclareMathOperator{\Rec}{Rec}
+\DeclareMathOperator{\Cube}{Cube}
+\DeclareMathOperator{\RCube}{RCube}
+\newcommand{\RCuber}{\RCube_r}
+\DeclareMathOperator{\Reco}{Rec^{\circ}}
+\DeclareMathOperator{\Cubeo}{Cube^{\circ}}
+\DeclareMathOperator{\RCubeo}{RCube^{\circ}}
+\newcommand{\RCubeor}{\RCube^{\circ}_r}
 
 % Matrix groups
 \newcommand{\GL}{\mathrm{GL}}
@@ -238,6 +247,8 @@ Carnegie Mellon University}
 % \renewcommand{\H}{\mathbb{H}}
 
 % Brackets
+\renewcommand{\bar}[1]{\overline{#1}}
+\renewcommand{\tilde}[1]{\widetilde{#1}}
 \newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
 \newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
 \newcommand{\abs}[1]{\left\lvert #1\right\rvert}
@@ -321,13 +332,23 @@ Carnegie Mellon University}
 \newcommand{\wt}{\mathrm{wt}}
 \newcommand{\wto}{\stackrel{\mathrm{w}}{\to}}
 \renewcommand{\d}{\mathrm{d}}
-\renewcommand{\P}{\mathbb{P}}
+\renewcommand{\Prob}{\mathbb{P}}
 %\renewcommand{\F}{\mathcal{F}}
+\def\st{\;\vert\;}
+\newcommand{\nab}{\nabla}
+\renewcommand{\varnothing}{\emptyset}
+\newcommand{\nsubset}{\not\subset}
+\renewcommand{\epsilon}{\varepsilon}
+\newcommand{\ep}{\varepsilon}
+\renewcommand{\phi}{\varphi}
 
 
 \let\Im\relax
 \let\Re\relax
 
+\DeclareMathOperator{\step}{Step}
+\DeclareMathOperator{\reg}{Reg}
+\DeclareMathOperator{\ran}{range}
 \DeclareMathOperator{\area}{area}
 \DeclareMathOperator{\card}{card}
 \DeclareMathOperator{\ccl}{ccl}
