@@ -642,9 +642,28 @@ C^{0, \omega} (X; Z) = \left\{ f: X \to Z \mid [f]_\omega < \infty \right\}.
 
 \section{Measure and Integration}
 
+\begin{lemma}
+  Let $X$ be a set with gauge $(\cale, \gamma)$ that covers 
+  $X$. Let $A \subset X$, then the following holds:
+  \begin{enumerate}
+    \item Let $\om$ be the outer measure generated 
+    by $(\cale, \gamma)$. Then there exists collection 
+    $\left\{ E_{m,n} \right\}_{m, n= 0}^\infty \subset \cale$
+    such that $E = \capinfm \cupinfn E_{m, n}$ such that 
+    $A \subset E$ and $\om(A) = \om(E)$. 
+
+    \item Suppose $(X, d)$ is metric space and the gauge is 
+    fine.
+    Let $\om_d$ be the metric outer measure. Then there exists collection 
+    $\left\{ E_{m,n} \right\}_{m, n= 0}^\infty \subset \cale$
+    such that $E = \capinfm \cupinfn E_{m, n}$ such that 
+    $A \subset E$ and $\om(A) = \om(E)$. 
+  \end{enumerate}
+\end{lemma}
+
 \begin{thm}
   Let $(X, d)$ be metric space with $(\cale, \gamma)$ such that
-  all sets in $\cale$ are open. Assume that $mu^*$ is a metric 
+  all sets in $\cale$ are open. Assume that $\mu^*$ is a metric 
   outer measure on $X$ such that either 
   
   \begin{enumerate}
@@ -668,7 +687,7 @@ C^{0, \omega} (X; Z) = \left\{ f: X \to Z \mid [f]_\omega < \infty \right\}.
       \item $E \in \mf$, i.e. $E$ is measurable.
       \item there exists $G \in G_\delta(X)$ such that 
       $E \subset G$ and $\mu^*(G \setminus E) = 0$.
-      \item there exists $F \in F_\sigma$ such that 
+      \item there exists $F \in F_\sigma(X)$ such that 
       $F \subset E$ and $\mu^* (E \setminus F) = 0$.
     \end{enumerate}
   \end{enumerate}
@@ -804,5 +823,50 @@ for all $k \in \N$. Therefore, $\om(E \setminus F) = 0$.
 
 
 \end{proof}
+
+
+\begin{lemma}
+Suppose $(X, d)$ metric space with metric outer measure 
+$\om$. Suppose $X = \cupinfn V_n$ for $V_n \subset X$ open and 
+$\om(V_n) < \infty$. Suppose $E \subset G \in \gd(X)$ such that 
+$\om(G \setminus E) = 0$. Then for each $\epsilon > 0$, 
+there exists open $U \subset X$ such that $E \subset U$
+and $\om(U \setminus E) < \epsilon$.  
+
+\end{lemma}
+
+\begin{proof}
+
+Let $E_n = E \cap V_n$ and $G = G \cap V_n$. Write 
+$G = \bigcap_{j=0}^\infty W_j$ where $W_j$ open. 
+Now set 
+\[
+Z_{n, m} = V_n \cap \bigcap_{j=0}^m W_j,
+\]
+which are open for all $n, m \in \N$.
+Now notice that $G_n \subset Z_{n, m+1} \subset Z_{n,m} 
+\subset V_n$. Note that $\om(V_n) < \infty$, so 
+$\om(G_n) = \lim_{m \to \infty} \om(Z_{n, m})$. Therefore, 
+for all $\epsilon > 0$, there exists $M(n)$ such that 
+\[
+\om(Z_{n, M(n)} \setminus G_n) < \epsilon 2^{-n-2}.
+\]
+Then set $U = \cupinfn Z_{n, M(n)} \supset \cupinfn G_n = G 
+\supset E$ open, then we have 
+\[
+\begin{aligned}
+\om(U \setminus E) 
+&= \om(U \setminus G) + \om(G \setminus E)  \\
+&= \om \left( \cupinfn Z_{n, M(n)} \cap
+\capinfn G_n^c \right) \\
+&\leq \sumn \om(Z_{n, M(n)} \setminus G_n) \\
+&< \epsilon,
+\end{aligned}
+\]
+as desired.
+
+
+\end{proof}
+
 
 \end{document}
