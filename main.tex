@@ -676,7 +676,9 @@ C^{0, \omega} (X; Z) = \left\{ f: X \to Z \mid [f]_\omega < \infty \right\}.
 
 \begin{proof}
 
-\textbf{Step 0.} We know $X = \cupinfn A_n$ for some $\mu^* 
+\textbf{Step 0: proof for (1) and (2).} 
+
+We know $X = \cupinfn A_n$ for some $\mu^* 
 (A_n) < \infty$. For case (1), we can pick $\left\{ E_{n, m} \right\}
 \subset \cale$ 
 such that $A_n \subset \bigcup_{m=0}^\infty E_{n, m}$. Then 
@@ -701,10 +703,10 @@ We have the following observations:
   \item By previous lemma and all sets in $\cale$ are open, 
   we know for each $A \subset X$ there is $E \in G_\delta(X)$
   such that $A \subset E$ and $\mu^*(A) = \mu^*(E)$. 
-  In particular, $\mu^*$ is cover regualr.
+  In particular, $\mu^*$ is cover regular.
 \end{enumerate}
 
-\textbf{Step 1: start on (3).} 
+\textbf{Step 1: starting on (3).} 
 
 For (b) $\implies$ (a), suppose (b) holds for $E \subset X$.
 Then $E = G \setminus (G \setminus E) \in \mf$ since 
@@ -713,6 +715,93 @@ $\om(G \setminus E) = 0$.
 For (c) $\implies$ (a), suppose (c) holds for $E \subset X$. 
 Then $E = F \cup (E \setminus F) \in \mf$ since 
 $\om(E \setminus F) = 0$.
+
+Next we show ``(a) $\implies$ (c)'' implies 
+``(a) $\implies$ (b)''. Suppose $E \in \mf$, then 
+$E^c \in \mf$. By (a) $\implies$ (b) we know there exists 
+$F \in F_\sigma$ such that $F \subset E^c$ and 
+$\om(E^c \setminus F) = 0$. Let $G = F^c \in G_\delta$ 
+then $E \subset G$ and $G \subset E = E^c \subset F$.
+
+Therefore, it remains to show (a) $\implies$ (c) to complete 
+the proof for the theorem. 
+
+\textbf{Step 2: reduction for (a) $\implies$ (c).}
+
+Claim it suffices to show it for $E$ such that $\om(E) < \infty$.
+Suppose we did this and $\om(E) = \infty$. Using observation
+there exists $B_n \in \mf$ such taht $A_n \subset B_n$
+and $\om(B_n) = \om (A_n) < \infty$. Then $E_n = E \cap B_n 
+\in \mf$ and $\om(E_n) < \infty$. Then by special case there 
+is $F_n \in \fs(X)$ such that $F_n \subset E_n$ and 
+$\mu^*(F_n \setminus E_n) = 0$. Let $F = \cupinfn F_n \in \fs$
+then $F \subset \cupinfn E_n = E$ and 
+\[
+\om(E \setminus F) \leq \sumn \om (E_n \setminus F_n) = 0.
+\]
+
+\textbf{Step 3: further reduction.}
+
+Claim it suffices to show it for the case where $\om(E) < \infty$
+and $E \in \gd(X)$. Suppose we have proved this and consider
+$E \subset X$ such that $\om(E) < \infty$. Observation 3 
+allows us to pick $G \in \gd(X)$ such that $E \subset G$
+and $\om(E) = \om(G)$. Now pick $H \in \gd$ such that $G \setminus E \subset H$
+and $\om(H) = \om(G \setminus E)$. 
+
+Now apply special case. This gives $F \in \fs$ such that 
+$F \subset G$ and $\om(G \setminus F) = 0$. Let $K = F \setminus H
+= F \cap H^c \in \fs$ and $K = F \cap H^c \subset 
+G \cap (G \setminus E)^c \subset E$.
+
+Note that $E, F, G, H, K \in \mf$, so 
+\[
+\begin{aligned}
+\om(E \setminus K) 
+&= \om(E) - \om(K) \\ 
+&= \om(G) - \om(F \setminus H) \\ 
+&= \om(G) - \om(F) + \om(F \cap H) \\
+&\leq \om(G) - \om(F) + \om(H) \\
+&= \om(G \setminus F) + \om(H)  \\
+&= \om(G \setminus E) \\
+&= \om(G) - \om(E) \\
+&= 0.
+\end{aligned}
+\]
+Therefore, $K$ is the desired $\fs$ set.
+
+\textbf{Step 4: finishing (a) $\implies$ (c). }
+
+Suppose $E \in \gd(X)$ and $\om(E) < \infty$. 
+Write $E = \cupinfn V_n$ where $V_n \subset X$ open.
+For $m, n \in \N$, let 
+\[
+C_{n, m} = \left\{ x \in V_n: \dist(x, V_n^c) \geq 2^{-m} \right\} 
+\subset V_n. 
+\]
+Note that $C_{n, m}$ is closed, $C_{n, m} \subset C_{n, m+1}$,
+$V_n = \bigcup_{m} C_{n, m}$. Since $E, C_{n, m}, V_n \in \mf$,
+we have 
+\[
+\om(E) = \om(E \cap V_n) = \lim_{m \to \infty} \om(E 
+\cap C_{n, m}).
+\]
+Thus, there exists $M(n, k)$ such that 
+$\om(E \setminus C_{n, M(n, k)}) < 2^{-n-k}$.
+Now let $D_k = \cupinfn C_{n, M(n, k)}$ closed. 
+Also, $D_k \subset \cupinfn V_n = E$ and 
+\[
+\om(E) - \om(D_k) = \om(E \setminus D_k) 
+\leq \sumn \om(E \setminus C_{n, M(n, k)}) \leq 2^{-k+1}.
+\]
+Let $F = \cupinfk D_k \subset E$ and note that $F \in \fs$.
+Then 
+\[
+\om(E \setminus F) = \om(E) - \om(F) 
+\leq \om(E) - \om(D_k) < 2^{-k+1}
+\]
+for all $k \in \N$. Therefore, $\om(E \setminus F) = 0$.
+
 
 \end{proof}
 
