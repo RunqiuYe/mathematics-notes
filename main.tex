@@ -661,6 +661,26 @@ C^{0, \omega} (X; Z) = \left\{ f: X \to Z \mid [f]_\omega < \infty \right\}.
   \end{enumerate}
 \end{lemma}
 
+\begin{proof}
+We only prove (2) since (1) is similar. 
+Since the gauge is fine, $(\cale_\delta, \gamma_\delta)$
+covers $X$ for all $\delta > 0$. Then, for any $m \in \N$,
+there exists $\left\{ E_{m, n} \right\}_{n} \subset 
+\cale_{2^{-m}}$ such that $A \subset \cupinfn E_{m, n}$ 
+and $\suminfn \gamma(E_{m, n}) \leq \om_{2^{-m}}(A) + 2^{-m}$. 
+Now let $E = \capinfm \cupinfn E_{m, n}$. Note that 
+$A \subset E$ and for any $m \in \N$, we have 
+\[
+\om_{2^{-m}} (E) \leq \om_{2^{-m}} \left( \cupinfn E_{m, n} \right) 
+\leq \suminfn \gamma(E_{m, n}) \leq \om_{2^{-m}} (A) + 2^{-m}.
+\]
+Taking the limit as $m \to \infty$, we have 
+\[
+\om_d (E) \leq \om_d(A) \leq \om_d(E),
+\]
+as desired.
+\end{proof}
+
 \begin{thm}
   Let $(X, d)$ be metric space with $(\cale, \gamma)$ such that
   all sets in $\cale$ are open. Assume that $\mu^*$ is a metric 
@@ -756,7 +776,7 @@ is $F_n \in \fs(X)$ such that $F_n \subset E_n$ and
 $\mu^*(F_n \setminus E_n) = 0$. Let $F = \cupinfn F_n \in \fs$
 then $F \subset \cupinfn E_n = E$ and 
 \[
-\om(E \setminus F) \leq \sumn \om (E_n \setminus F_n) = 0.
+\om(E \setminus F) \leq \suminfn \om (E_n \setminus F_n) = 0.
 \]
 
 \textbf{Step 3: further reduction.}
@@ -811,7 +831,7 @@ Now let $D_k = \cupinfn C_{n, M(n, k)}$ closed.
 Also, $D_k \subset \cupinfn V_n = E$ and 
 \[
 \om(E) - \om(D_k) = \om(E \setminus D_k) 
-\leq \sumn \om(E \setminus C_{n, M(n, k)}) \leq 2^{-k+1}.
+\leq \suminfn \om(E \setminus C_{n, M(n, k)}) \leq 2^{-k+1}.
 \]
 Let $F = \cupinfk D_k \subset E$ and note that $F \in \fs$.
 Then 
@@ -859,7 +879,7 @@ Then set $U = \cupinfn Z_{n, M(n)} \supset \cupinfn G_n = G
 &= \om(U \setminus G) + \om(G \setminus E)  \\
 &= \om \left( \cupinfn Z_{n, M(n)} \cap
 \capinfn G_n^c \right) \\
-&\leq \sumn \om(Z_{n, M(n)} \setminus G_n) \\
+&\leq \suminfn \om(Z_{n, M(n)} \setminus G_n) \\
 &< \epsilon,
 \end{aligned}
 \]
