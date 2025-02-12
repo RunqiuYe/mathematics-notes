@@ -577,7 +577,67 @@ X \to \R$ such that $L \leq p$ on $X$ and $L = l$ on $Y$.
 
 \begin{proof}
   
-*** TO-DO ***
+Let 
+\[
+P = \left\{ (Z, \lambda): \text{ 
+  $Y \subset Z \subset X$, 
+$\lambda$ linear functional on $Z$, $\lambda \leq p$ 
+on $Z$ and $l = \lambda$ on $Y$} \right\}
+\]
+Define partial order $(Z_1, \lambda_1) \preceq (Z_2, \lambda_2)$
+if and only if $Z_1 \subset Z_2$ and $\lambda_1 = \lambda_2$
+on $Z_1$. It is easy to verify that this is a partial order.
+Towards using Zorn's Lemma, let $C \subset P$ be a chain and 
+define 
+\[
+\begin{aligned}
+  U = \bigcup_{(Z, \lambda) \in C} Z, \qquad 
+  \Lambda = \bigcup_{(Z, \lambda) \in C} \lambda.
+\end{aligned}
+\]
+It is easy to verify that 
+$(U, \Lambda)$ is an upper bound for the chain.
+By Zorn's Lemma, $P$ has a maximal element $(M, L)$. 
+It remains to show thta $M = X$. 
+
+Suppose for contradiction that $M \neq X$. Pick $x_0 \in X 
+\setminus M$. For any $x, y \in M$, we have 
+\[
+\begin{aligned}
+\beta L(x) + \alpha L(y) 
+&= L(\beta x + \alpha y) \\ 
+&= \frac{1}{\alpha + \beta} L \left( 
+  \frac{\beta}{\alpha + \beta} x + \frac{\alpha}{\alpha + \beta} y 
+ \right)\\ 
+& \leq (\alpha + \beta) p \left( 
+  \frac{\beta}{\alpha + \beta} x + \frac{\alpha}{\alpha + \beta} y 
+ \right)\\ 
+&= (\alpha + \beta) p \left( 
+  \frac{\beta}{\alpha + \beta} (x - \alpha x_0)
+  + \frac{\alpha}{\alpha + \beta} (y + \beta x_0) 
+ \right)\\ 
+& \leq \beta p(x - \alpha x_0) + \alpha p(y + \beta x_0).
+\end{aligned}
+\]
+This implies that 
+\[
+\sup_{\substack{x \in M \\ \alpha > 0}} 
+\frac{1}{\alpha} \left[ L(x) - p(x - \alpha x_0) \right] 
+\leq \inf_{\substack{y \in M \\ \beta > 0}} 
+\frac{1}{\beta} \left[ p(y + \beta x_0) - L(y) \right].
+\]
+Note that $-p(-x_0) \leq \LHS$ and $\RHS \leq p(x_0)$, so 
+$\LHS, \RHS < \infty$. Now pick $v \in \R$ such that 
+$\LHS \leq v \leq \RHS$. For $x \in M$ and $0 < t \in \R$ we have 
+\[
+L(x) - tv \leq p(x - t v_0), \qquad 
+L(x) + tv \leq p(x + t v_0). 
+\]
+Now define $\hat{L}: M \oplus \R x_0 \to \R$ by 
+$\hat{L}(x + \alpha x_0) = L(x) + \alpha v$. It follows that 
+$(M \oplus \R x_0 , \hat{L}) \in P$. However, $(M, L) \prec 
+(M \oplus \R, \hat{L})$, a contradiction. Therefore, $M = X$ 
+and the proof is complete.
 
 \end{proof}
 
@@ -598,7 +658,32 @@ $L = l$ on $Y$.
 
 \begin{proof}
 
-*** TO-DO ***
+Define $\lambda: Y \to \R$ by $\lambda(x) = \Re(l(x))$.
+Note that 
+\[
+\lambda(i x) = \Re(i l(x)) = - \Im(l (x)).
+\]
+This implies that $l(x) = \lambda(x) - i \lambda(i x)$.
+Now treat $X$ and $Y$ as vector space over $\R$ and apply Hahn-Banach
+theorem in $\R$ to extend $\lambda$ to $\Lambda : X \to \R$
+that agrees with $\lambda$ on $Y$. 
+
+Define $L: X \to \C$ by $L(x) = \Lambda(x) - i \Lambda(i x)$.
+It remains to show that $\abs{L} \leq p$. For $x \in X$, 
+write $L(x) = \abs{L(x)} e^{i \theta}$ for some $\theta \in \R$.
+It follows that 
+\[
+\begin{aligned}
+  \abs{L(x)} 
+  &= L(x) e^{- i \theta} \\
+  &= \Lambda(e^{- i \theta}) - i \Lambda(i e^{- i \theta} x) \\
+  &= \Lambda(e^{- i \theta} x) \\
+  &\leq p(e^{- i \theta x}) \\ 
+  &\leq \abs{e^{- i \theta}} p(x) \\
+  &= p(x),
+\end{aligned}
+\]
+as desired.
 
 \end{proof}
 
@@ -612,11 +697,12 @@ $\norm{\lambda}_{Y^*} = \norm{\Lambda}_{X^*}$.
 
 \begin{proof}
   
-*** TO-DO ***
+Consider $p: X \to \R$ where $p(x) = \norm{\lambda}_{Y^*} \norm{x}$.
+Apply Hahn-Banach theoerm.
 
 \end{proof}
 
-Next we show some useful implications of Hahn-Banach.
+Next we show some useful implications of Hahn-Banach theorem.
 
 \begin{thm}
 Let $X$ be a normed vector space and fix $x \in X$. Then 
@@ -638,7 +724,15 @@ the following holds:
 
 \begin{proof}
 
-*** TO-DO ***
+\begin{enumerate}
+\item Let $Y = \F x$ and define $\lambda \in Y^*$ by 
+$\lambda(a x) = a \norm{x}^2$. Apply Hahn-Banach theorem.
+
+\item Suppose $x \neq 0$. Define $w = \frac{\lambda}{\norm{x}}$
+then it follows that $\abs{w(x)} = \norm{x}$.
+
+\item Follows directly from (2).
+\end{enumerate}
 
 \end{proof}
 
