@@ -978,7 +978,73 @@ say $f$ is a smooth diffeomorphism.
 
 \section{Measure and integration}
 
+\subsection{Outer measure and the Carath\'eodory construction}
+
+\begin{defi}
+  Let $X$ be a set with outer measure $\om$. Say 
+  a set $E \subset X$ is measurable with respect to 
+  $\om$ if 
+  \[
+  \om(A) = \om(A \cap E) + \om(A \cap E^c) 
+  \]
+  for all $A \subset X$.
+\end{defi}
+
+\begin{thm}[Carath\'eodory construction]
+  Let $X$ be a set with outer measure $\om$, the following 
+  holds. 
+  \begin{enumerate}
+    \item The collection $\mf = \left\{ E \subset X: \text{ 
+      $E$ measurable} \right\}$ 
+      is a $\sigma$-algebra.
+    \item If $E \subset X$ is such that $\om(E) = 0$, then 
+    $E \in \mf$.
+    \item The restriction $\mu = \om \vert_\mf$ is a measure, 
+    and $(X, \mf, \mu)$ is a complete measure space.
+  \end{enumerate}
+\end{thm}
+
+\begin{defi}
+  Let $\om$ be an outer measure on $X$. Say $\om$
+  is cover-regular if for any $A \subset X$, there 
+  exists $E \in \mf$ such that $A \subset E$ 
+  and $\om(A) = \mu(E)$.
+\end{defi}
+
 \subsection{Constructing outer measures}
+
+\begin{defi}
+  Let $X$ be a set. A gauge on $X$ is a pair $(\cale, \gamma)$
+  where $\cale \subset \P(X)$ is such that $\emptyset 
+  \in \cale$ and $\gamma : \cale \to [0, \infty]$ 
+  is such that $\gamma(\emptyset) = 0$.
+\end{defi}
+
+\begin{thm}
+  Let $X$ be a set and $(\cale, \gamma)$ be a gauge on $X$.
+  Define $\om: \P(X) \to [0, \infty]$ via 
+  \[
+  \om(E) = \inf \left\{ \suminfn \gamma(E_n): 
+  E \subset \cupinfn E_n \text{ and } 
+  \seqinfn{E_n} \subset \cale \right\}.
+  \]
+  Then $\om$ is an outer measure on $X$ and hence 
+  generates $(X, \mf, \mu)$, a complete measure space 
+  thorugh Carath\'eodory construction.
+\end{thm}
+
+\begin{thm}
+  Let $(X, d)$ be a metric space with gauge $(\cale, \gamma)$
+  and outer measures $\om_\delta: \P(X) \to [0, \infty]$
+  produced by $(\cale_\delta, \gamma_\delta)$ for $\delta > 0$.
+  Define $\om_d : P(X) \to [0, \infty]$ by 
+  \[
+  \om_d(A) = \sup_{\delta > 0} \om_d (A).
+  \]
+  Then $\om_d$ is a metric outer measure. Moreover, 
+  $\om_d(A) = \lim_{\delta \to 0} \om_\delta(A)$ 
+  for $A \subset X$.
+\end{thm}
 
 \begin{lemma}
   Let $X$ be a set with gauge $(\cale, \gamma)$ that covers 
@@ -1000,7 +1066,8 @@ say $f$ is a smooth diffeomorphism.
 \end{lemma}
 
 \begin{proof}
-We only prove (2) since (1) is similar. 
+The proof for (1) is very similar to the proof for (2), 
+so we only show (2) as follows.
 Since the gauge is fine, $(\cale_\delta, \gamma_\delta)$
 covers $X$ for all $\delta > 0$. Then, for any $m \in \N$,
 there exists $\left\{ E_{m, n} \right\}_{n} \subset 
@@ -1037,7 +1104,7 @@ as desired.
     \item The gauge covers $X$ in case 1 and is fine in case 
     2. 
     \item In both cases, $\mu^*$ is cover-regular. More precisely,
-    for each $A \subset X$, there is $G \in G_\delta(X) \subset \B(X)
+    for each $A \subset X$, there is $G \in G_\delta(X) \subset \bfk(X)
     \subset \mf$ such that $A \subset G$ and $\mu^*(A) = \mu^*(G)$.
     \item In both cases, the following are equivalent for 
     $E \subset X$: 
@@ -1061,21 +1128,21 @@ We know $X = \cupinfn A_n$ for some $\mu^*
 such that $A_n \subset \bigcup_{m=0}^\infty E_{n, m}$. Then 
 $X = \cupinfn A_n = \bigcup_{n, m} E_{n, m}$. Therefore, 
 $\cale$ covers $X$.
-For case (2), note that $\om(A_n) < \infty$ 
-and $\om_d(A_n) = \sup_{\delta > 0} \om_\delta(A_n)$ 
+For case (2), note that $\om_d(A_n) < \infty$ 
+and $\om_d(A_n) \geq \om_\delta(A_n)$ 
 for each $\delta > 0$ and $n \in \N$.
 Then for each $\delta > 0$, 
 there exists $\left\{ E_{n, m} \right\} \subset \cale_\delta$
 such that $A_n \subset \bigcup_{m=0}^\infty E_{n, m}$.
-Then,  
+It follows that
 $X = \cupinfn A_n = \bigcup_{n, m} E_{n, m}$. Therefore, 
 $(\cale, \gamma)$ is fine.
 
 We have the following observations: 
 \begin{enumerate}
-  \item $\mu^*$ is a metric outer measure. This miplies that 
-  $\B(X) \subset \mf$. 
-  \item $G_\delta(X) \cup F_\sigma(X) \subset \B(X) \subset \mf$
+  \item $\mu^*$ is a metric outer measure. This implies that 
+  $\bfk(X) \subset \mf$. 
+  \item $G_\delta(X) \cup F_\sigma(X) \subset \bfk(X) \subset \mf$
   and $\mu^*(A) = 0$ implies $A \in \mf$.
   \item By previous lemma and all sets in $\cale$ are open, 
   we know for each $A \subset X$ there is $E \in G_\delta(X)$
@@ -1222,6 +1289,16 @@ Then set $U = \cupinfn Z_{n, M(n)} \supset \cupinfn G_n = G
 \end{aligned}
 \]
 as desired.
+
+
+\begin{defi}[Outer-regular]
+  Let $X$ be a metric space, $\mf$ a $\sigma$-algebra
+  with $\bfk(X) \subset \mf$ and suppose $\mu: \mf \to [0, \infty]$
+  is a measure. Say $\mu$ is outer-regular if 
+  \[
+  \mu(E) = \inf \left\{ \mu(U) : E \subset U \text{ open} \right\}.
+  \]
+\end{defi}
 
 
 \end{proof}
