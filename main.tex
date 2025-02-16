@@ -855,6 +855,126 @@ To show (3), note that we have
 This shows (3), completing the proof.
 \end{proof}
 
+\section{Differential Calculus}
+
+\begin{thm}[Local injectivity theorem]
+Let $X$ and $Y$ be Banach spaces, $z \in U \subset X$ 
+with $U$ open. Let $f: U \to Y$ differentiable with 
+$Df$ continuous at $z$. Suppose $Df(z) \in \L(X; Y)$ 
+injective with closed range. Then for any $0 < \epsilon < 1$, 
+there exists $r > 0$ such that 
+\begin{enumerate}
+  \item $B[z, r] \subset U$. 
+  \item $Df(x)$ injective with closed range for all $x \in 
+  B[z, r]$. 
+  \item If $x, y \in B(z, r)$, then 
+  \[
+  (1 - \epsilon) \norm{Df(z) (x - y)} 
+  \leq \norm{f(x) - f(y)} 
+  \leq (1 + \epsilon) \norm{Df(z) (x - y)}.
+  \]
+  \item The restriction $f: B(z, r) \to f(B(z, r))$ 
+  is bi-Lipschitz homeomorphism.
+\end{enumerate}
+\end{thm}
+
+\begin{thm}[Local surjectivity thorem]
+Let $X$ and $Y$ be Banach spaces, $z \in U \subset X$ with 
+$U$ open. Let $f: U \to Y$ differentiable with 
+$Df$ continuous at $z$. Suppose $Df(z) \in \L(X; Y)$ 
+surjective. Then there exists $r_0, \; \gamma > 0$ such that 
+\begin{enumerate}
+  \item $B_X[z, r_0] \subset U$. 
+  \item $Df(x)$ surjective for all $x \in B_X[z, r_0]$. 
+  \item $B_Y[f(z), \gamma r] \subset f(B_X[z, r])$ for all 
+  $0 \leq r \leq r_0$.
+\end{enumerate}
+\end{thm}
+
+\begin{defi}
+Let $X$ and $Y$ be normed vector spaces and suppose that 
+$\emptyset \neq U \subset X$ is open. 
+Let $f : U \to Y$. For $k \geq 1$, say $f$ is a 
+$C^k$ diffeomorphism if 
+\begin{enumerate}
+  \item $f: U \to f(U)$ homeomorphism with $f(U) \subset Y$
+  open. 
+  \item $f \in C^k(U ; Y)$.
+  \item $f^{-1} \in C^k(f(U); X)$.
+\end{enumerate}
+If $f$ is a $C^k$ diffeomorphism for all $k \geq 1$,
+say $f$ is a smooth diffeomorphism.
+\end{defi}
+
+\begin{thm}[Inverse function theorem]
+  Let $X$ and $Y$ be Banach spaces, $U \subset X$ open and 
+  $x_0 \in U$. Suppose $f: U \to Y$ differentiable, 
+  $Df$ continuous at $x_0$, $Df(x_0)$ linear homeomorphism.
+  Then there exists bounded and open $V \subset U$ with 
+  $x_0 \in V$ such that 
+  \begin{enumerate}
+    \item $f: V \to f(V)$ is bi-Lipschitz homeomorphism, 
+    $Df(x)$ linear homeomorphism for all $x \in V$, 
+    $f(V) \subset Y$ bounded and open, $f^{-1} : f(V) \to V$
+    differentiable with 
+    \[
+    Df^{-1}(y) = [Df(f^{-1}(y))]^{-1}
+    \]
+    for all $y \in f(V)$ and $Df^{-1}$ is continuous 
+    at $f(x_0)$. Also, there exists $C_0, \; C_1 > 0$
+    such that 
+    \[
+    C_0 \leq \norm{Df(x)} \leq C_1 
+    \]
+    for all $x \in V$, and 
+    \[
+    \frac{1}{C_1} \leq \norm{Df^{-1}(y)} \leq \frac{1}{C_0}
+    \]
+    for all $y \in f(V)$.
+    \item If $f \in C^k(U; Y)$ for some $1 \leq k \leq \infty$,
+    then $f^{-1} \in C^k(f(V); X)$. 
+    \item If $f \in C^k(U; Y)$ for $1 \leq k \in \N$, then 
+    there exists open $V_k \subset V$ such that $x_0 \in V_k$, 
+    $f \in C^k_b(V_k ; Y)$ and $f^{-1} \in C^k_b(f(V_k) ; X)$.
+  \end{enumerate}
+\end{thm}
+
+\begin{thm}[Implicit function theorem]
+  Let $X$ and $Y$ be Banach spaces, $U \subset X \times Y$
+  be open with $(x_0, y_0) \in U$, and suppose $f: U \to Z$
+  is differentiable in $U$ with $Df$ continuous 
+  at $(x_0, y_0)$. Further suppose $z_0 = f(x_0, y_0)$
+  and $D_2 f(x_0, y_0) \in \L(Y; Z)$ is an isomorphism. 
+  Then there exists open sets $x_0 \in V \subset X$, 
+  $z_0 \in W \subset Z$, $y_0 \in S \subset Y$, and 
+  $g \in C^{0,1}_b (V \times W ; Y)$ such that the following 
+  holds:
+  \begin{enumerate}
+    \item $g(x_0, z_0) = y_0$ and $(x, g(x, z)) \in V \times S 
+    \subset U$ for all $(x, z) \in V \times W$. Also, $g$ 
+    is differentiable on $V \times W$ and $Dg$ continuous at 
+    $(x_0, z_0)$.
+
+    \item $f(x, g(x, z)) = z$ for all $(x, z) \in V \times W$.
+    Moreover, if $(x, y) \in V \times S$ such that 
+    $f(x, y) = z$ for some $z \in W$, then $y = g(x, z)$.
+
+    \item $D_2 f(x, g(x, z))$ is an isomorphism for all 
+    $(x, z) \in V \times W$, and 
+    \[
+    \begin{aligned}
+      D_1 g(x, z) &= - \left[ D_2 f(x, g(x, z)) \right]^{-1} 
+      D_1 f (x, g(x, z)), \\
+      D_2 g(x, z) &= \left[ D_2 f(x, g(x, z)) \right]^{-1}.
+    \end{aligned}
+    \]
+
+    \item If $f \in C^k$ then $g \in C^k$ too for $1 \leq k 
+    \leq \infty$. If $k$ finite and $f \in C^k_b$ then the 
+    sets can be picked such that $g \in C^k_b$.
+  \end{enumerate}
+\end{thm}
+
 
 \section{Measure and integration}
 
