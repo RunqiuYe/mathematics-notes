@@ -878,6 +878,54 @@ there exists $r > 0$ such that
 \end{enumerate}
 \end{thm}
 
+\begin{proof}
+
+Since $Df(z)$ injective with closed range, there exists 
+$\theta > 0$ such that 
+\[
+\theta \norm{h} \leq \norm{Df(z) h}
+\]
+for all $h \in X$. Since the set of bounded linear operator 
+that is injective with closed range is open, there exists 
+$\delta > 0$ such that $\norm{Df(z) - T} < \delta$ implies 
+$T$ is injective with closed range. 
+
+Now let $0 < \epsilon < 1$. Note that $Df$ 
+is continuous at $z$, so we can select $r > 0$ so small 
+that $B[z, r] \subset U$, and $x \in B[z, r]$ implies 
+\[
+\norm{Df(x) - Df(z)} < \min \left\{ \delta, \theta \epsilon \right\}.
+\]
+In particular, $Df(x)$ is injective with closed range 
+for all $x \in B[z, r]$. By the mean value theorem, 
+for any $x, y \in B(x, r)$
+\[
+\begin{aligned}
+\norm{f(x) - f(y) - Df(z) (x - y)} 
+&\leq \sup_{w \in B(z, r)} \norm{Df(w) - Df(z)} \norm{x - y} \\
+&\leq \theta \epsilon \norm{x - y} \\ 
+&\leq \epsilon \norm{Df(z) (x - y)}.
+\end{aligned}
+\]
+It follows that 
+\[
+(1 - \epsilon) \norm{Df(z)(x - y)} 
+\leq \norm{f(x) - f(y)} 
+\leq (1 + \epsilon) \norm{Df(z) (x - y)},
+\]
+as desired.
+
+This also implies that 
+\[
+(1 - \epsilon) \theta \norm{x - y} 
+\leq \norm{f(x) - f(y)} \leq (1 + \epsilon)
+\norm{Df(z)} \norm{x - y},
+\]
+so the restriction of $f$ on $B(z, r)$ is a bi-Lipschitz 
+homeomorphism.
+
+\end{proof}
+
 \begin{thm}[Local surjectivity thorem]
 Let $X$ and $Y$ be Banach spaces, $z \in U \subset X$ with 
 $U$ open. Let $f: U \to Y$ differentiable with 
@@ -891,7 +939,13 @@ surjective. Then there exists $r_0, \; \gamma > 0$ such that
 \end{enumerate}
 \end{thm}
 
-\begin{defi}
+\begin{proof}
+  
+*** TO-DO ***
+
+\end{proof}
+
+\begin{defi}[diffeomorphism]
 Let $X$ and $Y$ be normed vector spaces and suppose that 
 $\emptyset \neq U \subset X$ is open. 
 Let $f : U \to Y$. For $k \geq 1$, say $f$ is a 
@@ -932,7 +986,8 @@ say $f$ is a smooth diffeomorphism.
     \]
     for all $y \in f(V)$.
     \item If $f \in C^k(U; Y)$ for some $1 \leq k \leq \infty$,
-    then $f^{-1} \in C^k(f(V); X)$. 
+    then $f^{-1} \in C^k(f(V); X)$. In particular, 
+    $f$ is a local $C^k$ diffeomorphism at $x_0$.
     \item If $f \in C^k(U; Y)$ for $1 \leq k \in \N$, then 
     there exists open $V_k \subset V$ such that $x_0 \in V_k$, 
     $f \in C^k_b(V_k ; Y)$ and $f^{-1} \in C^k_b(f(V_k) ; X)$.
