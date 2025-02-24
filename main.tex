@@ -63,7 +63,7 @@ $E \subset X$:
   dense.
 \end{proof}
 
-\begin{thm}[Baire category thorem]
+\begin{thm}[Baire category theorem]
 Let $X$ be a complete metric space.  Suppose that for each 
 $n \in \N$, $U_n \subset X$ is open and dense in $X$. 
 Prove that $\bigcap_{n=0}^\infty U_n$ is dense in $X$.  
@@ -762,7 +762,7 @@ pick some $x \in X$ with $\norm{x} = 1$. It follows that
 Therefore, $\norm{\bra \cdot, \cdot \ket} = 1$.
 \end{proof}
 
-\begin{defi}
+\begin{defi}[Norming set]
   Let $X$ be normed vector space and $E \subset X$, 
   $W \subset X^*$. Say $W$ is a \emph{norming set}
   for $E$ if 
@@ -857,6 +857,8 @@ This shows (3), completing the proof.
 
 \section{Differential Calculus}
 
+\subsection{Inverse and implicit function theorem}
+
 \begin{thm}[Local injectivity theorem]
 Let $X$ and $Y$ be Banach spaces, $z \in U \subset X$ 
 with $U$ open. Let $f: U \to Y$ differentiable with 
@@ -926,7 +928,7 @@ homeomorphism.
 
 \end{proof}
 
-\begin{thm}[Local surjectivity thorem]
+\begin{thm}[Local surjectivity theorem]
 Let $X$ and $Y$ be Banach spaces, $z \in U \subset X$ with 
 $U$ open. Let $f: U \to Y$ differentiable with 
 $Df$ continuous at $z$. Suppose $Df(z) \in \L(X; Y)$ 
@@ -1033,7 +1035,9 @@ say $f$ is a smooth diffeomorphism.
 
 \section{Measure and integration}
 
-\subsection{Outer measure and the Carath\'eodory construction}
+\subsection{Introduction to abstrct measure theory}
+
+\subsubsection{Outer measure and the Carath\'eodory construction}
 
 \begin{defi}
   Let $X$ be a set with outer measure $\om$. Say 
@@ -1066,7 +1070,7 @@ say $f$ is a smooth diffeomorphism.
   and $\om(A) = \mu(E)$.
 \end{defi}
 
-\subsection{Constructing outer measures}
+\subsubsection{Constructing outer measures}
 
 \begin{defi}
   Let $X$ be a set. A gauge on $X$ is a pair $(\cale, \gamma)$
@@ -1345,6 +1349,8 @@ Then set $U = \cupinfn Z_{n, M(n)} \supset \cupinfn G_n = G
 \]
 as desired.
 
+\end{proof}
+
 
 \begin{defi}[Outer-regular]
   Let $X$ be a metric space, $\mf$ a $\sigma$-algebra
@@ -1356,7 +1362,163 @@ as desired.
 \end{defi}
 
 
+\subsection{Measurable and $\mu$-measurable functions}
+
+\begin{thm}
+  Let $(X, \mf)$ be measure space and $Y$ be metric space, 
+  $f : X \to Y$. The following are equivalent for 
+  $f: X \to Y$: 
+  \begin{enumerate}
+    \item $f$ is $(\mf, \bfk(Y))$ measurable and 
+    separatedly valued.
+    \item There exists $\seqinfk{\phi_k} \in S(X; Y)$
+    such that $\phi_k \to f$ pointwise.
+  \end{enumerate}
+\end{thm}
+
+\begin{proof}
+
+(2) $\implies$ (1). The pointwise limit of measurable function 
+is measurable. On the other hand, $f(X) = \bar{\cupinfk \phi_k(X)}$,
+which is separable since $\phi_k(X)$ finite for any $k \in \N$.
+
+(1) $\implies$ (2). Assume initially that $Y$ is totally bounded.
+Then for each $n \in \N$ there exists $y^n_0, \dots, y^n_{K(n)} \in Y$
+such that $Y = \bigcup_{k=0}^{K(n)} B(y^n_k, 2^{-n})$. 
+Let $V^n_0 = B(y_0^n, 2^{-n})$ and for $k \geq 1$ define
+$V^n_k = B(y^n_k, 2^{-n}) \setminus \bigcup_{j=0}^{k-1} 
+B(y^n_j, 2^{-n})$. Then, $Y = \bigsqcup_{k=0}^{M(n)} V_k^n$
+where $V^n_k = \emptyset$ for $M(n) < k \leq K(n)$.
+
+Define $\phi_n: Y \to \{ y_0^n, \dots, y_{M(n)}^n \}$
+via $\phi_n(y) = y_k^n$ if $y \in V_k^n$. Clearly $\phi_n$
+is simple and $d(\phi_n(y), y) < 2^{-n}$ for all $n \in \N$
+and $y \in Y$. Therefore, $\phi_n(y) \to (y)$ pointwise.
+Then $f_n = \phi_n \circ f$ are simple functions
+from $X$ to $Y$. Also, since $\phi_n \to \id$ pointwise, 
+$f_n \to f$ pointwise.
+
+Now consider the general case in which $f(X)$ is a separable
+subset of $Y$. Then there exists a homeomorphism $h: f(X) 
+\to Z$ for $Z$ a totally bounded metric space, for example
+take $Z$ a subset of Hilbert cube $H^\infty$ since 
+all separable metric space is homeomorphism to a subset of 
+the Hilbert cube. Thus $h \circ f: X \to Z$ is measurable
+with $Z$ totally bounded, so the special case provides 
+a sequence $\seqinfn{\phi_n} \subset S(X; Z)$ such that 
+$\phi_n \to h \circ f$ pointwise. Then, 
+$h^{-1} \circ \phi_n \in S(X; Y)$ is such that 
+$h^{-1} \circ \phi_n \to h^{-1} \circ h \circ f = f$
+pointwise, using continuity of $h$ and $h^{-1}$.
+
 \end{proof}
 
+\begin{defi}[Almost everywhere]
+  
+Let $(X, \mf, \mu)$ be a measure space and let 
+$P(x)$ be a proposition for every $x \in X$. Say 
+$P$ is true \emph{almost everywhere} (a.e.) if there exists 
+a set $N \in \mf$ such that $\mu(N) = 0$ and 
+$P(x)$ is true for all $x \in X \setminus N$.
+
+\end{defi}
+
+\begin{thm}
+  Let $(X, \mf, \mu)$ be a measure space. Let $Y$ be a 
+  metric space, $f: X \to Y$. The following are equivalent:
+  \begin{enumerate}
+    \item There exists $\seqinfn{\psi_n} \subset S(X; Y)$
+    such that $\psi_n \to f$ a.e. in $X$.
+    \item There exists a measurable and separatedly valued 
+    $F : X \to Y$ such that $f = F$ a.e.
+    \item There exists a null set $N \in \mf$ and a 
+    measurable $F: X \to Y$ such that $f = F$ 
+    on $X \setminus N$ and $f(X \setminus N)$ is separable in
+    $Y$.
+  \end{enumerate}
+\end{thm}
+
+\begin{proof}
+  
+(1) $\implies$ (2). There exists $N \in \mf$ null such that 
+$\psi_n \to f$ pointwise in $X \setminus N$. Thus, 
+$f: X \setminus N \to Y$ is measurable and separatedly valued
+by the previous theorem. Note the constant map 
+$N \ni x \mapsto y \in Y$ for $y \in Y$ fixed is measurable. 
+Thus we can define $F : X \to Y$ by 
+\[
+F(x) = \begin{cases}
+  f(x) & (x \in X \setminus N), \\
+  y & (x \in N).
+\end{cases}
+\]
+Then $F$ is measurable. It is also separatedly valued 
+since $F(X) = f(X \setminus N) \cup \left\{ y \right\}$.
+
+(2) $\implies$ (3). Trivial.
+
+(3) $\implies$ (1). Note that $F: X \setminus N \to Y$ is measurable
+and $F(X \setminus N) = f(X \setminus N)$ is separable.
+By previous theorem, there exists $\seqinfn{\phi_n} \in S(X 
+\setminus N ; Y)$ such that $\phi_n \to F = f$ 
+pointwise on $X \setminus N$.
+Now let $\psi_n \in S(X; Y)$ be $\phi_n$ in $X \setminus N$ 
+and $y \in Y$ fixed in $N$. Then $\psi_n \to f$ pointwise
+in $X \setminus N$.
+
+\end{proof}
+
+\begin{defi}
+  
+Let $(X, \mf)$ be measurable, $Y$ be either a normed vector
+space or $\bar{\R}$. Let $\psi \in S(X; Y)$.
+\begin{enumerate}
+  \item A \emph{representation} of $\psi$ is a finite and 
+  well-defined sum 
+  $\psi = \sum_{k=1}^K v_k \chi_{E_k}$ 
+  for $v_k \in Y$ and $E_k \in \mf$.
+  
+  \item A \emph{canonical representation} is 
+  $\psi = \sum_{v \in \psi(X)} v \chi_{\psi^{-1}
+  (\left\{ v \right\})}$
+  \item Now suppose $\mu$ is a measure.
+  We say a representation $\psi = \sum_{k=1}^K 
+  v_k \chi_{E_k}$ is finite if $\mu(E_k) < \infty$
+  for all $k$ such that $v_k \neq 0$. We 
+  say $\psi$ is a finite simple function if it has a 
+  finite representation.
+  
+  \item We write $\Sfin(X; Y) = \left\{ 
+    f \in S(X; Y) : \text{ $f$ is finite}
+   \right\}$.
+  Note that it is clear $\psi$ is finite if and only if 
+  the canonical representation is finite if and only if 
+  $\mu(\supp(\psi)) < \infty$ where 
+  $\supp(\psi) = \left\{ x \in X : \psi(x) \neq 0 \right\}$.
+\end{enumerate}
+
+\end{defi}
+
+\begin{defi}
+  Let $(X, \mf, \mu)$ be a measure space and $Y$ be a metric 
+  space. 
+  \begin{enumerate}
+    \item We say $f : X \to Y$ is almost measurable 
+    if $f = F$ a.e. if $F: X \to Y$ is measurable.
+    
+    \item We say $f : X \to Y$ is almost separatedly valued
+    if there exists a null set $N \in \mf$ such that 
+    $f(X \setminus N)$ is separable.
+    
+    \item We say $f: X \to Y$ is $\mu$-measurable if 
+    it is almost measurable and almost separatedly valued.
+    Equivalently, $f$ is the a.e. limit of simple functions.
+
+    \item Suppose $Y$ is a normed vector space or $\bar{\R}$.
+    We say $f: X \to Y$ is strongly $\mu$-measurable 
+    if there exists $\seqinfn{\psi_n} \subset \Sfin(X; Y)$
+    such that $\psi_n \to f$ a.e. as $n \to \infty$.
+  \end{enumerate}
+\end{defi}
 
 \end{document}
