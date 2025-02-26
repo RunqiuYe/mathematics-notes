@@ -1364,6 +1364,8 @@ as desired.
 
 \subsection{Measurable and $\mu$-measurable functions}
 
+\textcolor{red}{\textbf{*** TO-DO ***}}
+
 \begin{thm}
   Let $(X, \mf)$ be measure space and $Y$ be metric space, 
   $f : X \to Y$. The following are equivalent for 
@@ -1428,7 +1430,7 @@ $P(x)$ is true for all $x \in X \setminus N$.
   metric space, $f: X \to Y$. The following are equivalent:
   \begin{enumerate}
     \item There exists $\seqinfn{\psi_n} \subset S(X; Y)$
-    such that $\psi_n \to f$ a.e. in $X$.
+    such that $\psi_n \to f$ pointwise a.e. in $X$.
     \item There exists a measurable and separatedly valued 
     $F : X \to Y$ such that $f = F$ a.e.
     \item There exists a null set $N \in \mf$ and a 
@@ -1505,7 +1507,7 @@ space or $\bar{\R}$. Let $\psi \in S(X; Y)$.
   space. 
   \begin{enumerate}
     \item We say $f : X \to Y$ is almost measurable 
-    if $f = F$ a.e. if $F: X \to Y$ is measurable.
+    if $f = F$ a.e. with $F: X \to Y$ is measurable.
     
     \item We say $f : X \to Y$ is almost separatedly valued
     if there exists a null set $N \in \mf$ such that 
@@ -1521,5 +1523,153 @@ space or $\bar{\R}$. Let $\psi \in S(X; Y)$.
     such that $\psi_n \to f$ a.e. as $n \to \infty$.
   \end{enumerate}
 \end{defi}
+
+\begin{eg}
+  Let $X = \left\{ 1,2,3 \right\}$ and $\mf = 
+  \left\{ \emptyset, \left\{ 1, 2 \right\}, 
+  \left\{ 3 \right\}, \left\{ 1, 2, 3 \right\} \right\}$.
+  Let $f, g: X \to \R$ via $f(x) = x$ and $g(x) = 3$.
+  Then $f$ is not measure since $f^{-1} (\left\{ 1 \right\})
+  = \left\{ 1 \right\} \notin \mf$ but $g$ is measurable.
+
+  Now equip $(X, \mf)$ with the measure $\delta_3$.
+  Then, $f = g$ a.e.. This shows that equality almost 
+  everywhere does not preserve measurablility.
+  The problem is that $(X, \mf, \delta_3)$ is not 
+  \textbf{complete}.
+\end{eg}
+
+This brings us to the next theoerm.
+
+\begin{thm}
+Let $(X, \mf, \mu)$ be a measure space. Then the following 
+are equivalent:
+\begin{enumerate}
+  \item $(X, \mf, \mu)$ is complete. 
+  \item If $(Y, \nf)$ is a measure space, $f, g : X 
+  \to Y$, $f$ is measurable and $f = g$ a.e., then 
+  $g$ is measurable.
+  \item If $Y$ is a metric space with $\card Y = 2$, 
+  $f, g: X \to Y$, $f$ measurable, $f = g$ a.e., 
+  then $g$ is measurable.
+\end{enumerate}  
+\end{thm}
+
+\begin{proof}
+  
+(1) $\implies$ (2). Suppose $f, g: X \to Y$, $f$ is measurable, 
+$f = g$ a.e.. Pick null set $N \in \mf$ such that 
+$f = g$ on $N^c$. Take $E \in \nf$, then 
+\[
+\begin{aligned}
+  g^{-1}(E) 
+  &= (g^{-1}(E) \cap N) \cup (g^{-1} (E) \cap N^c) \\
+  &= (g^{-1}(E) \cap N) \cup (f^{-1} (E) \cap N^c).
+\end{aligned}
+\]
+Note that $f^{-1}(E) \cap N^c$ is measurable, 
+and $g^{-1}(E) \cap N \subset N$ null, so it is also measurable.
+Therefore, $g^{-1}(E)$ is measurable and $g$ is measurable.
+
+(2) $\implies$ (3). Clear. 
+
+(3) $\implies$ (1). Prove the contrapositive. 
+Suppse $(X, \mf, \mu)$ is not complete and 
+$Y = \left\{ y, z \right\}$ a metric space. 
+Find $\emptyset \neq A \subsetneq B$ such that 
+$\mu(B) = 0$ and $A \notin \mf$. Define $f, g : 
+X \to Y$ by 
+\[
+g(x) = \begin{cases}
+  y & (x \notin A), \\
+  z & (x \in A).
+\end{cases}
+\]
+and $f(x) = y$ be constant. Then $f = g$ a.e., 
+$f$ is measurable, and $g$ is not measurable. 
+\end{proof}
+
+\begin{cor}
+  Let $(X, \mf, \mu)$ be a complete measurable space,
+  $Y$ a separable metric space, and $f: X \to Y$. 
+  Then, $f$ is $\mu$-measurable if and only if 
+  $f$ is measurable.
+\end{cor}
+
+\begin{prop}
+  Let $(X, \mf, \mu)$ be a measure space and $Y$ be a metric 
+  space. The following holds: 
+  \begin{enumerate}
+    \item Let $f, g: X \to Y$. If $f$ is $\mu$-measurable
+    and $f = g$ a.e., then $g$ is $\mu$-measurable.
+
+    \item Suppose $Y$ is a normed vector space or 
+    $\bar{\R}$. If $f, g: X \to Y$, $f$ is strongly 
+    $\mu$-measurable, $f = g$ a.e., then 
+    $g$ is strong $\mu$-measurable.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+    \item Let $\seqinfn{\phi_n} \subset S(X; Y)$ be such that 
+    $\phi_n \to g$ pointwise a.e.. Pick null set 
+    $N \in \mf$ such that $f = g$ on $N^c$. Pick 
+    null set $Z \in \mf$ such that $f = \lim_{n \to \infty}
+    \phi_n$. This implies that 
+    $g = \lim_{n \to \infty} \phi_n$ on $(N \cup Z)^c$. 
+
+    \item Same proof as the first item but let 
+    $\seqinfn{\phi_n} \in \Sfin(X; Y)$.
+  \end{enumerate}
+\end{proof}
+
+\begin{thm}
+  Let $(X,\mf, \mu)$ be a measure space and 
+  $Y$ be a normed vector space with $V \neq \left\{ 0 
+  \right\}$. Then the following are equivalent:
+  \begin{enumerate}
+    \item $(X, \mf, \mu)$ is $\sigma$-finite.
+    \item If $f: X \to Y$ is $\mu$-measurable, then 
+    $f$ is strongly $\mu$-measurable.
+    \item Let $f: X \to Y$, then $f$ is $\mu$-measurable
+    if and only if $f$ is strongly $\mu$-measurable.
+    \item If $y \in Y \setminus \left\{ 0 \right\}$, 
+    then $f: X \to Y$ via $f(x) = y$ strongly 
+    $\mu$-measurable.
+  \end{enumerate}
+\end{thm}
+
+\begin{proof}
+  (1) $\implies$ (2). Suppose $(X, \mf, \mu)$ is 
+  $\sigma$-finite. We can find $\seqinfn{X_n} 
+  \subset \mf$ such that $X_n \subset X_{n+1}$, 
+  $\mu(X_n) < \infty$ and $\cupinfn X_n = X$. 
+  Let $f: X \to Y$ be $\mu$-measurable. Pick 
+  $\seqinfn{\psi_n} \subset S(X; Y)$ such that
+  $\psi_n \to f$ pointwise a.e.. Define 
+  $\phi_n = \chi_{X_n} \psi_n$. This shows that 
+  $f$ is strongly $\mu$-measurable.
+
+  (2) $\iff$ (3). Trivial since strongly $\mu$-measurablility
+  implies $\mu$-measurablility.
+
+  (2) $\implies$ (4). Constant function are $\mu$-measurable.
+
+  (4) $\implies$ (1). Let $y \in Y \setminus \left\{ 0 \right\}$
+  and define $f : X \to Y$ via $f(x) = y$. This 
+  is strongly $\mu$-measurable by assumption. 
+  Then there exists $\seqinfn{\phi_n} \subset \Sfin(X; Y)$ 
+  such that $\phi_n \to f$ pointwise on $N^c$ where 
+  $N$ is null. 
+
+  Pick $\epsilon > 0$ such that $\left\{ 0 \right\} 
+  \cap B(y, \epsilon) = \emptyset$. Set 
+  $X_n = \phi_n^{-1} (B(y, \epsilon))$. Then we have 
+  $\mu(X_n) < \infty$. For any $x \in N^c$ and $n$ 
+  sufficiently large, $\phi_n(x) \in B(y, \epsilon)$.
+  Therefore, $N^c \subset \cupinfn X_n$ and 
+  the proof we are complete.
+\end{proof}
 
 \end{document}
