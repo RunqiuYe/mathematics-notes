@@ -1366,13 +1366,46 @@ as desired.
 
 \textcolor{red}{\textbf{*** TO-DO ***}}
 
+\begin{defi}[Measurable functions]
+  Let $(X, \mf)$ and $(Y, \nf)$ be measurable sets. A map 
+  $f : X \to Y$ is called $(\mf, \nf)$ measurable if $f^{-1}(E) 
+  \in \mf$ for all $E \in \nf$.
+\end{defi}
+
+\begin{defi}[Simple functions]
+  Let $(X, \mf)$ and $(Y, \nf)$ be measurable sets. A map 
+  $f : X \to Y$ is called simple if it is 
+  measurable and $f(X)$ is finite. Write the set of all 
+  simple functions from $X$ to $Y$ as 
+  $S(X, Y)$.
+\end{defi}
+
+\begin{thm}[Characterization of $\R$ measurablility]
+  Let $(X, \mf)$ be measure space and $f : X \to \bar{\R}$. The 
+  following are equivalent: 
+  \begin{enumerate}
+    \item $f$ is measurable. 
+    \item There exists $\seqinfk{\phi_k} \subset S(X; \R)$ such that 
+    $\phi_k \to f$ pointwise as $k \to \infty$.
+  \end{enumerate}
+  Moreover, if $f$ is measurable, the sequence can be built such that 
+  \begin{itemize}
+    \item On the set $\left\{ f \geq 0 \right\}$, we have 
+    $0 \leq \phi_k \leq \phi_{k+1} \leq f$.
+    \item On the set $\left\{ f < 0 \right\}$, we have 
+    $f \leq \phi_{k+1} \leq \phi_k \leq 0$.
+    \item If $f$ is actually from $X$ to $\R$ and is bounded, 
+    then $\phi_k \to f$ uniformly.
+  \end{itemize}
+\end{thm}
+
 \begin{thm}
   Let $(X, \mf)$ be measure space and $Y$ be metric space, 
   $f : X \to Y$. The following are equivalent for 
   $f: X \to Y$: 
   \begin{enumerate}
     \item $f$ is $(\mf, \bfk(Y))$ measurable and 
-    separatedly valued.
+    separably valued.
     \item There exists $\seqinfk{\phi_k} \in S(X; Y)$
     such that $\phi_k \to f$ pointwise.
   \end{enumerate}
@@ -1421,7 +1454,7 @@ Let $(X, \mf, \mu)$ be a measure space and let
 $P(x)$ be a proposition for every $x \in X$. Say 
 $P$ is true \emph{almost everywhere} (a.e.) if there exists 
 a set $N \in \mf$ such that $\mu(N) = 0$ and 
-$P(x)$ is true for all $x \in X \setminus N$.
+$P(x)$ is true for all $x \in N^c$.
 
 \end{defi}
 
@@ -1431,11 +1464,11 @@ $P(x)$ is true for all $x \in X \setminus N$.
   \begin{enumerate}
     \item There exists $\seqinfn{\psi_n} \subset S(X; Y)$
     such that $\psi_n \to f$ pointwise a.e. in $X$.
-    \item There exists a measurable and separatedly valued 
+    \item There exists a measurable and separably valued 
     $F : X \to Y$ such that $f = F$ a.e.
     \item There exists a null set $N \in \mf$ and a 
     measurable $F: X \to Y$ such that $f = F$ 
-    on $X \setminus N$ and $f(X \setminus N)$ is separable in
+    on $N^c$ and $f(N^c)$ is separable in
     $Y$.
   \end{enumerate}
 \end{thm}
@@ -1443,30 +1476,30 @@ $P(x)$ is true for all $x \in X \setminus N$.
 \begin{proof}
   
 (1) $\implies$ (2). There exists $N \in \mf$ null such that 
-$\psi_n \to f$ pointwise in $X \setminus N$. Thus, 
-$f: X \setminus N \to Y$ is measurable and separatedly valued
+$\psi_n \to f$ pointwise in $N^c$. Thus, 
+$f: N^c \to Y$ is measurable and separably valued
 by the previous theorem. Note the constant map 
 $N \ni x \mapsto y \in Y$ for $y \in Y$ fixed is measurable. 
 Thus we can define $F : X \to Y$ by 
 \[
 F(x) = \begin{cases}
-  f(x) & (x \in X \setminus N), \\
+  f(x) & (x \in N^c), \\
   y & (x \in N).
 \end{cases}
 \]
-Then $F$ is measurable. It is also separatedly valued 
-since $F(X) = f(X \setminus N) \cup \left\{ y \right\}$.
+Then $F$ is measurable. It is also separably valued 
+since $F(X) = f(N^c) \cup \left\{ y \right\}$.
 
 (2) $\implies$ (3). Trivial.
 
-(3) $\implies$ (1). Note that $F: X \setminus N \to Y$ is measurable
-and $F(X \setminus N) = f(X \setminus N)$ is separable.
-By previous theorem, there exists $\seqinfn{\phi_n} \in S(X 
-\setminus N ; Y)$ such that $\phi_n \to F = f$ 
-pointwise on $X \setminus N$.
-Now let $\psi_n \in S(X; Y)$ be $\phi_n$ in $X \setminus N$ 
+(3) $\implies$ (1). Note that $F: N^c \to Y$ is measurable
+and $F(N^c) = f(N^c)$ is separable.
+By previous theorem, there exists $\seqinfn{\phi_n} \in S(N^c; 
+Y)$ such that $\phi_n \to F = f$ 
+pointwise on $N^c$.
+Now let $\psi_n \in S(X; Y)$ be $\phi_n$ in $N^c$ 
 and $y \in Y$ fixed in $N$. Then $\psi_n \to f$ pointwise
-in $X \setminus N$.
+in $N^c$.
 
 \end{proof}
 
@@ -1509,12 +1542,12 @@ space or $\bar{\R}$. Let $\psi \in S(X; Y)$.
     \item We say $f : X \to Y$ is almost measurable 
     if $f = F$ a.e. with $F: X \to Y$ is measurable.
     
-    \item We say $f : X \to Y$ is almost separatedly valued
+    \item We say $f : X \to Y$ is almost separably valued
     if there exists a null set $N \in \mf$ such that 
-    $f(X \setminus N)$ is separable.
+    $f(N^c)$ is separable.
     
     \item We say $f: X \to Y$ is $\mu$-measurable if 
-    it is almost measurable and almost separatedly valued.
+    it is almost measurable and almost separably valued.
     Equivalently, $f$ is the a.e. limit of simple functions.
 
     \item Suppose $Y$ is a normed vector space or $\bar{\R}$.
@@ -1533,7 +1566,7 @@ space or $\bar{\R}$. Let $\psi \in S(X; Y)$.
   = \left\{ 1 \right\} \notin \mf$ but $g$ is measurable.
 
   Now equip $(X, \mf)$ with the measure $\delta_3$.
-  Then, $f = g$ a.e.. This shows that equality almost 
+  Then, $f = g$ a.e. This shows that equality almost 
   everywhere does not preserve measurablility.
   The problem is that $(X, \mf, \delta_3)$ is not 
   \textbf{complete}.
@@ -1558,7 +1591,7 @@ are equivalent:
 \begin{proof}
   
 (1) $\implies$ (2). Suppose $f, g: X \to Y$, $f$ is measurable, 
-$f = g$ a.e.. Pick null set $N \in \mf$ such that 
+$f = g$ a.e. Pick null set $N \in \mf$ such that 
 $f = g$ on $N^c$. Take $E \in \nf$, then 
 \[
 \begin{aligned}
@@ -1613,7 +1646,7 @@ $f$ is measurable, and $g$ is not measurable.
 \begin{proof}
   \begin{enumerate}
     \item Let $\seqinfn{\phi_n} \subset S(X; Y)$ be such that 
-    $\phi_n \to g$ pointwise a.e.. Pick null set 
+    $\phi_n \to g$ pointwise a.e. Pick null set 
     $N \in \mf$ such that $f = g$ on $N^c$. Pick 
     null set $Z \in \mf$ such that $f = \lim_{n \to \infty}
     \phi_n$. This implies that 
@@ -1647,7 +1680,7 @@ $f$ is measurable, and $g$ is not measurable.
   $\mu(X_n) < \infty$ and $\cupinfn X_n = X$. 
   Let $f: X \to Y$ be $\mu$-measurable. Pick 
   $\seqinfn{\psi_n} \subset S(X; Y)$ such that
-  $\psi_n \to f$ pointwise a.e.. Define 
+  $\psi_n \to f$ pointwise a.e. Define 
   $\phi_n = \chi_{X_n} \psi_n$. This shows that 
   $f$ is strongly $\mu$-measurable.
 
@@ -1670,6 +1703,95 @@ $f$ is measurable, and $g$ is not measurable.
   sufficiently large, $\phi_n(x) \in B(y, \epsilon)$.
   Therefore, $N^c \subset \cupinfn X_n$ and 
   the proof we are complete.
+\end{proof}
+
+Finally, we present a useful characterization of 
+$\mu$-measurablility of Banach-valued maps. 
+
+\begin{thm}[Pettis]
+  Let $(X, \mf, \mu)$ be a measure space and $V$ be a 
+  Banach space over $\F$. Suppose $W \subset V^*$ is a 
+  norming subspace. Let $f: X \to V$. Then the following
+  are equivalent:
+  \begin{enumerate}
+    \item $f$ is $\mu$-measurable.
+    \item $f$ is almost separably valued, and $w \circ
+    f : X \to \F$ is $\mu$-measurable for each $w \in V^*$.
+    \item $f$ is almost separably valued, and $w \circ f: 
+    X \to \F$ is $\mu$-measurable for each $w \in W$.
+  \end{enumerate}
+  In any case, there exists $\seqinfn{\phi_n} \subset S(X; V)
+  $ such that $\norm{\phi_n} \leq 2 \norm{f}$ on $X$ such that 
+  $\phi_n \to f$ pointwise a.e. as $n \to \infty$. 
+  Moreover, the same 
+  equivalence holds with $\mu$-measurablility replaced by 
+  stronly $\mu$-measurablility and $\seqinfn{\phi_n}$  
+  replaced by $\seqinfn{\phi_n} \subset \Sfin(X; V)$.
+\end{thm}
+
+\begin{proof}
+  (1) $\implies$ (2). Suppose $f$ is $\mu$-measurable, 
+  which means it is almost separably valued.
+  Each $w \in V^*$ is also continuous so 
+  $w \circ f$ is $\mu$-measurable.
+
+  (2) $\implies$ (3). Trivial since $W \subset V^*$.
+  
+  (3) $\implies$ (1). Suppose $f$ is almost separably valued.
+  Then there exists null set $N_* \subset X$ such that 
+  $f(X \setminus N_*) \subset V$ separable. Define the subspace 
+  \[
+  M = \spn(f(X \setminus N_*)) \subset V,
+  \] 
+  which is separable by construction. Pick a dense 
+  set $\seqinfm{v_n} \subset M$ such that $v_0 = 0$. 
+  Then by a previous theorem, we know there exists
+  a norming sequence $\seqinfn{w_n} \subset W$ for $M$.
+  
+  Now, given any $v \in V$ and $n \in \N$, define 
+  the function $\Phi_{n, v} : X \to [0, \infty)$ 
+  by 
+  \[
+  \Phi_{n, v}(x) = \abs{\braket{w_n}{f(x) - v}}
+  = \abs{w_n(f(x) - v)}.
+  \]
+  Note that $X \ni x \mapsto \braket{w_n}{v} \in \F$ is 
+  $\mu$-measurable and the map $X \ni x \mapsto 
+  \braket{w_n}{f(x)} \in \F$ is also $\mu$-measurable
+  by assumption. It follows that 
+  $\Phi_{n, v}$ is $\mu$-measurable. Therefore, 
+  there exists null set $N_{n, v} \subset X$ and 
+  a measurable map $\Psi_{n, v} : X \to [0, \infty)$
+  such that $\Psi_{n, v} = \Phi_{n, v}$ on $X \setminus 
+  N_{n, v}$. For each $v \in V$ define null set 
+  \[
+  N(v) = N_* \cup \cupinfn N_{n, v} \subset X,
+  \]
+  with $\Psi_{n, v} = \Phi_{n, v}$ on $X \setminus N(v)$
+  for all $n \in \N$. 
+
+  For $v \in M$ define the map $\Phi_v : X \to [0, \infty]$
+  by $\Phi_v(x) = \norm{f(x) - v}$ and note that 
+  $\seqinfn{w_n}$ is norming sequence for $M$. 
+  This implies that 
+  \[
+  \Phi_v(x) = \sup_{n \in \N} \abs{\braket{w_n}{f(x) - v}}
+  \]
+  for all $x \in X \setminus N_*$. We also have that 
+  \[
+  \Phi_v(x) = \sup_{n \in \N} \Phi_{n, v}(x) 
+  = \sup_{n \in \N} \Psi_{n, v}(x)
+  \]
+  for all $x \in X \setminus N(v)$, so $\Phi_v$ 
+  is measurable when restricted to $X \setminus N(v)$.
+  We can then define the set 
+  \[
+  N = \cupinfm N(v_m) \subset X, 
+  \]
+  which is null. By construction, each $\Phi_{v_m}$
+  is measurable when restricted to $X \setminus N$. 
+  In particular, $\Phi_0 = \Phi_{v_0} = \norm{f}$ 
+  is measurable when restricted to $X \setminus N$.
 \end{proof}
 
 \end{document}
