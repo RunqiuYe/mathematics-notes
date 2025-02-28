@@ -764,7 +764,7 @@ Therefore, $\norm{\bra \cdot, \cdot \ket} = 1$.
 
 \begin{defi}[Norming set]
   Let $X$ be normed vector space and $E \subset X$, 
-  $W \subset X^*$. Say $W$ is a \emph{norming set}
+  $W \subset X^*$. Say $W$ is a \textbf{norming set}
   for $E$ if 
   \[
   \norm{x} = \sup_{\substack{w \in W \\ \norm{w} = 1}} 
@@ -1452,7 +1452,7 @@ pointwise, using continuity of $h$ and $h^{-1}$.
   
 Let $(X, \mf, \mu)$ be a measure space and let 
 $P(x)$ be a proposition for every $x \in X$. Say 
-$P$ is true \emph{almost everywhere} (a.e.) if there exists 
+$P$ is true \textbf{almost everywhere} (a.e.) if there exists 
 a set $N \in \mf$ such that $\mu(N) = 0$ and 
 $P(x)$ is true for all $x \in N^c$.
 
@@ -1508,12 +1508,12 @@ in $N^c$.
 Let $(X, \mf)$ be measurable, $Y$ be either a normed vector
 space or $\bar{\R}$. Let $\psi \in S(X; Y)$.
 \begin{enumerate}
-  \item A \emph{representation} of $\psi$ is a finite and 
+  \item A \textbf{representation} of $\psi$ is a finite and 
   well-defined sum 
   $\psi = \sum_{k=1}^K v_k \chi_{E_k}$ 
   for $v_k \in Y$ and $E_k \in \mf$.
   
-  \item A \emph{canonical representation} is 
+  \item A \textbf{canonical representation} is 
   $\psi = \sum_{v \in \psi(X)} v \chi_{\psi^{-1}
   (\left\{ v \right\})}$
   \item Now suppose $\mu$ is a measure.
@@ -1789,9 +1789,202 @@ $\mu$-measurablility of Banach-valued maps.
   N = \cupinfm N(v_m) \subset X, 
   \]
   which is null. By construction, each $\Phi_{v_m}$
-  is measurable when restricted to $X \setminus N$. 
+  is measurable when restricted to $N^c$. 
   In particular, $\Phi_0 = \Phi_{v_0} = \norm{f}$ 
-  is measurable when restricted to $X \setminus N$.
+  is measurable when restricted to $N^c$.
+
+  For $u \in M$ and $n \in \N$, define 
+  \[
+  k(n, u) = \min \left\{ 0 \leq k \leq n :
+  \norm{u - v_k} = \min_{0 \leq j \leq n} 
+  \norm{u - v_j} \right\}.
+  \]
+  By construction, 
+  \[
+  \norm{v_{k(n, u)}} 
+  \leq \norm{u - v_{k(n, m)}} + \norm{u}
+  \leq \norm{u - v_0} + \norm{u} 
+  = 2\norm{u}.
+  \]
+  We then define $S_n: M \to \left\{ v_0, \dots, v_n
+  \right\}$ via $S_n(u) = v_{k(n, u)}$. Note that 
+  $\norm{S_n(u)} \leq 2 \norm{u}$. Also, 
+  $\seqinfm{v_m}$ dense in $M$ implies
+  $S_n(u) \to u$ as $n \to \infty$. 
+
+  Finally, for $n \in \N$, define $\psi_n: N^c 
+  \to \left\{ v_0, \dots, v_n \right\} \subset V$
+  via $\psi_n = S_n \circ f$. 
+  For $0 \leq k \leq n$, we compute 
+  \[
+  \begin{aligned}
+    &
+    \left\{ x \in N^c: \psi_n(x) = v_k \right\} \\
+    &= \left\{ x \in N^c: 
+    \norm{f(x) - v_k} = \min_j \norm{f(x) - v_j} \right\}
+    \cap \bigcap_{j=0}^{k-1} 
+    \left\{ x \in N^c: 
+    \norm{f(x) - v_k} < \norm{f(x) - v_j} \right\}
+  \end{aligned}
+  \]
+  This set is measurable since $\Phi_{v_m}$ measurable 
+  on $N^c$ for each $m \in \N$. 
+  It follows that $\psi_n$ is measurable on $N^c$.
+  Let $\phi_n \in S(X; V)$ by 
+  \[
+  \phi_n(x) = \begin{cases}
+    \psi_n(x) & (x \in N^c), \\
+    0 & (x \in N).
+  \end{cases}
+  \]
+  Then, $\norm{\phi_n} \leq 2\norm{f}$ 
+  and $\phi_n(x) = \psi_n(x) \to f(x)$ as 
+  $n \to \infty$ for $x \in N^c$. 
+  Therefore, $\phi_n \to f$ a.e. and thus 
+  $f$ is $\mu$-measurable.
 \end{proof}
+
+\subsection{Lebesgue-Bochner Integral}
+
+\begin{lemma}
+  Let $(X, \mf, \mu)$ be a measure space and 
+  $Y \in \left\{ V, [0, \infty] \right\}$. 
+  Let $\psi: X \to Y$ be simple such that 
+  \[
+  \psi = \sum_{i=1}^I \alpha_i \chi_{E_i} 
+  = \sum_{j=1}^J \beta_j \chi_{F_j}.
+  \]
+  Additionally, if $Y = V$ suppose both representation
+  are finite. Then, 
+  \[
+  \sum_{i=1}^I \alpha_i \mu(E_i) = \sum_{j=1}^J 
+  \beta_j \mu(F_j).
+  \]
+
+  Based on this lemma, we can define
+  \[
+  \int_X \psi \d\mu = \sum_{i=1}^I \alpha_i \mu(E_i).
+  \]
+  This induces maps $\int_X \cdot \d \mu: S(X; [0, 
+  \infty]) \to [0, \infty]$ and $\int_X \cdot \d \mu 
+  : \Sfin(X; V) \to V$.
+\end{lemma}
+
+\begin{prop}
+  Let $(X, \mf, \mu)$ be a measure space and 
+  $Y \in \left\{ V, [0, \infty] \right\}$.
+  Then the following holds: 
+  \begin{enumerate}
+    \item If $Y = V$, then 
+    \[
+      \int_X (\alpha f + \beta g) \d \mu 
+      = \alpha \int_X f \d \mu + \beta \int_X
+      g \d \mu.
+    \]
+    for all $\alpha, \beta \in \F$ and 
+    $f, g \in \Sfin(X ; V)$. 
+    If $Y = [0, \infty]$, the same equality holds 
+    for any $\alpha, \beta > 0$ and $f, g \in S(X; V)$.
+
+    \item If $Y = V$, then 
+    $\norm{f} \in \Sfin(X; [0, \infty))$ 
+    and 
+    \[
+      \norm{\int_X f \d\mu} \leq \int_X \norm{f} \d\mu.
+    \]
+    
+    \item If $E \in \mf$, then 
+    \[
+      \int_E f \d \mu = \int_X f \chi_E \d \mu.
+    \]
+
+    \item If $N \in \mf$ is a null set, then 
+    \[
+      \int_N f \d \mu = 0.
+    \]
+
+    \item If $A, B \in \mf$ is such that 
+    $A \cap B = \emptyset$,
+    then 
+    \[
+    \int_{A \cup B} f \d\mu = \int_A f \d\mu
+    + \int_B f \d\mu.
+    \]
+
+    \item Suppose $\seqinfn{X_n} \subset \mf$ is such that 
+    $X_n \subset X_{n+1}$ and $\mu(X_n) < \infty$. 
+    Then 
+    \[
+      \int_X f \d \mu = \lim_{n \to \infty} 
+      \int_{X_n} f \d\mu.
+    \]
+
+    \begin{proof}
+      Write $f = \sum_k f_k \chi_{E_k}$ be the canonical 
+      representation. We then have 
+      \[
+      \int_{X_n} f \d\mu = \sum_k f_k \mu(X_n \cap E_k).
+      \]
+      For each $k$, we have 
+      $X_n \cap E_k \subset X_{n+1} \cap E_k$ and 
+      $\cupinfn (X_n \cap E_k) = E_k$. 
+      It follows that
+      \[
+        \lim_{n \to \infty} \mu(X_n \cap E_k) 
+        = \mu(E_k).
+      \]
+      Therefore, 
+      \[
+      \lim_{n \to \infty} \int_{X_n} f \d\mu
+      = \sum_k f_k \mu(E_k) = \int_X f \d\mu.
+      \]
+    \end{proof}
+
+    \item If $Y = \R$ or $Y = [0, \infty]$ and 
+    $f \leq g$ a.e., then 
+    \[
+    \int_X f \d\mu \leq \int_X g \d\mu.
+    \]
+  \end{enumerate}
+\end{prop}
+
+\subsubsection*{Integral of $\bar{\R}$-valued functions}
+
+Note that if $(X, \mf, \mu)$ is a measure space and 
+$\phi \in S(X; [0, \infty])$, then 
+\[
+\int_X \phi \d\mu = 
+\sup \left\{ \int_X \psi \d\mu : 
+\psi \in S(X; [0, \infty]) \text{ and $\psi \leq \phi$
+a.e.} \right\}.
+\]
+
+\begin{defi}
+  Let $(X, \mf, \mu)$ be a measure space. Let 
+  $f : X \to [0, \infty]$ be $\mu$-measurable. We 
+  define 
+  \[
+  \int_X f \d\mu = 
+  \sup \left\{ \int_X \psi \d\mu: 
+  \text{ $\psi \in S(X; [0, \infty])$ and 
+  $\psi \leq f$ a.e.} \right\} 
+  \in [0, \infty].
+  \]
+\end{defi}
+
+\begin{remark}
+There are two remarks with regard to the definition 
+above.
+\begin{enumerate}
+  \item In principle we do not need $f$ to be $\mu$-measurable
+  here. We build this into the definition because the 
+  resulting integral is more-or-less useless without this 
+  assumption. 
+  \item $[0, \infty]$ is a separable metric space,
+  so for $f : X \to [0, \infty]$ 
+  $f$ is measurable implies $f$ is $\mu$-measurable,
+  and $f$ almost measurable implies $f$ is $\mu$-measurable.
+\end{enumerate}
+\end{remark}
 
 \end{document}
