@@ -556,7 +556,7 @@ range theorem guarantees that $T$ is injective with closed
 range. Hence, $\L_R \subset \left\{ T \in \L_R(X; Y) : 
 \text{$T$ is injective with closed range} \right\}$.
 
-\item ***TO-DO***
+\item \textcolor{red}{*** TO-DO ***}
 \end{enumerate}
 \end{proof}
 
@@ -943,7 +943,7 @@ surjective. Then there exists $r_0, \; \gamma > 0$ such that
 
 \begin{proof}
   
-*** TO-DO ***
+\textcolor{red}{*** TO-DO ***}
 
 \end{proof}
 
@@ -1380,12 +1380,12 @@ as desired.
   $S(X, Y)$.
 \end{defi}
 
-\begin{thm}[Characterization of $\R$ measurablility]
+\begin{thm}[Characterization of $\bar{\R}$ measurablility]
   Let $(X, \mf)$ be measure space and $f : X \to \bar{\R}$. The 
   following are equivalent: 
   \begin{enumerate}
     \item $f$ is measurable. 
-    \item There exists $\seqinfk{\phi_k} \subset S(X; \R)$ such that 
+    \item There exists $\seqinfk{\phi_k} \subset S(X; \bar{\R})$ such that 
     $\phi_k \to f$ pointwise as $k \to \infty$.
   \end{enumerate}
   Moreover, if $f$ is measurable, the sequence can be built such that 
@@ -1398,6 +1398,10 @@ as desired.
     then $\phi_k \to f$ uniformly.
   \end{itemize}
 \end{thm}
+
+\begin{proof}
+  \textcolor{red}{*** TO-DO ***}
+\end{proof}
 
 \begin{thm}
   Let $(X, \mf)$ be measure space and $Y$ be metric space, 
@@ -1518,12 +1522,12 @@ space or $\bar{\R}$. Let $\psi \in S(X; Y)$.
   (\left\{ v \right\})}$
   \item Now suppose $\mu$ is a measure.
   We say a representation $\psi = \sum_{k=1}^K 
-  v_k \chi_{E_k}$ is finite if $\mu(E_k) < \infty$
+  v_k \chi_{E_k}$ is \textbf{finite} if $\mu(E_k) < \infty$
   for all $k$ such that $v_k \neq 0$. We 
-  say $\psi$ is a finite simple function if it has a 
+  say $\psi$ is a \textbf{finite simple function} if it has a 
   finite representation.
   
-  \item We write $\Sfin(X; Y) = \left\{ 
+  We write $\Sfin(X; Y) = \left\{ 
     f \in S(X; Y) : \text{ $f$ is finite}
    \right\}$.
   Note that it is clear $\psi$ is finite if and only if 
@@ -1539,19 +1543,19 @@ space or $\bar{\R}$. Let $\psi \in S(X; Y)$.
   Let $(X, \mf, \mu)$ be a measure space and $Y$ be a metric 
   space. 
   \begin{enumerate}
-    \item We say $f : X \to Y$ is almost measurable 
+    \item We say $f : X \to Y$ is \textbf{almost measurable} 
     if $f = F$ a.e. with $F: X \to Y$ is measurable.
     
-    \item We say $f : X \to Y$ is almost separably valued
+    \item We say $f : X \to Y$ is \textbf{almost separably valued}
     if there exists a null set $N \in \mf$ such that 
     $f(N^c)$ is separable.
     
-    \item We say $f: X \to Y$ is $\mu$-measurable if 
+    \item We say $f: X \to Y$ is \textbf{$\mu$-measurable} if 
     it is almost measurable and almost separably valued.
     Equivalently, $f$ is the a.e. limit of simple functions.
 
     \item Suppose $Y$ is a normed vector space or $\bar{\R}$.
-    We say $f: X \to Y$ is strongly $\mu$-measurable 
+    We say $f: X \to Y$ is \textbf{strongly $\mu$-measurable} 
     if there exists $\seqinfn{\psi_n} \subset \Sfin(X; Y)$
     such that $\psi_n \to f$ a.e. as $n \to \infty$.
   \end{enumerate}
