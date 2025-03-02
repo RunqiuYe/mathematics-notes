@@ -6,7 +6,7 @@
 \def\nyear {2025}
 \def\ncourse {Mathematical Studies Analysis}
 
-\input{header}
+\input{../header}
 
 \newcommand{\TODO}{\textcolor{red}{\textbf{*** TO-DO ***}}}
 
@@ -1381,6 +1381,7 @@ and the proof is complete.
   a continuous injection, so if $E \in \bfk(Y)$, then 
   $I^{-1}(E) \in \bfk(X)$. However, $I^{-1}(E) = E \cap X$.
   Therefore, $\bfk(Y)_X \subset \bfk(X)$.
+
 \end{proof}
 
 \subsubsection{Measures}
@@ -1419,7 +1420,45 @@ and the proof is complete.
 
 \subsubsection{Outer measures and Carath\'eodory construction}
 
-\TODO
+\begin{defi}[Outer measure]
+  Let $X$ be a set. An \textbf{outer measure} is a map 
+  $\om: \P(X) \to [0, \infty]$ such that 
+  \begin{enumerate}
+    \item $\om(\emptyset) = 0$.
+    \item $E \subset F$ implies $\om(E) \leq \om(F)$.
+    \item If $E_k \subset X$ for all $k \in \N$, then 
+    $\om \left( \cupinfk E_k \right) \leq \suminfk \om(E_k)$.
+  \end{enumerate}
+\end{defi}
+
+\begin{prop}
+  Let $\om_\alpha: \P(X) \to [0, \infty]$ be an outer 
+  measure for all $\alpha \in A \neq \emptyset$. 
+  Then $\lambda: \P(X) \to [0, \infty]$ defined by 
+  $\lambda(E) = \sup_{\alpha \in A} \om_\alpha(E)$
+  is an outer measure.
+\end{prop}
+
+\begin{proof}
+\begin{enumerate}
+  \item $\om_\alpha(\emptyset) = 0$ for all $\alpha \in A$
+  implies that $\lambda(\emptyset) = 0$.
+
+  \item Suppose $E \subset F$, then $\om_\alpha(E) 
+  \leq \om_\alpha(F) \leq \lambda(F)$ for all $\alpha \in A$.
+  Take the sup and we obtain $\lambda(E) \leq \lambda(F)$.
+
+  \item Let $E_k \subset X$ for each $k \in \N$. 
+  Then, 
+  \[
+  \om_\alpha \left( \cupinfk E_k \right) 
+  \leq \suminfk \om_\alpha (E_k) 
+  \leq \suminfk \lambda(E_k) 
+  \]
+  This implies that $\lambda(\cupinfk E_k) \leq \suminfk 
+  \lambda(E_k)$.
+\end{enumerate}
+\end{proof}
 
 \begin{defi}
   Let $X$ be a set with outer measure $\om$. Say 
@@ -1445,12 +1484,63 @@ and the proof is complete.
   \end{enumerate}
 \end{thm}
 
-\begin{defi}
+\begin{defi}[Cover regular]
   Let $\om$ be an outer measure on $X$. Say $\om$
   is cover-regular if for any $A \subset X$, there 
   exists $E \in \mf$ such that $A \subset E$ 
   and $\om(A) = \mu(E)$.
 \end{defi}
+
+\begin{prop}
+  Let $\om$ be an outer measure on $X$. Then $\om$
+  is outer-regular if and only if for any $A \subset X$, 
+  $\om(A) = \inf \left\{ \mu(E) : A \subset E \in 
+  \mf \right\}$. In either case, the inf is a min.
+\end{prop}
+
+\begin{prop}
+  Let $X$ be a set with cover-regular outer measure 
+  $\om$. Suppose for $n \in \N$, we have $A_n \subset 
+  A_{n+1}$. Then, 
+  \[
+  \om \left( \cupinfn A_n \right) 
+  = \lim_{n \to \infty} \om(A_n).
+  \]
+\end{prop}
+
+\begin{proof}
+  First note that $\om(A_n) \leq \om(A_{n+1}) 
+  \leq \om(A)$, where $A = \cupinfn A_n$. 
+  Therefore, 
+  \[
+    \lim_{n \to \infty} \om(A_n) \leq \om(A).
+  \]
+
+  On the other hand, by cover regularity, there exists 
+  $A_n \subset E_n \in \mf$ such that $\om(A_n) = \mu(E_n)$.
+  In particular, $\lim_{n \to \infty} \om (A_n) 
+  = \lim_{n \to \infty} \mu(E_n)$. Then, 
+  \[
+  A = \cupinfn A_n = \cupinfn \bigcap_{k=n}^\infty A_k
+  \subset \cupinfn \bigcap_{k=n}^\infty E_k \in \mf,
+  \]
+  and 
+  \[
+  \begin{aligned}
+    \om(A) 
+    \leq \mu \left( \cupinfn 
+    \bigcap_{k=n}^\infty E_k \right) 
+    = \lim_{n \to \infty} \mu \left( \bigcap_{k=n}^\infty 
+    E_k \right) 
+    \leq \lim_{n \to \infty} \mu (E_n) 
+    = \lim_{n \to \infty} \mu(A_n),
+  \end{aligned}
+  \]
+  where we have used monoton continuity of \textbf{measure}.
+  Therefore, $\lim_{n \to \infty} \om (A_n) = \om 
+  \left( \cupinfn A_n \right)$.
+\end{proof}
+
 
 \subsubsection{Constructing outer measures}
 
@@ -1474,6 +1564,10 @@ and the proof is complete.
   thorugh Carath\'eodory construction.
 \end{thm}
 
+\begin{proof}
+  \TODO
+\end{proof}
+
 \begin{thm}
   Let $(X, d)$ be a metric space with gauge $(\cale, \gamma)$
   and outer measures $\om_\delta: \P(X) \to [0, \infty]$
@@ -1486,6 +1580,15 @@ and the proof is complete.
   $\om_d(A) = \lim_{\delta \to 0} \om_\delta(A)$ 
   for $A \subset X$.
 \end{thm}
+
+\begin{proof}
+  \TODO
+\end{proof}
+
+\begin{defi}
+  We call $\om_d$ the metric outer measure generated 
+  by $(\cale, \gamma)$.
+\end{defi}
 
 \begin{lemma}
   Let $X$ be a set with gauge $(\cale, \gamma)$ that covers 
