@@ -1385,9 +1385,41 @@ and the proof is complete.
 
 \subsubsection{Measures}
 
-\TODO
+\begin{defi}[Measure]
+  Let $X$ be a set with $\mf$ a $\sigma$-algebra on $X$. 
+  A \textbf{measure} is a map $\mu: \nf \to [0, \infty]$
+  such that 
+  \begin{enumerate}
+    \item $\mu(\emptyset) = 0$.
+    \item If $\seqinfk{E_k} \subset \mf$ pairwise disjoint,
+    then $\mu \left( \cupinfk E_k \right) = \suminfk \mu (E_k)$.
+  \end{enumerate}
+  Such a triple $(X, \mf, \mu)$ is a \textbf{measure 
+  space}.
+\end{defi}
+
+\begin{defi}
+  We say $(X, \mf, \mu)$ is \textbf{finite} if 
+  $\mu(X) < \infty$. We say $(X, \mf, \mu)$ is 
+  \textbf{$\sigma$-finite} if $X = \cupinfn X_n$ for 
+  $X_n \in \mf$ and $\mu(X_n) < \infty$.
+\end{defi}
+
+\begin{thm}
+  Let $(X, \mf, \mu)$ be a measure space. Then the 
+  following holds: 
+  \begin{enumerate}
+    \item If $E$ and $F$ is measurable and $E \subset F$, 
+    then $\mu(E) \leq \mu(F)$.
+
+    \item If $E_k \in \mf$ for all $k \in \N$, then 
+    $\mu \left( \cupinfk E_k \right) \leq \suminfk \mu(E_k)$.
+  \end{enumerate}
+\end{thm}
 
 \subsubsection{Outer measures and Carath\'eodory construction}
+
+\TODO
 
 \begin{defi}
   Let $X$ be a set with outer measure $\om$. Say 
