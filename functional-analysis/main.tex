@@ -4,7 +4,7 @@
 
 \def\nterm {Spring}
 \def\nyear {2025}
-\def\ncourse {Introductino to Functional Analysis}
+\def\ncourse {Introduction to Functional Analysis}
 
 \input{../header}
 
@@ -14,5 +14,158 @@
 \maketitle
 
 \tableofcontents
+
+\section{Banach space theory}
+
+\subsection{Quotient spaces, Baire category and 
+uniform boundedness}
+
+\begin{thm}
+Let $\norm{\cdot}$ be a \textbf{seminorm} on a vector 
+space $V$. If we define $E = \left\{ v \in V: \norm{v} 
+= 0 \right\}$, then $E$ is a subspace of $V$, 
+and the function on $V / E$ defined by 
+\[
+\norm{v + E} = \norm{v}
+\]
+for any $v + E \in V / E$ defines a \textbf{norm}.
+\end{thm}
+
+\begin{thm}[Baire Category Theorem]
+Let $M$ be a complete metric space, and let $\seqinfn{C_n}$
+be a collection of closed subsets of $M$ such that 
+$M = \cupinfn C_n$. Then at least one of the $C_n$ contains
+an open ball $B(x, r) = \left\{ y \in M : d(x, y) < r \right\}$.
+\end{thm}
+
+\begin{thm}[Uniform Boundedness Theorem]
+Let $B$ be Banach space and $V$ a normed vector space. 
+Let $\seqinfn{T_n}$ be a sequence in $\B(B, V)$.
+Then if for all $b \in B$ we have $\sup_n \norm{T_n b} < \infty$
+(that is, this sequence is pointwise boudned),
+then $\sup_n \norm{T_n} < \infty$ (the operator norms are 
+bounded).
+\end{thm}
+
+\begin{proof}
+For each $k \in \N$, define 
+\[
+C_k = \left\{ b \in B: \norm{b} \leq 1, \sup_{n \in \N} 
+\norm{T_n b} \leq k \right\}.
+\]
+This set is closed for each $k \in \N$, but by assumption, 
+we have 
+\[
+\left\{ b \in B: \norm{b} \leq 1 \right\} = \cupinfk C_k.
+\]
+The left hand side is a closed subset of $B$, and is thus 
+a complete metric space. By Baire Category Theorem, 
+there exists $k \in \N$ such that $C_k$ contains an open 
+ball $B(b_0, \delta_0)$. Then, if $b \in B(0, \delta_0)$, 
+we have $b_0 + b \in B(b_0, \delta_0)$ and thus 
+\[
+\sup_{n \in \N} \norm{T_n (b_0 + b)} \leq k.
+\]
+It follows that 
+\[
+\sup_{n \in \N} \norm{T_n b} \leq \sup_{n \in \N}
+\norm{T_n (b_0 + b)} + \sup_{n \in \N} \norm{T_n b_0}
+\leq 2k.
+\]
+Suppose $\norm{b} = 1$, then $\frac{\delta_0}{2} b \in 
+B(0, \delta_0)$ and thus for all $n \in \N$, 
+we have 
+\[
+\norm{T_n \left( \frac{\delta_0}{2} b \right)} \leq 2k.
+\]
+Therefore, 
+\[
+\sup_{n \in \N} \norm{T_n} \leq \frac{4k}{\delta_0}.
+\]
+\end{proof}
+
+\section{Hilbert space theory}
+
+\subsection{Basic Hilbert space theory}
+
+\begin{defi}[Pre-Hilbert space]
+  A \textbf{pre-Hilbert} space $H$ is a vector space over 
+  $\C$ with a \textbf{Hermitian inner product}, which is a 
+  map $\braket{\cdot}{\cdot} : H \times H \to \C$ satisfying
+  the following properties.
+
+  \begin{enumerate}
+    \item For all $\lambda_1, \lambda_2 \in C$ and 
+    $v_1, v_2, w \in H$, we have 
+    \[
+    \braket{\lambda_1 v_1 + \lambda_2 v_2}{w} 
+    = \lambda_1 \braket{v_1}{2} + \lambda_2 \braket{v_2}{w}.
+    \]
+
+    \item For all $v, w \in H$, we have $\braket{v}{w} 
+    = \bar{\braket{w}{v}}$.
+
+    \item For all $v \in H$, we have $\braket{v}{v} \geq 0$, 
+    with equality if and only if $v = 0$.
+  \end{enumerate}
+\end{defi}
+
+\begin{defi}
+Let $H$ be a pre-Hilbert space. For all $v \in H$, we 
+define 
+\[
+\norm{v} = \braket{v}{v}^{\frac{1}{2}}.
+\]
+\end{defi}
+
+\begin{thm}[Cauchy-Schwarz inequality]
+Let $H$ be a pre-Hilbert space. For all $u, v \in H$, we
+have 
+\[
+\abs{\braket{u}{v}} \leq \norm{u} \norm{v}.
+\]
+\end{thm}
+
+\begin{proof}
+Define $f(t) = \norm{u + tv}^2$. Notice that 
+\[
+\begin{aligned}
+  f(t) 
+  &= \braket{u + tv}{u + tv}  \\
+  &= \braket{u}{u} 
+  + t^2 \braket{v}{v} + t \braket{u}{v} + t \braket{v}{u} \\
+  &= \norm{u}^2 + t^2 \norm{v}^2 + 2t \Re(\braket{u}{v}).
+\end{aligned}
+\]  
+This implies that 
+\[
+0 \leq f(t_{\text{min}}) = \norm{u}^2 - 
+\frac{\Re(\braket{u}{v})^2}{\norm{v}^2}.
+\]
+It follows that 
+\[
+\abs{\Re( \braket{u}{v} )} \leq \norm{u} \norm{v}.
+\]
+This is almost what we want. 
+To finish up, first note that if 
+$\braket{u}{v} = 0$ then there is nothing to prove,
+so suppose $\braket{u}{v} \neq 0$,
+and define 
+\[
+\lambda = \frac{\bar{\braket{u}{v}}}{\abs{\braket{u}{v}}}.
+\]
+Note that we have $\abs{\lambda} = 1$ and we have 
+the chain of equalities of real numbers:
+\[
+\abs{\braket{u}{v}} = \lambda \braket{u}{v} 
+= \braket{\lambda u}{v} = \Re \braket{\lambda u}{v} 
+\leq \norm{\lambda u} \norm{v}.
+\]
+However, $\norm{\lambda u} = \norm{u}$, so the proof is 
+complete.
+
+\end{proof}
+
+
 
 \end{document}
