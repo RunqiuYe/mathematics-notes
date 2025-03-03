@@ -166,6 +166,216 @@ complete.
 
 \end{proof}
 
+\begin{thm}
+If $H$ is a pre-Hilbert space, then $\norm{\cdot}$ 
+is a norm on $H$.
+\end{thm}
 
+\begin{proof}
+  Note that 
+  \[
+  \norm{v} = 0 \iff \braket{v}{v} = 0 \iff v = 0.
+  \]
+  Now if $\lambda \in \C$ and $v \in H$, then 
+  \[
+  \braket{\lambda v}{\lambda v} = \lambda \bar{\lambda}
+  \braket{v}{v} = \abs{\lambda}^2 \norm{v}^2.
+  \]
+  Therefore, $\norm{\lambda v} = \abs{\lambda} \norm{v}$. 
+  
+  Finally, let $u, v \in H$, then 
+  \[
+  \begin{aligned}
+    \norm{u + v}^2 
+    &= \braket{u + v}{u + v} \\
+    &= \norm{u}^2 + \norm{v}^2 + 2 \Re \braket{u}{v} \\
+    &\leq \norm{u}^2 + \norm{v}^2 + 2 \abs{\braket{u}{v}} \\
+    &\leq \norm{u}^2 + \norm{v}^2 + 2 \norm{u} \norm{v} \\
+    &= (\norm{u} + \norm{v})^2.
+  \end{aligned}
+  \]
+  This completes the proof.
+\end{proof}
+
+\begin{thm}
+If $u_n \to u$ and $v_n \to v$ in a pre-Hilbert space $H$, 
+then $\braket{u_n}{v_n} \to \braket{u}{v}$.
+\end{thm}
+
+\begin{proof}
+  If $u_n \to u$ and $v_n \to v$, then 
+  $\norm{u_n - u} \to 0$ and $\norm{v_n - v} \to 0$. 
+  It follows that 
+  \[
+  \begin{aligned}
+    \abs{\braket{u_n}{v_n} - \braket{u}{v}} 
+    &= \abs{\braket{u_n - u}{v_n} - \braket{u}{v - v_n}} \\
+    &\leq \abs{\braket{u_n - u}{v_n}} 
+    + \abs{\braket{u}{v - v_n}} \\
+    &\leq \norm{u_n - u} \norm{v_n} + \norm{u} \norm{v - v_n} \\
+    &\leq \norm{u_n - u} \sup_{k \in \N} \norm{v_k} + \norm{u} 
+    \norm{v - v_n} \\
+    &\to 0 
+  \end{aligned}
+  \]
+  as $n \to \infty$. This completes the proof.
+\end{proof}
+
+\begin{defi}[Hilbert space]
+A \textbf{Hilbert space} is a pre-Hilbert space that is 
+complete with repsect to the norm 
+$\norm{\cdot} = \braket{\cdot}{\cdot}^{\frac{1}{2}}$.
+\end{defi}
+
+\begin{eg}
+Some examples of Hilbert spaces: 
+\begin{itemize}
+  \item $\C^n = \left\{ z = (z_1, \dots, z_n) : z_j \in \C \right\}$
+  with
+  $\braket{z}{w} = \sum_j z_j \bar{w_j}$ is a Hilbert 
+  space.
+
+  \item $\ell^2 = \left\{ a = \seqinfk{a_k} : 
+  \text{$a_k \in \C$, $\suminfk \abs{a_k}^2 < \infty$} \right\}$ 
+  with
+  $\braket{a}{b} = \suminfk a_k \bar{b_k}$ 
+  is a Hilbert space.
+
+  \item If $E \subset \R$ is measurable, then 
+  $L^2(E) = \left\{ f: \text{$E \to \C$, 
+  $\int_E \abs{f}^2 < \infty$} \right\}$ with 
+  $\braket{f}{g} = \int_E f \bar{g}$ is a Hilbert 
+  space.
+\end{itemize}
+We will show that each separable Hilbert spaces is 
+isometrically isomorphic to either $\C^n$ or $\ell^2$.
+\end{eg}
+
+Now we have seen that $\ell^2$ and $L^2$ spaces are 
+Hilbert spaces. A natural question is whether
+other $\ell^p$ or $L^p$ spaces are also Hilbert spaces
+with respect to some inner product?
+It turns out there is a simple way to decide whether a 
+norm come from a inner-product, and thus whether a 
+Banach space is a Hilbert space. 
+
+\begin{thm}[Parallelogram Law]
+If $H$ is a pre-Hilbert space, then for all $u, v \in H$, 
+we have 
+\[
+  \norm{u + v}^2 + \norm{u - v}^2 = 2 \left( \norm{u}^2 
+  + \norm{v}^2 \right).
+\]
+In addition, if $H$ is a normed vector space satisfying this 
+equality, then $H$ is a pre-Hilbert space.
+\end{thm}
+
+Using the previous theorem, we can verify that 
+$\ell^p$ and $L^p$ with $p \neq 2$ are \textbf{not} 
+Hilbert spaces.
+
+\begin{defi}[Orthogonal]
+  If $H$ is a pre-Hilbert space, $u, v \in H$ are 
+  \textbf{orthogonal} if $\braket{u}{v} = 0$. 
+  We denote this as $u \perp v$.
+\end{defi}
+
+\begin{defi}[Orthonormal sets]
+  If $H$ is a pre-Hilbert space, a subset $\left\{ e_\lambda 
+  \right\}_{\lambda \in \Lambda} \subset H$ is 
+  \textbf{orthonormal} if for all $\lambda \in \Lambda$,
+  we have $\norm{e_\lambda} = 1$ and $\lambda_1 \neq \lambda_2$
+  implies $e_{\lambda_1} \perp e_{\lambda_2}$.
+\end{defi}
+
+\begin{remark}
+  we will mainly be interested in the case where we have a 
+  countable orthonormal set.
+\end{remark}
+
+\begin{eg}
+  The set $\left\{ \frac{1}{\sqrt{2\pi}} e^{i n x} \right\}_{n \in \Z}$
+  as elements in $L^2([-\pi, \pi])$ 
+  is a orthonormal subset of $L^2([-\pi, \pi])$. 
+  Indeed, for any $m, n \in \Z$, we have 
+  \[
+  \int_{-\pi}^\pi e^{imx} \bar{e^{inx}} 
+  = \int_{-\pi}^\pi e^{i(m - n)x}
+  \]
+  This evaluates to $2 \pi$ if $m = n$ and $0$ if 
+  $m \neq n$.
+\end{eg}
+
+\begin{thm}[Bessel]
+If $\seqinfn{e_n}$ is countable orthonormal subset 
+of a pre-Hilbert space $H$, then for all 
+$u \in H$, we have 
+\[
+\suminfn \abs{\braket{u}{e_n}}^2 \leq \norm{u}^2.
+\]
+\end{thm}
+
+\begin{proof}
+  We first do the finite case. Suppose $\left\{ e_n \right\}
+  _{n=1}^N$ is an orthonormal subset of $H$. Then, 
+  \[
+  \begin{aligned}
+  \norm{\sum_{n=1}^N \braket{u}{e_n} e_n}^2 
+  &= \braket{\sum_{n=1}^N \braket{u}{e_n} e_n }{\sum_{n=1}^N \braket{u}{e_n} e_n} \\
+  &= \sum_{n=1}^N 
+  \sum_{m=1}^N \braket{u}{e_n} \bar{\braket{u}{e_m}} \braket{e_n}{e_m} \\
+  &= \sum_{n=1}^N \abs{\braket{u}{e_n}}^2.
+  \end{aligned}
+  \]
+  Also, 
+  \[
+  \begin{aligned}
+  \braket{u}{\sum_{n=1}^N \braket{u}{e_n}e_n} 
+  &= \sum_{n=1}^N \bar{\braket{u}{e_n}} \braket{u}{e_n} \\
+  &= \sum_{n=1}^N \abs{\braket{u}{e_n}}^2.
+  \end{aligned}
+  \]
+  Therefore, 
+  \[
+  \begin{aligned}
+  0 
+  &\leq \norm{u - \sum_{n=1}^N \braket{u}{e_n}e_n}^2 \\
+  &= \norm{u}^2 + \norm{\sum_{n=1}^N \braket{u}{e_n}e_n}^2 
+  - 2 \Re \braket{u}{\sum_{n=1}^N \braket{u}{e_n}e_n} \\
+  &= \norm{u}^2 - \sum_{n=1}^N \abs{\braket{u}{e_n}}^2,
+  \end{aligned}
+  \]
+  as desired.
+
+  For the infinite case, just take the limit as  
+  $N \to \infty$.
+\end{proof}
+
+\begin{defi}[Maximal orthonormal subset]
+  An orthonormal subset $\left\{ e_\lambda \right\}_\lambda$
+  of a pre-Hilbert space is \textbf{maximal} if $u \in H$ 
+  and $\braket{u}{e_\lambda} = 0$ for all $\lambda \in \Lambda$
+  implies that $u = 0$.
+\end{defi}
+
+\begin{thm}
+  Every non-trivial pre-Hilbert space has a maximal 
+  orthonormal subset.
+\end{thm}
+
+This can be proved using Zorn's Lemma. We will prove 
+something less strong but often equally useful by hand, 
+without applying Zorn's Lemma.
+
+\begin{thm}
+  Every non-trivial separable pre-Hilbert space 
+  has a countable maximal orthonormal subset.
+\end{thm}
+
+\begin{proof}
+
+\end{proof}
+
+\subsection{Orthonormal bases and Fourier Series}
 
 \end{document}
