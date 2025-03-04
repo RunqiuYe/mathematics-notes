@@ -252,7 +252,10 @@ isometrically isomorphic to either $\C^n$ or $\ell^2$.
 \end{eg}
 
 Now we have seen that $\ell^2$ and $L^2$ spaces are 
-Hilbert spaces. A natural question is whether
+Hilbert spaces. This is expected since the definition 
+of the inner product in these spaces uses the fact 
+that they are $\ell^2$ or $L^2$. 
+A natural question then is whether
 other $\ell^p$ or $L^p$ spaces are also Hilbert spaces
 with respect to some inner product?
 It turns out there is a simple way to decide whether a 
@@ -294,16 +297,22 @@ Hilbert spaces.
 \end{remark}
 
 \begin{eg}
-  The set $\left\{ \frac{1}{\sqrt{2\pi}} e^{i n x} \right\}_{n \in \Z}$
+  The set $\left\{ \frac{e^{i n x}}{\sqrt{2\pi}} \right\}_{n \in \Z}$
   as elements in $L^2([-\pi, \pi])$ 
-  is a orthonormal subset of $L^2([-\pi, \pi])$. 
+  is an orthonormal subset of $L^2([-\pi, \pi])$. 
   Indeed, for any $m, n \in \Z$, we have 
   \[
   \int_{-\pi}^\pi e^{imx} \bar{e^{inx}} 
   = \int_{-\pi}^\pi e^{i(m - n)x}
+  = \begin{cases}
+    2 \pi & (m = n), \\
+    0 & (m \neq n).
+  \end{cases}
   \]
-  This evaluates to $2 \pi$ if $m = n$ and $0$ if 
-  $m \neq n$.
+  Therefore, $\braket{\frac{e^{inx}}{\sqrt{2\pi}}}{\frac{e^{imx}}
+  {\sqrt{2\pi}}} = \delta_{mn}$, and $\left\{ \frac{e^{i n x}}{\sqrt{2\pi}}
+  \right\}_{n \in \Z}$ is an orthonormal subset 
+  of $L^2([-\pi, \pi])$.
 \end{eg}
 
 \begin{thm}[Bessel]
@@ -320,29 +329,29 @@ $u \in H$, we have
   _{n=1}^N$ is an orthonormal subset of $H$. Then, 
   \[
   \begin{aligned}
-  \norm{\sum_{n=1}^N \braket{u}{e_n} e_n}^2 
-  &= \braket{\sum_{n=1}^N \braket{u}{e_n} e_n }{\sum_{n=1}^N \braket{u}{e_n} e_n} \\
-  &= \sum_{n=1}^N 
+  \norm{\sum_{n=0}^N \braket{u}{e_n} e_n}^2 
+  &= \braket{\sum_{n=0}^N \braket{u}{e_n} e_n }{\sum_{n=0}^N \braket{u}{e_n} e_n} \\
+  &= \sum_{n=0}^N 
   \sum_{m=1}^N \braket{u}{e_n} \bar{\braket{u}{e_m}} \braket{e_n}{e_m} \\
-  &= \sum_{n=1}^N \abs{\braket{u}{e_n}}^2.
+  &= \sum_{n=0}^N \abs{\braket{u}{e_n}}^2.
   \end{aligned}
   \]
   Also, 
   \[
   \begin{aligned}
-  \braket{u}{\sum_{n=1}^N \braket{u}{e_n}e_n} 
-  &= \sum_{n=1}^N \bar{\braket{u}{e_n}} \braket{u}{e_n} \\
-  &= \sum_{n=1}^N \abs{\braket{u}{e_n}}^2.
+  \braket{u}{\sum_{n=0}^N \braket{u}{e_n}e_n} 
+  &= \sum_{n=0}^N \bar{\braket{u}{e_n}} \braket{u}{e_n} \\
+  &= \sum_{n=0}^N \abs{\braket{u}{e_n}}^2.
   \end{aligned}
   \]
   Therefore, 
   \[
   \begin{aligned}
   0 
-  &\leq \norm{u - \sum_{n=1}^N \braket{u}{e_n}e_n}^2 \\
-  &= \norm{u}^2 + \norm{\sum_{n=1}^N \braket{u}{e_n}e_n}^2 
-  - 2 \Re \braket{u}{\sum_{n=1}^N \braket{u}{e_n}e_n} \\
-  &= \norm{u}^2 - \sum_{n=1}^N \abs{\braket{u}{e_n}}^2,
+  &\leq \norm{u - \sum_{n=0}^N \braket{u}{e_n}e_n}^2 \\
+  &= \norm{u}^2 + \norm{\sum_{n=0}^N \braket{u}{e_n}e_n}^2 
+  - 2 \Re \braket{u}{\sum_{n=0}^N \braket{u}{e_n}e_n} \\
+  &= \norm{u}^2 - \sum_{n=0}^N \abs{\braket{u}{e_n}}^2,
   \end{aligned}
   \]
   as desired.
@@ -449,13 +458,276 @@ By Bessel's inequality,
 \leq \norm{v_{j(k)} - u}^2,
 \end{aligned}
 \]
-Since $v_{j(k)} \to u$ as $k \to \infty$, this implies that
+where for the first equality we used the fact that 
+$v_{j(k)} \in \spn \left\{ e_1, \dots, e_{m(j(k))} \right\}$.
+Since $v_{j(k)} \to u$ as $k \to \infty$, 
+the inequality implies that
 $\norm{v_{j(k)}} \to 0$ as $k \to \infty$ 
-and thus $\norm{u} = 0$, completing
-the proof that $S$ is a maximal orthonormal subset 
+and thus $\norm{u} = 0$, showing that 
+$S$ is indeed a maximal orthonormal subset 
 of $H$.
 \end{proof}
 
+\begin{cor}
+$\ell^2$ and $L^2$ have countable maximal orthonormal
+subset since they are both separable.
+\end{cor}
+
 \subsection{Orthonormal bases and Fourier Series}
+
+\begin{defi}[Orthonormal basis]
+Let $H$ be a Hilbert space. An \textbf{orthonormal basis}
+of $H$ is a countable maximal orthonormal subset 
+$\left\{ e_n \right\}_n$ of $H$.
+\end{defi}
+
+\begin{thm}
+If $\seqinfn{e_n}$ is an orthonormal basis in 
+Hilbert space $H$, then for all $u \in H$, we have 
+\[
+\suminfn \braket{u}{e_n} e_n = u.
+\]
+This is the Fourier-Bessel series.
+
+This tells us we can write each element in $H$ as a 
+infinite linear combination of the orthonormal basis.
+\end{thm}
+
+\begin{proof}
+We first prove the sequence of partial sums 
+$\left\{ \sum_{n=0}^m \braket{u}{e_n} e_n \right\}_m$
+is Cauchy. Let $\epsilon > 0$. By Bessel's inequality, 
+we have 
+\[
+\suminfn \abs{\braket{u}{e_n}}^2 \leq \norm{u}^2 < \infty.
+\]
+Therefore, there exsits $M \in \N$ such that 
+$N \geq M$ implies $\sum_{n=N+1}^\infty \abs{\braket{u}{e_n}}^2 
+< \epsilon^2$. Then for all $m > l \geq M$, we have 
+\[
+\norm{\sum_{n=0}^m \braket{u}{e_n}e_n - 
+\sum_{n=0}^l \braket{u}{e_n}e_n}^2 
+\leq \sum_{n=l+1}^m \abs{\braket{u}{e_n}}^2 
+\leq \sum_{n=l+1}^\infty \abs{\braket{u}{e_n}}^2 
+< \epsilon^2.
+\]
+Therefore, the sequence of partial sum is Cauchy.
+Since $H$ is complete, there exists $\bar{u} \in H$
+such that $\bar{u} = \suminfn \braket{u}{e_n}e_n$. 
+It remains to show that $\bar{u} = u$. 
+By continuity of inner-product, for all $l \in \N$, we 
+have 
+\[
+\begin{aligned}
+  \braket{u - \bar{u}}{e_l} 
+  &= \lim_{m \to \infty} \braket{u - \sum_{n=0}^m 
+  \braket{u}{e_n} e_n}{e_l}  \\
+  &= \lim_{m \to \infty} \left[ \braket{u}{e_l} 
+  - \sum_{n=0}^m \braket{u}{e_n} \braket{e_n}{e_l} \right] \\
+  &= 0.
+\end{aligned}
+\]
+Since $\seqinfn{e_n}$ is maximal, this implies that 
+$u - \bar{u} = 0$ and the proof is complete.
+\end{proof}
+
+\begin{thm}
+Let $H$ be a Hilbert space.
+If $H$ has an orthonormal basis, then 
+$H$ is separable.
+\end{thm}
+
+\begin{proof}
+Suppose $\seqinfn{e_n}$ is an orthonormal basis for $H$. 
+Then 
+\[
+S = \bigcup_{m \in \N} \left\{ \sum_{n=0}^m q_n e_n : 
+q_n \in \Q + i \Q \right\}
+\]
+is a countable set. 
+Also, by the previous theorem, $S$ is dense in $H$.
+\end{proof}
+
+\begin{remark}
+Let $H$ be a Hilbert space. $H$ is separable if and only if 
+$H$ has an orthonormal basis.
+\end{remark}
+
+\begin{thm}[Parseval's identity]
+If $H$ is a Hilbert space and $\seqinfn{e_n}$ is a
+countable orthonormal basis, then for all $u \in H$, 
+we have 
+\[
+\sum_n \abs{\braket{u}{e_n}}^2 = \norm{u}^2
+\]
+\end{thm}
+
+\begin{proof}
+We have $u = \sum_n \braket{u}{e_n} e_n$. This implies that 
+\[
+\begin{aligned}
+\norm{u}^2 
+&= \lim_{m \to \infty} \braket{\sum_{n=0}^m \braket{u}{e_n}
+e_n}{\sum_{l=0}^m \braket{u}{e_l} e_l} \\
+&= \lim_{m \to \infty} \sum_{n=0}^m \sum_{l=0}^m 
+\braket{u}{e_n} \bar{\braket{u}{e_l}} \braket{e_n}{e_l} \\
+&= \lim_{m \to \infty} \sum_{n=0}^m \abs{\braket{u}{e_n}}^2 \\
+&= \suminfn \abs{\braket{u}{e_n}}^2.
+\end{aligned}
+\]
+\end{proof}
+
+\begin{thm}
+If $H$ is an infinte dimensional separable Hilbert space, 
+then $H$ is isometrically isomorphic to $\ell^2$. 
+That is, there exists bijective boudned linear map 
+$T : H \to \ell^2$ such that 
+for all $u, v \in H$, we have 
+\[
+\norm{T u}_{\ell^2} = \norm{u}_H
+\text{ and }
+\braket{T u}{T v}_{\ell^2} = \braket{u}{v}_H.
+\]
+\end{thm}
+
+\begin{proof}
+Since $H$ is separable, there exists an orthonormal basis
+$\seqinfn{e_n}$.
+For all $u \in H$, the previous theorem gives
+\[
+\norm{u} = \left( \suminfn \abs{\braket{u}{e_n}}^2 \right)^{\frac{1}{2}}.
+\]
+Define $T : H \to \ell^2$ by 
+\[
+T u = \seqinfn{\braket{u}{e_n}} \in \ell^2.
+\]
+It is easy to check that $T$ is the desired isometric 
+isomorphism.
+\end{proof}
+
+Next we use the theories we learned in a more concrete 
+setting --- the Fourier series.
+
+\begin{thm}
+The subset $\left\{ \frac{e^{i n x}}{\sqrt{2 \pi}} \right\}_{n \in \Z}$
+is an orthonormal subset of $L^2([-\pi, \pi])$.
+\end{thm}
+
+\begin{defi}
+Let $f \in L^2([- \pi, \pi])$. Then the \textbf{$n$-th 
+Fourier coefficient} of $f$ is 
+\[
+\hat{f}(n) = \frac{1}{2\pi} \int_{-\pi}^\pi f(t) 
+e^{- i n t} \d t.
+\]
+The \textbf{$N$-th Fourier sum} of $f$ is 
+\[
+S_n f(x) = \sum_{\abs{n} \leq N} \hat{f}(n) e^{inx} 
+= \sum_{\abs{n} \leq N} \braket{f}{\frac{e^{int}}{\sqrt{2\pi}}}
+\frac{e^{inx}}{\sqrt{2\pi}}.
+\]
+
+The \textbf{Fourier series} of $f$ is the formal 
+series $\sum_{n \in \Z} \hat{f} (n) e^{-inx}$.
+\end{defi}
+
+The natural question now is whether we have for 
+all $f \in L^2 ([-\pi, \pi])$, 
+\[
+f(x) = \sum_{n \in \Z} \hat{f}(n) e^{i n x}.
+\]
+That is, whether we have the following convergence in $L^2$.
+\[
+\lim_{N \to \infty} \norm{f - S_N f}_2 = 0.
+\]
+This question is then equivalent to whether 
+$\left\{ \frac{e^{inx}}{\sqrt{2 \pi}} \right\}_{n \in \Z}$
+is maximal in $L^2 ([-\pi, \pi])$. That is, 
+whether $\hat{f}(n) = 0$ for all $n \in \N$ implies $f = 0$.
+
+The answer to the question is yes, but it is going to take 
+some work. We first do some simple calculation.
+
+\begin{thm}
+For all $f \in L^2([-\pi, \pi])$ and for all $N \in \N$, 
+we have 
+\[
+S_N f(x) = \int_{- \pi}^\pi D_N(x - t) f(t) \d t,
+\]
+where
+\[
+D_N(x) = \begin{cases}
+  \frac{2N + 1}{2 \pi} & (x = 0) \\
+  \frac{\sin \left( N + \frac{1}{2} \right) x}{2 \pi 
+  \sin \frac{x}{2}} & (x \neq 0)
+\end{cases}
+\]
+it the \textbf{Dirichlet kernel}. Note that 
+$D_N$ is a smooth function.
+\end{thm}
+
+\begin{proof}
+If $f \in L^2([- \pi, \pi])$, we have 
+\[
+\begin{aligned}
+S_N f(x) 
+&= \sum_{\abs{n} \leq N} \left( \frac{1}{2\pi} 
+\int_{- \pi}^\pi f(t) e^{- i n t} \d t \right) e^{i n x} \\
+&= \int_{-\pi}^\pi f(t) \left( \frac{1}{2\pi} 
+\sum_{\abs{n} \leq N} e^{i n (x - t)} \right) \d t.
+\end{aligned}
+\]
+Let $D_N(x) = \frac{1}{2\pi} 
+\sum_{\abs{n} \leq N} e^{i n (x - t)}$. 
+Then for $x \neq 0$, we have 
+\[
+\begin{aligned}
+  D_N(x) 
+  &= \frac{1}{2\pi} \sum_{n=-N}^{N} 
+  e^{- i n x} \\ 
+  &= \frac{1}{2\pi} e^{- i N x} \sum_{n=0}^{2N}
+  \left( e^{i x} \right)^n \\
+  &= \frac{1}{2\pi} e^{- i N x} 
+  \frac{1 - e^{i (2N+1) x}}{1 - e^{i x}} \\
+  &= \frac{1}{2\pi} \frac{e^{i (N + \frac{1}{2}) x} 
+  - e^{- i (N + \frac{1}{2}) x}}{e^{\frac{ix}{2}} - 
+  e^{-\frac{ix}{2}}} \\
+  &= \frac{1}{2\pi} \frac{2 i \sin (N + \frac{1}{2})x}
+  {2i \sin \frac{x}{2}} \\
+  &= \frac{1}{2\pi} \frac{\sin (N + \frac{1}{2})x}
+  {\sin \frac{x}{2}},
+\end{aligned}
+\]
+as desired. For $x = 0$, we also clearly have 
+$D_N(0) = \frac{(2N+1)}{2\pi}$. The proof is thus 
+complete.
+\end{proof}
+
+\begin{defi}
+If $f \in L^2([-\pi, \pi])$, we define the 
+\textbf{$N$-th Cesaro-Fourier mean} of $f$ by 
+\[
+\sigma_N f(x) = \frac{1}{N+1} \sum_{k=0}^N 
+S_N f(x).
+\]
+\end{defi}
+
+The idea behind defining the Cesaro mean is that 
+if the original sequence converges, the Cesaro mean 
+also converge to the same limit. However, Cesaro 
+have even better property --- the Cesaro mean 
+can converge even if the original sequence does not 
+converge. Therefore, it has better convergence properties
+and hopefully we can show it converge to $f$ in $L^2$ more 
+easily. The goal now is then to show 
+\[
+\norm{\sigma_N f - f}_2 \to 0 \text{ as $N \to \infty$}.
+\]
+This would tell us if all Fourier coefficients are zero, 
+then the Cesaro means are zero, and the limit above 
+would tell us $f$ is zero.
+
+\subsection{Fejer's theorem and Convergence 
+of Fourier series}
 
 \end{document}
