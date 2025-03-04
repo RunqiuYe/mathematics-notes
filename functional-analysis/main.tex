@@ -662,9 +662,18 @@ D_N(x) = \begin{cases}
   \sin \frac{x}{2}} & (x \neq 0)
 \end{cases}
 \]
-it the \textbf{Dirichlet kernel}. Note that 
-$D_N$ is a smooth function.
+it the \textbf{Dirichlet kernel}. Figure \ref{dirichlet-kernel}
+shows a plot of $D_N(x)$ on $[-\pi, \pi]$ for $N = 1,2,3$.
+Note that $D_N$ is a smooth function. 
 \end{thm}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.6\linewidth]{fig/dirichlet-kernel.png}
+  \caption{Plot of Dirichlet kernel $D_N(x)$ on $[-\pi, \pi]$
+  for $N = 1,2,3$.}
+  \label{dirichlet-kernel}
+\end{figure}
 
 \begin{proof}
 If $f \in L^2([- \pi, \pi])$, we have 
@@ -708,7 +717,7 @@ If $f \in L^2([-\pi, \pi])$, we define the
 \textbf{$N$-th Cesaro-Fourier mean} of $f$ by 
 \[
 \sigma_N f(x) = \frac{1}{N+1} \sum_{k=0}^N 
-S_N f(x).
+S_k f(x).
 \]
 \end{defi}
 
@@ -727,7 +736,290 @@ This would tell us if all Fourier coefficients are zero,
 then the Cesaro means are zero, and the limit above 
 would tell us $f$ is zero.
 
-\subsection{Fejer's theorem and Convergence 
+\subsection{Fejer's theorem and convergence 
 of Fourier series}
+
+In this section, we will show that if $f \in L^2 ([-\pi, \pi])$,
+then $\norm{\sigma_N f - f}_2 \to 0$ as $N \to \infty$.
+
+First we will rewrite the Cesaro Fourier mean, just like 
+what we did for the partial Fourier sum using the 
+Dirichlet kernel.
+\begin{thm}
+For any $f \in L^2([-\pi, \pi])$, we have 
+\[
+\sigma_N f(x) = \int_{-\pi}^\pi K_N(x - t) f(t) \d t,
+\]
+where 
+\[
+K_N(x) = \begin{cases}
+  \frac{N+1}{2\pi} & (x = 0) \\
+  \frac{1}{2\pi (N + 1)} \frac{\sin^2 \frac{N+1}{2}x}
+  {\sin^2 \frac{x}{2}} & (x \neq 0)
+\end{cases}
+\]
+is the Fejer kernel.
+
+Moreover, we have 
+\begin{enumerate}
+  \item $K_N(x) \geq 0$, $K_N(x) = K_N(-x)$, and $K_N(x)$ 
+  is $2\pi$ periodic.
+
+  \item $\int_{-\pi}^\pi K_N(t) \d t = 1$.
+  
+  \item If $\delta \in (0, \pi]$, then for all 
+  $\delta \leq \abs{x} \leq \pi$, we have 
+  \[
+  \abs{K_N(x)} \leq \frac{1}{2\pi (N+1) \sin^2 \frac{\delta}{2}}.
+  \]
+\end{enumerate}
+\end{thm}
+
+A plot for $K_N(x)$ is shown in Figure \ref{fejer-kernel}. 
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.6\linewidth]{fig/fejer-kernel.png}
+  \caption{Plot of Dirichlet kernel $D_N(x)$ on $[-\pi, \pi]$
+  for $N = 1,6,11$.}
+  \label{fejer-kernel}
+\end{figure}
+
+Note that $K_N(x)$ is concentrated at $0$ 
+when $N$ is very large. In this case, we have 
+\[
+\begin{aligned}
+  \sigma_N f(x) 
+  &= \int_{-\pi}^\pi K_N(x - t) f(t) \d t \\
+  &\approx f(x) \int_{-\pi}^\pi K_N(t) \d t \\
+  &= f(x).
+\end{aligned}
+\]
+This provides a rough intuition behind the Fejer kernel. 
+The fact that $K_N$ is non-negative makes a huge difference 
+compared to the Dirichlet kernel, since it gives much better 
+properties.
+
+\begin{proof}
+Recall that 
+\[
+S_k f(x) = \int_{-\pi}^\pi D_k(x - t) f(t) \d t,
+\]
+where 
+\[
+D_k(t) = \begin{cases}
+  \frac{2 N + 1}{2 \pi} & (t = 0), \\
+  \frac{1}{2\pi} \frac{\sin (N + \frac{1}{2})t}{\sin \frac{t}{2}}
+  & (t \neq 0).
+\end{cases}
+\]
+It follows that 
+\[
+\begin{aligned}
+  \sigma_N f(x) 
+  &= \frac{1}{N+1} \sum_{k=0}^N S_k f(x) \\ 
+  &= \int_{-\pi}^\pi \frac{1}{N+1} \sum_{k=0}^N D_k(x - t) f(t) \d t. 
+\end{aligned}
+\]
+Then for $x \neq 0$, we have 
+\[
+\begin{aligned}
+  K_N(x)
+  &= \frac{1}{N+1} \sum_{k=0}^N D_k(x) \\
+  &= \frac{1}{2\pi (N+1)} \frac{1}{2 \sin^2 \frac{x}{2}} 
+  \sum_{k=0}^N 2 \sin \frac{x}{2} \sin \left( k + \frac{1}{2} \right) x \\
+  &= \frac{1}{2\pi (N+1)} \frac{1}{2 \sin^2 \frac{x}{2}} 
+  \sum_{k=0}^N \left[ \cos k x - \cos(k + 1) x \right] \\ 
+  &= \frac{1}{2\pi (N + 1)} \frac{1}{\sin^2 \frac{x}{2}} 
+  \frac{1 - \cos(N + 1)}{2} \\
+  &= \frac{1}{2\pi (N+1)} \frac{\sin^2 \frac{N+1}{2} x}{\sin^2 
+  \frac{x}{2}}.
+\end{aligned}
+\]
+
+It follows immediately that $K_N(x) \geq 0$, $K_N(x)$ 
+is even and $2\pi$ periodic. 
+
+For property 2, 
+note that for all $k$,
+\[
+\int_{-\pi}^\pi D_k(t) \d t 
+= \int_{-\pi}^\pi \sum_{n=-k}^k e^{i n t} \d t
+= 1.
+\]
+Then, 
+\[
+\int_{-\pi}^\pi K_N(t) \d t 
+= \frac{1}{N+1} \sum_{k=0}^N \int_{-\pi}^\pi D_k(t) \d t 
+= 1,
+\]
+as desired.
+
+For property 3, let $\delta \in (0, \pi]$. Note that 
+$\sin^2 \frac{x}{2}$ is even and increasing on 
+$[0, \pi]$. It follows that $\delta \leq \abs{x} \leq \pi$
+implies $\sin^2 \frac{x}{2} \geq \sin^2 \frac{\delta}{2}$. 
+Therefore,
+\[
+K_N(x) \leq \frac{1}{2\pi (N+1)} \frac{\sin^2 \frac{N+1}{2}x}
+{\sin^2 \frac{\delta}{2}} 
+\leq \frac{1}{2 \pi (N+1) \sin^2 \frac{\delta}{2}}.
+\]
+\end{proof}
+
+Since the continuous functions that vanishes at both end 
+points is dense in $L^2([-\pi, \pi])$, it make sense 
+to first prove the theorem for continuous functions.
+We have the following theorem by Fejer.
+
+\begin{thm}[Fejer]
+  If $f \in C([-\pi, \pi])$ is $2\pi$-periodic,
+  $f(\pi) = f(-\pi)$, then 
+  $\sigma_N f \to f$ uniformly on $[-\pi, \pi]$.
+\end{thm}
+
+\begin{proof}
+First we extennd $f$ by periodicity to all of $\R$.
+Then $f \in C(\R)$, $2\pi$-periodic. This implies that 
+$f$ is uniformly continuous and bounded. 
+
+Let $\epsilon > 0$. Since $f$ is uniformly continuous, 
+there exists $\delta > 0$ such that $\abs{y - z} < \delta$ 
+implies that $\abs{f(y) - f(z)} < \frac{\epsilon}{2}$. 
+Choose $M \in \N$ such that
+\[
+\frac{2 \norm{f}_\infty}{(N+1) \sin^2 \frac{\delta}{2}} 
+< \frac{\epsilon}{2}.
+\]
+for all $N \geq M$. 
+Also, since $f$ and $K_N$ are both $2\pi$-periodic,
+we have 
+\[
+\begin{aligned}
+  \sigma_N f(x) 
+  = \int_{-\pi}^\pi K_N(x - t) f(t) \d t 
+  = \int_{x - \pi}^{x + \pi} K_N(\tau) f(x - \tau) \d \tau 
+  = \int_{-\pi}^{\pi} K_N(\tau) f(x - \tau) \d \tau.
+\end{aligned}
+\]
+Then for all $N \geq M$ and for all $x \in [-\pi, \pi]$,
+we have 
+\[
+\begin{aligned}
+\abs{\sigma_N f(x) - f(x)} 
+&= \abs{\int_{-\pi}^\pi K_N(t) f(x-t) \d t - 
+\int_\pi^\pi K_N(t) f(x) \d t} \\
+&\leq \int_{-\pi}^\pi K_N(t) \abs{f(x - t) - f(x)} \d t \\
+&\leq \int_{\abs{t} < \delta} K_N(t) \abs{f(x - t) - f(x)} \d t
++ \int_{\delta \leq \abs{t} \leq \pi} K_N(t) \abs{f(x - t) - f(x)} \d t \\ 
+&\leq \frac{\epsilon}{2} \int_{\abs{t} < \delta} 
+K_N(t) \d t + 2 \norm{f}_\infty \int_{\delta \leq \abs{t} \leq \pi}
+\frac{1}{2\pi (N+1) \sin^2 \frac{\delta}{2}} \d t \\
+&\leq \frac{\epsilon}{2} + \frac{2 \norm{f}_\infty}{(N+1) 
+\sin^2 \frac{\delta}{2}} \\
+&\leq \epsilon.
+\end{aligned}
+\]
+\end{proof}
+
+\begin{remark}
+The same proof can be modified if instead of $K_N(x) \geq 0$,
+we have
+\[
+\sup_{N \in \N} \int_{-\pi}^\pi \abs{K_N(x)} \d x < \infty.
+\]
+Note that 
+\[
+\int_{-\pi}^\pi \abs{D_N(x)} \d x \sim \log N,
+\]
+so we cannot reproduct the proof using Dirichlet kernel.
+\end{remark}
+
+We only need some last bit of information to conclude 
+the answer of our main question.
+
+\begin{thm}
+For all $f \in L^2([-\pi, \pi])$, we have 
+$\norm{\sigma_N f}_2 \leq \norm{f}_2$.
+\end{thm}
+
+\begin{proof}
+Suppose first the $f \in C([-\pi, \pi])$ and $2\pi$-periodic.
+Then $\sigma_N f(x) = \int_{-\pi}^{\pi} K_N(t) f(x - t) \d t$.
+It follows that 
+\[
+\begin{aligned}
+  \int_{-\pi}^\pi \abs{\sigma_N f(x)}^2 \d x
+  &= \int_{-\pi}^\pi \int_{-\pi}^{\pi}
+  \int_{-\pi}^{\pi} f(x - s) \bar{f(x - t)} K_N(s) K_N(t) 
+  \d s \d t \d x \\
+  &= \int_{-\pi}^{\pi} \int_{-\pi}^{\pi} K_N(s) 
+  K_N(t) \left[ \int_{-\pi}^{\pi} f(x - s) 
+  \bar{f(x - t)} \d x \right] \d s \d t \\
+  &\leq \int_{-\pi}^{\pi} \int_{-\pi}^{\pi} 
+  K_N(s) K_N(t) \norm{f(\cdot - s)}_2 \norm{f(\cdot - t)}_2 
+  \d s \d t \\
+  &\leq \norm{f}_2^2 \int_{-\pi}^{\pi} \int_{-\pi}^{\pi} 
+  K_N(s) K_N(t) \d s \d t \\
+  &= \norm{f}_2,
+\end{aligned}
+\]
+where we used Cauchy-Schwarz inequality. 
+This implies that $\norm{\sigma_N f}_2 \leq \norm{f}_2$.
+
+Now for the general case, by density there exists 
+sequence $\seqinfn{f_n}$ of $2\pi$-periodic continuous 
+function that $\norm{f_n - f}_2 \to 0$. Then, 
+$\norm{\sigma_N f_n - \sigma_N f} \to 0$
+as $n \to \infty$. Therefore, 
+\[
+\norm{\sigma_N f}_2 = \lim_{n \to \infty} \norm{\sigma_N f_n}_2 
+\leq \lim_{n \to \infty} \norm{f_n}_2 = \norm{f}_2.
+\]
+\end{proof}
+
+\begin{thm}
+For all $f \in L^2([-\pi, \pi])$, we have 
+$\norm{\sigma_N f - f}_2 \to 0$ as $N \to \infty$. 
+In particular, as a immediate corollary, 
+if $\hat{f}(n) = 0$ for all $n \in \Z$, 
+then $f = 0$.
+\end{thm}
+
+\begin{proof}
+Let $f \in L^2([-\pi, \pi])$ and $\epsilon > 0$. 
+Again by density there exists $g \in C([-\pi, \pi])$
+$2\pi$-periodic such that $\norm{f - g}_2 \leq
+\frac{\epsilon}{3}$. Since $\sigma_N g \to g$ uniformly
+on $[-\pi, \pi]$, there exists $M \in \N$ such that 
+for all $N \geq M$ and all $x \in [-\pi, \pi]$, we have 
+\[
+\abs{\sigma_N g(x) - g(x)} < \frac{\epsilon}{3 \sqrt{2 \pi}}.
+\]
+Then for all $N \geq M$, 
+\[
+\begin{aligned}
+\norm{\sigma_N f - f}_2 
+&\leq \norm{\sigma_N (f - g)}_2 + \norm{\sigma_N g - g} 
++ \norm{g - f}_2 \\
+&\leq 2 \norm{f - g}_2 + \left( \int_{-\pi}^{\pi} \abs{\sigma_N g(x)
+- g(x)}^2 \d x \right)^{\frac{1}{2}} \\
+&\leq \epsilon.
+\end{aligned}
+\]
+\end{proof}
+
+\begin{remark}
+We have shown that for all $f \in L^2([-\pi, \pi])$,
+$\norm{S_N f - f}_2 \to 0$. This does not say $S_N f$ 
+converge to $f$ almost everywhere. However, by a theorem 
+by Carleson, for all $f \in L^2([-\pi, \pi])$, 
+we actually do have $S_N f \to f$ almost everywhere.
+Also, for all $1 < p < \infty$, $\norm{S_N f - f}_p \to 0$.
+This is not true for $p = 1$ or $p = \infty$.
+\end{remark}
+
+\subsection{Minimizers, orthogonal complements, and the 
+Riesz representation theorem}
 
 \end{document}
