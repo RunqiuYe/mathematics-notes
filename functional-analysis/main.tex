@@ -1243,13 +1243,9 @@ v_0 = \inf_{u \in C} \norm{u}.
 Note that $v_0 \neq 0$ and let $v = \frac{v_0}{\norm{v_0}^2}$.
 Claim this is the desired vector. Let $N = f^{-1} 
 (\left\{ 0 \right\})$. Then, 
-\[
-C = \left\{ v_0 + w : w \in N \right\}.
-\]
-It follows that $\norm{v_0} = \inf_{w \in N} \norm{v_0 + w}$.
-By previous argument, we have $v_0 \in N^\perp$. 
-
-Let $u \in H$, then 
+$C = v_0 + N$ and $\norm{v_0} = \inf_{w \in N} \norm{v_0 + w}$.
+By a similar argument as a previous theorem, 
+we have $v_0 \in N^\perp$. Let $u \in H$, then 
 \[
 f(u - f(u) v_0) = f(u) - f(u) f(v_0) = 0.
 \]
