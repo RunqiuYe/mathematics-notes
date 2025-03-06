@@ -1019,7 +1019,257 @@ Also, for all $1 < p < \infty$, $\norm{S_N f - f}_p \to 0$.
 This is not true for $p = 1$ or $p = \infty$.
 \end{remark}
 
-\subsection{Minimizers, orthogonal complements, and the 
+\subsection{Minimizers, orthogonal complements, and 
 Riesz representation theorem}
+
+\subsubsection*{Length minimizers}
+
+\begin{thm}
+Suppose $H$ a Hilbert space and $C \subset H$ is a subset 
+such that 
+\begin{enumerate}
+  \item $C \neq \emptyset$. 
+  \item $C$ is closed. 
+  \item $C$ is convex. That is, if $v_1, v_2 \in C$ 
+  and $t \in [0, 1]$, then $tv_1 + (1 - t)v_2 \in C$.
+\end{enumerate}
+Then, there exists a unique $v \in C$ such that 
+$\norm{v} = \inf_{u \in C} \norm{u}$.
+\end{thm}
+
+\begin{proof}
+Let $d = \inf_{u \in C} \norm{u}$, which we know exists.
+Then there exists sequence $\seqinfn{u_n} \subset C$ such 
+that $\norm{u_n} \to d$. 
+
+Claim that $\seqinfn{u_n}$ is 
+Cauchy. Let $\epsilon > 0$ be given. There exists 
+$N \in \N$ such that $n \geq N$ implies 
+\[
+2 \norm{u_n}^2 
+< 2 d^2 + \frac{\epsilon^2}{2}.
+\]
+It follows that for 
+all $n, m \geq N$, we have 
+\[
+\norm{u_n - u_m}^2 = 2 \norm{u_n}^2 + 2 \norm{u_m}^2 
+- 4 \norm{\frac{u_n + u_m}{2}}^2,
+\]
+by the Parallelogram law. Note that $\frac{u_n + u_m}{2} \in C$.
+Therefore, 
+\[
+\norm{u_n - u_m}^2 \leq 2 d^2 + \frac{\epsilon^2}{2} 
++ 2 d^2 + \frac{\epsilon^2}{2} - 4d^2 = \epsilon^2.
+\]
+This shows that $\seqinfn{u_n}$ is Cauchy. 
+
+Since $H$ is Hilbert space, there exists $v \in H$
+such that $u_n \to v$. Since $C$ is closed, $v \in C$. 
+It is also clear that $\norm{v} = d$. To show this 
+element is unique, suppose $v, \bar{v} \in C$ 
+and $\norm{v} = \norm{\bar{v}} = d$. Then, 
+\[
+\begin{aligned}
+  \norm{v - \bar{v}}^2 
+  = 2 \norm{v}^2 + 2 \norm{\bar{v}}^2 
+  - 4 \norm{\frac{v + \bar{v}}{2}} 
+  \leq 4d^2 - 4d^2 
+  = 0.
+\end{aligned}
+\]
+This implies that $v = \bar{v}$ and the proof 
+is complete.
+\end{proof}
+
+\subsubsection*{Orthocomplements}
+\begin{thm}
+If $H$ is a Hilbert space, $W \subset H$ is a subspace,
+then 
+\[
+W^\perp = \left\{ u \in H : \braket{u}{w} = 0 
+\text{ for all } w \in V \right\}
+\]
+is a closed linear subspace of $H$. 
+
+Moreover, if $W$ is closed, then 
+\[
+H = W \oplus W^\perp.
+\]
+That is, for all $u \in H$, there exists
+unique $w \in W$ and $w^\perp \in W^\perp$ such that 
+$u = w + w^\perp$.
+\end{thm}
+
+\begin{proof}
+It is easy to show that $W^\perp$ is a subspace of $H$,
+and $W \cap W^\perp = \left\{ 0 \right\}$. 
+To show $W^\perp$ is closed, let $\seqinfn{u_n}$
+be a sequence in $W^\perp$ and $u \in H$ such that 
+$u_n \to u$. We need to show that $u \in W^\perp$. 
+Let $w \in W$, then 
+\[
+\braket{u}{w} = \lim_{n \to \infty} \braket{u_n}{w} 
+= 0.
+\]
+Therefore, $u \in W^\perp$ and $W^\perp$ is a closed 
+linear subspace of $H$.
+
+Now suppose $W$ is closed. If $W = H$, then 
+$W^\perp = \left\{ 0 \right\}$ and $H = W \oplus W^\perp$. 
+Now assume that $W \neq H$. Let $u \in H \setminus W$
+and define
+\[
+C = u + W = \left\{ u + w : w \in W \right\}.
+\]
+Note that $u \in C$ so $C \neq \emptyset$. Also, 
+$C$ is convex, since if $u + w_1 \in C$,
+$u + w_2 \in C$, and $t \in [0, 1]$, then 
+\[
+t(u + w_1) + (1 - t)(u + w_2) = 
+u + (t w_1 + (1-t) w_2) \in u + W.
+\]
+Claim that $C$ is also closed. Suppose $\seqinfn{u + w_n}
+\subset C$ is such that $u + w_n \to v$ for some 
+$v \in H$. We want to show that $v \in C$. This implies that 
+$w_n \to v - u$ and since $W$ is closed, $v - u \in W$. 
+It follows that $v = u + (v - u)$ so $v \in C$. 
+
+Since $C$ is nonempty, closed, and convex, there exists 
+unique element $v \in C$ such that 
+\[
+  \norm{v} = \inf_{w \in W} \norm{u + w}.
+\]
+Note that $v \in C$ so $u - v \in W$. Also, 
+$u = (u - v) + v$. Claim that $v \in W^\perp$.
+Let $w \in W$ and 
+\[
+  f(t) = \norm{v + t w}^2 = 
+  \norm{v}^2 + t^2 \norm{w}^2 + 2 t \Re \braket{v}{w}.
+\]
+Then $f(t)$ has a minimum at $t = 0$, which implies 
+$f'(0) = \braket{v}{w} = 0$. Repeat the previous 
+argument with $iw$ in place of $w$ to obtain 
+$\Re \braket{v}{iw} = \Im \braket{v}{w} = 0$. 
+This shows that $w \in W^\perp$ and thus
+$H = W + W^\perp$.
+
+To show the decomposition is unique, suppose 
+$u = w_1 + w_1^\perp = w_2 + w_2^\perp$. This implies 
+that 
+\[
+  w_2 - w_1 = w_1^\perp - w_2^\perp \in W \cap W^\perp.
+\]
+However, $W \cap W^\perp = \left\{ 0 \right\}$, so 
+$w_1 = w_2$ and $w_1^\perp = w_2^\perp$.
+\end{proof}
+
+\begin{thm}
+If $W \subset H$ is a subspace, then 
+\[
+\bar{W} = \left( W^\perp \right)^\perp,
+\]
+where $\bar{W}$ is the closure of $W$.
+\end{thm}
+
+\begin{proof}
+Homework.
+\end{proof}
+
+\begin{defi}[Projection]
+A bounded linear operator $P : H \to H$ is a \textbf{projection} 
+if $P^2 = P$.
+\end{defi}
+
+\begin{thm}
+Let $H$ be a Hilbert space, $W \subset H$ be a closed 
+subspace. Then by the previous theorem we have $H = W 
+\oplus W^\perp$. Define $\Pi_W : H \to H$ in the following 
+way: for $v = w + w^\perp$, define 
+\[
+\Pi_W (v) = w.
+\]
+Then $\Pi_W$ is a projection.
+\end{thm}
+
+\begin{proof}
+It is easy to veirfy that $\Pi_W$ is linear
+and $\Pi_W^2 = \Pi_W$.
+Claim $\Pi_W$ is bounded. Suppose $v = w + w^\perp$. 
+It follows that
+\[
+\norm{v}^2 = \norm{w + w^\perp}^2 
+= \norm{w}^2 + \norm{w^\perp}^2 \geq \norm{w}^2.
+\] 
+This shows that $\norm{\Pi_W(v)} \leq \norm{v}$ 
+so $\Pi_W$ is a bounded linear operator.  
+\end{proof}
+
+\subsubsection*{Riesz representation theorem}
+
+\begin{thm}[Riesz representation theorem]
+If $H$ is a Hilbert space, then for all $f \in H'$, 
+there exists a unique $v \in H$ such that 
+\[
+f(u) = \braket{u}{v} \text{ for all $u \in H$}.
+\]
+\end{thm}
+
+\begin{proof}
+For uniqueness, suppose $f(u) = \braket{u}{v} 
+= \braket{u}{\tilde{v}}$. This implies that 
+$\braket{u}{v - \tilde{v}} = 0$ for all $u \in H$.
+Setting $u = v - \tilde{v}$ gives $v = \tilde{v}$. 
+
+Now we show existence. If $f = 0$, let $v = 0$.
+Suppose now $f \neq 0$. Then there exists 
+$u_1 \in H$ such that $f(u_1) = 0$. It follows that 
+if $u_0 = \frac{u_1}{f(u_1)}$ then $f(u_0) = 1$. 
+Let 
+\[
+C = \left\{ u \in H: f(u) = 1 \right\} = f^{-1}
+(\left\{ 1 \right\}).
+\]
+Then $C$ is a nonempty and closed subset of $H$. 
+Claim that $C$ is also convex. If $u_1, u_2 \in C$ 
+and $t \in [0, 1]$, then 
+\[
+f(t u_1 + (1-t) u_2) = t f(u_1) + (1 - t) f(u_2) = 1.
+\]
+Therefore, $C$ is also convex. This implies that 
+there exists $v_0 \in C$ such that 
+\[
+v_0 = \inf_{u \in C} \norm{u}.
+\]
+Note that $v_0 \neq 0$ and let $v = \frac{v_0}{\norm{v_0}^2}$.
+Claim this is the desired vector. Let $N = f^{-1} 
+(\left\{ 0 \right\})$. Then, 
+\[
+C = \left\{ v_0 + w : w \in N \right\}.
+\]
+It follows that $\norm{v_0} = \inf_{w \in N} \norm{v_0 + w}$.
+By previous argument, we have $v_0 \in N^\perp$. 
+
+Let $u \in H$, then 
+\[
+f(u - f(u) v_0) = f(u) - f(u) f(v_0) = 0.
+\]
+Therefore, $u - f(u)v_0 \in N$. Since $v_0 \in N^\perp$,
+we have $\braket{u - f(u) v_0}{v_0} = 0$. This implies that
+\[
+\begin{aligned}
+  \braket{u}{v} 
+  &= \frac{1}{\norm{v_0}^2} \braket{u}{v_0} \\
+  &= \frac{1}{\norm{v_0}^2} \left( \braket{u - f(u)v_0}{v_0} 
+  + f(u) \braket{v_0}{v_0} \right) \\
+  &= f(u),
+\end{aligned}
+\]
+completing the proof.
+\end{proof}
+
+\subsection{Adjoint of a bounded linear operator 
+in Hilbert spaces}
+
+
 
 \end{document}
