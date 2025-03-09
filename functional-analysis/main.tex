@@ -1264,8 +1264,259 @@ completing the proof.
 \end{proof}
 
 \subsection{Adjoint of a bounded linear operator 
-in Hilbert spaces}
+on a Hilbert space}
 
+\begin{thm}
+Let $H$ be a Hilbert space and $A : H \to H$ be a bounded 
+linear operator. Then there exists a unique bounded linear 
+operator $A^* : H \to H$ (the \textbf{adjoint} of $A$) such 
+that for all $u, v \in H$, 
+\[
+\braket{A u}{v} = \braket{u}{A^* v}.
+\]
+Moreover, $\norm{A^*} = \norm{A}$.
+\end{thm}
 
+\begin{proof}
+The uniqueness of $A^*$ follows from a similar argument 
+of uniqueness for Riesz representation theorem. 
+
+Let $v \in H$. Define $f_v : H \to \C$ by 
+\[
+f_v(u) = \braket{A u}{v}.
+\]
+Then for any $u_1, u_2 \in H$ and $\lambda_1, \lambda_2 \in \C$,
+we have 
+\[
+\begin{aligned}
+  f_v(\lambda_1 u_1 + \lambda_2 u_2) 
+  &= \braket{A (\lambda_1 u_1 + \lambda_2 u_2)}{v} \\
+  &= \lambda_1 \braket{A u_1}{v} + \lambda_2 \braket{A u_2}{v} \\
+  &= \lambda_1 f_v(u_1) + \lambda_2 f_v(u_2).
+\end{aligned}
+\]
+Therefore, $f_v$ is a linear map. Next, 
+suppose $\norm{u} = 1$, then 
+\[
+\abs{f_v(u)} = \abs{\braket{Au}{v}} 
+\leq \norm{Au}\norm{v} \leq \norm{A} \norm{v}.
+\]
+This shows that $f_v \in H'$. Then, by Riesz
+representation theorem, there is a unique $A^* v \in H$
+such that for all $u \in H$, 
+\[
+f_v(u) = \braket{Au}{v} = \braket{u}{A^* v}.
+\]
+
+Claim that $v \mapsto A^* v$ is linear. Let $v_1, v_2 \in H$
+and $\lambda_1, \lambda_2 \in \C$, then for all $u \in H$, 
+we have 
+\[
+\begin{aligned}
+  \braket{u}{A^*(\lambda_1 v_2 + \lambda_2 v_2)}
+  &= \braket{Au}{\lambda_1 v_2 + \lambda_2 v_2} \\
+  &= \bar{\lambda_1} \braket{Au}{v_1} + \bar{\lambda_2} 
+  \braket{Au}{v_2} \\
+  &= \bar{\lambda_1} \braket{u}{A^* v_1} + \bar{\lambda_2} 
+  \braket{u}{A^* v_2} \\
+  &= \braket{u}{\lambda_1 A^* v_1 + \lambda_2 A^* v_2}.
+\end{aligned}
+\]
+This implies that 
+\[
+  A^* (\lambda_1 v_2 + \lambda_2 v_2)
+  = \lambda_1 A^* v_1 + \lambda_2 A^* v_2.
+\]
+Therefore, $A^*$ is a linear map. Next we show 
+$A^*$ is bounded and $\norm{A^*} = \norm{A}$. Suppose 
+$\norm{v} = 1$. If $A^* v = 0$, then clearly $\norm{A^* v}
+\leq \norm{A}$. Suppose now $A^* v \neq 0$, then 
+\[
+\norm{A^* v}^2 = \braket{A^* v}{A^* v} 
+= \braket{A A^* v}{v} \leq \norm{A A^* v} \norm{v} 
+\leq \norm{A} \norm{A^* v}.
+\]
+Therefore, $\norm{A^*} \leq \norm{A}$ and $A^*$ is a bounded 
+linear operator. 
+
+Note that for all $u, v \in H$, 
+\[
+\braket{A^* u}{v} = \bar{\braket{v}{A^* u}} 
+= \bar{\braket{A v}{u}} = \braket{u}{A v}.
+\]
+This implies that $A = \left( A^* \right)^*$. 
+Therefore, $\norm{A} = \norm{(A^*)^*} \leq \norm{A^*}$
+and thus $\norm{A^*} = \norm{A}$.
+\end{proof}
+
+\begin{eg}
+Suppose $u = (u_1, \dots, u_n) \in \C^n$ 
+and $(A u)_i = \sum_j A_{ij} u_j$.
+Then, 
+\[
+\braket{A u}{v} = \sum_i (A u)_i \bar{v_i} 
+= \sum_{i, j} A_{ij} u_j \bar{v_i} 
+= \sum_j u_j \bar{\sum_i \bar{A_{ij}} v_i} 
+= \sum_j u_j \bar{A^* v}_j.
+\]
+This implies that $(A^*)_{ij} = \bar{A_{ji}}$.
+\end{eg}
+
+\begin{eg}
+Suppose $\left\{ A_{ij} \right\}_{i, j = 0}^\infty$ 
+is a double sequence in $\C^n$ such that 
+\[
+\sum_{i, j} \abs{A_{ij}}^2 = \lim_{N \to \infty}
+\sumi^N \sumj^N \abs{A_{ij}}^2 < \infty.
+\]
+Define $A : \ell^2 \to \ell^2$ by 
+\[
+A a = \suminfj A_{ij} a_j,
+\]
+where $a = \seqinfj{a_j} \in \ell^2$. Then, 
+$A \in \B(\ell^2, \ell^2)$ and 
+$(A^*)_{ij} = \bar{A_{ji}}$.
+\end{eg}
+
+\begin{eg}
+Suppose $K \in C([0, 1] \times [0, 1])$ and define 
+$A : L^2 ([0, 1]) \to L^2 ([0, 1])$ by 
+\[
+A f(x) = \int_0^1 K(x, y) f(y) \d y.
+\]
+Then we can verify that 
+\[
+A^* g(x) = \int_0^1 \bar{K(y, x)} g(y) \d y.
+\]
+\end{eg}
+
+\begin{thm}
+Suppose $H$ is a Hilbert space and $A : H \to H$
+is a bounded linear operator. Then, 
+\[
+(\ran A)^\perp = \ker (A^\perp).
+\]
+\end{thm}
+
+\begin{proof}
+$v \in \ker (A^*)$ if and only if $\braket{u}{A^* v} = 0$
+for all $u \in H$. This is equivalent to 
+$\braket{A u}{v} = 0$ for all $u \in H$, and 
+this is equivalent to $v \in (\ran A)^\perp$.
+\end{proof}
+
+\begin{cor}
+  Suppose $\ran A$ is closed, then 
+  $A$ is surjective if and only if 
+  $A^*$ is injective.
+\end{cor}
+
+With these useful tools we developed,
+we are soon going to discuss the solvability of linear 
+equations, that is, equations in the form of $Au = v$.
+We take for granted that a bounded linear operator takes 
+bounded sets to bounded sets in finite-dimensional spaces, 
+and so we can find a convergent subsequence using Heine-Borel. 
+So the point is that there is some compactness hidden in 
+here in $\R^n$ and $\C^n$, so we need to study some facts 
+about how compactness and Hilbert spaces before we can talk 
+about solvability of equations.
+
+\begin{defi}[Compact]
+If $X$ is a metric space, we say $K \subset X$ 
+is \textbf{compact} if every sequence in $K$ 
+has a subsequence converging to an element in $K$.
+\end{defi}
+
+\begin{eg}
+Suppose $H$ is an infinite dimensional separable 
+Hilbert space, then $B[0, 1]$ is not compact.
+\end{eg}
+
+\begin{proof}
+  Let $\seqinfn{e_n}$ be an orthonormal subset of $H$. 
+  Then for all $n \neq k$, we have 
+  \[
+  \norm{e_n - e_k}^2 = \norm{e_n}^2 + \norm{e_k}^2 
+  + 2 \Re \braket{e_n}{e_k} = 2.
+  \]
+  Therefore, $\seqinfn{e_n}$ cannot have a convergent 
+  subsequence.
+\end{proof}
+
+Recall from Arzela-Ascoli, the extra condition for a 
+set to be compact, other than closed and bounded,
+is \textbf{equicontinuity}. 
+This motivates the folloiwng definition. 
+
+\begin{defi}[Equi-small tails]
+Let $H$ be a Hilbert space. A subset $K \subset H$ has 
+\textbf{equi-small tails} with respect to a countable 
+orthonormal subset $\seqinfk{e_k}$ if for all 
+$\epsilon > 0$, there exists $N \in \N$ such that 
+for all $v \in K$, 
+\[
+\sum_{k > N} \abs{\braket{v}{e_k}}^2 < \epsilon^2.
+\]
+\end{defi}
+
+\begin{eg}
+A finite set has equi-small tails with respect to 
+any countable orthonormal subset $\seqinfn{e_n}$.
+\end{eg}
+
+\begin{thm}
+Let $H$ be a Hilbert space and $\seqinfn{v_n}$
+a sequence with $v_n \to v$. Let $\seqinfk{e_k}$
+be a countable orthonormal subset. Then, 
+\begin{enumerate}
+  \item $K = \left\{ v_n : n \in \N \right\}
+  \cup \left\{ v \right\}$ is compact. 
+  
+  \item $K$ has equi-small tails with respect to 
+  $\seqinfk{e_k}$.
+\end{enumerate}
+\end{thm}
+
+\begin{proof}
+\begin{enumerate}
+  \item \TODO 
+  
+  \item Since $v_n \to v$, there exists 
+  $M \in \N$ such that for all $n \geq M$, 
+  $\norm{v_n - v} < \frac{\epsilon}{2}$. Also, choose 
+  $N \in \N$ so large that 
+  \[
+  \sum_{k > N} \abs{\braket{v}{e_n}}^2 
+  + \max_{1 \leq n \leq M - 1} \sum_{k > N} 
+  \abs{\braket{v_n}{e_k}}^2 < \epsilon^2.
+  \]
+  Then, 
+  \[
+  \sum_{k > N} \abs{\braket{v}{e_n}} < \frac{\epsilon^2}{4}
+  < \epsilon^2.
+  \]
+  and for all $1 \leq n \leq M - 1$, 
+  \[
+  \sum_{k > N} \abs{\braket{v_n}{e_k}}^2 < \frac{\epsilon^2}{4} 
+  < \epsilon^2.
+  \]
+  If $n \geq M$, by Bessel's inequality we have 
+  \[
+  \begin{aligned}
+    \left( \sum_{k > N} \abs{\braket{v_n}{e_k}}^2 \right)^{\frac{1}{2}}
+    & = \left( \sum_{k > N} \abs{\braket{v_n - v}{e_k} + \braket{v}{e_k}}^2 
+    \right)^{\frac{1}{2}} \\
+    & \leq 
+    \left( \sum_{k > N} \abs{\braket{v_n - v}{e_k}}^2 \right)^{\frac{1}{2}} 
+    + \left( \sum_{k > N} \abs{\braket{v}{e_k}}^2  \right)^{\frac{1}{2}} \\ 
+    & \leq \norm{v_n - v} + \frac{\epsilon}{2} \\
+    &< \epsilon.
+  \end{aligned}
+  \]
+  This shows that $K$ has equi-small tails with respect 
+  to $\seqinfk{e_k}$.
+\end{enumerate}
+\end{proof}
 
 \end{document}
