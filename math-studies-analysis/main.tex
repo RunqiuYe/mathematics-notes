@@ -1160,7 +1160,6 @@ say $f$ is a smooth diffeomorphism.
     $\pi_\alpha : X \to X_\alpha$.
 \end{defi}
 {
-\newcommand{\calr}{\mathcal{R}}
 \begin{thm}
   Let $A \neq \emptyset$ be a set and $X_\alpha$ 
   with $\sigma$-algebra $\mf_\alpha$ for all $\alpha 
@@ -1536,7 +1535,7 @@ and the proof is complete.
     = \lim_{n \to \infty} \mu(A_n),
   \end{aligned}
   \]
-  where we have used monoton continuity of \textbf{measure}.
+  where we have used monotone continuity of \textbf{measure}.
   Therefore, $\lim_{n \to \infty} \om (A_n) = \om 
   \left( \cupinfn A_n \right)$.
 \end{proof}
@@ -2496,10 +2495,13 @@ a.e.} \right\}.
   \[
   \int_X f \d\mu = 
   \sup \left\{ \int_X \psi \d\mu: 
-  \text{ $\psi \in S(X; [0, \infty])$ and 
+  \text{$\psi \in S(X; [0, \infty])$ and 
   $\psi \leq f$ a.e.} \right\} 
   \in [0, \infty].
   \]
+
+  We say $f$ is \textbf{integrable} if $\int_X f \d \mu < 
+  \infty$.
 \end{defi}
 
 \begin{remark}
@@ -2511,10 +2513,239 @@ above.
   resulting integral is more-or-less useless without this 
   assumption. 
   \item $[0, \infty]$ is a separable metric space,
-  so for $f : X \to [0, \infty]$ 
+  so for $f : X \to [0, \infty]$, 
   $f$ is measurable implies $f$ is $\mu$-measurable,
   and $f$ almost measurable implies $f$ is $\mu$-measurable.
 \end{enumerate}
 \end{remark}
+
+\begin{thm}
+Let $(X, \mf, \mu)$ be a measure space, $f, g : X \to [0, \infty]$
+be $\mu$-measurable functions. The following holds: 
+\begin{enumerate}
+  \item For $\alpha \in [0, \infty)$, we have 
+  \[
+  \int_X \alpha f \d \mu = \alpha \int_X f \d \mu.
+  \]
+  \item If $f \leq g$ a.e., then 
+  \[
+  \int_X f \d \mu \leq \int_X g \d \mu.
+  \]
+  \item If $f = g$ a.e., then 
+  \[
+  \int_X f \d \mu = \int_X g \d \mu.
+  \]
+  \item For $E \in \mf$, we have 
+  \[
+  \int_E f \d \mu = \int_X f \chi_E \d \mu.
+  \]
+  \item If $N \in \mf$ is null, then 
+  \[
+  \int_N f \d \mu = 0.
+  \]
+\end{enumerate}
+\end{thm}
+
+\begin{proof}
+Follow directly from corresponding results in $S(X; [0, \infty])$
+and the definition of $\int_X f \d \mu$.
+\end{proof}
+
+\begin{thm}[Monotone convergence theorem, basic version]
+Let $(X, \mf, \mu)$ be a measure space and suppose for 
+each $n \in \N$, we have $f_n : 
+X \to [0, \infty]$ \textbf{measurable}. Further suppose 
+that $f_n \leq f_{n+1}$ on $X$ and $f: X \to [0, \infty]$
+is given by $f = \lim_{n \to \infty} f_n$. Then 
+$f$ is measurable and 
+\[
+\int_X f \d \mu = \lim_{n \to \infty} \int_X f_n \d \mu
+= \sup_{n \in \N} \int_X f_n \d \mu.
+\]
+\end{thm}
+
+\begin{proof}
+We already know $f$ is measurable. Also, $f_n \leq f_{n+1}
+\leq f$ on $X$, so 
+\[
+\int_X f_n \d \mu \leq \int_X f_{n+1} \d \mu \leq 
+\int_X f \d \mu.
+\]
+It follows that 
+\[
+\lim_{n \to \infty} \int_X f_n \d \mu \leq \int_X f \d \mu.
+\]
+To show the opposite inequality, let 
+$\phi \in S(X; [0, \infty])$ such that $\phi \leq f$ a.e.
+and $\alpha \in (0, 1)$. Let $N \in \mf$ be a null set 
+and $\phi \leq f$ on $N^c$. Also, for each $n \in \N$, let 
+$E_n = \left\{ x \in X : f_n(x) \geq \alpha \phi(x) \right\}$.
+Note the following:
+\begin{enumerate}
+  \item Since $f_n \leq f_{n+1}$, we have $E_n \subset E_{n+1}$.
+  \item Since $f_n \to f$ pointwise, we have $X = N \cup \cupinfn
+  E_n$.
+  \item We have 
+  \[
+  \alpha \int_{N \cup E_n} \phi \d \mu 
+  = \int_{E_n} \alpha \phi \d \mu 
+  \leq \int_{E_n} f_n \d \mu
+  \leq \int_X f_n \d \mu
+  \]
+  \item We have 
+  \[
+  \int_X \phi \d \mu
+  = \lim_{n \to \infty} \int_{N \cap E_n} \phi \d \mu.
+  \]
+\end{enumerate}
+Therefore, 
+\[
+\alpha \int_X \phi \d \mu 
+= \lim_{n \to \infty} \alpha \int_{N \cup E_n} \phi \d \mu
+\leq \lim_{n \to \infty} \int_X f_n \d \mu.
+\]
+Since the above inequality holds for all $\alpha \in (0, 1)$,
+we konw $\int_X \phi \d \mu \leq \lim_{n \to \infty} 
+\int_X f_n \d \mu$. This is then true for all simple function 
+$\phi$ such that $\phi \leq f$ a.e. Taking the sup 
+gives 
+\[
+\int_X f \d \mu \leq \lim_{n \to \infty} f_n \d \mu.
+\]
+The proof is then complete.
+\end{proof}
+
+\begin{thm}
+Let $(X, \mf, \mu)$ be measure space, $f, g : X \to [0, \infty]$
+be $\mu$-measurable. Then 
+\[
+\int_X (f + g) \d \mu = \int_X f \d \mu + \int_X g \d \mu.
+\]
+\end{thm}
+
+\begin{proof}
+Recall that $\mu$-measurable functions are almost 
+measurable. Choose measurable functions 
+$F, G : X \to [0, \infty]$ such that $f = F$
+and $g = G$ a.e. We may then choose 
+$\seqinfn{\phi_n}, \seqinfn{\psi_n} \subset S(X; [0, \infty])$
+such that $\lim_{n \to \infty} \phi_n = F$
+and $\lim_{n \to \infty} \psi_n = G$, 
+$0 \leq \phi_n \leq \phi_{n+1} \leq F$
+and $0 \leq \psi_n \leq \psi_{n+1} \leq G$. 
+Then 
+\[
+0 \leq \phi_n + \psi_n \leq \phi_{n+1} + \psi_{n+1} 
+\leq F + G = \lim_{n \to \infty} (\phi_n + \psi_n).
+\]
+It follows then from monotone convergence theorem that 
+\[
+\begin{aligned}
+\int_X (F + G) \d \mu 
+&= \lim_{n \to \infty} \int_X (\phi_n + \psi_n) \d \mu \\
+&= \lim_{n \to \infty} \int_X \phi_n \d \mu 
++ \lim_{n \to \infty} \int_X \psi_n \d \mu \\ 
+&= \int_X F \d \mu + \int_X G \d \mu.
+\end{aligned}
+\]
+Since $f = F$ and $g = G$ a.e., we have 
+\[
+\int_X (f + g) \d \mu = \int_X f \d \mu + \int_X g \d \mu.
+\]
+\end{proof}
+
+\textbf{Recall:} given $f: X \to \bar{\R}$, 
+we write $f^{\pm} : X \to [0, \infty]$ via 
+\[
+f^+ = \max\left\{ 0, f \right\}, \quad 
+f^- = \max\left\{ 0, -f \right\}.
+\]
+Then we have $f = f^+ - f^-$ and 
+$\abs{f} = f^+ + f^-$. Also, if $f$ is measurable or 
+$\mu$-measurable, then $f^\pm$ is also measurable or
+$\mu$-measurable since they are composition of a 
+continuous function (namely $x \mapsto \max \{0, x\}$)
+with a measurable or $\mu$-measurable
+function.
+
+\begin{defi}
+Let $(X, \mf, \mu)$ be measure space and 
+$f : X \to \bar{\R}$ be $\mu$-measurable. 
+If either $f^+$ or $f^-$ is \textbf{integrable}, 
+we say $f$ is \textbf{extended integrable} and 
+set 
+\[
+\int_X f \d \mu = \int_X f^+ \d \mu - \int_X f^- \d \mu
+\in \bar{\R}.
+\]
+We say $f$ is \textbf{integrable} if $f^\pm$ are both 
+integrable.
+\end{defi}
+
+\begin{prop}[absolute integrability]
+Let $(X, \mf, \mu)$ be a measure space, $f : X \to \bar{\R}$
+be $\mu$-measurable. Then $f$ is integrable 
+if and only if $\abs{f}$ is integrable.
+\end{prop}
+
+\begin{proof}
+We know $f$ is integrable if and only if $f^\pm$
+are both integrable, but $\abs{f} = f^+ + f^-$.
+Therefore, $f$ integrable implies $\abs{f}$ is integrable.
+Conversely, if $\abs{f}$ is integrable, then 
+$0 \leq f^\pm \leq \abs{f}$, so $f^\pm$ are both 
+integrable.
+\end{proof}
+
+\begin{thm}
+Let $(X, \mf, \mu)$ be a measure space, 
+$f, g : X \to \bar{\R}$ are extended integrable. 
+The following holds: 
+\begin{enumerate}
+  \item For all $E \in \mf$, we have $\int_E f \d \mu
+  = \int_X f \chi_E \d \mu$. 
+  
+  \item For all $\alpha \in \R$, we have 
+  $\alpha \int_X f \d \mu = \int_X \alpha f \d \mu$. 
+  
+  \item $\int_X (f + g) \d \mu = \int_X f \d \mu + 
+  \int_X g \d \mu$, provided that all operations are 
+  well-defined.
+
+  \item $\int_{A \cup B} f \d \mu = \int_A f \d \mu 
+  + \int_B f \d \mu$ for all $A, B \in \mf$ such that 
+  $A \cap B = \emptyset$. 
+
+  \item If $f \leq g$ a.e. then $\int_X f \d \mu \leq
+  \int_X g \d \mu$.
+
+  \item $\abs{\int_X f \d \mu} \leq \int_X \abs{f} \d \mu$.
+  
+  \item If $\abs{f} \leq g$ a.e. and $g$ integrable, then 
+  $f$ is integrable. 
+\end{enumerate}
+\end{thm}
+
+\begin{thm}[Chebyshev inequality]
+If $f$ is measurable, then 
+\[
+\mu \left( \left\{ x \in X : \abs{f(x)} \geq \alpha \right\} \right) 
+\leq \frac{1}{\alpha} \int_X \abs{f} \d \mu
+\]
+for all $\alpha \in (0, \infty)$.
+\end{thm}
+
+\begin{proof}
+\[
+\begin{aligned}
+  \LHS = \int_{\left\{ \abs{f} \geq \alpha \right\}} 1 \d \mu 
+  = \int_{\left\{ \abs{f} \geq \alpha \right\}} 
+  \frac{\abs{f}}{\alpha} \d \mu 
+  = \frac{1}{\alpha} \int_X \abs{f} \d \mu 
+  = \RHS.
+\end{aligned}
+\]
+\end{proof}
+
 
 \end{document}
