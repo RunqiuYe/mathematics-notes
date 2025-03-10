@@ -1447,7 +1447,7 @@ Hilbert space, then $B[0, 1]$ is not compact.
 Recall from Arzela-Ascoli, the extra condition for a 
 set to be compact, other than closed and bounded,
 is \textbf{equicontinuity}. 
-This motivates the folloiwng definition. 
+This motivates the following definition. 
 
 \begin{defi}[Equi-small tails]
 Let $H$ be a Hilbert space. A subset $K \subset H$ has 
@@ -1633,7 +1633,125 @@ $W \subset H$ such that for all $u \in K$,
 
 \subsubsection*{Finite rank operators}
 
+\begin{defi}[Finite rank operator]
+A bounded linear operator $T \in \B(H)$ is a \textbf{finite 
+rank operator} if $\ran(T)$, which is a subspace of $H$,
+is finite dimensional. Denote the set of all finite range 
+operator on $H$ with $\calr (H)$.
+\end{defi}
 
+\begin{thm}
+$\calr (H)$ is a subspace of $\B (H)$.
+\end{thm}
 
+\begin{thm}
+$T \in \calr (H)$ if and only if there exists an 
+orthonormal set $\{e_k\}_{k=0}^L$ and constants
+$\{c_{ij}\}_{i,j=0}^L \subset \C$ such that 
+\[
+T u = \sum_{i, j = 0}^L c_{ij} \braket{u}{e_j} e_i.
+\]
+\end{thm}
+
+\begin{proof}
+($\impliedby$). Clear. 
+
+($\implies$). Since $\ran(T)$ is finite dimensional, there 
+exists orthonormal basis $\{\bar{e_k}\}_{k=0}^N$ such that 
+\[
+\begin{aligned}
+  T u 
+  &= \sum_{k=0}^N \braket{T u}{\bar{e_k}} \bar{e_k} \\
+  &= \sum_{k=0}^N \braket{u}{T^* \bar{e_k}} \bar{e_k} \\
+  &= \sum_{k=0}^N \braket{u}{v_k} \bar{e_k}.
+\end{aligned}
+\]
+Let $\{e_0, \dots, e_L\}$ be the orthonormal subset 
+of $H$ obtained by applying the Gram-Schimdt process 
+on $\{\bar{e_0}, \dots, \bar{e_N}, v_0, \dots, v_N\}$. 
+Then, there exists $a_{ki}, b_{kj}$ such that 
+\[
+\bar{e_k} = \sum_{i=0}^L a_{ki} e_i, \quad 
+v_k = \sum_{j=0}^L b_{kj} e_j.
+\]
+Then, 
+\[
+T u = \sum_{k=0}^N \braket{u}{v_k} \bar{e_k}
+= \sum_{i, j = 0}^L \left( \sum_{k=0}^N a_{ki} 
+\bar{b_{kj}} \right) \braket{u}{e_j} e_i.
+\]
+Setting $e_{ij} = \sum_{k=0}^N a_{ki} \bar{b_{kj}}$
+completes the proof.
+\end{proof}
+
+\begin{thm}
+The following holds:
+\begin{enumerate}
+  \item $T \in \calr(H)$ implies $T^* \in \calr (H)$. 
+  \item $T \in \calr(H)$ and $A, B \in \B(H)$ implies 
+  $A T B \in \calr(H)$.
+\end{enumerate}
+\end{thm}
+
+\begin{proof}
+\begin{enumerate}
+  \item Write 
+  \[
+  T u = \sum_{i, j = 0}^L c_{ij} \braket{w}{e_j} e_i.
+  \]
+  Then, for any $u, v \in H$, we have 
+  \[
+  \begin{aligned}
+    \braket{u}{T^* v} &= \braket{T u}{v}  \\
+    &= \braket{\sum_{i, j} c_{ij} \braket{u}{e_j} e_i}{v} \\
+    &= \sum_{i, j} c_{ij} \braket{u}{e_j} \braket{e_i}{v} \\ 
+    &= \braket{u}{\sum_{i, j} \bar{c_{ij}} \bar{\braket{e_i}{v}} e_j} \\
+    &= \braket{u}{\sum_{i, j} \bar{c_{ij}} \braket{v}{e_i} e_j}.
+  \end{aligned}
+  \]
+  This implies that 
+  \[
+  T^* v = \sum_{i, j = 0}^L \bar{c_{ij}} \braket{v}{e_i} e_j,
+  \]
+  so $T^* \in \calr(H)$.
+  \item Exercise.
+\end{enumerate}
+\end{proof}
+
+Now a good question to investigate is whether 
+$\calr(H)$ is a closed subspace in $\B(H)$?
+That is, if $T_n \in \calr(H)$ and $\norm{T_n - T} \to 0$, 
+then is $T \in \calr(H)$? The answer turns out to be no. 
+
+\begin{eg}
+Take $T_n : \ell^2 \to \ell^2$ defined by 
+\[
+T_n a = \left\{ \frac{a_1}{1}, \dots, \frac{a_n}{n}, 0, 
+0, \dots \right\}
+\]
+for all $a = \seqinfk{a_k} \in \ell^2$. Then $T_n 
+\in \calr(H)$. Let $T : \ell^2 \to \ell^2$ defined 
+by 
+\[
+T a = \left\{ \frac{a_1}{1}, \frac{a_2}{2}, 
+\frac{a_3}{3}, \frac{a_4}{4}, \dots \right\}.
+\]
+We can verify that $\norm{T - T_n} \leq \frac{1}{n + 1}$
+but $T$ is not finite rank.
+\end{eg}
+
+As $\calr(H)$ is not closed, a question is what is 
+the closure $\bar{\calr(H)}$ in $\B(H)$. The answer to 
+this is the set of \textbf{compact operators}. 
+
+\begin{defi}[Compact operator]
+  $K \in \B(H)$ is a \textbf{compact operator}
+  if $\bar{K(B[0, 1])}$ is compact.
+\end{defi}
+
+\begin{thm}
+$K \in \B(H)$ is a compact operator if and only if 
+$K \in \bar{\calr(H)}$.
+\end{thm}
 
 \end{document}
