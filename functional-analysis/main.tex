@@ -1480,7 +1480,7 @@ be a countable orthonormal subset. Then,
 
 \begin{proof}
 \begin{enumerate}
-  \item \TODO 
+  \item Exercise.
   
   \item Since $v_n \to v$, there exists 
   $M \in \N$ such that for all $n \geq M$, 
@@ -1489,7 +1489,7 @@ be a countable orthonormal subset. Then,
   \[
   \sum_{k > N} \abs{\braket{v}{e_n}}^2 
   + \max_{1 \leq n \leq M - 1} \sum_{k > N} 
-  \abs{\braket{v_n}{e_k}}^2 < \epsilon^2.
+  \abs{\braket{v_n}{e_k}}^2 < \frac{\epsilon^2}{4}.
   \]
   Then, 
   \[
@@ -1504,12 +1504,12 @@ be a countable orthonormal subset. Then,
   If $n \geq M$, by Bessel's inequality we have 
   \[
   \begin{aligned}
-    \left( \sum_{k > N} \abs{\braket{v_n}{e_k}}^2 \right)^{\frac{1}{2}}
-    & = \left( \sum_{k > N} \abs{\braket{v_n - v}{e_k} + \braket{v}{e_k}}^2 
-    \right)^{\frac{1}{2}} \\
+    \left[ \sum_{k > N} \abs{\braket{v_n}{e_k}}^2 \right]^{\frac{1}{2}}
+    & = \left[ \sum_{k > N} \abs{\braket{v_n - v}{e_k} + \braket{v}{e_k}}^2 
+    \right]^{\frac{1}{2}} \\
     & \leq 
-    \left( \sum_{k > N} \abs{\braket{v_n - v}{e_k}}^2 \right)^{\frac{1}{2}} 
-    + \left( \sum_{k > N} \abs{\braket{v}{e_k}}^2  \right)^{\frac{1}{2}} \\ 
+    \left[ \sum_{k > N} \abs{\braket{v_n - v}{e_k}}^2 \right]^{\frac{1}{2}} 
+    + \left[ \sum_{k > N} \abs{\braket{v}{e_k}}^2  \right]^{\frac{1}{2}} \\ 
     & \leq \norm{v_n - v} + \frac{\epsilon}{2} \\
     &< \epsilon.
   \end{aligned}
@@ -1518,5 +1518,122 @@ be a countable orthonormal subset. Then,
   to $\seqinfk{e_k}$.
 \end{enumerate}
 \end{proof}
+
+\subsection{Compact subsets of a Hilbert space and 
+finite-rank operators} 
+
+\begin{thm}
+Let $H$ be a separable Hilbert space, and 
+$\seqinfk{e_k}$ be an orthonormal basis of $H$. 
+Then $K \subset H$ is compact if and only if 
+$K$ is closed, bounded, and has equi-small tails 
+with respect to $\seqinfk{e_k}$.
+\end{thm}
+
+\begin{proof}
+($\implies$) Suppose $K$ is compact, then $K$ is closed and 
+bounded. Suppose for contradiction that $K$ does not have 
+equi-small tails with respect to $\seqinfk{e_k}$. Then 
+there exists $\epsilon_0 > 0$ such that for all 
+$N \in \N$, there exists $u_N \in K$ such that 
+\[
+\sum_{k > N} \abs{\braket{u_N}{e_k}}^2 \geq \epsilon_0^2.
+\]
+
+Since $K$ is compact, there exists subsequence $\seqinfn{v_n}$
+of $\left\{ u_N \right\}_N$ such that $v_n \to v$ for some 
+$v \in K$. Then for all $n \in \N$, we have 
+\[
+\sum_{k > n} \abs{\braket{v_n}{e_k}}^2 \geq \epsilon_0^2.
+\]
+Then $\left\{ v_n : n \in \N \right\} \cup \left\{ v \right\}$ 
+does not have equi-small tails. This is a contradiction to the previous 
+theorem. Therefore, $K$ has equi-small tails with respect 
+to $\seqinfk{e_k}$.
+
+($\impliedby$). Suppose $K$ is closed, bounded, and has equi-small
+tails. Let $\seqinfn{u_n}$ be a sequence in $K$. Since $K$ 
+is closed, it suffices to show that $\seqinfn{u_n}$ has a 
+convergent subsequence. Since $K$ is bounded, 
+there exists $C \geq 0$ such that $\norm{u_n} \leq C$. 
+Then, for all $k, n \in \N$, 
+\[
+  \abs{\braket{v_n}{e_k}} \leq \norm{u_n} \norm{e_k} \leq C.
+\]
+That is, for any $k \in \N$, $\seqinfn{\braket{u_n}{e_k}}$ 
+is a bounded sequence in $\C$. This implies that 
+there exists a subsequence $\seqinfj{\braket{u_{n_1(j)}}{e_1}}$ 
+of $\seqinfn{\braket{u_n}{e_1}}$ that converges in $\C$. 
+Now $\seqinfj{\braket{u_{n_1(j)}}{e_2}}$ is a bounded sequence, 
+there exists a subsequence $\seqinfj{\braket{u_{n_2(j)}}{e_2}}$
+that converges. Note that 
+$\lim_{j \to \infty} \braket{u_{n_2(j)}}{e_1}$ 
+and $\lim_{j \to \infty} \braket{u_{n_2(j)}}{e_2}$ 
+both exist. Inductively, for any $l \in \N$, there 
+exists subsequence $\seqinfj{n_l(j)}$ of $\seqinfj{n_{l-1}(j)}$
+such that for all $1 \leq k \leq l$, the limit
+$\lim_{j \to \infty} \braket{u_{n_l(j)}}{e_k}$ exists.
+
+For all $l \in \N$, let $v_l = u_{n_l(l)}$, then 
+$\seqinfl{v_l}$ is a subsequence of $\seqinfn{u_n}$
+such that for any $k \in \N$, 
+$\seqinfl{\braket{v_l}{e_k}}$ converges. Claim that 
+$\seqinfl{v_l}$ is Cauchy. This will complete the proof 
+since the closed subset $K$ of Hilbert space $H$ is complete.
+Since $K$ has equi-small tails, there exists $N \in \N$
+such that for all $l \in \N$, 
+\[
+\sum_{k > N} \abs{\braket{v_l}{e_k}} < \frac{\epsilon^2}{16}.
+\]
+Since the $N$ sequences $\seqinfl{\braket{v_l}{e_1}}$, 
+\dots, $\seqinfl{\braket{v_l}{e_N}}$ all converges, 
+there exists $M \in \N$ such that for all $l, m \geq M$, 
+we have 
+\[
+\sum_{k=0}^N \abs{\braket{v_l}{e_k} - \braket{v_m}{e_k}}^2 
+< \frac{\epsilon^2}{4}.
+\]
+Then for all $l, m \geq M$, we have 
+\[
+\begin{aligned}
+  \norm{v_l - v_m} 
+  &= 
+  \left[ \sum_{k=0}^N \abs{\braket{v_l - v_m}{e_k}}^2 
+  + \sum_{k > N} \abs{\braket{v_l - v_m}{e_k}}^2 \right]^{\frac{1}{2}} \\
+  &\leq
+  \left[ \sum_{k=0}^N \abs{\braket{v_l - v_m}{e_k}}^2  \right]
+  ^{\frac{1}{2}}
+  + \left[ \sum_{k > N} \abs{\braket{v_l - v_m}{e_k}}^2 \right]
+  ^{\frac{1}{2}} \\ 
+  &< \frac{\epsilon}{2} + \left[ \sum_{k > N} \abs{\braket{v_l}{e_m}}^2 \right]
+  ^{\frac{1}{2}} + \left[ \sum_{k > N} \abs{\braket{v_m}{e_k}}^2 \right]
+  ^{\frac{1}{2}} \\
+  &< \epsilon. 
+\end{aligned}
+\]
+\end{proof}
+
+\begin{eg}
+The Hilbert cube 
+\[
+K = \left\{ \seqinfk{a_k} \in \ell^2 : \abs{a_k} \leq 2^{-k} \right\}
+\]
+is compact.
+\end{eg}
+
+\begin{thm}
+A subset $K$ of a Hilbert space $H$ is compact 
+if and only if $K$ is closed, bounded, and for 
+all $\epsilon > 0$, there exists a finite dimensional subspace 
+$W \subset H$ such that for all $u \in K$, 
+\[
+\inf_{w \in W} \norm{u - w} < \epsilon.
+\] 
+\end{thm}
+
+\subsubsection*{Finite rank operators}
+
+
+
 
 \end{document}
