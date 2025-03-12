@@ -2747,7 +2747,172 @@ for all $\alpha \in (0, \infty)$.
 \]
 \end{proof}
 
+\begin{cor}
+Let $(X, \mf, \mu)$ be a measure space and $f: X \to \bar{\R}$.
+\begin{enumerate}
+  \item If $f$ is integrable, then there exists 
+  a null set $N \in \mf$ and a $\sigma$-finite set $E \in \mf$
+  such that 
+  $\left\{ \abs{f} = \infty \right\} \subset N$ 
+  and $\supp(f) \subset E$.
 
+  \item If $f$ is extended integrable, then there 
+  exsits a null set $N \in \mf$ such that 
+  either $\left\{ f = \infty \right\} \subset N$
+  or $\left\{ f = -\infty \right\} \subset N$.
+\end{enumerate}
+\end{cor}
+
+\begin{proof}
+\begin{enumerate}
+  \item Suppose initially that $f$ is measurable and integrable, 
+  then Chebyshev inequality implies that 
+  \[
+  \mu \left( \left\{ \abs{f} = \infty \right\} \right) 
+  \leq \mu \left( \left\{ \abs{f} > 2^k \right\} \right) 
+  \leq 2^{-k} \int_X \abs{f} \d \mu
+  \]
+  for all $k \in \N$. It follows that 
+  $\mu \left\{ \abs{f} = \infty \right\}$ is null. 
+  
+  On the other hand, $\supp(f) = \cupinfk \left\{ \abs{f} 
+  > 2^{-k} \right\}$, but 
+  \[
+  \mu \left( \left\{ \abs{f} > 2^{-k} \right\} \right) 
+  \leq 2^k \int_X \abs{f} \d \mu < \infty.
+  \]
+  It follows that $\supp(f)$ is $\sigma$-finite. 
+  
+  In general, if $f$ is integrable and $\mu$-measurable, 
+  pick $F = f$ a.e. for $F$ measurable and integrable and 
+  apply the argument above.
+
+  \item Next, if $f$ is extended integrable but not integrable, 
+  then either $f^+$ is integrable or $f^-$ is integrable.
+  If $f^+$ is integrable, then $\{f = +\infty\}$ is 
+  contained in some null set. If $f^-$ is integrable, 
+  $\{f = -\infty\}$ is contained in a null set.
+\end{enumerate}
+\end{proof}
+
+\begin{thm}[Monotone convergence theorem, general form]
+\TODO
+\end{thm}
+
+\begin{proof}
+Homework.
+\end{proof} 
+
+\begin{cor}
+\begin{enumerate}
+  \item Let $(X, \mf, \mu)$ be a measure space, $f_k : X \to (-\infty, \infty]$
+  be $\mu$-measurable for all $k \in \N$ and $f_k \geq 0$ a.e. 
+  Then, 
+  \[
+  \int_X \suminfk f_k \d \mu = \suminfk \int_X f_k \d \mu.
+  \]
+  
+  \item Suppose $(X, \mf, \mu)$ is a measure space, $X = \cupinfk E_k$
+  such that $\seqinfk{E_k} \subset \mf$ and $\mu \left( E_k \cap E_j \right)
+  = 0$ for all $k \neq j$. Given $f: X \to [0, \infty]$
+  $\mu$-measurable, we then have 
+  \[
+  \int_X f \d \mu = \suminfk \int_{E_k} f \d \mu.
+  \]
+\end{enumerate}
+\end{cor}
+
+\begin{proof}
+\begin{enumerate}
+  \item Note that $\supp(f_k^-)$ is in a null set, so each $f_k$ is 
+  extended integrable. The same holds for $\suminfk f_k : 
+  X \to [-\infty, \infty]$. On the other hand, the partial sums 
+  $\sumk^m f_k \leq \sumk^{m+1} f_k$ a.e. Apply monotone 
+  convergence theorem gives the desired equality.
+
+  \item Use the first claim on $f_k = f \chi_{E_k}$.
+\end{enumerate}
+\end{proof}
+
+\begin{thm}[Fatou's lemma]
+  \TODO 
+\end{thm}
+
+\begin{proof}
+Note that $\int_X g \d \mu > - \infty$ implies $g^-$ is 
+integrable. Write 
+\[
+  f = \liminf_{k \to \infty} f_k,
+\]
+which is 
+a $\mu$-measurable function. Then, $g \leq f_k$ a.e. implies 
+$g \leq f$ a.e. as well. It follows that $-f_k \leq -g$
+and $-f \leq -g$. Therefore, 
+$f_k^- \leq g^-$ and $f^- \leq g^-$.
+This shows that 
+$f_k, f$ are extended-integrable. Next, note that 
+\[
+\int_X g \d \mu \leq \int_X \inf_{j \geq k} f_j \d \mu 
+\leq \int_X f_k \d \mu.
+\]
+By monotone convergence theoerm, we know the middle term 
+converges when $k$ approaches infinity. 
+Taking the liminf, we have 
+\[
+\int_X g \d \mu 
+\leq \lim_{k \to \infty} \int_X 
+\inf_{j \geq k} f_j \d \mu 
+= \liminf_{k \to \infty} f_k \d \mu
+\leq \liminf_{k \to \infty} \int_X f_k \d \mu.
+\]
+\end{proof}
+
+\begin{thm}[Dominated convergence theorem]
+\TODO
+\end{thm}
+
+\begin{proof}
+We know $\abs{f_k} \leq g_k$ a.e., $g_k \to g$ a.e., 
+and $f_k \to f$ a.e. Then, $\abs{f} \leq g$ a.e., 
+so $f_k$ and $f$ are integrable. 
+In turn, we can use a previous corollary to pick $N \in \mf$
+null such that $f_k, f, g_k, g$ are all $\R$-valued 
+and all assumed inequalities hold on $N^c$. 
+Then, $\abs{f - f_k} \leq g + g_k$ on $N^c$, and so 
+\[
+0 \leq g + g_k - \abs{f - f_k}.
+\]
+Apply Fatou's lemma, we then have 
+\[
+\begin{aligned}
+\int_{N^c} 2g \d \mu 
+&= \int_{N^c} \liminf_{k \to \infty} (g + g_k - \abs{f - f_k}) 
+\d \mu  \\
+&\leq \liminf_{k \to \infty} \int_{N^c} (g + g_k - \abs{f - f_k})
+\d \mu \\
+&= \liminf_{k \to \infty} \int_{N^c} - \abs{f - f_k} \d \mu
++ \int_{N^c} 2g \d \mu.
+\end{aligned}
+\]
+It follows that
+\[
+0 \leq \limsup_{k \to \infty} \int_{N^c} \abs{f - f_k} \d \mu
+= - \liminf_{k \to \infty} \int_{N^c} - \abs{f - f_k} \d \mu
+\leq 0.
+\]
+Therefore, 
+\[
+\lim_{k \to \infty} \int_{N^c} \abs{f - f_k} \d \mu = 0.
+\]
+This then implies 
+\[
+\lim_{k \to \infty} \int_X f_k \d \mu = \int_X f \d \mu.
+\]
+\end{proof}
+
+
+
+\newpage
 \subsection{Constructing product measures}
 
 \begin{defi}[Pre-measure]
