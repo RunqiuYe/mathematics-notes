@@ -2796,7 +2796,32 @@ Let $(X, \mf, \mu)$ be a measure space and $f: X \to \bar{\R}$.
 \end{proof}
 
 \begin{thm}[Monotone convergence theorem, general form]
-\TODO
+Let $(X, \mf, \mu)$ be a measure space and suppose 
+$f_k : X \to \bar{\R}$ is $\mu$-measurable for 
+all $k \in \N$. Suppose that 
+$f: X \to \R$ is such that $f_k \to f$ a.e. Then, 
+$f$ is $\mu$-measurable and the following holds: 
+\begin{enumerate}
+\item Suppose that $\seqinfk{f_k}$ is almost everywhere
+nondecreasing, that is, $f_k \leq f_{k+1}$ a.e. Suppose 
+also that there exists an integrable function 
+$g : X \to \bar{\R}$ such that $g \leq f_k$ for all $k \in \N$.
+Then, $f$ and $f_k$ are extended integrable for all $k \in \N$, 
+and 
+\[
+\lim_{k \to \infty} \int_X f_k \d \mu = \int_X f \d \mu.
+\]
+
+\item Suppose that $\seqinfk{f_k}$ is almost everywhere
+nonincreasing, that is, $f_k \geq f_{k+1}$ a.e. Suppose 
+also that there exists an integrable function 
+$g : X \to \bar{\R}$ such that $g \geq f_k$ for all $k \in \N$.
+Then, $f$ and $f_k$ are extended integrable for all $k \in \N$, 
+and 
+\[
+\lim_{k \to \infty} \int_X f_k \d \mu = \int_X f \d \mu.
+\]
+\end{enumerate}
 \end{thm}
 
 \begin{proof}
@@ -2835,7 +2860,22 @@ Homework.
 \end{proof}
 
 \begin{thm}[Fatou's lemma]
-  \TODO 
+Let $(X, \mf, \mu)$ be a measure space, and suppose 
+that $f_k : X \to \bar{\R}$ are $\mu$-measurable 
+for all $k \in \N$. Suppose that $g : X \to \bar{\R}$ is 
+extended integrable, $\int_X g \d \mu > - \infty$, and 
+$g \leq f_k$ a.e. for all $k \in \N$. Then the following 
+holds: 
+\begin{enumerate}
+\item For each $k \in \N$, $f_k$ is extended integrable. 
+\item The function $\liminf_{k \to \infty} f_k$ 
+is extended integrable. 
+\item We have 
+\[
+\int_X g \d \mu \leq \int_X \liminf_{k \to \infty} 
+f_k \d \mu \leq \liminf_{k \to \infty} \int_X f_k \d \mu.
+\]
+\end{enumerate}
 \end{thm}
 
 \begin{proof}
@@ -2868,7 +2908,26 @@ Taking the liminf, we have
 \end{proof}
 
 \begin{thm}[Dominated convergence theorem]
-\TODO
+Let $(X, \mf, \mu)$ be a measure space and suppose 
+$f_k, g_k : X \to \bar{\R}$ $\mu$-measurable for each
+$k \in \N$. Suppose that $f, g: X \to \bar{\R}$ are such that 
+$f_k \to f$ a.e. and $g_k \to g$ a.e. Suppose further that 
+$g_k$ is integrable and $\abs{f_k} \leq g_k$ a.e. 
+for each $k \in \N$. Suppose also $g$ is integrable and that 
+\[
+\lim_{k \to \infty} \int_X g_k \d \mu = 
+\lim_{k \to \infty} \int_X g \d \mu.
+\]
+Then, $f_k$ is integrable for each $k \in \N$, 
+$f$ is integrable, and 
+\[
+\lim_{k \to \infty} \int_X f_k \d \mu = \int_X f \d \mu.
+\]
+Moreover, $f_k - f$ is well-defined for all $k \in \N$ 
+outside a null set $N \subset X$, and 
+\[
+\lim_{k \to \infty} \int_{N^c} \abs{f_k - f} \d \mu = 0
+\]
 \end{thm}
 
 \begin{proof}
