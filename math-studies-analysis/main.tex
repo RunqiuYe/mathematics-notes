@@ -1846,6 +1846,189 @@ as desired.
   \]
 \end{defi}
 
+\subsubsection{Constructing product measures}
+
+\begin{defi}[Pre-measure]
+Let $X$ be a set and $\afk$ be an algebra on $X$. A map 
+$\gamma: \afk \to [0, \infty]$ is a \textbf{pre-measure}
+if the following is satisfied:
+\begin{enumerate}
+  \item $\gamma(\emptyset) = 0$. 
+  \item If $\seqinfi{A_i} \subset \afk$ is disjoint and 
+  $\cupinfi A_i$, then $\gamma \left( \cupinfi A_i \right)
+  = \suminfi \gamma(A_i)$.
+\end{enumerate}
+
+\end{defi}
+
+\begin{thm}[Pre-measure extension theorem]
+Let $X$ be a set, $\afk$ is an algebra on $X$, and 
+$\gamma$ a pre-measure. Let $\om : \P (X) \to [0, \infty]$
+be the outer measure constructed from $(X, \gamma)$.
+Denote $\mf$ as the the measurable space and 
+$\mu: \mf \to [0, \infty]$ the corresponding measure.
+Then the following holds: 
+\begin{enumerate}
+  \item $\afk \subset \mf$ and $\mu = \gamma$ on $\afk$.
+  
+  \item Suppose $\nf$ is a $\sigma$-algebra on $X$ 
+  such that $\afk \subset \nf \subset \mf$, and 
+  $\nu: \nf \to [0, \infty]$ is a measure such that 
+  $\nu = \gamma$ on $\afk$. Then $\nu \leq \mu$ on $\nf$
+  and $\nu(E) = \mu(E)$ whenever $E$ is $\sigma$-finite 
+  w.r.t. $\mu$. 
+  
+  In particular, if $X$ is ``$\gamma$ $\sigma$-finite'',
+  then $\mu = \nu$ on $\nf$.
+\end{enumerate}
+\end{thm}
+
+\begin{proof}
+First show $\mu = \gamma$ on $\afk$. 
+It suffices to show that $\om = \gamma$ on $\afk$.
+
+For any $E \in \afk$, we know $E$ is covered by $E$, so 
+$\om = \gamma$. On the other hand, let $E \subset \afk$
+and $\seqinfk{A_k} \subset \afk$ be a cover of $E$.
+Define $B_0 = E \cap A_0 \in \afk$ and 
+$B_k = E \cap (A_k \setminus \cupi^{k-1} A_k) \in \afk$.
+Then $\seqinfk{B_k}$ is pairwise disjoint and 
+$\cupinfk B_k = E$. It follows that 
+\[
+\gamma(E) = \gamma \left( \cupinfk B_k \right)
+= \suminfk \gamma(B_k) \leq \suminfk \gamma(A_k).
+\]
+Therefore, $\om = \gamma$ on $\afk$. 
+
+Next we show $\afk \subset \mf$. Let $E \in \afk$
+be arbitrary and we want to show $\om(A) 
+= \om(A \cap E) + \om (A \cap E^c)$ for all 
+$A \subset X$. Fix arbitrary $A \subset X$ and 
+$\epsilon > 0$. Pick $\seqinfk{A_k} \subset \afk$
+covering $A$ such that 
+\[
+\suminfk \gamma (A_k) < \om(A) + \epsilon.
+\]
+It follows that 
+\[
+\begin{aligned}
+\om(A \cap E) + \om(A \cap E^c) 
+&\leq \om \left( \cupinfk A_k \cap E \right)
++ \om \left( \cupinfk A_k \cap E^c \right) \\ 
+&\leq \suminfk \om(A_k \cap E) + \om(A_k \cap E^c) \\
+&= \suminfk \gamma(A_k \cap E) + \gamma(A_k \cap E^c) \\
+&= \suminfk \gamma(A_k).
+\end{aligned}
+\]
+This implies that $E$ is measurable, completing the proof 
+for the first item.
+
+For the second item, we first show that $\nu \leq \mu$.
+Let $E \in \nf \subset \mf$ and $\seqinfk{A_k} \subset \afk$ 
+that covers $E$. It follows that 
+\[
+\nu(E) \leq \nu \left( \cupinfk A_k \right)
+= \lim_{n \to \infty} \nu \left( \cupi^n A_i \right).
+\]
+Note that $\cupi^n A_i \in \afk$, so 
+$\nu \left( \cupi^n A_i \right) = \mu \left( \cupi^n 
+A_i \right)$. This implies that 
+\[
+\nu(E) = \lim_{n \to \infty} \mu \left( \cupi^n A_i \right)
+= \mu \left( \cupinfk A_k \right) \leq \suminfk \gamma(A_k).
+\]
+Therefore, $\nu \leq \mu$. 
+
+Next we show $\nu(E) = \mu(E)$ for $\mu(E) < \infty$. 
+Let $\epsilon > 0$ and select $\seqinfk{A_k} \subset \afk$
+covering $E$ such that 
+\[
+\suminfk \gamma(A_k) < \om(E) + \epsilon = \mu(E) + \epsilon.
+\]
+Then, 
+\[
+\mu \left( \cupinfk A_k \right) 
+\leq \suminfk \gamma(A_k) < \mu(E) + \epsilon.
+\]
+It follows that $\mu \left( \cupinfk A_k \setminus E \right)
+< \epsilon$ and thus 
+\[
+\begin{aligned}
+\mu(E) 
+\leq \mu \left( \cupinfk A_k \right) 
+= \nu \left( \cupinfk A_k \right) 
+= \nu (E) + \nu \left( \cupinfk A_k \setminus E \right)
+\leq \nu(E) + \epsilon,
+\end{aligned}
+\]
+where for $\mu \left( \cupinfk A_k \right)
+= \nu \left( \cupinfk A_k \right)$ we used the same limit argument 
+as the previous part.
+
+For the case where $E$ is $\sigma$-finite, it follows from 
+a similar argument.
+
+\end{proof}
+
+\begin{thm}[Product measures]
+Let $2 \leq n \in \N$ and suppose $(X_i, \mf_i, \mu_i)$
+is measure space for $1 \leq i \leq n$. Let 
+$X = \prod_i X_i$ and 
+\[
+\cale = \left\{ E = \prod_i E_i : 
+\text{$E_i \in \mf_i$ for $1 \leq i \leq n$} \right\}.
+\]
+The following holds: 
+\begin{enumerate}
+\item $\afk = \left\{ \cupk^K A^k : 
+\text{$\left\{ A^k \right\}_k \subset \cale$ and disjoint} 
+\right\}$ is an algebra.
+
+\item Suppose $\seqinfk{E^k} \cale$ and 
+$\seqinfk{F^k} \subset \cale$ are both pairwise disjoint sequences 
+of sets and $\cupinfk{E^k} = \cupinfk{F^k}$, then 
+\[
+\suminfk \prod_{i=1}^n \mu_i(E_i^k) = 
+\suminfk \prod_{i=1}^n \mu_i(F_i^k).
+\]
+
+\item The map $\gamma: \afk \to [0, \infty]$ defined by 
+\[
+\gamma \left( \cupk^K \prod_{i=1}^n E_i^k \right)
+= \sumk^K \prod_{i=1}^n \mu_i(E_i^k)
+\]
+is a well-defined pre-measure.
+\end{enumerate}
+\end{thm}
+
+\begin{proof}
+\begin{enumerate}
+\item It is easy to check that $\afk$ is indeed an algebra.
+\item Suppose $\cupinfk E^k = \cupinfk F^k$, then we have 
+\[
+\suminfk \prod_{i=1}^n \chi_{E_i^k}(x_i) 
+= \suminfk \prod_{i=1}^n \chi_{F_i^k}(x_i)
+\]
+for all $x = (x_1, \dots, x_n) \in X$. 
+Now fix $(x_2, \dots, x_n)$, we then have 
+\[
+\suminfk \chi_{E^k_1}(x_1) \alpha_1^k 
+= \suminfk \chi_{F^k_1}(x_1) \beta_1^k, 
+\]
+where 
+$\alpha_1^k = \prod_{i=2}^n \chi_{E_i^k} (x_i)$ and 
+$\beta_1^k = \prod_{i=2}^n \chi_{F_i^k} (x_i)$.
+Using the monotone convergence theorem and integrate 
+both sides, we have 
+\[
+\suminfk \mu_1(E_1) \alpha_1^k 
+= \suminfk \mu_1(F_1) \beta_1^k.
+\]
+Iterate this argument gives the desired equality.
+
+\end{enumerate}
+\end{proof}
+
 \subsection{Lebesgue and Hausdorff measure}
 
 \TODO
@@ -2773,7 +2956,8 @@ Let $(X, \mf, \mu)$ be a measure space and $f: X \to \bar{\R}$.
   \leq 2^{-k} \int_X \abs{f} \d \mu
   \]
   for all $k \in \N$. It follows that 
-  $\mu \left\{ \abs{f} = \infty \right\}$ is null. 
+  $\mu \left( \left\{ \abs{f} = \infty \right\} \right)$ 
+  is null. 
   
   On the other hand, $\supp(f) = \cupinfk \left\{ \abs{f} 
   > 2^{-k} \right\}$, but 
@@ -2793,6 +2977,35 @@ Let $(X, \mf, \mu)$ be a measure space and $f: X \to \bar{\R}$.
   contained in some null set. If $f^-$ is integrable, 
   $\{f = -\infty\}$ is contained in a null set.
 \end{enumerate}
+\end{proof}
+
+To prove the more general form of monotone convergence theorem,
+we first need a useful lemma. 
+
+\begin{lemma}
+Let $(X, \mf, \mu)$ be a measure space and suppose that 
+$f : X \to \bar{\R}$ is $\mu$-measurable and $g : X \to \R$
+is integrable. Further suppose $g \leq f$ a.e. Then, $f$ 
+and $f - g$ are extended integrable, and 
+\[
+\int_X (f - g) \d \mu = \int_X f \d \mu - \int_X g \d \mu.
+\]
+\end{lemma}
+
+\begin{proof}
+Since $g \leq f$ a.e., we have $f^- \leq g^-$ a.e. Since 
+$g$ is integrable, $f^-$ is integrable and thus $f$ is 
+extended-integrable. We also have $f - g$ well defined 
+on all of $E$ and $f - g \geq 0$ a.e. Therefore, 
+$f - g$ is extended-integrable. 
+
+If $f$ is integrable, then we immediately have the desired 
+equality. Suppose not $f$ is not integrable but only 
+extended-integrable. This implies $f^+$ is not integrable.
+We must then have $f - g$ not integrable, otherwise 
+$f = (f - g) + g$ is integrable. Therefore, 
+$\int_X (f - g) \d \mu = \int_X f \d \mu = \infty$,
+and the desired equality holds.
 \end{proof}
 
 \begin{thm}[Monotone convergence theorem, general form]
@@ -2825,8 +3038,59 @@ and
 \end{thm}
 
 \begin{proof}
-Homework.
-\end{proof} 
+Since $g$ is integrable, there exists a null set $\tilde{N} \in \mf$
+such that $\left\{ \abs{g} = \infty \right\} \subset \tilde{N}$.
+Now $g$ is $\R$-valued in $N^c$.
+We can also select a null set $N \supset \tilde{N}$
+such that the following holds: 
+\begin{itemize}
+  \item $g$ is measurable on $N^c$.
+  \item $f_k \to f$ as $k \to \infty$ on $N^c$.
+  \item For each $k \in \N$, $f_k$ is measurable
+  on $N^c$, $f_k \leq f_{k+1} \leq f$ on $N^c$, and 
+  $g \leq f_k \leq f$ on $N^c$.
+\end{itemize}
+By Lemma 10.3.22, we know $f$, $f - g$ are extended 
+integrable on $N^c$ and $f_k$, $f_k - g$ are extended integrable
+on $N^c$ for each $k \in \N$. Additionally, we have 
+\[
+\int_{N^c} (f - g) \d \mu = \int_{N^c} f \d \mu - \int_{N^c}
+g \d \mu,
+\]
+and for each $k \in \N$ 
+\[
+\int_{N^c} (f_k - g) \d \mu = \int_{N^c} f_k \d \mu
+- \int_{N^c} g \d \mu.
+\]
+Note now $f_k - g$ is measurable function on $N^c$
+taking values in $[0, \infty]$. Also, 
+$f_k - g \leq f_{k+1} - g$ on $N^c$ and $f_k - g \to f - g$
+pointwise as $k \to \infty$ on $N^c$. By the basic version 
+of monotone convergence theorem, we have 
+\[
+\lim_{k \to \infty} \int_{N^c} (f_k - g) \d \mu 
+= \int_{N^c} (f - g) \d \mu.
+\]
+Therefore, 
+\[
+\lim_{k \to \infty} \int_{N^c} f_k \d \mu
+- \int_{N^c} g \d \mu = \int_{N^c} f \d \mu
+- \int_{N^c} g \d \mu.
+\]
+However, note that $\int_{N^c} g \d \mu \in \R$
+and it then follows that
+\[
+\lim_{k \to \infty} \int_{N^c} f_k \d \mu = 
+\int_{N^c} f \d \mu.
+\]
+Since both $f_k$ and $f$ are extended integrable and 
+$N$ is null, we have 
+\[
+\lim_{k \to \infty} \int_X f_k \d \mu = \int_X f \d \mu,
+\]
+as desired.
+
+\end{proof}
 
 \begin{cor}
 \begin{enumerate}
@@ -2890,7 +3154,7 @@ $g \leq f$ a.e. as well. It follows that $-f_k \leq -g$
 and $-f \leq -g$. Therefore, 
 $f_k^- \leq g^-$ and $f^- \leq g^-$.
 This shows that 
-$f_k, f$ are extended-integrable. Next, note that 
+$f_k$ and $f$ are extended-integrable. Next, note that 
 \[
 \int_X g \d \mu \leq \int_X \inf_{j \geq k} f_j \d \mu 
 \leq \int_X f_k \d \mu.
@@ -2900,9 +3164,10 @@ converges when $k$ approaches infinity.
 Taking the liminf, we have 
 \[
 \int_X g \d \mu 
-\leq \lim_{k \to \infty} \int_X 
+\leq 
+\liminf_{k \to \infty} \int_X f_k \d \mu
+= \lim_{k \to \infty} \int_X 
 \inf_{j \geq k} f_j \d \mu 
-= \liminf_{k \to \infty} f_k \d \mu
 \leq \liminf_{k \to \infty} \int_X f_k \d \mu.
 \]
 \end{proof}
@@ -2916,7 +3181,7 @@ $g_k$ is integrable and $\abs{f_k} \leq g_k$ a.e.
 for each $k \in \N$. Suppose also $g$ is integrable and that 
 \[
 \lim_{k \to \infty} \int_X g_k \d \mu = 
-\lim_{k \to \infty} \int_X g \d \mu.
+\int_X g \d \mu.
 \]
 Then, $f_k$ is integrable for each $k \in \N$, 
 $f$ is integrable, and 
@@ -2949,7 +3214,10 @@ Apply Fatou's lemma, we then have
 \d \mu  \\
 &\leq \liminf_{k \to \infty} \int_{N^c} (g + g_k - \abs{f - f_k})
 \d \mu \\
-&= \liminf_{k \to \infty} \int_{N^c} - \abs{f - f_k} \d \mu
+&= \liminf_{k \to \infty} \int_{N^c} (g + g_k - \abs{f - f_k})
+\d \mu + \liminf_{k \to \infty} \int_{N^c} -(g + g_k) \d \mu 
++ \int_{N^c} 2g \d \mu \\
+&\leq \liminf_{k \to \infty} \int_{N^c} - \abs{f - f_k} \d \mu
 + \int_{N^c} 2g \d \mu.
 \end{aligned}
 \]
@@ -2971,189 +3239,6 @@ This then implies
 
 
 
-\newpage
-\subsection{Constructing product measures}
-
-\begin{defi}[Pre-measure]
-Let $X$ be a set and $\afk$ be an algebra on $X$. A map 
-$\gamma: \afk \to [0, \infty]$ is a \textbf{pre-measure}
-if the following is satisfied:
-\begin{enumerate}
-  \item $\gamma(\emptyset) = 0$. 
-  \item If $\seqinfi{A_i} \subset \afk$ is disjoint and 
-  $\cupinfi A_i$, then $\gamma \left( \cupinfi A_i \right)
-  = \suminfi \gamma(A_i)$.
-\end{enumerate}
-
-\end{defi}
-
-\begin{thm}[Pre-measure extension theorem]
-Let $X$ be a set, $\afk$ is an algebra on $X$, and 
-$\gamma$ a pre-measure. Let $\om : \P (X) \to [0, \infty]$
-be the outer measure constructed from $(X, \gamma)$.
-Denote $\mf$ as the the measurable space and 
-$\mu: \mf \to [0, \infty]$ the corresponding measure.
-Then the following holds: 
-\begin{enumerate}
-  \item $\afk \subset \mf$ and $\mu = \gamma$ on $\afk$.
-  
-  \item Suppose $\nf$ is a $\sigma$-algebra on $X$ 
-  such that $\afk \subset \nf \subset \mf$, and 
-  $\nu: \nf \to [0, \infty]$ is a measure such that 
-  $\nu = \gamma$ on $\afk$. Then $\nu \leq \mu$ on $\nf$
-  and $\nu(E) = \mu(E)$ whenever $E$ is $\sigma$-finite 
-  w.r.t. $\mu$. 
-  
-  In particular, if $X$ is ``$\gamma$ $\sigma$-finite'',
-  then $\mu = \nu$ on $\nf$.
-\end{enumerate}
-\end{thm}
-
-\begin{proof}
-First show $\mu = \gamma$ on $\afk$. 
-It suffices to show that $\om = \gamma$ on $\afk$.
-
-For any $E \in \afk$, we know $E$ is covered by $E$, so 
-$\om = \gamma$. On the other hand, let $E \subset \afk$
-and $\seqinfk{A_k} \subset \afk$ be a cover of $E$.
-Define $B_0 = E \cap A_0 \in \afk$ and 
-$B_k = E \cap (A_k \setminus \cupi^{k-1} A_k) \in \afk$.
-Then $\seqinfk{B_k}$ is pairwise disjoint and 
-$\cupinfk B_k = E$. It follows that 
-\[
-\gamma(E) = \gamma \left( \cupinfk B_k \right)
-= \suminfk \gamma(B_k) \leq \suminfk \gamma(A_k).
-\]
-Therefore, $\om = \gamma$ on $\afk$. 
-
-Next we show $\afk \subset \mf$. Let $E \in \afk$
-be arbitrary and we want to show $\om(A) 
-= \om(A \cap E) + \om (A \cap E^c)$ for all 
-$A \subset X$. Fix arbitrary $A \subset X$ and 
-$\epsilon > 0$. Pick $\seqinfk{A_k} \subset \afk$
-covering $A$ such that 
-\[
-\suminfk \gamma (A_k) < \om(A) + \epsilon.
-\]
-It follows that 
-\[
-\begin{aligned}
-\om(A \cap E) + \om(A \cap E^c) 
-&\leq \om \left( \cupinfk A_k \cap E \right)
-+ \om \left( \cupinfk A_k \cap E^c \right) \\ 
-&\leq \suminfk \om(A_k \cap E) + \om(A_k \cap E^c) \\
-&= \suminfk \gamma(A_k \cap E) + \gamma(A_k \cap E^c) \\
-&= \suminfk \gamma(A_k).
-\end{aligned}
-\]
-This implies that $E$ is measurable, completing the proof 
-for the first item.
-
-For the second item, we first show that $\nu \leq \mu$.
-Let $E \in \nf \subset \mf$ and $\seqinfk{A_k} \subset \afk$ 
-that covers $E$. It follows that 
-\[
-\nu(E) \leq \nu \left( \cupinfk A_k \right)
-= \lim_{n \to \infty} \nu \left( \cupi^n A_i \right).
-\]
-Note that $\cupi^n A_i \in \afk$, so 
-$\nu \left( \cupi^n A_i \right) = \mu \left( \cupi^n 
-A_i \right)$. This implies that 
-\[
-\nu(E) = \lim_{n \to \infty} \mu \left( \cupi^n A_i \right)
-= \mu \left( \cupinfk A_k \right) \leq \suminfk \gamma(A_k).
-\]
-Therefore, $\nu \leq \mu$. 
-
-Next we show $\nu(E) = \mu(E)$ for $\mu(E) < \infty$. 
-Let $\epsilon > 0$ and select $\seqinfk{A_k} \subset \afk$
-covering $E$ such that 
-\[
-\suminfk \gamma(A_k) < \om(E) + \epsilon = \mu(E) + \epsilon.
-\]
-Then, 
-\[
-\mu \left( \cupinfk A_k \right) 
-\leq \suminfk \gamma(A_k) < \mu(E) + \epsilon.
-\]
-It follows that $\mu \left( \cupinfk A_k \setminus E \right)
-< \epsilon$ and thus 
-\[
-\begin{aligned}
-\mu(E) 
-\leq \mu \left( \cupinfk A_k \right) 
-= \nu \left( \cupinfk A_k \right) 
-= \nu (E) + \nu \left( \cupinfk A_k \setminus E \right)
-\leq \nu(E) + \epsilon,
-\end{aligned}
-\]
-where for $\mu \left( \cupinfk A_k \right)
-= \nu \left( \cupinfk A_k \right)$ we used the same limit argument 
-as the previous part.
-
-For the case where $E$ is $\sigma$-finite, it follows from 
-a similar argument.
-
-\end{proof}
-
-\begin{thm}[Product measures]
-Let $2 \leq n \in \N$ and suppose $(X_i, \mf_i, \mu_i)$
-is measure space for $1 \leq i \leq n$. Let 
-$X = \prod_i X_i$ and 
-\[
-\cale = \left\{ E = \prod_i E_i : 
-\text{$E_i \in \mf_i$ for $1 \leq i \leq n$} \right\}.
-\]
-The following holds: 
-\begin{enumerate}
-\item $\afk = \left\{ \cupk^K A^k : 
-\text{$\left\{ A^k \right\}_k \subset \cale$ and disjoint} 
-\right\}$ is an algebra.
-
-\item Suppose $\seqinfk{E^k} \cale$ and 
-$\seqinfk{F^k} \subset \cale$ are both pairwise disjoint sequences 
-of sets and $\cupinfk{E^k} = \cupinfk{F^k}$, then 
-\[
-\suminfk \prod_{i=1}^n \mu_i(E_i^k) = 
-\suminfk \prod_{i=1}^n \mu_i(F_i^k).
-\]
-
-\item The map $\gamma: \afk \to [0, \infty]$ defined by 
-\[
-\gamma \left( \cupk^K \prod_{i=1}^n E_i^k \right)
-= \sumk^K \prod_{i=1}^n \mu_i(E_i^k)
-\]
-is a well-defined pre-measure.
-\end{enumerate}
-\end{thm}
-
-\begin{proof}
-\begin{enumerate}
-\item It is easy to check that $\afk$ is indeed an algebra.
-\item Suppose $\cupinfk E^k = \cupinfk F^k$, then we have 
-\[
-\suminfk \prod_{i=1}^n \chi_{E_i^k}(x_i) 
-= \suminfk \prod_{i=1}^n \chi_{F_i^k}(x_i)
-\]
-for all $x = (x_1, \dots, x_n) \in X$. 
-Now fix $(x_2, \dots, x_n)$, we then have 
-\[
-\suminfk \chi_{E^k_1}(x_1) \alpha_1^k 
-= \suminfk \chi_{F^k_1}(x_1) \beta_1^k, 
-\]
-where 
-$\alpha_1^k = \prod_{i=2}^n \chi_{E_i^k} (x_i)$ and 
-$\beta_1^k = \prod_{i=2}^n \chi_{F_i^k} (x_i)$.
-Using the monotone convergence theorem and integrate 
-both sides, we have 
-\[
-\suminfk \mu_1(E_1) \alpha_1^k 
-= \suminfk \mu_1(F_1) \beta_1^k.
-\]
-Iterate this argument gives the desired equality.
-
-\end{enumerate}
-\end{proof}
 
 
 \end{document}
