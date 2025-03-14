@@ -2435,7 +2435,7 @@ $\mu$-measurablility of Banach-valued maps.
   $\phi_n \to f$ pointwise a.e. as $n \to \infty$. 
   Moreover, the same 
   equivalence holds with $\mu$-measurablility replaced by 
-  stronly $\mu$-measurablility and $\seqinfn{\phi_n}$  
+  strongly $\mu$-measurablility and $\seqinfn{\phi_n}$  
   replaced by $\seqinfn{\phi_n} \subset \Sfin(X; V)$.
 \end{thm}
 
@@ -2660,7 +2660,7 @@ $\mu$-measurablility of Banach-valued maps.
   \end{enumerate}
 \end{prop}
 
-\subsubsection*{Integral of $\bar{\R}$-valued functions}
+\subsubsection{Integration of $\bar{\R}$-valued functions}
 
 Note that if $(X, \mf, \mu)$ is a measure space and 
 $\phi \in S(X; [0, \infty])$, then 
@@ -3231,14 +3231,208 @@ Therefore,
 \[
 \lim_{k \to \infty} \int_{N^c} \abs{f - f_k} \d \mu = 0.
 \]
+Note that $f_k$ and $f$ are integrable, so 
+\[
+\abs{\int_X f \d \mu - \int_X f_k \d \mu} 
+= \abs{\int_{N^c} f \d \mu - \int_{N^c} f_k \d \mu} 
+\leq \int_{N^c} \abs{f - f_k}.
+\]
 This then implies 
 \[
-\lim_{k \to \infty} \int_X f_k \d \mu = \int_X f \d \mu.
+\lim_{k \to \infty} \int_X f_k \d \mu = \int_X f \d \mu,
+\]
+and the proof is complete.
+\end{proof}
+
+\begin{remark}
+Usually, dominated convergence theorem is applied with 
+$g_k = g$, in which case the assumption 
+$\int_X g_k \d \mu \to \int_X g \d \mu$ becomes trivial.
+\end{remark}
+
+\subsubsection{Bochner integration}
+\begin{lemma}
+Suppose $(X, \mf, \mu)$ is a measure space and $V$ a normed 
+vector space, and $\phi: X \to V$ simple. 
+Note then $\norm{\phi} : X \to [0, \infty)$ 
+is a simple function now. 
+Then, $\phi$ is a \textbf{finite} simple function
+if and only if $\norm{\phi}$ is integrable. 
+\end{lemma}
+
+\begin{proof}
+($\implies$) Suppose $\phi$ is finite, then 
+$\norm{\phi}$ is finite. Then, $\norm{\phi}$ is integrable.
+
+($\impliedby$) Suppose $\norm{\phi}$ is integrable. We know 
+$\phi$ is simple, so $\phi(X) \setminus \left\{ 0 \right\}$
+is a finite set in $V$. Then, there exists $0 < m \in \R$ such 
+that $\norm{v} \geq m$ for all $v \in \phi(X) \setminus \left\{ 
+0 \right\}$. Then, 
+\[
+\mu(\supp(\phi)) = \mu(\{x \in X : \norm{\phi(x)} > 0\})
+= \mu(\{\norm{\phi} \geq m\}).
+\]
+By Chebyshev inequality, we have 
+\[
+\mu(\supp(\phi)) \leq \frac{1}{m} \int_X \norm{\phi} \d \mu < \infty.
+\]
+This completes the proof.
+\end{proof}
+
+\begin{lemma}
+Let $(X, \mf, \mu)$ be a measure space, $V$ be a Banach space,
+$f: X \to V$ $\mu$-strongly measurable. Suppose that for 
+$j \in \{0, 1\}$, we have $\seqinfk{\phi_k^j} \subset \Sfin(X; V)$
+such that 
+\[
+  \lim_{k \to \infty} \int_X \norm{f - \phi_k^j} \d \mu = 0.
+\]
+Then, $\seqinfk{\int_X \phi_k^j}$ is convergent in $V$ 
+for both $j \in \{0, 1\}$ and 
+\[
+\lim_{k \to \infty} \int_X \phi_k^0 \d \mu = 
+\lim_{k \to \infty} \int_X \phi_k^1 \d \mu.
+\]
+\end{lemma}
+
+\begin{proof}
+For $k, m \in \N$, we have 
+\[
+\begin{aligned}
+  \norm{\int_X \phi_m^j \d\mu - \int_X \phi_k^j \d \mu} 
+  &= \norm{\int_X (\phi_m^j - \phi_k^j) \d \mu} \\
+  &\leq \int_X \norm{\phi_m^j - \phi_k^j} \d \mu \\
+  &\leq \int_X \norm{f - \phi_m^j} \d \mu
+  + \int_X \norm{f - \phi_k^j} \d \mu.
+\end{aligned}
+\]
+This shows that $\seqinfk{\int_X \phi_k^j}$ is Cauchy
+and hence convergent. 
+
+On the other hand, 
+\[
+\begin{aligned}
+\norm{\int_X \phi_k^0 \d \mu - \int_X \phi_k^1 \d \mu}
+&\leq \int_X \norm{\phi_k^0 - \phi_k^1} \d \mu \\
+&\leq \int_X \norm{f - \phi_k^0} \d \mu
++ \int_X \norm{f - \phi_k^1} \d \mu \\
+&\to 0,
+\end{aligned}
+\]
+completing the proof.
+\end{proof}
+
+This leads to the following definition for Bochner integration.
+
+\begin{defi}
+Let $(X, \mf, \mu)$ be a measure space and $V$ a Banach space. 
+A map $f : X \to V$ is (Bochner) integrable if 
+it is strongly $\mu$-measurable and there exists a sequence
+$\seqinfn{\phi_n} \subset \Sfin(X; V)$ such that $\phi_n \to f$
+a.e. and 
+\[
+\lim_{n \to \infty} \int_X \norm{f - \phi_n} \d \mu = 0,
+\] 
+in which case we define 
+\[
+\int_X f \d \mu = \lim_{n \to \infty} \int_X \phi_n \d \mu \in V.
+\]
+Note that this is well-defined by the previous lemmas.
+\end{defi}
+
+\begin{thm}[absoulte integrability]
+Let $(X, \mf, \mu)$ be a measure space, $V$ a Banach space, 
+$f : X \to V$. Then, 
+$f$ is integrable if and only if $\mu$-measurable 
+and $\norm{f} : X \to [0, \infty]$ is integrable.
+In either case, 
+\[
+\norm{\int_X f \d \mu} \leq \int_X \norm{f} \d \mu.
+\]
+\end{thm}
+
+\begin{proof}
+($\implies$) Suppose $f$ is integrable. This implies that 
+$f$ is strongly $\mu$-measure and in particular $\mu$-measurable.
+Also, $\norm{f} : X \to [0, \infty)$ is $\mu$-measurable. 
+Suppose $\seqinfn{\phi_n} \subset \Sfin(X; V)$ is such that 
+$\phi_n \to f$ a.e. and $\int_X \norm{f - \phi_n} \to 0$.
+Then, 
+\[
+\begin{aligned}
+\int_X \norm{f} \d \mu 
+\leq \int_X \norm{f - \phi_n} \d \mu + \int_X \norm{\phi_n}
+\d \mu < \infty
+\end{aligned}
+\]
+for $n$ sufficiently large. This implies that $\norm{f}$
+is integrable.
+
+($\impliedby$) Suppose $f$ is $\mu$-measurable and 
+$\int_X \norm{f} \d \mu < \infty$. Then, Pettis theorem 
+gives a sequence $\seqinfn{\phi_n} \in S(X; V)$ such that 
+$\phi_n \to f$ a.e. and $\norm{\phi_n} \leq 2\norm{f}$.
+Then, 
+\[
+\int_X \norm{\phi_n} \d \mu \leq 2 \int_X \norm{f} \d \mu 
+< \infty.
+\]
+Therefore, $\seqinfn{\phi_n}$ is actually a sequence of 
+finite simple functions. This implies that 
+$f$ is actually strongly $\mu$-measurable. On the other hand. 
+$\norm{f - \phi_n} \leq 3\norm{f}$, so 
+dominated convergence theorem implies 
+\[
+\int_X \norm{f - \phi_n} \d \mu \to 0
+\]
+as $n \to \infty$. By definition, $f$ is now integrable.
+Moreover, 
+\[
+\int_X f \d \mu = \lim_{n \to \infty} \int_X \phi_n \d \mu.
+\]
+It follows then from the dominated convergence theorem that 
+\[
+\begin{aligned}
+\norm{\int_X f \d \mu} 
+= \lim_{n \to \infty} \norm{\int_X \phi_n \d \mu}  
+\leq \lim_{n \to \infty} \int_X \norm{\phi_n} \d \mu
+= \int_X \norm{f} \d \mu.
+\end{aligned}
 \]
 \end{proof}
 
+\begin{thm}[dominated convergence theorem for Bochner]
+Let $(X, \mf, \mu)$ be a measure space, $V$ a Banach space,
+and suppose $f_n : X \to V$, $g_n : X \to \bar{\R}$ are 
+$\mu$-measurable $n \in \N$. Further suppose 
+$f: X \to V$ and $g: X \to \bar{\R}$ are such that 
+$f_n \to f$ a.e. and $g_n \to g$ a.e. 
+Also, suppose $g_n, g$ are integrable.
+Finally suppose 
+$\norm{f_n} \leq g_n$ a.e. and 
+\[
+\lim_{n \to \infty} \int_X g_n \d \mu = \int_X g \d \mu.
+\]
+Then, $f_n, f$ are integrable and 
+\[
+\lim_{n \to \infty} \int_X \norm{f_n - f} \d \mu = 0,
+\]
+so we also have 
+\[
+\lim_{n \to \infty} \int_X f_n \d \mu = \int_X f \d \mu.
+\]
+\end{thm}
 
-
-
+\begin{proof}
+Since $\norm{f_n} \leq g_n$ and $\norm{f} \leq g$, 
+we have $f_n$ and $f$ integrable. Note that 
+$\norm{f - f_n} \leq g + g_n$ and $g + g_n \to 2g$ 
+as $n \to \infty$. Dominated convergence theorem then implies 
+\[
+\lim_{n \to \infty} \int_X \norm{f - f_n} \d \mu = 0,
+\]
+completing the proof.
+\end{proof}
 
 \end{document}
