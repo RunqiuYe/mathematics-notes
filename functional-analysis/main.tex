@@ -1637,15 +1637,15 @@ $W \subset H$ such that for all $u \in K$,
 A bounded linear operator $T \in \B(H)$ is a \textbf{finite 
 rank operator} if $\ran(T)$, which is a subspace of $H$,
 is finite dimensional. Denote the set of all finite range 
-operator on $H$ with $\calr (H)$.
+operator on $H$ with $\rcal (H)$.
 \end{defi}
 
 \begin{thm}
-$\calr (H)$ is a subspace of $\B (H)$.
+$\rcal (H)$ is a subspace of $\B (H)$.
 \end{thm}
 
 \begin{thm}
-$T \in \calr (H)$ if and only if there exists an 
+$T \in \rcal (H)$ if and only if there exists an 
 orthonormal set $\{e_k\}_{k=0}^L$ and constants
 $\{c_{ij}\}_{i,j=0}^L \subset \C$ such that 
 \[
@@ -1687,9 +1687,9 @@ completes the proof.
 \begin{thm}
 The following holds:
 \begin{enumerate}
-  \item $T \in \calr(H)$ implies $T^* \in \calr (H)$. 
-  \item $T \in \calr(H)$ and $A, B \in \B(H)$ implies 
-  $A T B \in \calr(H)$.
+  \item $T \in \rcal(H)$ implies $T^* \in \rcal (H)$. 
+  \item $T \in \rcal(H)$ and $A, B \in \B(H)$ implies 
+  $A T B \in \rcal(H)$.
 \end{enumerate}
 \end{thm}
 
@@ -1713,15 +1713,15 @@ The following holds:
   \[
   T^* v = \sum_{i, j = 0}^L \bar{c_{ij}} \braket{v}{e_i} e_j,
   \]
-  so $T^* \in \calr(H)$.
+  so $T^* \in \rcal(H)$.
   \item Exercise.
 \end{enumerate}
 \end{proof}
 
 Now a good question to investigate is whether 
-$\calr(H)$ is a closed subspace in $\B(H)$?
-That is, if $T_n \in \calr(H)$ and $\norm{T_n - T} \to 0$, 
-then is $T \in \calr(H)$? The answer turns out to be no. 
+$\rcal(H)$ is a closed subspace in $\B(H)$?
+That is, if $T_n \in \rcal(H)$ and $\norm{T_n - T} \to 0$, 
+then is $T \in \rcal(H)$? The answer turns out to be no. 
 
 \begin{eg}
 Take $T_n : \ell^2 \to \ell^2$ defined by 
@@ -1730,7 +1730,7 @@ T_n a = \left\{ \frac{a_1}{1}, \dots, \frac{a_n}{n}, 0,
 0, \dots \right\}
 \]
 for all $a = \seqinfk{a_k} \in \ell^2$. Then $T_n 
-\in \calr(H)$. Let $T : \ell^2 \to \ell^2$ defined 
+\in \rcal(H)$. Let $T : \ell^2 \to \ell^2$ defined 
 by 
 \[
 T a = \left\{ \frac{a_1}{1}, \frac{a_2}{2}, 
@@ -1740,8 +1740,8 @@ We can verify that $\norm{T - T_n} \leq \frac{1}{n + 1}$
 but $T$ is not finite rank.
 \end{eg}
 
-As $\calr(H)$ is not closed, a question is what is 
-the closure $\bar{\calr(H)}$ in $\B(H)$. The answer to 
+As $\rcal(H)$ is not closed, a question is what is 
+the closure $\bar{\rcal(H)}$ in $\B(H)$. The answer to 
 this is the set of \textbf{compact operators}. 
 
 \begin{defi}[Compact operator]
@@ -1751,7 +1751,7 @@ this is the set of \textbf{compact operators}.
 
 \begin{thm}
 $K \in \B(H)$ is a compact operator if and only if 
-$K \in \bar{\calr(H)}$.
+$K \in \bar{\rcal(H)}$.
 \end{thm}
 
 \end{document}
