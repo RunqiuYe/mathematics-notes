@@ -3795,4 +3795,178 @@ N_f(y, E) = \hcal^0 \left( E \cap f^{-1} (\{y\}) \right)
 \]
 \end{defi}
 
+\begin{thm}
+Let $F \in \fs(\R^n)$ and $f: F \to \R^m$ be locally 
+Lipschitz with $n \leq m$. If $E \subset F$ is Lebesgue 
+measurable, then $N_f(\cdot, E) : \R^m \to [0, \infty]$
+is $\hfk^n(\R^m)$ measurable.
+\end{thm}
+
+\begin{proof}
+Homework.
+\end{proof}
+
+\begin{lemma}
+Let $\emptyset \neq U \subset \R^n$ be open, $f \in C^1 
+(U ; \R^m)$ for $n \leq m$. Suppose $Df(x)$ is injective
+for all $x \in V$. Then for all $E \subset U$ Lebesgue 
+measurable, and 
+\[
+\int_E J_f \d \lambda = \int_{\R^m} N_f (\cdot, E) \d \hcal^n.
+\]
+\end{lemma}
+
+\begin{proof}
+Let $E \subset U$ be Lebesgue measurable and $0 < \epsilon < 1$.
+Using the previous lemma, we can pick $\seqinfk{B(x_k, r_k)}$
+such that $B(x_k, r_k) \subset U$, $f : B(x_k, r_k) \to \R^n$
+is Lipschitz injection, $E = \cupinfk B(x_k, r_k)$, and 
+\[
+(1 - \epsilon)^{n+1} \int_F J_f \d \lambda
+\leq \hcal^n (f(E))
+\leq (1 + \epsilon)^{n+1} \int_F J_f \d \lambda
+\]
+for all $F \subset B(x_k, r_k)$.
+
+Let $E_0 = E \cap B(x_0, r_0)$ and for $k > 0$ let 
+$E_k = E \cap B(x_k, r_k) \setminus \cupj^{k-1} B(x_j, r_j)$.
+Then $E = \sqcupinfk E_k$. Applying the inequality, we obtain 
+\[
+(1 - \epsilon)^{n+1} \int_{E_k} J_f \d \lambda 
+\leq \hcal^n (f(E_k)) 
+\leq (1 + \epsilon)^{n+1} \int_{E_k} J_f \d \lambda.
+\]
+However, since $f$ is injective when restricted to $E_k$,
+we have 
+\[
+\hcal^n (f(E_k)) = \int_{\R^m} N_f(\cdot, E_k) \d \hcal^n.
+\]
+Summing the inequalities, we can then obtain from monotone
+convergence theoerm that 
+\[
+(1 - \epsilon)^{n+1} \int_E J_f \d \lambda
+\leq \int_{\R^m} \suminfk N_f(\cdot, E_k) \d \hcal^n 
+= \int_{\R^m} N_f(\cdot, E) \d \hcal^n
+\leq (1 + \epsilon)^{n+1} \int_E J_f \d \lambda.
+\]
+Since this holds for all $\epsilon > 0$, we have 
+\[
+\int_E J_f \d \lambda = \int_{\R^m} N_f(\cdot, E) \d \hcal^n.
+\]
+\end{proof}
+
+\begin{thm}[Sard's theorem, special case]
+Let $\emptyset \neq U \subset \R^n$ be open, $f \in C^1 (U; 
+\R^m)$ for $n \leq m$. Then the set 
+\[
+Z = \left\{ x \in U: J_f(x) = 0 \right\}
+\]
+is Lebesgue measurable and $f(Z) \in \hfk^n(\R^m)$ and 
+$\hcal^n (f(Z)) = 0$.
+\end{thm}
+
+\begin{proof}
+Note that $Z$ is relatively closed, so it is Lebesgue
+measurable. It then suffices to show that the outer 
+measure $\hcal^n (f(Z)) = 0$.
+
+Write $U = \cupinfk Q_k$ where $\seqinfk{Q_k}$ is 
+a sequence of almost disjoint cubes. It suffices to show 
+$\hcal^n (f(Z_k)) = 0$, where $Z_k = Z \cap Q_k$.
+Let $0 < \epsilon < 1$ and let $f_\epsilon \in C^1 (U; 
+\R^{m+n})$ by $f_\epsilon(x) = (f(x), \epsilon x)$.
+Then $f_\epsilon$ is injective, and 
+\[
+Df(x) = \begin{bmatrix}
+  Df(x) \\ 
+  \epsilon I_n
+\end{bmatrix}
+\in \R^{(m + n) \times n},
+\]
+which is also injective for each $x \in U$. Also, 
+\[
+(Df_\epsilon)^T Df_\epsilon = 
+\begin{bmatrix}
+  Df^T & \epsilon I
+\end{bmatrix}
+\begin{bmatrix}
+  Df \\ 
+  \epsilon I 
+\end{bmatrix}
+= (Df)^T Df + \epsilon^2 I.
+\]
+It follows that 
+\[
+\begin{aligned}
+  J_{f_\epsilon}^2 
+  &= \det((Df_\epsilon)^T Df_\epsilon) \\
+  &= \det(\epsilon^2 I + (Df)^T Df) \\
+  &= \epsilon^{2n} + \sumj^{n-1} \epsilon^{2j} 
+  \sum_{\alpha \in \acal(n, n - j)} \det((Df)^T Df)_\alpha^\alpha \\ 
+  &= \det (Df)^T Df + \epsilon^{2n} 
+  + \sum_{j=1}^{n-1} \epsilon^{2j} \sum_{\alpha \in \acal(n, n-j)}
+  \det((Df)^T Df)_\alpha^\alpha \\
+  &\leq J_f^2 + \epsilon^2 \left( 1 + 
+  \sum_{j=1}^{n-1} \sum_{\alpha \in \acal(n, n-j)}
+  \det((Df)^T Df)_\alpha^\alpha \right).
+\end{aligned}
+\]
+Therefore, for $x \in Q_k$, we have $J_{f_\epsilon}^2 (x)
+\leq J_f^2(x) + \epsilon^2 C_k$ for a constant 
+$C_k > 0$ depending only on $f$ and $k \in \N$. 
+If $x \in Z_k$, then $x \in Q_k \cap Z$, so 
+$J_{f_\epsilon} (x) \leq \epsilon \sqrt{C_k}$. 
+Note that $f_\epsilon$ is injective and 
+$Df_\epsilon(x)$ are injective for all $x \in Z_k$, 
+the previous lemma gives 
+\[
+\hcal^n (f_\epsilon(Z_k))
+= \int_{Z_k} J_{f_\epsilon} \d \lambda
+\leq \epsilon \sqrt{C_k} \lambda(Q_k),
+\]
+but $f(Z_k) = \pi_{m} (f_\epsilon (Z_k))$ where 
+$\pi_m$ is the projection map. Therefore, 
+\[
+\hcal^n (f(Z_k)) \leq \hcal^n (f_\epsilon (Z_k))
+\leq \epsilon \sqrt{C_k} \lambda (Q_k).
+\]
+This then implies that $\hcal^n(f(Z_k)) = 0$.
+\end{proof}
+
+\begin{thm}[$C^1$ area formula]
+Let $\emptyset \neq U \subset \R^n$ be open, $f \in C^1(U; 
+\R^m)$ for $n \leq m$. If $E \subset U$ is Lebesgue measurable, 
+then 
+\[
+\int_E J_f \d \lambda = \int_{\R^m} N_f(\cdot, E) \d \hcal^n
+= \int_{f(E)} N_f(\cdot, E) \d \hcal^n.
+\]
+In particular, if $f$ is injective, then 
+\[
+\hcal^n (f(E)) = \int_E J_f \d \lambda.
+\]
+\end{thm}
+
+\begin{proof}
+Let $Z = \left\{ J_f = 0 \right\}$, which is closed in $U$. 
+Therefore, $V = U \setminus Z$ is open. Then, previous lemma 
+implies 
+\[
+\int_{V \cap E} J_f \d \lambda 
+= \int_{\R^m} N_f(\cdot, E \cap V) \d \hcal^n.
+\]
+On the other hand, 
+\[
+\int_{E \cap Z} J_f \d \lambda = 0 
+= \int_{f(E \cap Z)} N_f (\cdot, E \cap Z) \d \hcal^n
+= \int_{\R^m} N_f(\cdot, E \cap Z) \d \hcal^n.
+\]
+Adding the equality together gives 
+\[
+\int_E J_f \d \lambda = \int_{\R^m} N_f(\cdot, E) \d \hcal^n.
+\]
+\end{proof}
+
+
+
 \end{document}
