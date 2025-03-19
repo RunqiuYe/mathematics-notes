@@ -1846,188 +1846,6 @@ as desired.
   \]
 \end{defi}
 
-\subsubsection{Constructing product measures}
-
-\begin{defi}[Pre-measure]
-Let $X$ be a set and $\afk$ be an algebra on $X$. A map 
-$\gamma: \afk \to [0, \infty]$ is a \textbf{pre-measure}
-if the following is satisfied:
-\begin{enumerate}
-  \item $\gamma(\emptyset) = 0$. 
-  \item If $\seqinfi{A_i} \subset \afk$ is disjoint and 
-  $\cupinfi A_i$, then $\gamma \left( \cupinfi A_i \right)
-  = \suminfi \gamma(A_i)$.
-\end{enumerate}
-
-\end{defi}
-
-\begin{thm}[Pre-measure extension theorem]
-Let $X$ be a set, $\afk$ is an algebra on $X$, and 
-$\gamma$ a pre-measure. Let $\om : \P (X) \to [0, \infty]$
-be the outer measure constructed from $(X, \gamma)$.
-Denote $\mf$ as the the measurable space and 
-$\mu: \mf \to [0, \infty]$ the corresponding measure.
-Then the following holds: 
-\begin{enumerate}
-  \item $\afk \subset \mf$ and $\mu = \gamma$ on $\afk$.
-  
-  \item Suppose $\nf$ is a $\sigma$-algebra on $X$ 
-  such that $\afk \subset \nf \subset \mf$, and 
-  $\nu: \nf \to [0, \infty]$ is a measure such that 
-  $\nu = \gamma$ on $\afk$. Then $\nu \leq \mu$ on $\nf$
-  and $\nu(E) = \mu(E)$ whenever $E$ is $\sigma$-finite 
-  w.r.t. $\mu$. 
-  
-  In particular, if $X$ is ``$\gamma$ $\sigma$-finite'',
-  then $\mu = \nu$ on $\nf$.
-\end{enumerate}
-\end{thm}
-
-\begin{proof}
-First show $\mu = \gamma$ on $\afk$. 
-It suffices to show that $\om = \gamma$ on $\afk$.
-
-For any $E \in \afk$, we know $E$ is covered by $E$, so 
-$\om = \gamma$. On the other hand, let $E \subset \afk$
-and $\seqinfk{A_k} \subset \afk$ be a cover of $E$.
-Define $B_0 = E \cap A_0 \in \afk$ and 
-$B_k = E \cap (A_k \setminus \cupi^{k-1} A_k) \in \afk$.
-Then $\seqinfk{B_k}$ is pairwise disjoint and 
-$\cupinfk B_k = E$. It follows that 
-\[
-\gamma(E) = \gamma \left( \cupinfk B_k \right)
-= \suminfk \gamma(B_k) \leq \suminfk \gamma(A_k).
-\]
-Therefore, $\om = \gamma$ on $\afk$. 
-
-Next we show $\afk \subset \mf$. Let $E \in \afk$
-be arbitrary and we want to show $\om(A) 
-= \om(A \cap E) + \om (A \cap E^c)$ for all 
-$A \subset X$. Fix arbitrary $A \subset X$ and 
-$\epsilon > 0$. Pick $\seqinfk{A_k} \subset \afk$
-covering $A$ such that 
-\[
-\suminfk \gamma (A_k) < \om(A) + \epsilon.
-\]
-It follows that 
-\[
-\begin{aligned}
-\om(A \cap E) + \om(A \cap E^c) 
-&\leq \om \left( \cupinfk A_k \cap E \right)
-+ \om \left( \cupinfk A_k \cap E^c \right) \\ 
-&\leq \suminfk \om(A_k \cap E) + \om(A_k \cap E^c) \\
-&= \suminfk \gamma(A_k \cap E) + \gamma(A_k \cap E^c) \\
-&= \suminfk \gamma(A_k).
-\end{aligned}
-\]
-This implies that $E$ is measurable, completing the proof 
-for the first item.
-
-For the second item, we first show that $\nu \leq \mu$.
-Let $E \in \nf \subset \mf$ and $\seqinfk{A_k} \subset \afk$ 
-that covers $E$. It follows that 
-\[
-\nu(E) \leq \nu \left( \cupinfk A_k \right)
-= \lim_{n \to \infty} \nu \left( \cupi^n A_i \right).
-\]
-Note that $\cupi^n A_i \in \afk$, so 
-$\nu \left( \cupi^n A_i \right) = \mu \left( \cupi^n 
-A_i \right)$. This implies that 
-\[
-\nu(E) = \lim_{n \to \infty} \mu \left( \cupi^n A_i \right)
-= \mu \left( \cupinfk A_k \right) \leq \suminfk \gamma(A_k).
-\]
-Therefore, $\nu \leq \mu$. 
-
-Next we show $\nu(E) = \mu(E)$ for $\mu(E) < \infty$. 
-Let $\epsilon > 0$ and select $\seqinfk{A_k} \subset \afk$
-covering $E$ such that 
-\[
-\suminfk \gamma(A_k) < \om(E) + \epsilon = \mu(E) + \epsilon.
-\]
-Then, 
-\[
-\mu \left( \cupinfk A_k \right) 
-\leq \suminfk \gamma(A_k) < \mu(E) + \epsilon.
-\]
-It follows that $\mu \left( \cupinfk A_k \setminus E \right)
-< \epsilon$ and thus 
-\[
-\begin{aligned}
-\mu(E) 
-\leq \mu \left( \cupinfk A_k \right) 
-= \nu \left( \cupinfk A_k \right) 
-= \nu (E) + \nu \left( \cupinfk A_k \setminus E \right)
-\leq \nu(E) + \epsilon,
-\end{aligned}
-\]
-where for $\mu \left( \cupinfk A_k \right)
-= \nu \left( \cupinfk A_k \right)$ we used the same limit argument 
-as the previous part.
-
-For the case where $E$ is $\sigma$-finite, it follows from 
-a similar argument.
-
-\end{proof}
-
-\begin{thm}[Product measures]
-Let $2 \leq n \in \N$ and suppose $(X_i, \mf_i, \mu_i)$
-is measure space for $1 \leq i \leq n$. Let 
-$X = \prod_i X_i$ and 
-\[
-\ecal = \left\{ E = \prod_i E_i : 
-\text{$E_i \in \mf_i$ for $1 \leq i \leq n$} \right\}.
-\]
-The following holds: 
-\begin{enumerate}
-\item $\afk = \left\{ \cupk^K A^k : 
-\text{$\left\{ A^k \right\}_k \subset \ecal$ and disjoint} 
-\right\}$ is an algebra.
-
-\item Suppose $\seqinfk{E^k} \ecal$ and 
-$\seqinfk{F^k} \subset \ecal$ are both pairwise disjoint sequences 
-of sets and $\cupinfk{E^k} = \cupinfk{F^k}$, then 
-\[
-\suminfk \prod_{i=1}^n \mu_i(E_i^k) = 
-\suminfk \prod_{i=1}^n \mu_i(F_i^k).
-\]
-
-\item The map $\gamma: \afk \to [0, \infty]$ defined by 
-\[
-\gamma \left( \cupk^K \prod_{i=1}^n E_i^k \right)
-= \sumk^K \prod_{i=1}^n \mu_i(E_i^k)
-\]
-is a well-defined pre-measure.
-\end{enumerate}
-\end{thm}
-
-\begin{proof}
-\begin{enumerate}
-\item It is easy to check that $\afk$ is indeed an algebra.
-\item Suppose $\cupinfk E^k = \cupinfk F^k$, then we have 
-\[
-\suminfk \prod_{i=1}^n \chi_{E_i^k}(x_i) 
-= \suminfk \prod_{i=1}^n \chi_{F_i^k}(x_i)
-\]
-for all $x = (x_1, \dots, x_n) \in X$. 
-Now fix $(x_2, \dots, x_n)$, we then have 
-\[
-\suminfk \chi_{E^k_1}(x_1) \alpha_1^k 
-= \suminfk \chi_{F^k_1}(x_1) \beta_1^k, 
-\]
-where 
-$\alpha_1^k = \prod_{i=2}^n \chi_{E_i^k} (x_i)$ and 
-$\beta_1^k = \prod_{i=2}^n \chi_{F_i^k} (x_i)$.
-Using the monotone convergence theorem and integrate 
-both sides, we have 
-\[
-\suminfk \mu_1(E_1) \alpha_1^k 
-= \suminfk \mu_1(F_1) \beta_1^k.
-\]
-Iterate this argument gives the desired equality.
-
-\end{enumerate}
-\end{proof}
 
 \subsection{Lebesgue and Hausdorff measure}
 
@@ -3482,6 +3300,234 @@ this implies $\int_X f \d \mu = \int_X g \d \mu$.
 \end{enumerate}
 \end{proof}
 
+\subsection{Constructing product measures}
+
+\begin{defi}[Pre-measure]
+Let $X$ be a set and $\afk$ be an algebra on $X$. A map 
+$\gamma: \afk \to [0, \infty]$ is a \textbf{pre-measure}
+if the following is satisfied:
+\begin{enumerate}
+  \item $\gamma(\emptyset) = 0$. 
+  \item If $\seqinfi{A_i} \subset \afk$ is disjoint and 
+  $\cupinfi A_i$, then $\gamma \left( \cupinfi A_i \right)
+  = \suminfi \gamma(A_i)$.
+\end{enumerate}
+
+\end{defi}
+
+\begin{thm}[Pre-measure extension theorem]
+Let $X$ be a set, $\afk$ is an algebra on $X$, and 
+$\gamma$ a pre-measure. Let $\om : \P (X) \to [0, \infty]$
+be the outer measure constructed from $(X, \gamma)$.
+Denote $\mf$ as the the measurable space and 
+$\mu: \mf \to [0, \infty]$ the corresponding measure.
+Then the following holds: 
+\begin{enumerate}
+  \item $\afk \subset \mf$ and $\mu = \gamma$ on $\afk$.
+  
+  \item Suppose $\nf$ is a $\sigma$-algebra on $X$ 
+  such that $\afk \subset \nf \subset \mf$, and 
+  $\nu: \nf \to [0, \infty]$ is a measure such that 
+  $\nu = \gamma$ on $\afk$. Then $\nu \leq \mu$ on $\nf$
+  and $\nu(E) = \mu(E)$ whenever $E$ is $\sigma$-finite 
+  w.r.t. $\mu$. 
+  
+  In particular, if $X$ is ``$\gamma$ $\sigma$-finite'',
+  then $\mu = \nu$ on $\nf$.
+\end{enumerate}
+\end{thm}
+
+\begin{proof}
+First show $\mu = \gamma$ on $\afk$. 
+It suffices to show that $\om = \gamma$ on $\afk$.
+
+For any $E \in \afk$, we know $E$ is covered by $E$, so 
+$\om = \gamma$. On the other hand, let $E \subset \afk$
+and $\seqinfk{A_k} \subset \afk$ be a cover of $E$.
+Define $B_0 = E \cap A_0 \in \afk$ and 
+$B_k = E \cap (A_k \setminus \cupi^{k-1} A_k) \in \afk$.
+Then $\seqinfk{B_k}$ is pairwise disjoint and 
+$\cupinfk B_k = E$. It follows that 
+\[
+\gamma(E) = \gamma \left( \cupinfk B_k \right)
+= \suminfk \gamma(B_k) \leq \suminfk \gamma(A_k).
+\]
+Therefore, $\om = \gamma$ on $\afk$. 
+
+Next we show $\afk \subset \mf$. Let $E \in \afk$
+be arbitrary and we want to show $\om(A) 
+= \om(A \cap E) + \om (A \cap E^c)$ for all 
+$A \subset X$. Fix arbitrary $A \subset X$ and 
+$\epsilon > 0$. Pick $\seqinfk{A_k} \subset \afk$
+covering $A$ such that 
+\[
+\suminfk \gamma (A_k) < \om(A) + \epsilon.
+\]
+It follows that 
+\[
+\begin{aligned}
+\om(A \cap E) + \om(A \cap E^c) 
+&\leq \om \left( \cupinfk A_k \cap E \right)
++ \om \left( \cupinfk A_k \cap E^c \right) \\ 
+&\leq \suminfk \om(A_k \cap E) + \om(A_k \cap E^c) \\
+&= \suminfk \gamma(A_k \cap E) + \gamma(A_k \cap E^c) \\
+&= \suminfk \gamma(A_k).
+\end{aligned}
+\]
+This implies that $E$ is measurable, completing the proof 
+for the first item.
+
+For the second item, we first show that $\nu \leq \mu$.
+Let $E \in \nf \subset \mf$ and $\seqinfk{A_k} \subset \afk$ 
+that covers $E$. It follows that 
+\[
+\nu(E) \leq \nu \left( \cupinfk A_k \right)
+= \lim_{n \to \infty} \nu \left( \cupi^n A_i \right).
+\]
+Note that $\cupi^n A_i \in \afk$, so 
+$\nu \left( \cupi^n A_i \right) = \mu \left( \cupi^n 
+A_i \right)$. This implies that 
+\[
+\nu(E) = \lim_{n \to \infty} \mu \left( \cupi^n A_i \right)
+= \mu \left( \cupinfk A_k \right) \leq \suminfk \gamma(A_k).
+\]
+Therefore, $\nu \leq \mu$. 
+
+Next we show $\nu(E) = \mu(E)$ for $\mu(E) < \infty$. 
+Let $\epsilon > 0$ and select $\seqinfk{A_k} \subset \afk$
+covering $E$ such that 
+\[
+\suminfk \gamma(A_k) < \om(E) + \epsilon = \mu(E) + \epsilon.
+\]
+Then, 
+\[
+\mu \left( \cupinfk A_k \right) 
+\leq \suminfk \gamma(A_k) < \mu(E) + \epsilon.
+\]
+It follows that $\mu \left( \cupinfk A_k \setminus E \right)
+< \epsilon$ and thus 
+\[
+\begin{aligned}
+\mu(E) 
+\leq \mu \left( \cupinfk A_k \right) 
+= \nu \left( \cupinfk A_k \right) 
+= \nu (E) + \nu \left( \cupinfk A_k \setminus E \right)
+\leq \nu(E) + \epsilon,
+\end{aligned}
+\]
+where for $\mu \left( \cupinfk A_k \right)
+= \nu \left( \cupinfk A_k \right)$ we used the same limit argument 
+as the previous part.
+
+For the case where $E$ is $\sigma$-finite, it follows from 
+a similar argument.
+
+\end{proof}
+
+\begin{thm}[Product measures]
+Let $2 \leq n \in \N$ and suppose $(X_i, \mf_i, \mu_i)$
+is measure space for $1 \leq i \leq n$. Let 
+$X = \prod_i X_i$ and 
+\[
+\ecal = \left\{ E = \prod_i E_i : 
+\text{$E_i \in \mf_i$ for $1 \leq i \leq n$} \right\}.
+\]
+The following holds: 
+\begin{enumerate}
+\item $\afk = \left\{ \cupk^K A^k : 
+\text{$\left\{ A^k \right\}_k \subset \ecal$ and disjoint} 
+\right\}$ is an algebra.
+
+\item Suppose $\seqinfk{E^k} \subset \ecal$ and 
+$\seqinfk{F^k} \subset \ecal$ are both pairwise disjoint sequences 
+of sets and $\cupinfk{E^k} = \cupinfk{F^k}$, then 
+\[
+\suminfk \prod_{i=1}^n \mu_i(E_i^k) = 
+\suminfk \prod_{i=1}^n \mu_i(F_i^k).
+\]
+
+\item The map $\gamma: \afk \to [0, \infty]$ defined by 
+\[
+\gamma \left( \cupk^K \prod_{i=1}^n E_i^k \right)
+= \sumk^K \prod_{i=1}^n \mu_i(E_i^k)
+\]
+is a well-defined pre-measure.
+
+\item If $(X_i, \mf_i, \mu_i)$ is $\sigma$-finite, then 
+$X$ is $\gamma$ $\sigma$-finite.
+\end{enumerate}
+\end{thm}
+
+\begin{proof}
+\begin{enumerate}
+\item It is easy to check that $\afk$ is indeed an algebra.
+\item Suppose $\cupinfk E^k = \cupinfk F^k$, then we have 
+\[
+\suminfk \prod_{i=1}^n \chi_{E_i^k}(x_i) 
+= \suminfk \prod_{i=1}^n \chi_{F_i^k}(x_i)
+\]
+for all $x = (x_1, \dots, x_n) \in X$. 
+Now fix $(x_2, \dots, x_n)$, we then have 
+\[
+\suminfk \chi_{E^k_1}(x_1) \alpha_1^k 
+= \suminfk \chi_{F^k_1}(x_1) \beta_1^k, 
+\]
+where 
+$\alpha_1^k = \prod_{i=2}^n \chi_{E_i^k} (x_i)$ and 
+$\beta_1^k = \prod_{i=2}^n \chi_{F_i^k} (x_i)$.
+Using the monotone convergence theorem and integrate 
+both sides, we have 
+\[
+\suminfk \mu_1(E_1) \alpha_1^k 
+= \suminfk \mu_1(F_1) \beta_1^k.
+\]
+Iterate this argument gives the desired equality.
+
+\item Suppose $\seqinfi{A_i} \subset \afk$ disjoint such that 
+$\cupinfi A_i \in \afk$. By construction, there exists 
+sequence $\seqj{F^j}^J \subset \afk$ with $J < \infty$ such that 
+$\seqinfi{A_i} = \cupj^J F_j$. Also, $A_i \in \afk$ 
+for each $i \in \N$, so $\cupinfi A_i = \cupinfk E^k$
+where $\seqinfk{E^k} \subset \ecal$ disjoint.
+It follows that 
+\[
+\gamma \left( \cupinfi A_i \right)
+= \gamma \left( \cupj^J F^j \right)
+= \sumj^J \prod_{i=1}^n \mu_i ( F_i^j )
+= \suminfk \prod_{i=1}^n \mu_i (E_i^k),
+\]
+where the last equality is by item 2. However, 
+\[
+\gamma \left( \cupinfi A_i \right) 
+= \suminfk \prod_{i=1}^n \mu_i (E_i^k) 
+= \suminfi \gamma (A_i).
+\]
+This shows that $\gamma$ is a pre-measure.
+
+\item For each $1 \leq i \leq n$, there exists 
+$\seqinfk{S_i} \subset \mf_i$ such that 
+$\cupinfk S_i^k = X_i$ and $\mu_i(S_i^k) < \infty$.
+Consider $\seqinfk{\prod_{i=1}^n S_i^k}$.
+
+\end{enumerate}
+\end{proof}
+
+\begin{cor}
+Suppose that $\{(X_i, \mf_i, \mu_i)\}_{i=1}^n$ be 
+a sequence of $\sigma$-finite measure space. 
+Let $X = \prod_{i=1}^n X_i$ be endowed with the product 
+$\sigma$-algebra $\bigoplus_{i=1}^n \mf_i$. Let $\afk$
+and $\gamma: \afk \to [0, \infty]$ be the algebra and 
+pre-measure from the previous theorem. Then, there 
+exists a unique measure $\nu: \bigoplus_{i=1}^n \mf_i
+\to [0, \infty]$ such that $\nu = \gamma$ on $\afk$.
+Moreover, $\nu$ is $\sigma$-finite.
+\end{cor}
+
+\begin{proof}
+Use the previous theorem and extend the pre-measure.
+\end{proof}
+
 \subsection{Area formula and change of variable formula}
 
 We first need to develop a few facts in linear algebra.
@@ -3651,5 +3697,102 @@ Note that $\LHS = \det BA$ and $(AB)_\alpha^\alpha =
 A_\alpha B^\alpha$. This completes the proof.
 \end{enumerate}
 \end{proof}
+
+\begin{defi}[Jacobian map]
+Let $\emptyset \neq U \subset \R^n$ be an open set and 
+$f \in C^1 (U; \R^m)$ with $n \leq m$. Define the 
+\textbf{Jacobian map} $J_f \in C^0 (U; [0, \infty))$
+by 
+\[
+J_f = \bbracket{Df} = \sqrt{\det \left( Df^T Df \right)}.
+\]
+\end{defi}
+
+\begin{lemma}
+Let $\emptyset \neq U \subset \R^n$, $f \in C^1 (U ; \R^m)$
+for some $n \leq m$. Suppose $z \in U$ is such that 
+$Df(z)$ is injective. Then for $0 < \epsilon < 1$, there 
+exists $B(z, r) \subset U$ such that 
+\begin{enumerate}
+\item $f \vert_{B(z, r)}$ is a Lipschitz injection.
+\item If $E \subset B(z, r)$ is Lebesgue measurable, 
+then $f(E) \in \hfk^n (\R^m)$ and 
+\[
+(1 - \epsilon)^{n+1} 
+\int_E J_f \d \lambda 
+\leq \hcal^n (f(E)) \leq 
+(1 + \epsilon)^{n+1} \int_E J_f \d \lambda.
+\]
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+\begin{enumerate}
+Define the following $M = Df(z)$, $L \in \L(\R^m, \R^n)$
+such that $L M = I_n$, and $g = f \circ L$, so $f = g \circ M$.
+
+Let $0 < \epsilon < 1$ and pick $r > 0$ such that 
+\begin{equation*}
+  (1 - \epsilon) \norm{M (x - y)} 
+  \leq \norm{f(x) - f(y)} \leq 
+  (1 + \epsilon) \norm{M (y - x)}
+  \tag{A}
+\end{equation*}
+for all $x, y \in B(z, r)$ 
+and 
+\begin{equation*}
+  (1 + \epsilon)^{-1} J_f(z) 
+  \leq J_f(x) \leq
+  (1 - \epsilon)^{-1} J_f(z)
+  \tag{B}
+\end{equation*}
+for all $x \in B(z, r)$. Note that 
+\[
+\hcal^n (ME) = J_f(z) \lambda(E). 
+\]
+Then equation A gives $[g] \leq 1 + \epsilon$ and 
+$[M \circ f^{-1}] \leq (1 - \epsilon)^{-1}$. 
+It follows that 
+\[
+\begin{aligned}
+\hcal^n (f(E)) = \hcal^n(g(ME)) 
+\leq (1 + \epsilon)^n \hcal^n (ME) 
+= (1 + \epsilon)^n J_f(z) \lambda(E).
+\end{aligned}
+\]
+Also, 
+\[
+J_f(z) \lambda (E) = \hcal^n (ME) 
+= \hcal^n (M \circ f^{-1} (f(E))) 
+\leq (1 - \epsilon)^{-n} \hcal^n (f(E)).
+\]
+
+Now, equation B gives 
+\[
+J_f(z) \lambda(E) 
+= \int_E J_f(z) \d \lambda 
+\leq (1 + \epsilon) \int_E J_f \d \lambda
+\]
+and 
+\[
+J_f(z) \lambda(E)
+= \int_E J_f(z) \d \lambda 
+\geq (1 - \epsilon) \int_E J_f \d \lambda.
+\]
+This completes the proof.
+
+\end{enumerate}
+\end{proof}
+
+\begin{defi}
+Let $X$ be a set equipped with counting measure 
+$\hcal^0 : \P(X) \to [0, \infty]$. Let $Y$ be a set 
+and $f: X \to Y$. For any $E \subset X$, define
+$N_f (\cdot, E) : Y \to [0, \infty]$ by 
+\[
+N_f(y, E) = \hcal^0 \left( E \cap f^{-1} (\{y\}) \right) 
+= \hcal^0 \left( \left\{ x \in E: f(x) = y \right\} \right).
+\]
+\end{defi}
 
 \end{document}
