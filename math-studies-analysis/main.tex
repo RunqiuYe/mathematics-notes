@@ -3309,7 +3309,7 @@ if the following is satisfied:
 \begin{enumerate}
   \item $\gamma(\emptyset) = 0$. 
   \item If $\seqinfi{A_i} \subset \afk$ is disjoint and 
-  $\cupinfi A_i$, then $\gamma \left( \cupinfi A_i \right)
+  $\cupinfi A_i \in \afk$, then $\gamma \left( \cupinfi A_i \right)
   = \suminfi \gamma(A_i)$.
 \end{enumerate}
 
@@ -3460,7 +3460,20 @@ $X$ is $\gamma$ $\sigma$-finite.
 
 \begin{proof}
 \begin{enumerate}
-\item It is easy to check that $\afk$ is indeed an algebra.
+\item Since $\emptyset \in \mf_i$ for all $1 \leq i \leq n$,
+we know $\emptyset \in \ecal$. Next let $E, F \in \ecal$ be 
+such that $E = \prod_{i=1}^n E_i$ and $F = \prod_{i=1}^n 
+F_i$. Then,
+\[
+E \cap F = \prod_{i=1}^n (E_i \cap F_i) \in \ecal.
+\]
+Similarly, 
+\[
+E^c = \prod_{i=1}^n \left( E_i^c 
+\times \prod_{j \neq i} E_j \right) \in \ecal.
+\]
+This shows that $\afk$ is an algebra.
+
 \item Suppose $\cupinfk E^k = \cupinfk F^k$, then we have 
 \[
 \suminfk \prod_{i=1}^n \chi_{E_i^k}(x_i) 
@@ -3486,7 +3499,7 @@ Iterate this argument gives the desired equality.
 \item Suppose $\seqinfi{A_i} \subset \afk$ disjoint such that 
 $\cupinfi A_i \in \afk$. By construction, there exists 
 sequence $\seqj{F^j}^J \subset \afk$ with $J < \infty$ such that 
-$\seqinfi{A_i} = \cupj^J F_j$. Also, $A_i \in \afk$ 
+$\cupinfi{A_i} = \cupj^J F_j$. Also, $A_i \in \afk$ 
 for each $i \in \N$, so $\cupinfi A_i = \cupinfk E^k$
 where $\seqinfk{E^k} \subset \ecal$ disjoint.
 It follows that 
@@ -3506,8 +3519,15 @@ This shows that $\gamma$ is a pre-measure.
 
 \item For each $1 \leq i \leq n$, there exists 
 $\seqinfk{S_i} \subset \mf_i$ such that 
-$\cupinfk S_i^k = X_i$ and $\mu_i(S_i^k) < \infty$.
-Consider $\seqinfk{\prod_{i=1}^n S_i^k}$.
+$S_i^k \subset S_i^{k+1}$, 
+$\cupinfk S_i^k = X_i$, and $\mu_i(S_i^k) < \infty$.
+Consider $\seqinfk{A^k}$ where $A^k = \prod_{i=1}^n S_i^k$.
+Note that 
+\[
+X = \cupinfk A^k \quad \text{ and } \quad 
+\gamma(A^k) = \prod_{i=1}^n \mu_i \left( S_i^k \right) < \infty.
+\]
+This completes the proof.
 
 \end{enumerate}
 \end{proof}
