@@ -3704,7 +3704,7 @@ $f \in C^1 (U; \R^m)$ with $n \leq m$. Define the
 \textbf{Jacobian map} $J_f \in C^0 (U; [0, \infty))$
 by 
 \[
-J_f = \bbracket{Df} = \sqrt{\det \left( Df^T Df \right)}.
+J_f = \bbracket{Df} = \sqrt{\det (Df)^T Df}.
 \]
 \end{defi}
 
@@ -3949,8 +3949,9 @@ In particular, if $f$ is injective, then
 
 \begin{proof}
 Let $Z = \left\{ J_f = 0 \right\}$, which is closed in $U$. 
-Therefore, $V = U \setminus Z$ is open. Then, previous lemma 
-implies 
+Therefore, $V = U \setminus Z$ is open. 
+Note that $J_f(x) \neq 0$ implies $Df(x)$ injective.
+Then, previous lemma implies 
 \[
 \int_{V \cap E} J_f \d \lambda 
 = \int_{\R^m} N_f(\cdot, E \cap V) \d \hcal^n.
