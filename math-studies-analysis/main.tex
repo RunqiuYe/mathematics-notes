@@ -3550,6 +3550,8 @@ Use the previous theorem and extend the pre-measure.
 
 \subsection{Area formula and change of variable formula}
 
+\subsubsection{Area formula}
+
 We first need to develop a few facts in linear algebra.
 
 \begin{prop}
@@ -3988,6 +3990,166 @@ Adding the equality together gives
 \]
 \end{proof}
 
+\subsubsection{Change of variable}
 
+\begin{thm}[change of variable, non-injective form]
+Let $\emptyset \neq U \subset \R^n$ be open and $f \in C^1 
+(U; \R^m)$ with $n \leq m$. Let $E \subset U$ be measurable.
+Then the following holds:
+\begin{enumerate}
+\item Suppose $g : E \to [0, \infty]$ is $\lambda$-measurable.
+Then the map
+\begin{equation*}
+\R^m \ni y \mapsto \int_{E \cap f^{-1}(\{y\})}
+g \d \hcal^0 \in [0, \infty]
+\tag{$*$}
+\end{equation*}
+is $\hcal^n$-measurable, and 
+\[
+\int_E g J_f \d \lambda = \int_{\R^m} \int_{E \cap f^{-1}(\{y\})}
+g \d \hcal^0 \d \hcal^n.
+\]
+In particular, $g J_f$ is $\lambda$-integrable
+if and only if the map ($*$) is $\hcal^n$-integrable.
+
+\item Let $Y \in \{V , \bar{\R}\}$ with $V$ a Banach space. 
+Suppose $g : E \to Y$ is $\lambda$-measurable and $g J_f$
+is $\lambda$-integrable. Then for $\hcal^n$-a.e. $y \in \R^m$,
+the restriction $g : E \cap f^{-1}(\{y\}) \to Y$ is $\hcal^0$-integrable.
+Moreover, the now $Y$ valued map ($*$) is $\hcal^n$-integrable
+and 
+\[
+\int_E g J_f \d \lambda = \int_{\R^M} 
+\int_{E \cap f^{-1}(\{y\})} g \d \hcal^0 \d \hcal^n.
+\]
+\end{enumerate}
+\end{thm}
+
+\begin{eg}
+As an example, say $V \subset \R^n$ and 
+$f : V \to f(V) \in \R^n$ is a diffeomorphism.
+Then 
+\[
+J_f = \sqrt{\det (Df)^T Df} = \abs{\det Df}
+\]
+and 
+\[
+\int_{E \cap f^{-1}(y)} g \d \hcal^0 = 
+g \circ f^{-1}(y).
+\]
+The theorem then gives 
+\[
+\int_E g \abs{\det Df} \d \lambda 
+= \int_{f(E)} g \circ f^{-1} \d \lambda.
+\]
+This is the usual change of variable formula we encountered 
+before in calculus.
+\end{eg}
+
+\begin{proof}[Proof sketch]
+\begin{enumerate}
+\item We first prove the theorem assuming $g : E \to [0, \infty]$
+is Lebesgue measurable. Let $\seqinfk{\phi_k}$ be a sequence
+of simple functions such that $\phi_k \to g$ pointwise
+as $k \to \infty$. WLOG also assume $\phi_k \leq \phi_{k+1}$.
+Let 
+\[
+\phi_k = \sumj^{J_k} \phi_{k, j} \chi_{E_{k, j}}
+\]
+be the canonical representation of $\phi_k$. 
+
+For $y \in \R^m$, we compute 
+\[
+\begin{aligned}
+\int_{E \cap f^{-1}(\{y\})} \phi_k \d \hcal^0 
+&= \sum_j \phi_{k, j} \hcal^0(E_{k, j} \cap f^{-1}(\{y\})) \\
+&= \sum_j \phi_{k, j} \ncal_f (y, E_{k, j})
+\end{aligned}
+\]
+Therefore, the map 
+\[
+y \mapsto I_k := \int_{E \cap f^{-1}(\{y\})} \phi_k 
+\d \hcal^0 
+\]
+is $\hfk^n(\R^m)$ measurable. 
+Note that $\phi_k \leq \phi_{k+1}$, so $I_k \leq I_{k+1}$.
+Monotone convergence theorem then implies that the map
+\[
+y \mapsto I := \int_{E \cap f^{-1}(\{y\})} g \d \hcal^0
+\] 
+is $\hfk^n(\R^m)$ measurable 
+and $I = \lim_{k \to \infty} I_k$
+
+On the other hand, 
+\[
+\begin{aligned}
+\int_E \phi_k J_f \d \lambda 
+&= \sum_j \phi_{k, j} \int_{E_{k, j}} J_f \d \lambda \\
+&= \sum_j \phi_{k, j} \int_{\R^m} \ncal_f(\cdot, E_{k, j})
+\d \hcal^n \\ 
+&= \int_{\R^m} \int_{E \cap f^{-1}(\{y\})}
+\phi_k \d \hcal^0 \d \hcal^n(y).
+\end{aligned}
+\]
+Using monotone convergence theorem again, we obtain 
+\[
+\int_E g J_f \d \lambda = 
+\int_{\R^m} \int_{E \cap f^{-1}(\{y\})} 
+g \d \hcal^0 \d \hcal^n (y).
+\]
+Therefore, item 1 is proved in the special case. 
+The general case follows by considering null sets and 
+using the more general convergence theorems.
+
+\item To promote from $Y = [0, \infty]$
+to $Y = \bar{\R}$ by splitting $g = g^+ - g^-$ and 
+applying item 1 to $g^{\pm}$. Then promote to 
+$Y = \C$ by splitting $g = \Re g + i \Im g$.
+Finally, promote to $V$ a Banach space over $\F$ as follows:
+let $w \in V^*$ and consider $w \circ g : E \to \F$.
+Then show 
+\[
+\int w \circ g J_f \d \lambda = \iint w \circ g \d \hcal^0 \d \hcal^n
+\]
+for all $w \in V^*$. This will then give the desired
+result.
+
+\end{enumerate}
+\end{proof}
+
+\begin{thm}[change of variable, local injective form]
+Let $\emptyset \neq U \subset \R^n$ be open, $f \in C^1 
+(U ; \R^m)$ for $n \leq m$. Suppose $E \subset U$ is Lebesgue
+measurable such that $E^\circ \neq \emptyset$ and 
+$\lambda (\partial E \cap U) = \lambda (Z \cap E) = 0$
+where $Z = \{J_f = 0\}$. Further suppose 
+the restriction $f : E^\circ \to f(E^\circ)$ is injective.
+Finally let $g : f(E) \to Y$, where $Y \in \{V, \bar{\R}\}$ 
+with $V$ a Banach space. Then the following holds: 
+\begin{enumerate}
+\item $f(E) \in \hfk^n (\R^m)$.
+\item $g$ is $\hcal^n$-measurable if and only if 
+$g \circ f$ is $\lambda$-measurable.
+\item $g$ is $\hcal^n$-integrable on $f(E)$
+if and only if $g \circ f J_f$ is $\lambda$-integrable
+on $E$. In either case, 
+\[
+\int g \circ f J_f  = \int_{f(E)} g \d \hcal^n.
+\]
+\end{enumerate}
+\end{thm}
+
+\begin{proof}[Proof sketch]
+Apply the previous theorem to see that 
+\[
+\int_{E^\circ} g \circ f J_f \d \lambda
+= \int_{f(E^\circ)} g \d \hcal^n.
+\]
+However, 
+\[
+\int_{\partial E \cap E} g \circ f J_f \d \lambda
+= 0 = \int_{f(\partial E \cap E)} g \d \hcal^n.
+\]
+\end{proof}
 
 \end{document}
