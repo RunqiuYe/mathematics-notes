@@ -3810,9 +3810,9 @@ This completes the proof.
 Let $X$ be a set equipped with counting measure 
 $\hcal^0 : \P(X) \to [0, \infty]$. Let $Y$ be a set 
 and $f: X \to Y$. For any $E \subset X$, define
-$N_f (\cdot, E) : Y \to [0, \infty]$ by 
+$\ncal_f (\cdot, E) : Y \to [0, \infty]$ by 
 \[
-N_f(y, E) = \hcal^0 \left( E \cap f^{-1} (\{y\}) \right) 
+\ncal_f(y, E) = \hcal^0 \left( E \cap f^{-1} (\{y\}) \right) 
 = \hcal^0 \left( \left\{ x \in E: f(x) = y \right\} \right).
 \]
 \end{defi}
@@ -3820,7 +3820,7 @@ N_f(y, E) = \hcal^0 \left( E \cap f^{-1} (\{y\}) \right)
 \begin{thm}
 Let $F \in \fs(\R^n)$ and $f: F \to \R^m$ be locally 
 Lipschitz with $n \leq m$. If $E \subset F$ is Lebesgue 
-measurable, then $N_f(\cdot, E) : \R^m \to [0, \infty]$
+measurable, then $\ncal_f(\cdot, E) : \R^m \to [0, \infty]$
 is $\hfk^n(\R^m)$ measurable.
 \end{thm}
 
@@ -3834,7 +3834,7 @@ Let $\emptyset \neq U \subset \R^n$ be open, $f \in C^1
 for all $x \in V$. Then for all $E \subset U$ Lebesgue 
 measurable, and 
 \[
-\int_E J_f \d \lambda = \int_{\R^m} N_f (\cdot, E) \d \hcal^n.
+\int_E J_f \d \lambda = \int_{\R^m} \ncal_f (\cdot, E) \d \hcal^n.
 \]
 \end{lemma}
 
@@ -3861,19 +3861,19 @@ Then $E = \sqcupinfk E_k$. Applying the inequality, we obtain
 However, since $f$ is injective when restricted to $E_k$,
 we have 
 \[
-\hcal^n (f(E_k)) = \int_{\R^m} N_f(\cdot, E_k) \d \hcal^n.
+\hcal^n (f(E_k)) = \int_{\R^m} \ncal_f(\cdot, E_k) \d \hcal^n.
 \]
 Summing the inequalities, we can then obtain from monotone
 convergence theoerm that 
 \[
 (1 - \epsilon)^{n+1} \int_E J_f \d \lambda
-\leq \int_{\R^m} \suminfk N_f(\cdot, E_k) \d \hcal^n 
-= \int_{\R^m} N_f(\cdot, E) \d \hcal^n
+\leq \int_{\R^m} \suminfk \ncal_f(\cdot, E_k) \d \hcal^n 
+= \int_{\R^m} \ncal_f(\cdot, E) \d \hcal^n
 \leq (1 + \epsilon)^{n+1} \int_E J_f \d \lambda.
 \]
 Since this holds for all $\epsilon > 0$, we have 
 \[
-\int_E J_f \d \lambda = \int_{\R^m} N_f(\cdot, E) \d \hcal^n.
+\int_E J_f \d \lambda = \int_{\R^m} \ncal_f(\cdot, E) \d \hcal^n.
 \]
 \end{proof}
 
@@ -3960,8 +3960,8 @@ Let $\emptyset \neq U \subset \R^n$ be open, $f \in C^1(U;
 \R^m)$ for $n \leq m$. If $E \subset U$ is Lebesgue measurable, 
 then 
 \[
-\int_E J_f \d \lambda = \int_{\R^m} N_f(\cdot, E) \d \hcal^n
-= \int_{f(E)} N_f(\cdot, E) \d \hcal^n.
+\int_E J_f \d \lambda = \int_{\R^m} \ncal_f(\cdot, E) \d \hcal^n
+= \int_{f(E)} \ncal_f(\cdot, E) \d \hcal^n.
 \]
 In particular, if $f$ is injective, then 
 \[
@@ -3976,17 +3976,17 @@ Note that $J_f(x) \neq 0$ implies $Df(x)$ injective.
 Then, previous lemma implies 
 \[
 \int_{V \cap E} J_f \d \lambda 
-= \int_{\R^m} N_f(\cdot, E \cap V) \d \hcal^n.
+= \int_{\R^m} \ncal_f(\cdot, E \cap V) \d \hcal^n.
 \]
 On the other hand, 
 \[
 \int_{E \cap Z} J_f \d \lambda = 0 
-= \int_{f(E \cap Z)} N_f (\cdot, E \cap Z) \d \hcal^n
-= \int_{\R^m} N_f(\cdot, E \cap Z) \d \hcal^n.
+= \int_{f(E \cap Z)} \ncal_f (\cdot, E \cap Z) \d \hcal^n
+= \int_{\R^m} \ncal_f(\cdot, E \cap Z) \d \hcal^n.
 \]
 Adding the equality together gives 
 \[
-\int_E J_f \d \lambda = \int_{\R^m} N_f(\cdot, E) \d \hcal^n.
+\int_E J_f \d \lambda = \int_{\R^m} \ncal_f(\cdot, E) \d \hcal^n.
 \]
 \end{proof}
 
