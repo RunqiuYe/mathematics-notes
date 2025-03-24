@@ -4134,7 +4134,7 @@ $g \circ f$ is $\lambda$-measurable.
 if and only if $g \circ f J_f$ is $\lambda$-integrable
 on $E$. In either case, 
 \[
-\int g \circ f J_f  = \int_{f(E)} g \d \hcal^n.
+\int_E g \circ f J_f  = \int_{f(E)} g \d \hcal^n.
 \]
 \end{enumerate}
 \end{thm}
@@ -4151,5 +4151,166 @@ However,
 = 0 = \int_{f(\partial E \cap E)} g \d \hcal^n.
 \]
 \end{proof}
+
+\begin{eg}
+Let $E = [0, \infty) \times [0, 2 \pi] \subset \R^2$. 
+Let $\rho: \R^2 \to \R^2$ via 
+\[
+\rho(r, \theta) = (r \cos \theta, r \sin \theta).
+\]
+Then $\rho$ is a smooth function. Note 
+\[
+E^\circ = (0, \infty) \times (0, 2\pi)
+\]
+and the restriction $\rho : E^\circ \to \rho(E^\circ)$ is
+injective. Additionally, 
+\[
+\partial E = \left( \{0\} \times [0, 2 \pi] \right) \cup 
+\left( [0, \infty) \times \{0\} \right) \cup 
+\left( [0, \infty) \times \{2 \pi\} \right)
+\]
+is null. We also know that $\abs{\det D\rho (r, \theta)} = r$, 
+so $Z = \{J_\rho = 0\}$ is null. 
+
+Note that $\rho(E^\circ) = \R^2 \setminus N$
+where $N$ is null. Then, $f : \R^2 \to V$ is integrable
+if and only if $f \circ \rho : E^\circ \to V$ is integrable,
+and in either case, 
+\[
+\begin{aligned}
+\int_{\R^2} f \d \lambda 
+&= \int_{E^\circ} f \circ \rho J_{\rho}  \d \lambda \\
+&= \int_0^\infty \int_0^{2\pi} f(r \cos \theta, r \sin \theta)
+r \d \theta \d r \\
+&= \int_0^{2\pi} \int_0^\infty f(r \cos \theta, r \sin \theta) 
+r \d r \d \theta.
+\end{aligned}
+\]
+\end{eg}
+
+\begin{eg}
+Let $E = [0, \infty) \times [0, 2 \pi] \times [0, \pi] \subset
+\R^3$ and $\zeta : \R^3 \to \R^3$ via 
+\[
+\zeta(r, \theta, \phi) = (r \cos \theta \sin \phi, 
+r \sin \theta \sin \phi, r \cos \phi).
+\]
+This is 3D spherical coordinates. Similar to the previous 
+example, $\zeta: E^\circ \to \zeta(E^\circ)$ is injective 
+and $\R^3 \setminus \zeta(E^\circ)$ is null. 
+In addition, 
+\[
+J_{\zeta}(r, \theta, \phi) = 
+\abs{\det D \zeta (r, \theta, \phi)} = r^2 \sin \phi.
+\]
+Then for $f : \R^3 \to V$ we have $f$ is integrable if and 
+only if $f \circ \zeta : E^\circ \to V$ is integrable,
+and in either case, 
+\[
+\begin{aligned}
+\int_{\R^3} f \d \lambda 
+&= \int_{E^\circ} f \circ \zeta J_{\zeta} \d \lambda \\
+&= \int_0^\infty \int_0^{2\pi} \int_0^\pi 
+f \circ \zeta(r, \theta, \phi) r^2 \sin \phi \d \phi \d \theta
+\d r.
+\end{aligned}
+\]
+\end{eg}
+
+\begin{eg}[Hyperspherical coordinates]
+Let $n \geq 3$ and $E = [0, \infty) \times [0, 2 \pi] 
+\times [0, \pi]^{n-2} \in \R^n$. Let $\Psi: E \to \R^n$ 
+via 
+\[
+\begin{aligned}
+\Psi_n &= r \cos (\phi_{n-2}) \\
+\Psi_{n-1} &= r \sin (\phi_{n-2}) \cos (\phi_{n-3}) \\
+&\cdots \\
+\Psi_3 &= r \sin (\phi_{n-2}) \sin (\phi_{n-3}) \cdots \sin (\phi_2) 
+\cos (\phi_1) \\
+\Psi_2 &= r \sin (\phi_{n-2}) \sin (\phi_{n-3}) \cdots \sin (\phi_2) 
+\sin (\phi_1) \sin (\theta) \\
+\Psi_1 &= r \sin (\phi_{n-2}) \sin (\phi_{n-3}) \cdots \sin (\phi_2) 
+\sin (\phi_1) \cos (\theta) \\
+\end{aligned}
+\]
+An induction argument shows that 
+\[
+\det D\Psi = r^{n-1} \sin (\phi_1) \sin^2 (\phi_2) 
+\dots \sin^{n-2} (\phi_{n-2}) \geq 0.
+\]
+Then for $f : \R^n \to V$ we have 
+\[
+\int_{\R^n} f \d \lambda = \int_E f \circ \Psi J_{\Psi}
+\]
+\end{eg}
+
+\section{Manifolds in $\R^n$, differential forms, 
+Stokes-Cartan theorem}
+
+We know from the area formula that we can integrate on 
+certain $m$-dimensinoal subsets of $\R^n$ ($m \leq n$).
+We also know through the fundamental theorem of calculus that 
+there exists a beautiful and useful connection between 
+integral and differential calculus in 1D. The goal is then 
+to develop some form of differential calculus on sets we can 
+integrate over in $\R^n$ and to generalize FTC.
+
+There are a few caveats:
+\begin{enumerate}
+\item We will only develop the ``extrinsic theory'' of 
+manifolds in $\R^n$. This is opposed to the modern ``intrinsic''
+perspective, which does not rely on containment in $\R^n$.
+However, there are deep theorems in modern manifold theory 
+(Nash\footnote{undergraduate student in Carnegie Mellon 
+University}, Whitney) that show ``intrinsic if and only if 
+extrinsic''
+
+\item A lot of the theory we develop is front-loading 
+for the Stokes-Cartan theorem.
+
+\item We are \textbf{NOT} doing differential geomtry.
+
+\item All of this works with Banach space replacing $\R^n$.
+We are working in $\R^n$ to make things easier and avoid 
+some slight subtleties.
+\end{enumerate}
+
+\subsection{Manifolds}
+
+\begin{defi}
+Let $m, n \in \N$ and $1 \leq m \leq n$ and let 
+$1 \leq k \leq \infty$. Let $M \subset \R^n$.
+\begin{enumerate}
+\item We say $M$ admits $C^k$ local $m$-coordinates 
+at $z \in M$ if the following holds: 
+\begin{enumerate}
+  \item There exists a set $U \subset \R^n$ open with 
+  $z \in U$.
+
+  \item There exists $\emptyset \neq V \subset \R^m$ open 
+  and \textbf{homeomorphism} $\phi : V \to \phi(V) = M 
+  \cap U$. 
+
+  \item $\phi \in C^k(V ; \R^n)$ and $D \phi(x) \in \L(\R^m; 
+  \R^n) \simeq \R^{n \times m}$ has rank $m$ for all 
+  $x \in V$.
+\end{enumerate}
+The triple $(U, V, \phi)$ is called a $C^k$ $m$-coordinate 
+\textbf{chart}.
+
+\item We say $M$ is an $m$-dimensinoal $C^k$ \textbf{manifold}
+if $M \neq \emptyset$ and $M$ admits local $C^k$ $m$-coordinates
+at each $z \in M$. 
+
+\item An \textbf{atlas} on $M$ is a collection 
+$\acal = \{(U_\alpha, V_\alpha, \phi_\alpha)\}_{\alpha \in A}$
+for $A \neq \emptyset$ some index set such that 
+$(U_\alpha, V_\alpha, \phi_\alpha)$ is $C^k$ local $m$-coordinates 
+for all $\alpha \in A$ and $M \subset 
+\bigcup_\alpha U_\alpha$.
+\end{enumerate}
+\end{defi}
+
 
 \end{document}
