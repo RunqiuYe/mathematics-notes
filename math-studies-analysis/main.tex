@@ -713,7 +713,7 @@ $\norm{\lambda}_{Y^*} = \norm{\Lambda}_{X^*}$.
 \begin{proof}
   
 Consider $p: X \to \R$ where $p(x) = \norm{\lambda}_{Y^*} \norm{x}$.
-Apply Hahn-Banach theoerm.
+Apply Hahn-Banach theorem.
 
 \end{proof}
 
@@ -1281,7 +1281,7 @@ and the proof is complete.
 \end{thm}
 
 \begin{proof}
-  We know by the previous theoerm that 
+  We know by the previous theorem that 
   $\bigotimes_{i=1}^n \bfk_{X_i}$ is generated 
   by $\left\{ \prod_i U_i : U_i \subset X_i \text{ open} 
   \right\}$. However, $\prod_i U_i$ is open in $X$. 
@@ -2097,7 +2097,7 @@ space or $\bar{\R}$. Let $\psi \in S(X; Y)$.
   \textbf{complete}.
 \end{eg}
 
-This brings us to the next theoerm.
+This brings us to the next theorem.
 
 \begin{thm}
 Let $(X, \mf, \mu)$ be a measure space. Then the following 
@@ -2977,7 +2977,7 @@ $f_k$ and $f$ are extended-integrable. Next, note that
 \int_X g \d \mu \leq \int_X \inf_{j \geq k} f_j \d \mu 
 \leq \int_X f_k \d \mu.
 \]
-By monotone convergence theoerm, we know the middle term 
+By monotone convergence theorem, we know the middle term 
 converges when $k$ approaches infinity. 
 Taking the liminf, we have 
 \[
@@ -3162,7 +3162,7 @@ Note that this is well-defined by the previous lemmas.
 \begin{thm}[absoulte integrability]
 Let $(X, \mf, \mu)$ be a measure space, $V$ a Banach space, 
 $f : X \to V$. Then, 
-$f$ is integrable if and only if $\mu$-measurable 
+$f$ is integrable if and only if $f$ is $\mu$-measurable 
 and $\norm{f} : X \to [0, \infty]$ is integrable.
 In either case, 
 \[
@@ -3864,7 +3864,7 @@ we have
 \hcal^n (f(E_k)) = \int_{\R^m} \ncal_f(\cdot, E_k) \d \hcal^n.
 \]
 Summing the inequalities, we can then obtain from monotone
-convergence theoerm that 
+convergence theorem that 
 \[
 (1 - \epsilon)^{n+1} \int_E J_f \d \lambda
 \leq \int_{\R^m} \suminfk \ncal_f(\cdot, E_k) \d \hcal^n 
@@ -4244,6 +4244,175 @@ Then for $f : \R^n \to V$ we have
 \int_{\R^n} f \d \lambda = \int_E f \circ \Psi J_{\Psi}
 \]
 \end{eg}
+
+\subsection{Spaces of integrable functions}
+
+In this subsection, $(X, \mf, \mu)$ will denote a measure
+space and $V$ will denote a Banach space.
+
+\begin{defi}
+\begin{enumerate}
+\item For $\mu$-measurable $f$, for $1 \leq p < \infty$
+define $\norm{p}_\infty$ via 
+\[
+\norm{f}_p = \left[ \int_X \norm{f}^p \d \mu \right]^{\frac{1}{p}},
+\]
+and for $p = \infty$ define $\norm{f}_\infty$ via 
+\[
+\norm{f}_\infty = \inf \left\{ s \in [0, \infty] : f 
+\leq s \text{ a.e.} \right\}.
+\]
+
+\item Define 
+\[
+\leb_\mu^p (X; V) = \{ f : X \to V, \text{ $f$ is $\mu$-measurable
+and $\norm{f}_p < \infty$} \}
+\]
+to be the set of $p$-integrable functions.
+\end{enumerate}
+\end{defi}
+
+\begin{eg}
+\begin{enumerate}
+\item If $X \in \{\N, \Z\}$ with $\mu$ being the counting 
+measure, then $\ell^p(X; V) = \leb_\mu^p (X; V)$. 
+
+\item For all $p \in [1, \infty]$, we have 
+$\Sfin(X; V) \subset \leb_\mu^p (X; V)$.
+\end{enumerate}
+\end{eg}
+
+\begin{thm}[H\"older's inequalities]
+Suppose $p, q, r \in [1, \infty]$ satisfy $\frac{1}{p} + \frac{1}{q}
+= \frac{1}{r}$, then the following holds: 
+\begin{enumerate}
+\item If $f \in \leb_\mu^p(X; \F)$, $g \in \leb_\mu^q (X; \F)$,
+then $f g \in \leb_\mu^r (X; \F)$ and 
+\[
+\norm{f g}_r \leq \norm{f}_p \norm{g}_q.
+\]
+In particular, if $r = 1$, then 
+\[
+\int_X \abs{f g} \d \mu \leq \norm{f}_p \norm{g}_q.
+\]
+
+\item If $V_1$, $V_2$, $W$ are Banach spaces and 
+$T \in \L(V_1, V_2 ; W)$ then 
+\[
+\norm{T (f, g)} \leq \norm{T}_{\L} \norm{f}_p \norm{g}_q.
+\]
+\end{enumerate}
+\end{thm}
+
+
+\begin{thm}[Minkowski's inequalities]
+Let $p \in [1, \infty]$ and $f, g \in \leb_\mu^p(X ; V)$, then 
+\[
+\norm{f + g}_p \leq \norm{f}_p + \norm{g}_p.
+\]
+\end{thm}
+
+\begin{cor}
+$\leb_\mu^p(X; V)$ is a vector space for $p \in [1, \infty]$, 
+and $\norm{\cdot}_p$ is a semi-norm. Also, 
+$\norm{f}_p = 0$ if and only if $f = 0$ a.e.
+\end{cor}
+
+\begin{thm}
+Let $f \in \leb_\mu^p (X; V)$. For any $\epsilon > 0$, 
+there exists $\phi \in \Sfin(X; V) \subset \leb_\mu^p (X; V)$
+such that $\norm{\phi - f}_p < \epsilon$.
+\end{thm}
+
+\begin{proof}[Proof sketch]
+By Pettis theorem, we can select $\seqinfn{\psi_n} \subset 
+S(X; V)$ such that $\norm{\psi_n} \leq 2 \norm{f}$ 
+on $X$ and $\psi_n \to f$ a.e. We then have 
+$\norm{\psi_n}^p \leq 2^p \norm{f}$, so $\psi_n 
+\in \Sfin(X ; V)$. Note that $\norm{\psi_n - f} \leq 
+3 \norm{f}$ on $X$. Dominated convergence theorem then implies 
+\[
+\lim_{n \to \infty} \int_X \norm{\psi_n - f} \d \mu
+= \int_X \lim_{n \to \infty} \norm{\psi_n - f} \d \mu
+= 0.
+\]
+\end{proof}
+
+Next we define $L^p$ soace by taking the qoutient of 
+$\leb_\mu^p (X; V)$ under equivalence relation $\sim$,
+where $f \sim g$ if $f = g$ a.e. Once we show 
+$L^p(X; V)$ is complete and $\Sfin(X; V)$ is denes in 
+$L^p(X; V)$, we will know the completion of 
+$\Sfin(X; V)$ is $L^p(X; V)$.
+
+\begin{defi}[$L^p$ spaces]
+\begin{enumerate}
+\item For $f, g \in \leb_\mu^p$, let $f \sim g$ if 
+$f = g$ a.e. Then $\sim$ is a equivalence relation.
+
+\item Let $[f]$ be the equivalence class of $f$.
+
+\item Define 
+\[
+L^p_\mu (X; V) = \{[f] : f \in \leb_\mu^p (X; V)\}
+\]
+with $\alpha [f] = [\alpha f]$, $[f] + [g] = [f + g]$, 
+and $\norm{[f]}_{L^p} = \norm{f}_p$. Then it is easy to see 
+that all the operations are well-defined and $L^p_\mu$ is 
+a vector space.
+\end{enumerate}
+\end{defi}
+
+\begin{thm}[Riesz-Fisher]
+$L^p_\mu(X; V)$ is a Banach space for $p \in [1, \infty]$.
+\end{thm}
+
+\begin{proof}
+Let $\seqinfk{f_k} \in L^p$ such that $\suminfk \norm{f_k}_p 
+< \infty$. We want to show $\suminfk f_k$ converges in $L^p$.
+
+First suppose $p < \infty$. Let 
+\[
+g_m = \sumk^m \norm{f_k}_V \in L^p(X; \F).
+\]
+Then, there exists $S \in \R$ such that 
+\[
+\norm{g_m}_{L^p} \leq \sumk^m \norm{\norm{f_k}_V}_p 
+= \sumk^m \norm{f_k}_p < S.
+\]
+for all $m \in \N$. It follows that 
+\[
+\int_X \abs{g_m}^p \d \mu \leq S^p.
+\]
+Let $g = \lim_{m \to \infty} g_m$. This is 
+$g(x) \neq \infty$ a.e. and by monotone convergence theorem, 
+we have 
+\[
+\int_X \abs{g}^p \d \mu = \lim_{n \to \infty} 
+\abs{g_m}^p \d \mu \leq S^p.
+\]
+Define $F: X \to V$ in the following way: 
+\[
+F(x) = \begin{cases}
+  0 & \text{if $g(x) = \infty$}, \\
+  \suminfk f_k(x) & \text{if $g(x) \neq \infty$}.
+\end{cases}
+\]
+Then $\norm{F - \sumk^m f_k}_V^p \leq g^p$ a.e.
+and $\lim_{m \to \infty} \norm{F - \sumk^m f_k} = 0$ a.e.
+It then follows that 
+\[
+\lim_{m \to \infty} \norm{F - \sumk^m f_k}_{L^p}
+= \lim_{m \to \infty} \int_X \norm{F - \sumk^m f_k}^p_V \d \mu
+= 0,
+\]
+where the last equality is by dominated convergence
+theorem.
+\end{proof}
+
+
+
+
 
 \section{Manifolds in $\R^n$, differential forms, 
 Stokes-Cartan theorem}
