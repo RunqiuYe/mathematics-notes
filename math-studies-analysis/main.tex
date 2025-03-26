@@ -4418,7 +4418,7 @@ theorem.
 Stokes-Cartan theorem}
 
 We know from the area formula that we can integrate on 
-certain $m$-dimensinoal subsets of $\R^n$ ($m \leq n$).
+certain $m$-dimensional subsets of $\R^n$ ($m \leq n$).
 We also know through the fundamental theorem of calculus that 
 there exists a beautiful and useful connection between 
 integral and differential calculus in 1D. The goal is then 
@@ -4468,9 +4468,10 @@ at $z \in M$ if the following holds:
 The triple $(U, V, \phi)$ is called a $C^k$ $m$-coordinate 
 \textbf{chart}.
 
-\item We say $M$ is an $m$-dimensinoal $C^k$ \textbf{manifold}
+\item We say $M$ is an $m$-dimensional $C^k$ \textbf{manifold}
 if $M \neq \emptyset$ and $M$ admits local $C^k$ $m$-coordinates
-at each $z \in M$. 
+at each $z \in M$. If $M$ is an $m$-dimensional manifold, 
+we say $M$ is an $m$-fold.
 
 \item An \textbf{atlas} on $M$ is a collection 
 $\acal = \{(U_\alpha, V_\alpha, \phi_\alpha)\}_{\alpha \in A}$
@@ -4480,6 +4481,154 @@ for all $\alpha \in A$ and $M \subset
 \bigcup_\alpha U_\alpha$.
 \end{enumerate}
 \end{defi}
+
+\begin{remark}
+\begin{enumerate}
+\item From time to time it is useful to replace $\R^n$
+and $\R^m$ with generic real normed vector space of 
+dimension $n$ and $m$ respectively. This changes nothing 
+in the definition.
+
+\item The definition fails to define $0$-dimensional 
+manifolds. We make the convention that a $0$-fold is a 
+nonempty discrete subset of $\R^n$, where by discrete we mean 
+every subset of it is both open and closed. We also consider 
+all $0$-fold to be $C^\infty$.
+\end{enumerate}
+\end{remark}
+
+\begin{eg}
+\begin{enumerate}
+\item Let $\emptyset \subset U \subset \R^n$ open, then 
+$U$ is a $C^\infty$ $n$-fold. 
+
+\item Let $w + V = \{w + V : v \in V\}$ for $w \in \R^n$
+and $V \subset \R^n$ a subset of dimension $m$. Indeed, 
+let $\{v_1, \dots, v_m\} \subset V$ be a basis and consider 
+$\R^m \ni x \mapsto w + \sum_j x_j v_j \in w + V$.
+
+\item Suppose $M \subset \R^n$ is a $C^k$ $m$-fold. 
+Suppose $U \subset \R^n$ is open and $M \cap U \neq 
+\emptyset$. Then $M \cap U$ is a $C^k$ $m$-fold.
+
+\item Suppose $M_1, M_2 \subset \R^n$ are $C^k$
+$m$-folds. Suppose $\abs{x - y} \geq \epsilon > 0$ for all 
+$x \in M_1$ and $y \in M_2$. Then $M_1 \cup M_2$ is a 
+$C^k$ $m$-fold.
+
+\item Suppose $M_1 \subset \R^{n_1}$ and $M_2 \subset \R^{n_2}$
+are $C^k$ $m_1$-fold and $C^k$ $m_2$-fold respectively. 
+Then $M_1 \times M_2 \subset \R^{n_1 + n_2}$ is a 
+$C^k$ $(m_1 + m_2)$-fold.
+
+\item Let $\phi: \R \times (-\frac{1}{2}, \frac{1}{2}) 
+\to \R^3$ via 
+\[
+\phi(\theta, t) = (\cos \theta, \sin \theta, t).
+\]
+Then the image $M$ is a cylinder in $\R^3$. Note that $\phi$
+is smooth and $D \phi$ has rank $2$ everywhere. We can build 
+an atlas on $M$ via $\acal = \{(U_1, V_2, \phi), (U_2, V_2, \phi)\}$ 
+for $V_1 = (0, 2\pi) \times (-\frac{1}{2}, \frac{1}{2})$ and
+$V_2 = (\pi, 3\pi) \times (-\frac{1}{2}, \frac{1}{2})$.
+After we figure out the corresponding $U_1$ and $U_2$, 
+we can see that $M$ is a $C^\infty$ $2$-fold.
+\end{enumerate}
+\end{eg}
+
+\begin{thm}
+Let $\emptyset \neq U \subset \R^n$ be open, $f \in C^k(U; 
+\R^r)$ for $1 \leq r < n$. Suppose $\bar{w} \in f(U)$ and 
+\[
+M = \{z \in U : f(z) = \bar{w} \text{ and } Df(z) \text{ had rank 
+$r$}\} \neq \emptyset.
+\]
+Then $M$ is a $C^k$ $(n-r)$-fold.
+\end{thm}
+
+\begin{proof}
+Let $z \in M$. Then, $Df(z)$ is surjective, so we can apply
+the right inverse function theorem.  This provides 
+open sets $W \subset \R^r$ and $V \subset \R^{n-r}$, and 
+a $C^k$ diffeomorphism 
+$F : W \times V \to F(W \times V) \subset U$, such that 
+$f(F(w, v)) = w$ for all $(w, v) \in W \times V$ and 
+$\bar{w} \in W$. Let $\phi: V \to U$ via 
+$\phi(v) = F(\bar{w}, v)$. Then
+\[
+f(\phi(v)) = f(F(\bar{w}, v)) = \bar{w}.
+\]
+Meanwhile, the right inverse function theorem 
+guarantees that $D \phi$ has rank $n - r$ everywhere.
+Therefore, $\phi: V \to M \cap U$ is the desired 
+homeomorphism to show that $M$ is a $C^k$ $(n-r)$-fold.
+\end{proof}
+
+\begin{eg}
+\begin{enumerate}
+\item Let $S \in \R^{n \times n}$ be symmetric with at least 
+one positive eigenvalue. Consider
+\[
+M = \{x \in \R^n : 
+S x \cdot x = 1\} \neq \emptyset.
+\]
+Consider $f : \R^n \to \R$ via $f(x) = Sx \cdot x$, 
+which is $C^\infty$. Note that 
+\[
+Df(x) h = \nabla f(x) \cdot h = 2Sx \cdot h,
+\]
+and for $x \in M$, we have $Df(x) x = 2 \neq 0$. 
+Therefore, $Df(x)$ has rank $1$ for all $x \in M$. 
+The previous theorem then tells us $M$ is a $C^\infty$
+$(n-1)$-fold in $\R^n$.
+
+\begin{enumerate}
+  \item If $S = I$, then 
+  $M = \{x : \abs{x}^2 = 1\} = S^{n-1}$ is a sphere and 
+  it is a $C^\infty$ $(n-1)$-fold in $\R^n$.
+
+  \item If $S = \diag(\lambda_1, \dots, \lambda_n)$ 
+  with $\lambda_i > 0$, then $M$ is an ellipsoid 
+  and it is a $C^\infty$ $(n-1)$-fold in $\R^n$. 
+
+  \item If $S = \diag(-\lambda_1, \lambda_2, \dots, \lambda_n)$
+  with $\lambda_i > 0$, then $M$ is a hyperboloid and it 
+  is a $C^\infty$ $(n-1)$-fold in $\R^n$.
+\end{enumerate} 
+
+\item Let $\emptyset \neq U \subset \R^n$ be open, 
+$f \in C^k(U; \R^m)$, and 
+\[
+\Gamma(f) = \{(X, f(x)) \in \R^{n+m} : x \in U\}.
+\]
+Let $F : U \times \R^m \to \R^m$ via $F(x, y) = y - f(x)$.
+Then $(x, y) \in \Gamma(f)$ if and only if $F(x, y) = 0$. 
+However, $F$ is $C^k$ and $DF(x, y) (h, k) = k - Df(x) h$.
+The $k$ term implies that the derivative has rank $m$.
+The previous theorem then implies that $\Gamma(f)$ is 
+a $C^k$ $n$-fold in $\R^{n+m}$. 
+
+\item Note that $\GL(n) \subset \R^{n \times n}$ is open 
+and hence a $C^\infty$ $n^2$-fold.
+
+\item Let $\SL(n) = \{M \in \GL(n) : \det M = 1\}$, 
+then $\det: \GL(n) \to \R$ is $C^\infty$ and 
+\[
+D \det(M) (N) = (\det M) \tr(M^{-1} N).
+\]
+Therefore, for $M \in \SL(n)$, $D \det(M) M = \tr(M^{-1} 
+M) = n \neq 0$. This implies that $D \det(M)$ has rank 
+$1$ at each $M \in \SL(n)$. This then shows that 
+$\SL(n)$ is a $C^\infty$ $(n^2 - 1)$-fold in $\R^{n \times n}$.
+
+\item The set of orthogonal matrices $O(n)$ is a 
+$C^\infty$ $\frac{n (n - 1)}{2}$-fold in $\R^{n \times n}$.
+\end{enumerate}
+\end{eg}
+
+
+
+
 
 
 \end{document}
