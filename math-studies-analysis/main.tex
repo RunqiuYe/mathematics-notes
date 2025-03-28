@@ -4623,11 +4623,141 @@ $\SL(n)$ is a $C^\infty$ $(n^2 - 1)$-fold in $\R^{n \times n}$.
 
 \item The set of orthogonal matrices $O(n)$ is a 
 $C^\infty$ $\frac{n (n - 1)}{2}$-fold in $\R^{n \times n}$.
+Note that 
+\[
+O(n) = \{M \in \R^{n \times n} : M^T M = I\}.
+\]
+Consider the map $f : \R^{n \times n} \to \R^{n \times n}_{\text{sym}}$
+via $f(M) = M^T M - I$, which is smooth and 
+\[
+Df(M)(N) = M^T N + N^T M = M^T N + (M^T N)^T.
+\]
+Therefore, $\ker Df(M) = M^{-T} \R^{n \times n}_{\text{asym}}
+= M \R^{n \times n}_{\text{asym}}$ and hence 
+$\dim \ker Df(M) = \dim \R^{n \times n}_{\text{asym}}
+= \frac{n (n - 1)}{2}$. It follows that 
+\[
+\rank Df(M) = \frac{n (n + 1)}{2} = \dim \R^{n \times n}_{\text{sym}}.
+\]
+Therefore, $O(n)$ is a $C^\infty$ $\frac{n(n-1)}{2}$-fold.
+
+As a side note, $\R^{n \times n} = \R^{n \times n}_{\text{sym}} 
+\oplus \R^{n \times n}_{\text{asym}}$ with the column product 
+$M : N = M_{ij} N_{ij}$ as the inner product.
 \end{enumerate}
 \end{eg}
 
+\begin{thm}
+Let $m, n \in \N$ with $1 \leq m \leq n$, $1 \leq k \leq \infty$.
+Let $M \in \R^n$, $z \in M$, then the following are equivalent:
+\begin{enumerate}
+\item $M$ admits $C^k$ local $m$-coordinates at $z$, 
+say $(U, V, \phi)$.
 
+\item There exists an open $W \in \R^n$ and $C^k$ diffeomorphism
+$F : W \to F(W) \in \R^n$ such that 
+\[
+F(M \cap W) = F(W) \cap \{x \in \R^n : x_l = 0 \text{ for 
+$m + 1 \leq k \leq n$}\}.
+\]
+In either case, $\phi$ and $F$ are related via 
+$\phi^{-1} = (F_1, \dots, F_n)$.
+\end{enumerate}
+\end{thm}
 
+This is in fact the flattening map we encounted in HW.
+
+Why is this important? There are two reasons. 
+\begin{enumerate}
+\item This unifies the perspective on $m$-folds. We saw 
+\[
+M = \{x : \text{$f(x) = y$ and $Df(x)$ had full rank}\}.
+\]
+is a manifold. Locally, this is the only example we need.
+That is, all manifolds locally are locally a level set of 
+some functions.
+
+\item This theorem is very useful for certain technical
+points...
+\end{enumerate}
+
+\fbox{\TODO add picture for the next theorem}
+
+\begin{thm}
+Suppose $(U_0, V_0, \phi_0)$ and $(U_1, V_1, \phi_1)$ 
+are $C^k$ local $m$-coordinates at $z \in M$. Suppose 
+also $U_0 \cap U_1 \neq \emptyset$ and $z \in U_0 \cap 
+U_1 \cap M$. Then the transition map
+$\zeta : \phi_0^{-1}(U_0 \cap U_1 \cap M) 
+\to \phi_1^{-1} (U_0 \cap U_1 \cap M)$ is a $C^k$
+diffeomorphism.
+\end{thm}
+
+\begin{proof}
+Both sets are open because $\phi_i : V_i \to \phi_i(V_i)
+= M \cap U_i$ is homeomorphism for each $i \in \{0, 1\}$. 
+Let $\tilde{V_i} = \phi_i^{-1} (U_0 \cap U_1 \cap M)$
+for each $i \in \{0, 1\}$
+and fix $x \in \tilde{V_0}$. By the previous theorem, we 
+can find a flattening map $F : W \to F(W)$ such that 
+$F$ is a $C^k$ diffeomorphism and $\phi_1^{-1} = (F_1, 
+\dots, F_m) = \tilde{F}$. 
+Therefore, $\zeta = \phi_1^{-1} \circ \phi_0 
+= \tilde{F} \circ \phi_0$
+near $x$. However $x \in \tilde{V_0}$ is arbitrary, 
+so $\zeta$ is a $C^k$ diffeomorphism.
+\end{proof}
+
+\begin{lemma}
+Suppose $(U_0, V_0, \phi_0)$ and $(U_1, V_1, \phi_1)$ 
+are $C^k$ local $m$-coordinates at $z \in M$. Suppose 
+also $U_0 \cap U_1 \neq \emptyset$ and $z \in U_0 \cap 
+U_1 \cap M$. Then 
+the following holds: 
+\begin{enumerate}
+\item $D \phi_0 (\phi_0^{-1}(z)) = D\phi_1 (\phi_1^{-1}(z))
+D[\phi_1^{-1} \circ \phi_0] (\phi_0^{-1}(z))$. 
+
+\item $\ran D \phi_0 (\phi_0^{-1}(z)) = \ran D\phi_1 
+(\phi_1^{-1}(z))$
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Let $a = \phi_0^{-1}(z)$ and $b = \phi_1^{-1}(z)$, then 
+\[
+\phi_0 = \phi_1 \circ \phi^{-1}_1 \circ \phi_0 = \phi_1 \circ
+\zeta.
+\]
+It follows that $D \phi_0 = [D \phi_1 \circ \zeta] \circ D \zeta$,
+and 
+\[
+D \phi_0(a) = [D \phi_1 \circ \zeta(a)] D \zeta(a)
+= [D \phi_1 (b)] D \zeta(a).
+\]
+This proves item 1. However, $\zeta$ is a 
+diffeomorphism, so 
+\[
+\ran D\phi_0(\phi_0^{-1} (z)) = \ran D\phi_1 (\phi_1^{-1}(z)).
+\]
+\end{proof}
+
+\begin{defi}[tangent space]
+Define the \textbf{tangent space} to $M$ 
+at $z$ to be $T_z M = \ran D\phi (\phi^{-1}(z))$ 
+for \textbf{any} $C^k$ $m$-local coordinate chart 
+$(U, V, \phi)$.
+\end{defi}
+
+\begin{eg}
+Let $(U, V, \phi)$ be $m$-coordinates at $z \in M$ and 
+let $x = \phi^{-1}(z)$. Then, 
+\[
+T_z M = \ran D\phi(x) = \spn \{D \phi(x) e_1, \dots, 
+D \phi(x) e_m\} = 
+\spn \{\partial_1 \phi(x), \dots, \partial_m \phi(x)\}.
+\]
+\end{eg}
 
 
 
