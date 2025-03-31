@@ -2596,7 +2596,7 @@ Note the following:
   \item We have 
   \[
   \int_X \phi \d \mu
-  = \lim_{n \to \infty} \int_{N \cap E_n} \phi \d \mu.
+  = \lim_{n \to \infty} \int_{N \cup E_n} \phi \d \mu.
   \]
 \end{enumerate}
 Therefore, 
@@ -2814,7 +2814,7 @@ and $f - g$ are extended integrable, and
 Since $g \leq f$ a.e., we have $f^- \leq g^-$ a.e. Since 
 $g$ is integrable, $f^-$ is integrable and thus $f$ is 
 extended-integrable. We also have $f - g$ well defined 
-on all of $E$ and $f - g \geq 0$ a.e. Therefore, 
+on all of $X$ and $f - g \geq 0$ a.e. Therefore, 
 $f - g$ is extended-integrable. 
 
 If $f$ is integrable, then we immediately have the desired 
@@ -2836,7 +2836,7 @@ $f$ is $\mu$-measurable and the following holds:
 \item Suppose that $\seqinfk{f_k}$ is almost everywhere
 nondecreasing, that is, $f_k \leq f_{k+1}$ a.e. Suppose 
 also that there exists an integrable function 
-$g : X \to \bar{\R}$ such that $g \leq f_k$ for all $k \in \N$.
+$g : X \to \bar{\R}$ such that $g \leq f_k$ a.e. for all $k \in \N$.
 Then, $f$ and $f_k$ are extended integrable for all $k \in \N$, 
 and 
 \[
@@ -2846,7 +2846,7 @@ and
 \item Suppose that $\seqinfk{f_k}$ is almost everywhere
 nonincreasing, that is, $f_k \geq f_{k+1}$ a.e. Suppose 
 also that there exists an integrable function 
-$g : X \to \bar{\R}$ such that $g \geq f_k$ for all $k \in \N$.
+$g : X \to \bar{\R}$ such that $g \geq f_k$ a.e. for all $k \in \N$.
 Then, $f$ and $f_k$ are extended integrable for all $k \in \N$, 
 and 
 \[
@@ -2983,9 +2983,9 @@ Taking the liminf, we have
 \[
 \int_X g \d \mu 
 \leq 
-\liminf_{k \to \infty} \int_X f_k \d \mu
-= \lim_{k \to \infty} \int_X 
-\inf_{j \geq k} f_j \d \mu 
+\liminf_{k \to \infty} \int_X \inf_{j \geq k} f_k \d \mu
+= \lim_{k \to \infty} \int_X \inf_{j \geq k} f_j \d \mu 
+= \int_X \liminf_{k \to \infty} f_k \d x
 \leq \liminf_{k \to \infty} \int_X f_k \d \mu.
 \]
 \end{proof}
@@ -3274,7 +3274,7 @@ for every $w \in V^*$.
 \begin{proof}
 \begin{enumerate}
 \item Let $\seqinfn{\phi_n} \subset \Sfin(X ; V)$ such that 
-$\phi_n \to f$ a.e. and $\int_X \norm{f - \phi_n} \to 0$.
+$\phi_n \to f$ a.e. and $\int_X \norm{f - \phi_n} \d \mu \to 0$.
 Then we have $T \circ \phi_n \to T \circ f$ a.e. and 
 \[
 \int_X \norm{T \circ f - T \circ \phi_n} \d \mu
@@ -3290,7 +3290,7 @@ Therefore, $T \circ f$ is integrable and
 
 \item Let $w \in V^*$, then $\int_X f \d \mu = \int_X g \d \mu$
 clearly implies $\int_X w \circ f \d \mu = \int_X w \circ g 
-\d \mu$. On th other hand, if $\int_X w \circ f \d \mu = \int_X 
+\d \mu$. On the other hand, if $\int_X w \circ f \d \mu = \int_X 
 w \circ g \d \mu$ for all $w \in V^*$, then 
 \[
 w \left[ \int_X f \d \mu - \int_X g \d \mu \right] = 0
@@ -3342,7 +3342,7 @@ First show $\mu = \gamma$ on $\afk$.
 It suffices to show that $\om = \gamma$ on $\afk$.
 
 For any $E \in \afk$, we know $E$ is covered by $E$, so 
-$\om = \gamma$. On the other hand, let $E \subset \afk$
+$\om \leq \gamma$. On the other hand, let $E \subset \afk$
 and $\seqinfk{A_k} \subset \afk$ be a cover of $E$.
 Define $B_0 = E \cap A_0 \in \afk$ and 
 $B_k = E \cap (A_k \setminus \cupi^{k-1} A_k) \in \afk$.
@@ -3469,7 +3469,7 @@ E \cap F = \prod_{i=1}^n (E_i \cap F_i) \in \ecal.
 \]
 Similarly, 
 \[
-E^c = \prod_{i=1}^n \left( E_i^c 
+E^c = \bigsqcup_{i=1}^n \left( E_i^c 
 \times \prod_{j \neq i} E_j \right) \in \ecal.
 \]
 This shows that $\afk$ is an algebra.
@@ -3705,9 +3705,9 @@ It follows that $z^n \det(I_m + AB) =
 z^m \det(I_n + BA)$. By our previous propositions, 
 we have 
 \[
-z^{n+m} \sum_{k=0}^{m-1} 
+z^{n+m} + \sum_{k=0}^{m-1} 
 z^{k+n} \sum_{\alpha \in \acal(m, m-k)} \det(AB)_\alpha^\alpha 
-= z^{n + m} \sum_{k=0}^{n-1} z^{k+m} 
+= z^{n + m} + \sum_{k=0}^{n-1} z^{k+m} 
 \sum_{\alpha \in \acal(n, n - k)} \det (BA)_\alpha^\alpha.
 \]
 Consider the coefficients of degree $m$, we obtain 
@@ -3772,7 +3772,8 @@ for all $x \in B(z, r)$. Note that
 \[
 \hcal^n (ME) = J_f(z) \lambda(E). 
 \]
-Then equation A gives $[g] \leq 1 + \epsilon$ and 
+Since $ML$ is the identity on $\ran M$, 
+equation (A) gives $[g] \leq 1 + \epsilon$ and 
 $[M \circ f^{-1}] \leq (1 - \epsilon)^{-1}$. 
 It follows that 
 \[
@@ -3789,7 +3790,7 @@ J_f(z) \lambda (E) = \hcal^n (ME)
 \leq (1 - \epsilon)^{-n} \hcal^n (f(E)).
 \]
 
-Now, equation B gives 
+Now, equation (B) gives 
 \[
 J_f(z) \lambda(E) 
 = \int_E J_f(z) \d \lambda 
@@ -3845,7 +3846,7 @@ such that $B(x_k, r_k) \subset U$, $f : B(x_k, r_k) \to \R^n$
 is Lipschitz injection, $E = \cupinfk B(x_k, r_k)$, and 
 \[
 (1 - \epsilon)^{n+1} \int_F J_f \d \lambda
-\leq \hcal^n (f(E))
+\leq \hcal^n (f(F))
 \leq (1 + \epsilon)^{n+1} \int_F J_f \d \lambda
 \]
 for all $F \subset B(x_k, r_k)$.
@@ -3861,7 +3862,9 @@ Then $E = \sqcupinfk E_k$. Applying the inequality, we obtain
 However, since $f$ is injective when restricted to $E_k$,
 we have 
 \[
-\hcal^n (f(E_k)) = \int_{\R^m} \ncal_f(\cdot, E_k) \d \hcal^n.
+\hcal^n (f(E_k)) 
+= \int_{f(E_k)} 1 \d \hcal^n
+= \int_{\R^m} \ncal_f(\cdot, E_k) \d \hcal^n.
 \]
 Summing the inequalities, we can then obtain from monotone
 convergence theorem that 
@@ -4019,7 +4022,7 @@ the restriction $g : E \cap f^{-1}(\{y\}) \to Y$ is $\hcal^0$-integrable.
 Moreover, the now $Y$ valued map ($*$) is $\hcal^n$-integrable
 and 
 \[
-\int_E g J_f \d \lambda = \int_{\R^M} 
+\int_E g J_f \d \lambda = \int_{\R^m} 
 \int_{E \cap f^{-1}(\{y\})} g \d \hcal^0 \d \hcal^n.
 \]
 \end{enumerate}
@@ -4346,13 +4349,9 @@ $L^p(X; V)$, we will know the completion of
 $\Sfin(X; V)$ is $L^p(X; V)$.
 
 \begin{defi}[$L^p$ spaces]
-\begin{enumerate}
-\item For $f, g \in \leb_\mu^p$, let $f \sim g$ if 
+For $f, g \in \leb_\mu^p$, let $f \sim g$ if 
 $f = g$ a.e. Then $\sim$ is a equivalence relation.
-
-\item Let $[f]$ be the equivalence class of $f$.
-
-\item Define 
+Let $[f]$ be the equivalence class of $f$. Define 
 \[
 L^p_\mu (X; V) = \{[f] : f \in \leb_\mu^p (X; V)\}
 \]
@@ -4360,7 +4359,6 @@ with $\alpha [f] = [\alpha f]$, $[f] + [g] = [f + g]$,
 and $\norm{[f]}_{L^p} = \norm{f}_p$. Then it is easy to see 
 that all the operations are well-defined and $L^p_\mu$ is 
 a vector space.
-\end{enumerate}
 \end{defi}
 
 \begin{thm}[Riesz-Fisher]
