@@ -2727,7 +2727,7 @@ The following holds:
 \end{enumerate}
 \end{thm}
 
-\begin{thm}[Chebyshev inequality]
+\begin{thm}[Chebyshev's inequality]
 If $f$ is measurable, then 
 \[
 \mu \left( \left\{ x \in X : \abs{f(x)} \geq \alpha \right\} \right) 
@@ -2767,7 +2767,7 @@ Let $(X, \mf, \mu)$ be a measure space and $f: X \to \bar{\R}$.
 \begin{proof}
 \begin{enumerate}
   \item Suppose initially that $f$ is measurable and integrable, 
-  then Chebyshev inequality implies that 
+  then Chebyshev's inequality implies that 
   \[
   \mu \left( \left\{ \abs{f} = \infty \right\} \right) 
   \leq \mu \left( \left\{ \abs{f} > 2^k \right\} \right) 
@@ -3091,7 +3091,7 @@ that $\norm{v} \geq m$ for all $v \in \phi(X) \setminus \left\{
 \mu(\supp(\phi)) = \mu(\{x \in X : \norm{\phi(x)} > 0\})
 = \mu(\{\norm{\phi} \geq m\}).
 \]
-By Chebyshev inequality, we have 
+By Chebyshev's inequality, we have 
 \[
 \mu(\supp(\phi)) \leq \frac{1}{m} \int_X \norm{\phi} \d \mu < \infty.
 \]
@@ -3283,7 +3283,7 @@ Then we have $T \circ \phi_n \to T \circ f$ a.e. and
 Therefore, $T \circ f$ is integrable and 
 \[
 \int_X T \circ f \d \mu = \lim_{n \to \infty}
-\int_X T \circ f \d \mu
+\int_X T \circ \phi_n \d \mu
 = \lim_{n \to \infty} T \int_X \phi_n \d \mu
 = T \int_X f \d \mu.
 \]
@@ -3731,7 +3731,7 @@ J_f = \bbracket{Df} = \sqrt{\det (Df)^T Df}.
 \end{defi}
 
 \begin{lemma}
-Let $\emptyset \neq U \subset \R^n$, $f \in C^1 (U ; \R^m)$
+Let $\emptyset \neq U \subset \R^n$ be open, $f \in C^1 (U ; \R^m)$
 for some $n \leq m$. Suppose $z \in U$ is such that 
 $Df(z)$ is injective. Then for $0 < \epsilon < 1$, there 
 exists $B(z, r) \subset U$ such that 
@@ -3843,7 +3843,7 @@ measurable, and
 Let $E \subset U$ be Lebesgue measurable and $0 < \epsilon < 1$.
 Using the previous lemma, we can pick $\seqinfk{B(x_k, r_k)}$
 such that $B(x_k, r_k) \subset U$, $f : B(x_k, r_k) \to \R^n$
-is Lipschitz injection, $E = \cupinfk B(x_k, r_k)$, and 
+is Lipschitz injection, $E \subset \cupinfk B(x_k, r_k)$, and 
 \[
 (1 - \epsilon)^{n+1} \int_F J_f \d \lambda
 \leq \hcal^n (f(F))
@@ -4037,7 +4037,7 @@ J_f = \sqrt{\det (Df)^T Df} = \abs{\det Df}
 \]
 and 
 \[
-\int_{E \cap f^{-1}(y)} g \d \hcal^0 = 
+\int_{E \cap f^{-1}(\{y\})} g \d \hcal^0 = 
 g \circ f^{-1}(y).
 \]
 The theorem then gives 
@@ -4137,7 +4137,8 @@ $g \circ f$ is $\lambda$-measurable.
 if and only if $g \circ f J_f$ is $\lambda$-integrable
 on $E$. In either case, 
 \[
-\int_E g \circ f J_f  = \int_{f(E)} g \d \hcal^n.
+\int_E g \circ f J_f  \d \lambda 
+= \int_{f(E)} g \d \hcal^n.
 \]
 \end{enumerate}
 \end{thm}
@@ -4757,6 +4758,134 @@ D \phi(x) e_m\} =
 \]
 \end{eg}
 
+\begin{thm}
+Let $\emptyset \neq U \subset \R^n$ be open, $f : U \to \R^r$
+be $C^k$ for $1 \leq r < n$. We saw before that if $z_0 \in U$,
+and 
+\[
+M = \{z \in U : \text{$f(z) \neq f(z_0)$ and $Df(z)$ 
+has rank $r$}\} \neq \emptyset,
+\]
+then $M$ is a $C^k$ $(n - r)$-fold. If $z \in M$, then  
+$T_z M = \ker Df(z)$.
+\end{thm}
 
+\begin{proof}
+Let $(\tilde{U}, V, \phi)$ be local coordinate at $z \in M$. 
+Then $f(\phi(x)) = f(z_0)$ for all $x \in C$. Then, 
+\[
+0 = Df(\phi(x)) D\phi(x).
+\]
+Therefore, for $x_0 \in V$ such that $\phi(x_0) = z$, we have 
+$0 = Df(z) D\phi(x_0)$. This implies that 
+$T_z M = \ran D\phi(x_0) \subset \ker Df(z)$. However, 
+\[
+\dim \ran D\phi(x_0) = \dim \ker Df(z) = n - r,
+\]
+so 
+$T_z M = \ker Df(z)$.
+\end{proof}
+
+\begin{eg}
+\begin{enumerate}
+\item Let $M = \{x \in \R^n : S x \cdot x = 1\}$ 
+for $S \in \R^{n \times n}_{\text{sym}}$
+with at least one positive eigenvalue. Define
+$f(x) = Sx \cdot x$, then 
+$Df(x) h = 2 Sx \cdot h$. This then implies that 
+\[
+T_x M = \{h : Sx \cdot h = 0\}.
+\]
+
+\item Let $\Gamma(f) = \{(x, f(x)) : x \in U\}$ for 
+$f : U \to \R^m$ and $U \subset \R^n$ open. Define 
+$F(x, y) = f(x) - y$, then $DF(x, y) (h, k) = Df(x) h - k$.
+This then implies that 
+\[
+T_{(x, f(x))} \Gamma(f) = \{(h, Df(x) h) : h \in \R^n\}.
+\]
+
+\item Recall that $\SL(n) = \{M \in \R^{n \times n} : 
+\det M = 1\}$. Define 
+$f(x) = \det M$, then $Df(M) N = \det M \tr (M^{-1} N)$.
+This then implies that 
+\[
+T_M \SL(n) = M \R^{n \times n}_{\text{tr-$0$}},
+\]
+where $\R^{n \times n}_{\text{tr-$0$}} = \{N \in \R^{n \times n}: 
+\tr N = 0\}$
+
+\item Let $O(n) = \{M \in \R^{n \times n} : M^T M = I\}$. 
+Define $f(M) = M^T M - I$, then $Df(M) N = M^T N + N^T M$.
+This then implies that 
+\[
+T_M O(n) = M \R^{n \times n}_{\text{asym}}.
+\]
+\end{enumerate}
+\end{eg}
+
+\subsection{Mappings between manifolds}
+
+\fbox{\TODO: Add picture}
+
+\begin{lemma}
+Suppose $M \subset \R^{n_1}$ and $N \subset \R^{n_2}$ are 
+$C^k$ $m_1$-fold and $m_2$-fold respectively. 
+Suppose also that $f : M \to N$.
+Let $x$ be such that $\phi_1(x) = z \in U_1 \cap U_2 \cap M$
+and $f(z) \in \tilde{U_1} \cap \tilde{U_2} \cap N$.
+Then the following holds: 
+\begin{enumerate}
+\item $\psi_1^{-1} \circ f \circ \phi_1$ is differentiable 
+at $x$ if and only if $\psi_2^{-1} \circ f \circ \phi_2$
+is differentiable at $\zeta(x)$.
+The same holds when differentiable is replaced with 
+$C^j$ for $1 \leq j \leq k$.
+
+\item Given $v \in T_z M = \ran D \phi_1 (\phi_1^{-1}(z))$, 
+there exists a unique $w \in T_{f(z)} N$ such that 
+$v = D \phi_1 (\phi_1^{-1}) h$ and 
+$w = D \psi_1 (\psi_1^{-1} (f(z))) 
+D [\psi_1^{-1} \circ f \circ \phi_1] (\phi_1^{-1}(z)) h$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Note that 
+$\phi_1 = \phi_2 \circ \phi_2^{-1} \circ \phi_1 = \phi_2 \circ 
+\zeta$ and $\psi_1 = \psi_2 \circ \psi_2^{-1} \circ \psi_1 
+= \psi_2 \circ \theta$ and use chain rule.
+\end{proof}
+
+\begin{defi}
+Suppose $M_1 \subset \R^{n_1}$ and $M_2 \subset \R^{n_2}$ are 
+$C^k$ $m_1$-fold and $m_2$-fold respectively. 
+Suppose also that $f : M_1 \to M_2$.
+
+\begin{enumerate}
+\item We say $f$ is differentiable at $z \in M$ 
+if $\psi^{-1} \circ f \circ \phi$ is differentiable 
+at $\phi^{-1}(z)$ for any choice of $C^k$ local coordinates
+at $z$ and $f(z)$. We define 
+$Df(z) \in \L(T_z M_1, T_{f(z)} M_2)$ via $v \mapsto w$ 
+from the previous lemma.
+
+\item We say $f \in C^j (M_1, M_2)$ for $1 \leq j \leq k$ 
+if $\psi^{-1} \circ f \circ \phi$ is $C^j$.
+\end{enumerate}
+\end{defi}
+
+Define flattening map $F$ and $G$. WLOG we can assume 
+$F(W) = V \times (-\epsilon, \epsilon)$ and 
+$G(\tilde{W}) = \tilde{V} \times (-\delta, \delta)$.
+Given $\theta: V_1 \to X$, define $\hat{\theta} : 
+V_1 \times (-\epsilon, \epsilon) \to X$ via 
+$\hat{\theta}(x, y) = \theta(x)$ and similarly for $V_2$.
+Now suppose $f \in C^j (M_1 ; M_2)$, then 
+$\theta := f \circ \phi$ is $C^j(V; \R^{n_2})$.
+Let $\hat{\theta} \in C^j (F(W) ; \R^{n_2})$ 
+and then $\hat{f} = \hat{\theta} \circ F$. 
+Then $\hat{f} \vert_{W \cap M} = \hat{\theta} \circ\phi^{-1}
+= f$. Also, $\hat{f}$ is $C^j$.
 
 \end{document}
