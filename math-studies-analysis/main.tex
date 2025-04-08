@@ -666,7 +666,7 @@ for all $\alpha, \beta \in \C$ such that $\abs{\alpha} +
 \abs{\beta}=1$ and $x, y \in X$.
 
 Suppose $Y$ subspace of $X$ and $l: Y \to \C$ is a linear map 
-such that $\abs{l} \leq p$ on $Y$. Then there exsits linear map 
+such that $\abs{l} \leq p$ on $Y$. Then there exists linear map 
 $L: X \to \C$ such that $\abs{L} \leq p$ on $X$ and  
 $L = l$ on $Y$.
 \end{thm}
@@ -1054,6 +1054,182 @@ say $f$ is a smooth diffeomorphism.
 \begin{proof}
   \TODO
 \end{proof}
+
+
+\begin{thm}
+Let $X$ and $Y$ be Banach spaces and $\emptyset \neq U \subset X$
+open.  Suppose $f \in C^k(U; Y)$ for some $k \geq 1$ and 
+$f$ is a homeomorphism from $U$ to $f(U)$. Then the following
+are equivalent: 
+\begin{enumerate}
+\item $f$ is a $C^k$ diffeomorphism.
+\item $Df(x) \in \L(X; Y)$ is an isomorphism for all $x \in U$.
+\end{enumerate}
+\end{thm}
+
+\begin{proof}
+\TODO
+\end{proof}
+
+\begin{thm}[left inverse function theorem]
+Let $X$ and $Y$ be Banach spaces. Suppose that $\emptyset \neq U 
+\subset X$ is open and $f \in C^k(U; Y)$ for some $1 \leq k \leq
+\infty$. Let $x_0 \in U$ and $y_0 = f(x_0) \in Y$, and suppose 
+that $\{0\} \neq \ran Df(x_0) \subset Y$. Then the 
+following are equivalent:
+\begin{enumerate}
+\item The map $Df(x_0) \in \L(X; Y)$ is injective with $\ran
+Df(x_0)$ closed and complemented in $Y$. That is, $Df(x_0) 
+\in \L_L(X; Y)$. 
+
+\item There exist nontrivial closed subspace $Y_0, Y_1 
+\subset Y$ with $Y = Y_0 \oplus Y_1$ and open sets $x_0 
+\in \tilde{U} \subset U$ and $0 \in S \subset Y_1$ such that 
+the map $G : \tilde{U} \times S \to Y$ given by $G(x, y)
+= f(x) + y$ is a $C^k$ diffeomorphism onto its image. 
+Moreover, we have that $DG(x_0, 0) (X \times \{0\}) = Y_0$
+and the restriction $DG(x_0, 0) \vert_{X \times \{0\}} 
+: X \times \{0\} \to Y_0$ is an isomorphism.
+
+\item There exist nontrivial closed subspace $Y_0, Y_1
+\subset Y$ with $Y = Y_0 \oplus Y_1$, open sets $x_0 \in \tilde{U}
+\subset U$, $0 \in S \subset Y_1$, and $W \subset Y$. 
+and a map $F \in C^k(W ; X \times Y_1)$ such that $F$ 
+is a $C^k$ diffeomorphism from $W$ to $F(W) = \tilde{U} 
+\times S$, $f(\tilde{U}) \subset W$, and 
+\[
+F(f(x)) = (x, 0)
+\]
+for all $x \in \tilde{U}$. Moreover, $DF(y_0) (Y_0) = X \times 
+\{0\}$ and the restriction $DF(y_0) \vert_{Y_0} : Y_0 
+\to X \times \{0\}$ is an isomorphism.
+
+\item There exist open sets $x_0 \in \tilde{U} \subset U$
+and $W \subset Y$ with $f(\tilde{U}) \subset W$, and a map 
+$g \in C^k(W ; X)$ such that $g(f(x)) = x$ for all $x \in
+\tilde{U}$.
+
+\item There exists an open set $x_0 \in \tilde{U} \subset U$
+such that $Df(x) \in \L(X; Y)$ is injective with 
+$\ran Df(x)$ closed and complemented in $Y$ for each 
+$x \in \tilde{U}$.
+\end{enumerate}
+
+Moreover, in any and hence every case, the $Y_i$ spaces 
+from the second and third item can be taken with $Y_0 
+= \ran Df(x_0)$, and the maps $g, F, G$ can be taken to be related
+via $F^{-1} = G$ and $g = \pi_X \circ F$.
+\end{thm}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.55\linewidth]{fig/left_inverse.pdf}
+  \caption{Depiction of the left inverse function theorem}
+\end{figure}
+
+\begin{proof}
+\TODO
+\end{proof}
+
+\begin{thm}[flattening map]
+Let $X$ and $Y$ be Banach spaces, and suppose that 
+$Y_0, Y_1 \subset Y$ are nontrivial clsoed subspaces 
+such that $Y = Y_0 \oplus Y_1$. Suppose further that 
+$X$ and $Y_0$ are isomophic. Let $M \subset Y$ and 
+$y_0 \in M$, and let $1 \leq k \leq \infty$. Then the 
+following are equivalent: 
+\begin{enumerate}
+\item There exist open sets $V \subset X$ and $U \subset Y$ 
+with $y_0 \in U$ and $f \in C^k(U ; Y)$ such that $f : 
+V \to f(V) = U \cap M$ is a homeomorphism and at $x_0 
+= f^{-1}(y_0) \in V$ we have that $Df(x_0)$ is injective
+with $\ran Df(x_0) = Y_0$.
+
+\item There exists an open set $W \subset Y$ with $y_0 \in W$ 
+and $F \in C^k(W ; X \times Y_1)$ such that $F$ is a 
+$C^k$ diffeomorphism from $W$ to $F(W)$, $DF(y_0)(Y_0)
+= X_0 \times \{0\}$, and 
+\[
+F(W \cap M) = F(W) \cap [X \times \{0\}].
+\]
+
+\item There exists an open set $W \subset Y$ with $y_0 \in W$
+and $\Phi \in C^k(W ; Y)$ such that $\Phi$ is a $C^k$ 
+diffeomorphism from $W$ to $\Phi(W)$, $D \Phi(y_0) (Y_0) 
+= Y_0$, and 
+\[
+\Phi(W \cap M) = \Phi(W) \cap Y_0.
+\]
+\end{enumerate}
+
+Moreover, if either the second or the third items hold, then 
+the set $V$ from the first item can be chosen such that 
+$Df(x)$ is injective with $\ran Df(x)$ closed and 
+complemented in $Y$ for each $x \in V$.
+\end{thm}
+
+\begin{proof}
+\TODO
+\end{proof}
+
+\begin{thm}[right inverse function theorem]
+Let $X$ and $Y$ be Banach spaces. Suppose that $\emptyset
+\neq U \subset X$ is open and $f \in C^k (U ; Y)$ for 
+some $1 \leq k \leq \infty$. Let $x_0 \in U$, 
+$y_0 = f(x_0) \in Y$, and suppose that $\{0\} \neq
+\ker Df(x_0) \subset X$. Then the following
+are equivalent:
+
+\begin{enumerate}
+\item The map $Df(x_0) \in \L(X; Y)$ is surjective with 
+$\ker Df(x_0)$ complemented in $X$. That is, $Df(x_0) 
+\in \L_R(X; Y)$. 
+
+\item There exist nontrivial closed subspace $X_0, X_1 
+\subset X$ with $X = X_0 \oplus X_1$ and $P \in \L(X)$ 
+the projection onto $X_0$ and open sets $x_0 \in \tilde{U} 
+\subset U$, $y_0 \in W \subset Y$, and $Px_0 \in V \subset X_0$
+such that the map $G : \tilde{U} \to Y \times X_0$ 
+given by $G(x) = (f(x), Px)$ is a $C^k$ diffeomorphism 
+onto $W \times V \subset Y \times X_0$. Moreover, for $x 
+\in \tilde{U}$, we have that $DG(x) (X_1) = Y \times \{0\}$,
+and the restriction $DG(x) \vert_{X_1} : X_1 \to Y \times 
+\{0\}$ is an isomorphism.
+
+\item There exist nontrivial closed subspace $X_0, X_1 \subset
+X$ with $X = X_0 \oplus X_1$ and $P \in \L(X)$ the projection
+onto $X_0$, open sets $x_0 \in \tilde{U} \subset U$, 
+$y_0 \in W \subset Y$, and $P x_0 \in V \subset X_0$, and 
+a map $F \in C^k (W \times V ; X)$ such that $F$ is a 
+$C^k$ diffeomorphism from $W \times V$ to $F(W \times V) 
+= \tilde{U}$, $F(y_0, Px_0) = x_0$, and 
+\[
+f(F(y, v)) = y
+\]
+for all $(y, v) \in W \times V$. Moreover, for all 
+$(w, v) \in W \times V$ we have that $DF(w, v) (Y \times
+\{0\}) = X_1$ and the restriction $DF(w, v) \vert_{Y \times
+\{0\}} : Y \times \{0\} \to X_1$ is an isomorphism.
+
+\item There exists an open set $y_0 \in W \subset Y$ and 
+a map $g \in C^k(W; X)$ such that $g(y_0) = x_0$, $g(W) 
+\subset U$, and $f(g(y)) = y$ for all $y \in W$.
+
+\item There exists an open set $x_0 \in \tilde{U} \subset U$
+such that $Df(x) \in \L(X; Y)$ is surjective with 
+$\ker Df(x)$ complemented in $X$ for each $x \in \tilde{U}$.
+\end{enumerate}
+Moreover, in any and hence every case, the $X_i$ spaces 
+from the second and third items can be taken with $X_0 
+= \ker Df(x_0)$, and the maps $g, F, G$ can be aken to be 
+related via $F^{-1} = G$ and $g(y) = F(y, P x_0)$.
+\end{thm}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.55\linewidth]{fig/right_inverse.pdf}
+  \caption{Depiction of the left inverse function theorem}
+\end{figure}
 
 
 \section{Measure and integration}
@@ -2728,7 +2904,7 @@ The following holds:
 \end{thm}
 
 \begin{thm}[Chebyshev's inequality]
-If $f$ is measurable, then 
+If $f$ is measurable and integrable, then 
 \[
 \mu \left( \left\{ x \in X : \abs{f(x)} \geq \alpha \right\} \right) 
 \leq \frac{1}{\alpha} \int_X \abs{f} \d \mu
@@ -2758,7 +2934,7 @@ Let $(X, \mf, \mu)$ be a measure space and $f: X \to \bar{\R}$.
   and $\supp(f) \subset E$.
 
   \item If $f$ is extended integrable, then there 
-  exsits a null set $N \in \mf$ such that 
+  exists a null set $N \in \mf$ such that 
   either $\left\{ f = \infty \right\} \subset N$
   or $\left\{ f = -\infty \right\} \subset N$.
 \end{enumerate}
@@ -4470,7 +4646,7 @@ The triple $(U, V, \phi)$ is called a $C^k$ $m$-coordinate
 \item We say $M$ is an $m$-dimensional $C^k$ \textbf{manifold}
 if $M \neq \emptyset$ and $M$ admits local $C^k$ $m$-coordinates
 at each $z \in M$. If $M$ is an $m$-dimensional manifold, 
-we say $M$ is an $m$-fold.
+we say $M$ is an $m$-manifold.
 
 \item An \textbf{atlas} on $M$ is a collection 
 $\acal = \{(U_\alpha, V_\alpha, \phi_\alpha)\}_{\alpha \in A}$
@@ -4489,36 +4665,36 @@ dimension $n$ and $m$ respectively. This changes nothing
 in the definition.
 
 \item The definition fails to define $0$-dimensional 
-manifolds. We make the convention that a $0$-fold is a 
+manifolds. We make the convention that a $0$-manifold is a 
 nonempty discrete subset of $\R^n$, where by discrete we mean 
 every subset of it is both open and closed. We also consider 
-all $0$-fold to be $C^\infty$.
+all $0$-manifold to be $C^\infty$.
 \end{enumerate}
 \end{remark}
 
 \begin{eg}
 \begin{enumerate}
 \item Let $\emptyset \subset U \subset \R^n$ open, then 
-$U$ is a $C^\infty$ $n$-fold. 
+$U$ is a $C^\infty$ $n$-manifold. 
 
 \item Let $w + V = \{w + V : v \in V\}$ for $w \in \R^n$
 and $V \subset \R^n$ a subset of dimension $m$. Indeed, 
 let $\{v_1, \dots, v_m\} \subset V$ be a basis and consider 
 $\R^m \ni x \mapsto w + \sum_j x_j v_j \in w + V$.
 
-\item Suppose $M \subset \R^n$ is a $C^k$ $m$-fold. 
+\item Suppose $M \subset \R^n$ is a $C^k$ $m$-manifold. 
 Suppose $U \subset \R^n$ is open and $M \cap U \neq 
-\emptyset$. Then $M \cap U$ is a $C^k$ $m$-fold.
+\emptyset$. Then $M \cap U$ is a $C^k$ $m$-manifold.
 
 \item Suppose $M_1, M_2 \subset \R^n$ are $C^k$
-$m$-folds. Suppose $\abs{x - y} \geq \epsilon > 0$ for all 
+$m$-manifolds. Suppose $\abs{x - y} \geq \epsilon > 0$ for all 
 $x \in M_1$ and $y \in M_2$. Then $M_1 \cup M_2$ is a 
-$C^k$ $m$-fold.
+$C^k$ $m$-manifold.
 
 \item Suppose $M_1 \subset \R^{n_1}$ and $M_2 \subset \R^{n_2}$
-are $C^k$ $m_1$-fold and $C^k$ $m_2$-fold respectively. 
+are $C^k$ $m_1$-manifold and $C^k$ $m_2$-manifold respectively. 
 Then $M_1 \times M_2 \subset \R^{n_1 + n_2}$ is a 
-$C^k$ $(m_1 + m_2)$-fold.
+$C^k$ $(m_1 + m_2)$-manifold.
 
 \item Let $\phi: \R \times (-\frac{1}{2}, \frac{1}{2}) 
 \to \R^3$ via 
@@ -4531,7 +4707,7 @@ an atlas on $M$ via $\acal = \{(U_1, V_2, \phi), (U_2, V_2, \phi)\}$
 for $V_1 = (0, 2\pi) \times (-\frac{1}{2}, \frac{1}{2})$ and
 $V_2 = (\pi, 3\pi) \times (-\frac{1}{2}, \frac{1}{2})$.
 After we figure out the corresponding $U_1$ and $U_2$, 
-we can see that $M$ is a $C^\infty$ $2$-fold.
+we can see that $M$ is a $C^\infty$ $2$-manifold.
 \end{enumerate}
 \end{eg}
 
@@ -4542,7 +4718,7 @@ Let $\emptyset \neq U \subset \R^n$ be open, $f \in C^k(U;
 M = \{z \in U : f(z) = \bar{w} \text{ and } Df(z) \text{ had rank 
 $r$}\} \neq \emptyset.
 \]
-Then $M$ is a $C^k$ $(n-r)$-fold.
+Then $M$ is a $C^k$ $(n-r)$-manifold.
 \end{thm}
 
 \begin{proof}
@@ -4560,7 +4736,7 @@ f(\phi(v)) = f(F(\bar{w}, v)) = \bar{w}.
 Meanwhile, the right inverse function theorem 
 guarantees that $D \phi$ has rank $n - r$ everywhere.
 Therefore, $\phi: V \to M \cap U$ is the desired 
-homeomorphism to show that $M$ is a $C^k$ $(n-r)$-fold.
+homeomorphism to show that $M$ is a $C^k$ $(n-r)$-manifold.
 \end{proof}
 
 \begin{eg}
@@ -4579,20 +4755,20 @@ Df(x) h = \nabla f(x) \cdot h = 2Sx \cdot h,
 and for $x \in M$, we have $Df(x) x = 2 \neq 0$. 
 Therefore, $Df(x)$ has rank $1$ for all $x \in M$. 
 The previous theorem then tells us $M$ is a $C^\infty$
-$(n-1)$-fold in $\R^n$.
+$(n-1)$-manifold in $\R^n$.
 
 \begin{enumerate}
   \item If $S = I$, then 
   $M = \{x : \abs{x}^2 = 1\} = S^{n-1}$ is a sphere and 
-  it is a $C^\infty$ $(n-1)$-fold in $\R^n$.
+  it is a $C^\infty$ $(n-1)$-manifold in $\R^n$.
 
   \item If $S = \diag(\lambda_1, \dots, \lambda_n)$ 
   with $\lambda_i > 0$, then $M$ is an ellipsoid 
-  and it is a $C^\infty$ $(n-1)$-fold in $\R^n$. 
+  and it is a $C^\infty$ $(n-1)$-manifold in $\R^n$. 
 
   \item If $S = \diag(-\lambda_1, \lambda_2, \dots, \lambda_n)$
   with $\lambda_i > 0$, then $M$ is a hyperboloid and it 
-  is a $C^\infty$ $(n-1)$-fold in $\R^n$.
+  is a $C^\infty$ $(n-1)$-manifold in $\R^n$.
 \end{enumerate} 
 
 \item Let $\emptyset \neq U \subset \R^n$ be open, 
@@ -4605,10 +4781,10 @@ Then $(x, y) \in \Gamma(f)$ if and only if $F(x, y) = 0$.
 However, $F$ is $C^k$ and $DF(x, y) (h, k) = k - Df(x) h$.
 The $k$ term implies that the derivative has rank $m$.
 The previous theorem then implies that $\Gamma(f)$ is 
-a $C^k$ $n$-fold in $\R^{n+m}$. 
+a $C^k$ $n$-manifold in $\R^{n+m}$. 
 
 \item Note that $\GL(n) \subset \R^{n \times n}$ is open 
-and hence a $C^\infty$ $n^2$-fold.
+and hence a $C^\infty$ $n^2$-manifold.
 
 \item Let $\SL(n) = \{M \in \GL(n) : \det M = 1\}$, 
 then $\det: \GL(n) \to \R$ is $C^\infty$ and 
@@ -4618,10 +4794,10 @@ D \det(M) (N) = (\det M) \tr(M^{-1} N).
 Therefore, for $M \in \SL(n)$, $D \det(M) M = \tr(M^{-1} 
 M) = n \neq 0$. This implies that $D \det(M)$ has rank 
 $1$ at each $M \in \SL(n)$. This then shows that 
-$\SL(n)$ is a $C^\infty$ $(n^2 - 1)$-fold in $\R^{n \times n}$.
+$\SL(n)$ is a $C^\infty$ $(n^2 - 1)$-manifold in $\R^{n \times n}$.
 
 \item The set of orthogonal matrices $O(n)$ is a 
-$C^\infty$ $\frac{n (n - 1)}{2}$-fold in $\R^{n \times n}$.
+$C^\infty$ $\frac{n (n - 1)}{2}$-manifold in $\R^{n \times n}$.
 Note that 
 \[
 O(n) = \{M \in \R^{n \times n} : M^T M = I\}.
@@ -4638,7 +4814,7 @@ $\dim \ker Df(M) = \dim \R^{n \times n}_{\text{asym}}
 \[
 \rank Df(M) = \frac{n (n + 1)}{2} = \dim \R^{n \times n}_{\text{sym}}.
 \]
-Therefore, $O(n)$ is a $C^\infty$ $\frac{n(n-1)}{2}$-fold.
+Therefore, $O(n)$ is a $C^\infty$ $\frac{n(n-1)}{2}$-manifold.
 
 As a side note, $\R^{n \times n} = \R^{n \times n}_{\text{sym}} 
 \oplus \R^{n \times n}_{\text{asym}}$ with the column product 
@@ -4664,11 +4840,11 @@ $\phi^{-1} = (F_1, \dots, F_n)$.
 \end{enumerate}
 \end{thm}
 
-This is in fact the flattening map we encounted in HW.
+This is in fact the flattening map we encounted in HW. \TODO
 
 Why is this important? There are two reasons. 
 \begin{enumerate}
-\item This unifies the perspective on $m$-folds. We saw 
+\item This unifies the perspective on $m$-manifolds. We saw 
 \[
 M = \{x : \text{$f(x) = y$ and $Df(x)$ had full rank}\}.
 \]
@@ -4763,10 +4939,10 @@ Let $\emptyset \neq U \subset \R^n$ be open, $f : U \to \R^r$
 be $C^k$ for $1 \leq r < n$. We saw before that if $z_0 \in U$,
 and 
 \[
-M = \{z \in U : \text{$f(z) \neq f(z_0)$ and $Df(z)$ 
+M = \{z \in U : \text{$f(z) = f(z_0)$ and $Df(z)$ 
 has rank $r$}\} \neq \emptyset,
 \]
-then $M$ is a $C^k$ $(n - r)$-fold. If $z \in M$, then  
+then $M$ is a $C^k$ $(n - r)$-manifold. If $z \in M$, then  
 $T_z M = \ker Df(z)$.
 \end{thm}
 
@@ -4830,7 +5006,7 @@ T_M O(n) = M \R^{n \times n}_{\text{asym}}.
 
 \begin{lemma}
 Suppose $M \subset \R^{n_1}$ and $N \subset \R^{n_2}$ are 
-$C^k$ $m_1$-fold and $m_2$-fold respectively. 
+$C^k$ $m_1$-manifold and $m_2$-manifold respectively. 
 Suppose also that $f : M \to N$.
 Let $x$ be such that $\phi_1(x) = z \in U_1 \cap U_2 \cap M$
 and $f(z) \in \tilde{U_1} \cap \tilde{U_2} \cap N$.
@@ -4859,7 +5035,7 @@ $\phi_1 = \phi_2 \circ \phi_2^{-1} \circ \phi_1 = \phi_2 \circ
 
 \begin{defi}
 Suppose $M_1 \subset \R^{n_1}$ and $M_2 \subset \R^{n_2}$ are 
-$C^k$ $m_1$-fold and $m_2$-fold respectively. 
+$C^k$ $m_1$-manifold and $m_2$-manifold respectively. 
 Suppose also that $f : M_1 \to M_2$.
 
 \begin{enumerate}
