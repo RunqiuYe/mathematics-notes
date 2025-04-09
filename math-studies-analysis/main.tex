@@ -5064,4 +5064,80 @@ and then $\hat{f} = \hat{\theta} \circ F$.
 Then $\hat{f} \vert_{W \cap M} = \hat{\theta} \circ\phi^{-1}
 = f$. Also, $\hat{f}$ is $C^j$.
 
+
+\subsection{Differential forms}
+
+The solution is as follows: 
+\begin{enumerate}
+\item We want a map $f$ from the domain $M$ and we hope 
+$f(z)$ to interact with $T_z M$ is a simple manner. 
+Therefore, we require $f : M \to \L^k(\R^n ; \R)$, which we call 
+a ``tensor field''.
+
+\item We want $f(z) \in \L^k(\R^n ; \R)$ to interact 
+with the ``genuine $k$-dimensional structure'', in the way 
+that $f(z) (v_1, \dots, v_k) = 0$ if $\{v_1, \dots, v_k\}$
+are linearly dependent. However, if 
+$\omega \in \L^k (V ; R)$, then $\omega (v_1, \dots, v_k) = 0$
+for all linearly dependent $\{v_1, \dots, v_k\}$ 
+if and only if $\omega$ is anti-symmetric.
+\end{enumerate}
+Combining these requirements, we want to 
+study $f : M \to \Lambda^k (\R^n)$, where 
+\[
+\Lambda^k (\R^n) 
+= \{\omega \in \L^k(\R^n ; \R) : \omega \text{ is 
+anti-symmetric}\}
+\]
+is the set of $k$-forms.
+
+Some algebra facts follows from the definition. 
+\begin{enumerate}
+\item If $\omega \in \Lambda^k$ and $\eta \in \Lambda^j$, 
+then 
+\[
+\omega \wedge \eta = \frac{(k+j)!}{k! j!} \acal (\omega
+\otimes \eta) \in \Lambda^{k+j}(\R^n),
+\]
+where $\acal$ represents the anti-symmetrization. 
+However, this is not qiute commutative, as 
+\[
+\omega \wedge \eta = (-1)^{jk} \eta \wedge \omega.
+\]
+but it is associative:
+\[
+\omega \wedge (\eta \wedge \theta) 
+= (\omega \wedge \eta) \wedge \theta 
+= \omega \wedge \eta \wedge \theta.
+\]
+
+\item We have 
+\[
+\dim \Lambda^k(\R^n) = \begin{cases}
+  \binom{n}{k} & \text{if $0 \leq k \leq n$},\\
+  0 & \text{otherwise}.
+\end{cases}
+\]
+and a bsis of $\Lambda^k (\R^n)$ is 
+$\{e^{i_1} \wedge \dots \wedge e^{i_k} : i_1 < \dots < i_k\}$
+for $e^i (x) = x_i = e_i \cdot x$.
+
+Recall that $\acal(n, k) = \{\alpha = (\alpha_1, \dots, 
+\alpha_k) : 1 \leq \alpha_1 < \dots < \alpha_k \leq n\}$.
+Write 
+\[
+e^{\alpha} = e^{\alpha_1} \wedge \dots \wedge 
+e^{\alpha_k}.
+\]
+We also set $\acal(n, k) = \emptyset$ 
+for $k \geq n + 1$. 
+Therefore, any $\omega \in \Lambda^k(\R^n)$
+can be written as 
+\[
+\omega = \sum_{\alpha \in \acal(n, k)}
+\omega_\alpha e^{\alpha}.
+\]
+\end{enumerate}
+
+
 \end{document}
