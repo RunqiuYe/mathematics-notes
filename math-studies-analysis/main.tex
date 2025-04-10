@@ -828,7 +828,7 @@ is a norming sequence.
 
 \begin{thm}
 Let $X$ be normed vector space and define $J: X \to X^{**}$ 
-by $\braket{Jx}{w} = \braket{w}{x} = w(x)$. Then the following
+by $\braket{Jx, w} = \braket{w, x} = w(x)$. Then the following
 holds:
 \begin{enumerate}
 \item $J \in \L(X, X^{**})$. 
@@ -844,8 +844,8 @@ Note that we have
 \[
 \begin{aligned}
 \norm{Jx}_{X^{**}} 
-&= \sup \left\{ \abs{\braket{Jx}{w}}: w \in X^* \text{ and } \norm{w} \leq 1 \right\} \\
-&= \sup \left\{ \abs{\braket{w}{x}}: w \in X^* \text{ and } \norm{w} \leq 1 \right\} \\
+&= \sup \left\{ \abs{\braket{Jx, w}}: w \in X^* \text{ and } \norm{w} \leq 1 \right\} \\
+&= \sup \left\{ \abs{\braket{w, x}}: w \in X^* \text{ and } \norm{w} \leq 1 \right\} \\
 &= \norm{x},
 \end{aligned}
 \]
@@ -862,9 +862,9 @@ To show (3), note that we have
 \[
 \begin{aligned}
 \norm{w}_{X^*} 
-&= \sup \left\{ \abs{\braket{w}{x}} : x \in X \text{ and } \norm{x} \leq 1 \right\} \\
-&= \sup \left\{ \abs{\braket{Jx}{w}} : x \in X \text{ and } \norm{x} \leq 1 \right\} \\
-&= \sup \left\{ \abs{\braket{v}{w}} : v \in \ran(J) \text{ and } \norm{v}_{X^{**}} \leq 1 \right\}.
+&= \sup \left\{ \abs{\braket{w, x}} : x \in X \text{ and } \norm{x} \leq 1 \right\} \\
+&= \sup \left\{ \abs{\braket{Jx, w}} : x \in X \text{ and } \norm{x} \leq 1 \right\} \\
+&= \sup \left\{ \abs{\braket{v, w}} : v \in \ran(J) \text{ and } \norm{v}_{X^{**}} \leq 1 \right\}.
 \end{aligned}
 \]
 This shows (3), completing the proof.
@@ -2456,12 +2456,12 @@ $\mu$-measurablility of Banach-valued maps.
   the function $\Phi_{n, v} : X \to [0, \infty)$ 
   by 
   \[
-  \Phi_{n, v}(x) = \abs{\braket{w_n}{f(x) - v}}
+  \Phi_{n, v}(x) = \abs{\braket{w_n, f(x) - v}}
   = \abs{w_n(f(x) - v)}.
   \]
-  Note that $X \ni x \mapsto \braket{w_n}{v} \in \F$ is 
+  Note that $X \ni x \mapsto \braket{w_n, v} \in \F$ is 
   $\mu$-measurable and the map $X \ni x \mapsto 
-  \braket{w_n}{f(x)} \in \F$ is also $\mu$-measurable
+  \braket{w_n, f(x)} \in \F$ is also $\mu$-measurable
   by assumption. It follows that 
   $\Phi_{n, v}$ is $\mu$-measurable. Therefore, 
   there exists null set $N_{n, v} \subset X$ and 
@@ -2479,7 +2479,7 @@ $\mu$-measurablility of Banach-valued maps.
   $\seqinfn{w_n}$ is norming sequence for $M$. 
   This implies that 
   \[
-  \Phi_v(x) = \sup_{n \in \N} \abs{\braket{w_n}{f(x) - v}}
+  \Phi_v(x) = \sup_{n \in \N} \abs{\braket{w_n, f(x) - v}}
   \]
   for all $x \in X \setminus N_*$. We also have that 
   \[
