@@ -2229,8 +2229,8 @@ space or $\bar{\R}$. Let $\psi \in S(X; Y)$.
    \right\}$.
   Note that it is clear $\psi$ is finite if and only if 
   the canonical representation is finite if and only if 
-  $\mu(\supp(\psi)) < \infty$ where 
-  $\supp(\psi) = \left\{ x \in X : \psi(x) \neq 0 \right\}$
+  $\mu(\spt(\psi)) < \infty$ where 
+  $\spt(\psi) = \left\{ x \in X : \psi(x) \neq 0 \right\}$
   is the support of $\psi$.
 \end{enumerate}
 
@@ -2931,7 +2931,7 @@ Let $(X, \mf, \mu)$ be a measure space and $f: X \to \bar{\R}$.
   a null set $N \in \mf$ and a $\sigma$-finite set $E \in \mf$
   such that 
   $\left\{ \abs{f} = \infty \right\} \subset N$ 
-  and $\supp(f) \subset E$.
+  and $\spt(f) \subset E$.
 
   \item If $f$ is extended integrable, then there 
   exists a null set $N \in \mf$ such that 
@@ -2953,13 +2953,13 @@ Let $(X, \mf, \mu)$ be a measure space and $f: X \to \bar{\R}$.
   $\mu \left( \left\{ \abs{f} = \infty \right\} \right)$ 
   is null. 
   
-  On the other hand, $\supp(f) = \cupinfk \left\{ \abs{f} 
+  On the other hand, $\spt(f) = \cupinfk \left\{ \abs{f} 
   > 2^{-k} \right\}$, but 
   \[
   \mu \left( \left\{ \abs{f} > 2^{-k} \right\} \right) 
   \leq 2^k \int_X \abs{f} \d \mu < \infty.
   \]
-  It follows that $\supp(f)$ is $\sigma$-finite. 
+  It follows that $\spt(f)$ is $\sigma$-finite. 
   
   In general, if $f$ is integrable and $\mu$-measurable, 
   pick $F = f$ a.e. for $F$ measurable and integrable and 
@@ -3107,7 +3107,7 @@ as desired.
 
 \begin{proof}
 \begin{enumerate}
-  \item Note that $\supp(f_k^-)$ is in a null set, so each $f_k$ is 
+  \item Note that $\spt(f_k^-)$ is in a null set, so each $f_k$ is 
   extended integrable. The same holds for $\suminfk f_k : 
   X \to [-\infty, \infty]$. On the other hand, the partial sums 
   $\sumk^m f_k \leq \sumk^{m+1} f_k$ a.e. Apply monotone 
@@ -3264,12 +3264,12 @@ is a finite set in $V$. Then, there exists $0 < m \in \R$ such
 that $\norm{v} \geq m$ for all $v \in \phi(X) \setminus \left\{ 
 0 \right\}$. Then, 
 \[
-\mu(\supp(\phi)) = \mu(\{x \in X : \norm{\phi(x)} > 0\})
+\mu(\spt(\phi)) = \mu(\{x \in X : \norm{\phi(x)} > 0\})
 = \mu(\{\norm{\phi} \geq m\}).
 \]
 By Chebyshev's inequality, we have 
 \[
-\mu(\supp(\phi)) \leq \frac{1}{m} \int_X \norm{\phi} \d \mu < \infty.
+\mu(\spt(\phi)) \leq \frac{1}{m} \int_X \norm{\phi} \d \mu < \infty.
 \]
 This completes the proof.
 \end{proof}
@@ -5120,7 +5120,7 @@ but it is associative:
   0 & \text{otherwise}.
 \end{cases}
 \]
-and a bsis of $\Lambda^k (\R^n)$ is 
+and a basis of $\Lambda^k (\R^n)$ is 
 $\{e^{i_1} \wedge \dots \wedge e^{i_k} : i_1 < \dots < i_k\}$
 for $e^i (x) = x_i = e_i \cdot x$.
 
