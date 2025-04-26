@@ -4620,7 +4620,9 @@ We are working in $\R^n$ to make things easier and avoid
 some slight subtleties.
 \end{enumerate}
 
-\subsection{Manifolds}
+\subsection{Manifolds in $\R^n$}
+
+\subsubsection{Definitions and basics}
 
 \begin{defi}
 Let $m, n \in \N$ and $1 \leq m \leq n$ and let 
@@ -4856,7 +4858,7 @@ some functions.
 points...
 \end{enumerate}
 
-\fbox{\TODO add picture for the next theorem}
+\TODO: add picture for the next theorem
 
 \begin{thm}
 Suppose $(U_0, V_0, \phi_0)$ and $(U_1, V_1, \phi_1)$ 
@@ -4882,6 +4884,8 @@ Therefore, $\zeta = \phi_1^{-1} \circ \phi_0
 near $x$. However $x \in \tilde{V_0}$ is arbitrary, 
 so $\zeta$ is a $C^k$ diffeomorphism.
 \end{proof}
+
+\subsubsection{Tangent spaces}
 
 \begin{lemma}
 Suppose $(U_0, V_0, \phi_0)$ and $(U_1, V_1, \phi_1)$ 
@@ -5000,9 +5004,9 @@ T_M O(n) = M \R^{n \times n}_{\text{asym}}.
 \end{enumerate}
 \end{eg}
 
-\subsection{Mappings between manifolds}
+\subsubsection{Mappings between manifolds}
 
-\fbox{\TODO: Add picture}
+\TODO: add picture
 
 \begin{lemma}
 Suppose $M \subset \R^{n_1}$ and $N \subset \R^{n_2}$ are 
@@ -5018,19 +5022,20 @@ is differentiable at $\zeta(x)$.
 The same holds when differentiable is replaced with 
 $C^j$ for $1 \leq j \leq k$.
 
-\item Given $v \in T_z M = \ran D \phi_1 (\phi_1^{-1}(z))$, 
-there exists a unique $w \in T_{f(z)} N$ such that 
-$v = D \phi_1 (\phi_1^{-1}) h$ and 
-$w = D \psi_1 (\psi_1^{-1} (f(z))) 
-D [\psi_1^{-1} \circ f \circ \phi_1] (\phi_1^{-1}(z)) h$.
+\item Given $v \in T_z M = \ran D \phi_i (\phi_i^{-1}(z))$, 
+there exists a unique $w \in T_{f(z)} N$ such that if 
+for $i = 1, 2$ we have
+$v = D \phi_i (\phi_i^{-1}) u_i$, then
+\[
+w = D \psi_i (\psi_i^{-1} (f(z))) 
+D [\psi_i^{-1} \circ f \circ \phi_i] (\phi_i^{-1}(z)) u_i
+\]
+for $i = 1, 2$.
 \end{enumerate}
 \end{lemma}
 
 \begin{proof}
-Note that 
-$\phi_1 = \phi_2 \circ \phi_2^{-1} \circ \phi_1 = \phi_2 \circ 
-\zeta$ and $\psi_1 = \psi_2 \circ \psi_2^{-1} \circ \psi_1 
-= \psi_2 \circ \theta$ and use chain rule.
+\TODO
 \end{proof}
 
 \begin{defi}
@@ -5051,20 +5056,18 @@ if $\psi^{-1} \circ f \circ \phi$ is $C^j$.
 \end{enumerate}
 \end{defi}
 
-\TODO \; understand this
+\begin{thm}
+Suppose $M_1$, $M_2$, $M_3$ are nonempty $C^k$ manifolds.
+Suppose $f \in C^k(M_1; M_2)$ and $g \in C^k(M_2; M_3)$. 
+Then $g \circ f \in C^k (M_1; M_3)$ and for each $z \in M_1$,
+\[
+D (g \circ f)(z) = D g (f(z)) D f(z).
+\]
+\end{thm}
 
-Define flattening map $F$ and $G$. WLOG we can assume 
-$F(W) = V \times (-\epsilon, \epsilon)$ and 
-$G(\tilde{W}) = \tilde{V} \times (-\delta, \delta)$.
-Given $\theta: V_1 \to X$, define $\hat{\theta} : 
-V_1 \times (-\epsilon, \epsilon) \to X$ via 
-$\hat{\theta}(x, y) = \theta(x)$ and similarly for $V_2$.
-Now suppose $f \in C^j (M_1 ; M_2)$, then 
-$\theta := f \circ \phi$ is $C^j(V; \R^{n_2})$.
-Let $\hat{\theta} \in C^j (F(W) ; \R^{n_2})$ 
-and then $\hat{f} = \hat{\theta} \circ F$. 
-Then $\hat{f} \vert_{W \cap M} = \hat{\theta} \circ\phi^{-1}
-= f$. Also, $\hat{f}$ is $C^j$.
+\begin{proof}
+\TODO
+\end{proof}
 
 
 \subsection{Differential forms}
