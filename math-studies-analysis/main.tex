@@ -4334,6 +4334,28 @@ result.
 \end{enumerate}
 \end{proof}
 
+\begin{thm}[Change of variable, injective form]
+Let $\emptyset \neq U \subset \R^n$ be open and $f \in C^1 
+(U; \R^m)$ with $n \leq m$. Let $Z = \{J_f = 0\}$ and suppose 
+that $\lambda (Z) = 0$. Suppose that $f : U \setminus Z 
+\to f(U \setminus Z)$ is injective. Let $E \subset U$ be 
+Lebesgue measurable and $g : f(E) \to Y$, where $Y 
+\in \{V, \bar{\R}\}$ with $V$ a Banach space. Then the 
+following holds: 
+\begin{enumerate}
+  \item $f(E) \in \hfk^n(\R^m)$.
+  \item $g$ is $\hcal^n$-measurable if and only if 
+  $g \circ f$ is $\lambda$-measurable. 
+  \item $g$ is $\hcal^n$-integrable on $f(E)$ if and only 
+  if $g \circ f J_f$ is $\lambda$-integrable on $E$. 
+  In either case, 
+  \[
+  \int_E g \circ f J_f \d \lambda = \int_{f(E)} 
+  g \d \hcal^n.
+  \]
+\end{enumerate}
+\end{thm}
+
 \begin{thm}[change of variable, local injective form]
 Let $\emptyset \neq U \subset \R^n$ be open, $f \in C^1
 (U ; \R^m)$ for $n \leq m$. Suppose $E \subset U$ is Lebesgue
