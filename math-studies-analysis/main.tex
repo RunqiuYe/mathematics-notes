@@ -153,7 +153,7 @@ $T \in \L(X;Y)$.  Prove that the following are equivalent.
   \item There exists $C \ge 0$ such that for each $y \in Y$
   there exists $x \in X$ such that $Tx=y$ and
 \begin{equation*}
- \norm{x}_X \le C \norm{y}_Y.
+ \norm{x}_X \leq C \norm{y}_Y.
 \end{equation*}
 \end{enumerate}
 HINT: Prove that  $(1) \implies (2) \implies (3)
@@ -319,9 +319,9 @@ and closed graphs}
 Let $X$ be a vector space that is complete when equipped
 with both of the norms $\norm{\cdot}_1$ and
 $\norm{\cdot}_2$.  Prove that if there exists a constant
-$C_1>0$ such that $\norm{x}_2 \le C_1 \norm{x}_1$ for all
+$C_1>0$ such that $\norm{x}_2 \leq C_1 \norm{x}_1$ for all
 $x \in X$, then there exists a constant $C_0 >0$ such that
-$C_0 \norm{x}_1 \le \norm{x}_2 \le C_1 \norm{x}_1$ for all
+$C_0 \norm{x}_1 \leq \norm{x}_2 \leq C_1 \norm{x}_1$ for all
 $x \in X$.
 \end{thm}
 
@@ -384,7 +384,7 @@ $X \times Y$ is endowed with any of the usual $p$-norms.
 \begin{enumerate}
  \item $T$ is injective and $\ran(T)$ is closed.
  \item $T : X \to \ran(T)$ is a linear homeomorphism.
- \item There exists $C\ge 0$ such that $\norm{x}_X \le C
+ \item There exists $C\ge 0$ such that $\norm{x}_X \leq C
  \norm{Tx}_Y$ for all $x \in X$.
 \end{enumerate}
 HINT: Prove that $(1) \implies (2) \implies (3) \implies
@@ -4786,7 +4786,7 @@ Then $M$ is a $C^k$ $(n-r)$-manifold.
 
 \begin{proof}
 Let $z \in M$. Then, $Df(z)$ is surjective, so we can apply
-the right inverse function theorem.  This provides
+the \textbf{right inverse function theorem}.  This provides
 open sets $W \subset \R^r$ and $V \subset \R^{n-r}$, and
 a $C^k$ diffeomorphism
 $F : W \times V \to F(W \times V) \subset U$, such that
@@ -4893,7 +4893,7 @@ Let $M \in \R^n$, $z \in M$, then the following are equivalent:
 say $(U, V, \phi)$.
 
 \item There exists an open $W \in \R^n$ and $C^k$ diffeomorphism
-$F : W \to F(W) \in \R^n$ such that
+$F : W \to F(W) \subset \R^n$ such that
 \[
 F(M \cap W) = F(W) \cap \{x \in \R^n : x_l = 0 \text{ for
 $m + 1 \leq k \leq n$}\}.
@@ -4903,23 +4903,138 @@ $\phi^{-1} = (F_1, \dots, F_n)$.
 \end{enumerate}
 \end{thm}
 
-This is in fact the flattening map we encounted in HW. \TODO
+This is in fact the \textbf{flattening map} we encounted in the 
+differential calculus section, and the proof for the theorem 
+follows immediately.
 
-Why is this important? There are two reasons.
+Aside from flattening maps, we have another formulation 
+for manifolds and local coordinates.
+\begin{thm}
+Let $1 \leq m \leq n-1$ and $1 \leq k \in \N \cup \{\infty\}$.
+Suppose that $M \subseteq \R^n$ and $z \in M$. Then 
+the following are equivalent.
+\begin{enumerate}
+\item $M$ admits local $C^k$ $m$-coordinates at $z$.
+\item $M$ is the (permuted) graph of a $C^k$ function near
+$z$, i.e. there exist
+\begin{enumerate}
+\item a permutation matrix $P \in \R^{n \times n}$,
+\item open sets $\varnothing \neq V \subseteq \R^m$ and
+$U \subseteq \R^n$ with $z \in U$,
+\item a $C^k$ function $f : V \to \R^{n-m}$,
+\end{enumerate}
+such that $U \cap M = P \Gamma(f)$, where recall that
+\begin{equation*}
+\Gamma(f) = \{(x,f(x)) : x \in V\} \subseteq V \times
+\R^{n-m} \subseteq \R^n
+\end{equation*}
+is the graph of $f$.
+\end{enumerate}
+\end{thm}
+
+Note that this means we have three distinct but closely
+related ways of thinking about manifolds locally:
+(1) as being parameterized by the coordinate maps;
+(2) as the level sets of the flattening maps;
+(3) as the permuted graph of some function.
+
+\begin{proof}
+(1) $\implies$ (2). Suppose $M$ admits local 
+$C^k$ coordinates $(U, V, \phi)$ at $z$. Then there exists 
+open set $W \in \R^n$ with $z \in W$ and a flattening map 
+$F : W \to \R^n$ such that $F$ is a $C^k$ diffeomorphism 
+onto its image and 
+\[
+F(W \cap M) = F(W) \cap \{x \in \R^n : \text{$x_l = 0$ 
+for $m + 1 \leq l \leq n$}\}.
+\]
+It follows that 
+\[
+W \cap M = \{x \in W: \text{$F_l(x) = 0$ for 
+$m + 1 \leq l \leq n$}\} \subset \R^n.
+\]
+
+Let $\tilde{F} : \R^n \to \R^{n - m}$ 
+via $\tilde{F} = (F_{m+1}, \dots, F_n)$.
+Since $F$ is a diffeomorphism, $DF(z)$ is an isomophism. 
+In particular,
+\[
+D \tilde{F} = 
+\begin{bmatrix}
+  \partial_1 F_{m+1} & \partial_2 F_{m+1} & \cdots & \partial_n F_{m+1} \\
+  \partial_1 F_{m+2} & \partial_2 F_{m+2} & \cdots & \partial_n F_{m+2} \\
+  \vdots & \vdots & \ddots & \vdots \\
+  \partial_1 F_n & \partial_2 F_n & \cdots & \partial_n F_n
+\end{bmatrix}
+\]
+evaluated at $z$ 
+contains a invertible $(n - m) \times (n - m)$ submatrix.
+First assume now the bottom-right $(n - m) \times (n - m)$ 
+submatrix of $D \tilde{F} (z)$ is invertible. 
+Note that $\R^m \times \R^{n - m} \simeq \R^n$ so $\tilde{F}$
+can be treated as a function from $\R^m \times \R^{n - m}$
+to $\R^n$. 
+By our assumption, $D_2 \tilde{F}$ is invertible, where 
+$D_2$ is taking the partial derivative with respect to the 
+$\R^{n - m}$ dimension. Let $\pi_1 : \R^n \to \R^m$ and 
+$\pi_2 : \R^n \to \R^{n-m}$ denote the 
+projection onto the first $m$ components and the last 
+$n - m$ components respectively. 
+Then the implicit function theorem 
+applies, and gives open sets $V \subset \R^m$, $S \in \R^{m - n}$ 
+with $\pi_1 z \in V$ and 
+$\pi_2 z \in S$ and a $C^k$ function $f : V \to \R^{n - m}$ 
+such that $U = V \times S \subset W$, 
+and $\tilde{F}(x, y) = 0$ if and only if 
+$y = f(x)$ for all $(x, y) \in V \times S$. 
+It follows that $U$ is open, and $U \cap M = \Gamma(f)$,
+as desired. 
+
+In the general case, $D \tilde{F}$ still need to contain 
+a invertible $(n - m) \times (n - m)$ submatrix. Apply 
+the same argument but with the $\R^{n - m}$ dimension align
+with the invertible submatrix. Then, we know there exists 
+a permutation matrix $P \in \R^{n \times n}$ such that 
+$U \cap M = P \Gamma(f)$, as desired.
+
+(2) $\implies$ (1). Suppose the assumption in item 2 holds
+and let $z \in M$. By assumption there exists an 
+open set $U \subset \R^n$ with $z \in U$ and $\emptyset 
+\neq V \subset \R^m$, and a $C^k$ function $f : V \to \R^{n - m}$
+and a permutation matrix $P \in \R^{n \times n}$ such that 
+$U \cap M = P \Gamma (f)$. Consider now the function 
+$\phi: V \to \R^n$ by $\phi(x) = P (x, f(x))$. It is 
+clear that $\phi$ is $C^k$ and $\phi(V) = P \Gamma(f)
+= U \cap M$. Moreover, we have 
+\[
+D \phi(x) (h) = P (h, Df(x) h).
+\]
+Note that $P$ is a permutation matrix so the $h$ term
+guarantees that $D \phi(x)$ is at least rank $m$. However,
+$V \subset \R^m$ so $D \phi(x)$ is rank $m$ for all 
+$x \in V$. This shows that $(U, V, \phi)$ is a $C^k$
+$m$-coordinate chart at $z$. Since $z$ is arbitrary, 
+$M$ admits a local 
+$C^k$ $m$-coordinate at $z$.
+\end{proof}
+
+Why are these formulations important? There are two reasons.
 \begin{enumerate}
 \item This unifies the perspective on $m$-manifolds. We saw
+already that 
 \[
 M = \{x : \text{$f(x) = y$ and $Df(x)$ had full rank}\}.
 \]
-is a manifold. Locally, this is the only example we need.
+is a manifold. The flattening map formulation tells us 
+that this is the only example we need locally.
 That is, all manifolds locally are locally a level set of
 some functions.
 
-\item This theorem is very useful for certain technical
-points...
+\item They are useful for certain technical points, for 
+example the theorem below that tells us about the connection 
+between different local coordinate charts around the same 
+point in the manifold.
 \end{enumerate}
-
-\TODO: add picture for the next theorem
 
 \begin{thm}
 Suppose $(U_0, V_0, \phi_0)$ and $(U_1, V_1, \phi_1)$
@@ -5067,31 +5182,32 @@ T_M O(n) = M \R^{n \times n}_{\text{asym}}.
 
 \subsubsection{Mappings between manifolds}
 
-\TODO: add picture
-
 \begin{lemma}
 Suppose $M \subset \R^{n_1}$ and $N \subset \R^{n_2}$ are
 $C^k$ $m_1$-manifold and $m_2$-manifold respectively.
 Suppose also that $f : M \to N$.
-Let $x$ be such that $\phi_1(x) = z \in U_1 \cap U_2 \cap M$
-and $f(z) \in \tilde{U_1} \cap \tilde{U_2} \cap N$.
+Let $x$ be such that $\phi_1(x) = z \in U_0 \cap U_1 \cap M$
+and $f(z) \in \tilde{U_0} \cap \tilde{U_1} \cap N$.
 Then the following holds:
 \begin{enumerate}
-\item $\psi_1^{-1} \circ f \circ \phi_1$ is differentiable
-at $x$ if and only if $\psi_2^{-1} \circ f \circ \phi_2$
-is differentiable at $\zeta(x)$.
-The same holds when differentiable is replaced with
-$C^j$ for $1 \leq j \leq k$.
+\item $\psi_0^{-1} \circ f \circ \phi_0$ is differentiable
+at $x$ if and only if $\psi_1^{-1} \circ f \circ \phi_1$
+is differentiable at $\zeta(x) = \phi_1^{-1} \circ 
+\phi_0^{-1} (x)$. For $1 \leq j \leq k$, 
+$\psi_0^{-1} \circ f \circ \phi_0$ is $C^j$
+at $x$ if and only if $\psi_1^{-1} \circ f \circ \phi_1$
+is $C^j$ at $\zeta(x) = \phi_1^{-1} \circ 
+\phi_0^{-1} (x)$.
 
 \item Given $v \in T_z M = \ran D \phi_i (\phi_i^{-1}(z))$,
 there exists a unique $w \in T_{f(z)} N$ such that if
-for $i = 1, 2$ we have
+for $i = 0, 1$ we have
 $v = D \phi_i (\phi_i^{-1}) u_i$, then
 \[
 w = D \psi_i (\psi_i^{-1} (f(z)))
 D [\psi_i^{-1} \circ f \circ \phi_i] (\phi_i^{-1}(z)) u_i
 \]
-for $i = 1, 2$.
+for $i = 0, 1$.
 \end{enumerate}
 \end{lemma}
 
@@ -5117,7 +5233,10 @@ if $\psi^{-1} \circ f \circ \phi$ is $C^j$.
 \end{enumerate}
 \end{defi}
 
-\begin{thm}
+The previous lemma ensures that these concepts are 
+well-defined.
+
+\begin{thm}[Chain rule]
 Suppose $M_1$, $M_2$, $M_3$ are nonempty $C^k$ manifolds.
 Suppose $f \in C^k(M_1; M_2)$ and $g \in C^k(M_2; M_3)$.
 Then $g \circ f \in C^k (M_1; M_3)$ and for each $z \in M_1$,
