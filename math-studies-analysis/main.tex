@@ -870,7 +870,7 @@ To show (3), note that we have
 This shows (3), completing the proof.
 \end{proof}
 
-\section{Differential Calculus}
+\section{Differential calculus}
 
 \subsection{Inverse and implicit function theorem}
 
@@ -2654,7 +2654,7 @@ $\mu$-measurablility of Banach-valued maps.
   \end{enumerate}
 \end{prop}
 
-\subsubsection{Integration of $\bar{\R}$-valued functions}
+\subsubsection{Integration of real-valued functions}
 
 Note that if $(X, \mf, \mu)$ is a measure space and
 $\phi \in S(X; [0, \infty])$, then
@@ -3775,7 +3775,7 @@ $M_\alpha$, $N^\alpha, P_\alpha^\alpha \in \F^{k \times k}$
 via
 \[
 (M_\alpha)_{i, j} = M_{\alpha_i, j}, \quad
-(N_\alpha)_{i, j} = N_{i, \alpha_j}, \quad
+(N^\alpha)_{i, j} = N_{i, \alpha_j}, \quad
 (P_\alpha^\alpha)_{i, j} = P_{\alpha_i, \alpha_j}.
 \]
 \end{enumerate}
@@ -4001,8 +4001,46 @@ measurable, then $\ncal_f(\cdot, E) : \R^m \to [0, \infty]$
 is $\hfk^n(\R^m)$ measurable.
 \end{thm}
 
+HINT: Write $\R^n = \bigcup_{j=0}^\infty 
+Q_{j,k}^\sharp$ as a disjoint union, where 
+$\{Q_{j,k}\}_{j=0}^\infty$ denotes the dyadic cubes of 
+sidelength $2^{-k}$, and then study the maps $N_k : \R^m 
+\to [0,\infty]$ given by 
+\begin{equation*}
+N_k = \sum_{j=0}^\infty \chi_{f(E \cap Q_{j,k}^\sharp)}.
+\end{equation*}
+
 \begin{proof}
-Homework.
+Following the hint, for each $k \in \N$, write 
+$\R^n = \cupinfj Q_{j, k}^\sharp$
+as a disjoint union of dyadic cubes of sidelength $2^{-k}$.
+Claim that for each $y \in \R^m$, 
+\[
+\ncal_f (y, E) = \lim_{k \to \infty} N_k(y)
+= \lim_{k \to \infty} \chi_{f(E \cap Q_{j, k}^\sharp)}(y).
+\]
+Indeed, if $\ncal_f(y, E) < \infty$, then there exists 
+$K \in \N$ large enough such that the points are in 
+different cubes for all $k \in K$. On the other hand, 
+if $\ncal_f(y, E) = \infty$, then for each $n \in \N$, 
+then the same reasoning tells us that 
+there exists $K$ large enough such that $N_K \geq n$. 
+This shows that $\lim_{k \to \infty} N_k(y) = \infty$.
+
+Now since $N_k \to \ncal_f(\cdot, E)$ pointwise, it suffices 
+to show that $N_k$ is $\hfk^n(\R^m)$ measurable 
+for each $k \in \N$. Note that $F \in \fs(\R^n)$, so 
+$F$ is $\sigma$-compact. Also, both $E$ 
+and $Q_{j, k}^\sharp$ is Lebesgue measurable, so 
+$E \cap Q_{j, k}^\sharp$ is Lebesgue measurable. 
+This means that $E \cap Q_{j, k}^\sharp$ is also 
+$\hfk^n(\R^n)$ measurable. Since $f$ is locally Lipschitz, 
+$f(E \cap Q_{j, k}^\sharp)$ is $\hfk^n(\R^m)$ measurable. It
+follows that the characteristic function 
+$\chi_{f(E \cap Q_{j, k}^\sharp)}$ is $\hfk^n 
+(\R^m)$ measurable for each $j, k \in \N$. Therefore, 
+$N_k = \suminfj \chi_{f(E \cap Q_{j, k}^\sharp)}$ is 
+$\hfk^n(\R^m)$ measurable, as desired.
 \end{proof}
 
 \begin{lemma}
@@ -4107,9 +4145,9 @@ It follows that
   &= \det (Df)^T Df + \epsilon^{2n}
   + \sum_{j=1}^{n-1} \epsilon^{2j} \sum_{\alpha \in \acal(n, n-j)}
   \det((Df)^T Df)_\alpha^\alpha \\
-  &\leq J_f^2 + \epsilon^2 \left( 1 +
+  &\leq J_f^2 + \epsilon^2 \left[ 1 +
   \sum_{j=1}^{n-1} \sum_{\alpha \in \acal(n, n-j)}
-  \det((Df)^T Df)_\alpha^\alpha \right).
+  \det((Df)^T Df)_\alpha^\alpha \right].
 \end{aligned}
 \]
 Therefore, for $x \in Q_k$, we have $J_{f_\epsilon}^2 (x)
@@ -4325,7 +4363,8 @@ Apply the previous theorem to see that
 \int_{E^\circ} g \circ f J_f \d \lambda
 = \int_{f(E^\circ)} g \d \hcal^n.
 \]
-However,
+However, $f$ being $C^1$ implies that it is locally 
+Lipschitz, so $\hcal^n (\dd E \cap E) = 0$. Therefore,
 \[
 \int_{\partial E \cap E} g \circ f J_f \d \lambda
 = 0 = \int_{f(\partial E \cap E)} g \d \hcal^n.
@@ -5143,8 +5182,12 @@ can be written as
 \]
 \end{enumerate}
 
+\TODO: add content for differential form
+
 \subsection{Stokes-Cartan theorem and fundamental theorems
-of vector analysis}
+of vector calculus}
+
+\subsubsection{Stokes-Cartan theorem}
 
 \begin{thm}[Stokes-Cartan theorem with boundary]
 Suppose that $M \subset \R^n$ is an oriented $C^2$ manifold
@@ -5385,5 +5428,13 @@ Then,
 \int_M d \omega = 0.
 \]
 \end{thm}
+
+\subsubsection{Fundamental theorems of vector analysis}
+
+
+
+
+
+
 
 \end{document}
