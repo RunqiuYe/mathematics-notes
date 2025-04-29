@@ -23,7 +23,7 @@
 Let $X$ be a metric space.
 \begin{enumerate}
  \item We say that $E \subset X$ is nowhere dense if
- $(\bar{E})^\circ = \varnothing$.
+ $(\bar{E})^\circ = \emptyset$.
  \item We say that $E \subset X$ is meager in $X$ if
 \begin{equation*}
  E = \bigcup_{\alpha \in A} E_\alpha,
@@ -145,7 +145,7 @@ $T \in \L(X;Y)$.  Prove that the following are equivalent.
  \overline{T(B_X(0,1))}$.
 
  \item For every $\epsilon >0$ there exists $\delta >0$
- such that $B_Y(0,\delta) \subset T(B_X(0,\ep))$.
+ such that $B_Y(0,\delta) \subset T(B_X(0,\epsilon))$.
 
  \item $T$ is an open map: if $U\subset X$ is open, then
  $T(U) \subset Y$ is open.
@@ -479,7 +479,7 @@ bounded linear maps are open.
 
 \item Suppose $T \in \L(X; Y)$ is injective with closed range.
 Then, closed range theorem gives $C > 0$ such that
-$\norm{x} \leq C \norm{T x}$ for all $x \in X$. Now supose
+$\norm{x} \leq C \norm{T x}$ for all $x \in X$. Now suppose
 $S \in \L(X; Y)$ is such that $\norm{T - S} < (2C)^{-1}$.
 Claim that $S$ is also injective with closed range. Indeed,
 \[
@@ -2232,7 +2232,7 @@ space or $\bar{\R}$. Let $\psi \in S(X; Y)$.
   the canonical representation is finite if and only if
   $\mu(\spt(\psi)) < \infty$ where
   $\spt(\psi) = \left\{ x \in X : \psi(x) \neq 0 \right\}$
-  is the support of $\psi$.
+  is the set-theoretic support of $\psi$.
 \end{enumerate}
 
 \end{defi}
@@ -4923,7 +4923,7 @@ the following are equivalent.
 $z$, i.e. there exist
 \begin{enumerate}
 \item a permutation matrix $P \in \R^{n \times n}$,
-\item open sets $\varnothing \neq V \subseteq \R^m$ and
+\item open sets $\emptyset \neq V \subseteq \R^m$ and
 $U \subseteq \R^n$ with $z \in U$,
 \item a $C^k$ function $f : V \to \R^{n-m}$,
 \end{enumerate}
@@ -5379,7 +5379,7 @@ Recall the definition and properties
 of antisymmetric multilinear maps:
 
 \begin{defi}
-Let $k \in \N$. Let $V$, $W$ be vector spaces over $\F$.
+Let $k \in \N^+$. Let $V$, $W$ be vector spaces over $\F$.
 \begin{enumerate}
 \item $T \in L^k(V, W)$ is said to be \textbf{symmetric}
 if for every $v_1 , \dots, v_k \in V$ and $P \in S_k$, we
@@ -5396,7 +5396,7 @@ T(v_{P(1)}, \dots, v_{P(K)}) = \sgn (P) T(v_1, \dots, v_k).
 \end{defi}
 
 \begin{thm}
-Let $k \in \N$ and $V$, $W$ be vector spaces over $\F$. 
+Let $k \in \N^+$ and $V$, $W$ be vector spaces over $\F$. 
 Suppose $T \in L^k(V, W)$. Then following are equivalent:
 \begin{enumerate}
 \item $T$ is antisymmetric. 
@@ -5605,7 +5605,9 @@ $\hcal^m$-integrable on $M$, in which case we define
 Let $M \subset \R^n$ be a $C^k$ $m$-manifold with orientation 
 $\ocal$. Let $\omega \in C^0(M ; \Lambda^m(\R^n))$ and 
 suppose $\supp(\omega) \cap M \subset U \cap M$
-for some $(U, V, \phi) \in \ocal$. Then $\omega$ is 
+for some $(U, V, \phi) \in \ocal$, where 
+$\supp(\omega) = \bar{\spt(\omega)}$ is the support of 
+$\omega$. Then $\omega$ is 
 $M$-integrable if and only if $\phi^* \omega$ is $V$-integrable,
 and 
 \[
@@ -5646,8 +5648,40 @@ Therefore,
 
 \subsubsection{Parition of unity}
 
-\begin{thm}[smooth parition of unity]
+\begin{defi}
+Suppose $U$ is an open set in a normed vector 
+space $V$, we write 
+\[
+C_c^\infty (U; V) = \{f \in C^\infty (U; V): 
+\text{$\supp(f)$ is compact}\}.
+\]
+\end{defi}
 
+\begin{thm}[smooth partition of unity]
+Let $\emptyset \neq U \subset \R^n$ be open and $A \neq 
+\emptyset$ a set. Suppose $\{U_\alpha\}_{\alpha \in A}$
+is an open cover of $U$. Then there exists 
+$\seqinfk{\psi_k} \subset C_c^\infty (\R^n)$ such that 
+the following holds: 
+\begin{enumerate}
+\item $0 \leq \psi_k \leq 1$ for all $k \in \N$. 
+
+\item For each $k \in \N$ there exists $\alpha_k \in A$
+such that $\supp (\psi_k) \subset U_{\alpha_k}$.
+
+\item The sequence $\seqinfk{\psi_k}$ is locally finite: 
+for each compact set $K \subset U$, the set 
+$\{k \in \N: \supp(\psi_k) \cap K \neq \emptyset\}$
+is finite.
+
+\item We have that $\suminfk \psi_k = 1$
+on $U$, where the convergence is uniform on compact sets, as
+the sum is finite in a neighborhood of each point in $U$.
+
+\item If $K \subset U$ is compact, then there exists $N \in \N$
+and an open set $K \subset V \subset U$ such that 
+$\sumk^N \psi_k = 1$ on $V$.
+\end{enumerate}
 \end{thm}
 
 \subsubsection{Stokes-Cartan theorem}
@@ -5894,10 +5928,165 @@ Then,
 
 \subsubsection{Fundamental theorems of vector analysis}
 
+We begin with integrals along curves in $\R^n$. Our first
+result establishes a connection between the integral of the 
+tangential component of a vector field and the integral of 
+an associated one-form.
 
+\begin{prop}
+Let $M \subset \R^n$ be a $C^k$ $1$-manifold equipped with 
+orientation $\ocal = \{(U_\alpha, V_\alpha, \phi_\alpha)\}_\alpha$.
+Let $\tau$ be the associated unit tangent vector field given by 
+\[
+\tau(z) = \frac{\phi_\alpha'(\phi_\alpha^{-1}(z))}
+{\abs{\phi_\alpha'(\phi_\alpha^{-1}(z))}}.
+\] 
+Suppose $v \in C^0(M; \R^n)$ and $\omega \in C^0 (M; \Lambda^1 
+(\R^n))$ are related via 
+\[
+\omega(z) = \sum_{i=1}^n v_i(z) e^i.
+\]
+Further suppose that $\omega$ is $M$-integrable. 
+Then $v \cdot \tau$ is $\hcal^1$-integrable on $M$, 
+and we have that 
+\[
+\int_M \omega = \int_M v \cdot \tau \d \hcal^1.
+\]
+\end{prop}
 
+\begin{thm}[Fundamental theorem of line integrals]
+Let $M \subset \R^n$ be an orientated $C^2$ $1$-manifold
+with boundary. Let $\tau$ denote the unit tangent
+vector field on $M$ induced by orientation. Suppose also 
+that $f \in C^1 (W; \R)$ where $W \subset \R^n$ is an open set 
+such that $M \subset W$. Further suppose one of the following 
+holds: 
+\begin{enumerate}
+\item $\supp(f) \cap M$ is compact.
+\item $M$ is a closed subset of $\R^n$, $f$ is $\hcal^0$-integrable
+on $\dd M$, and both $f$ and $\nabla f$ are $\hcal^1$-integrable
+on $M^\circ$.
+\end{enumerate}
+Then we have 
+\[
+\int_{M^\circ} \nabla f \cdot \tau \d \hcal^1 
+= \sum_{z \in \dd M} \sigma(z) f(z),
+\]
+where $\sigma : \dd M \to \{\pm 1\}$ is the induced
+orientation on $\dd M$.
+\end{thm}
 
+\begin{proof}
+By the previous proposition and Stokes-Cartan, we have 
+\[
+\int_{M^\circ} \nabla f \cdot \tau \d \hcal^1 
+= \int_{M^\circ} d f
+= \int_{\dd M} f
+= \sum_{z \in \dd M} \sigma(z) f(z).
+\]
+\end{proof}
 
+Next we discuss the divergence theorem. 
 
+\begin{prop}
+Suppose that $M \subset \R^n$ is an orientated $C^k$
+$(n-1)$-manifold. Let $\nu$ be the $C^{k-1}$ unit normal 
+vector field on $M$. Suppose that $v \in C^0(M ; \R^n)$ and 
+$\omega \in C^0(M; \Lambda^{n-1}(\R^n))$ are related via 
+\[
+\omega(z) = \sum_{i=1}^n (-1)^{i-1} v_i(z) \hat{e}^i.
+\]
+Further suppose that $\omega$ is $M$-integrable. Then 
+$v \cdot \nu$ is $\hcal^{n-1}$ integrable and 
+\[
+\int_M \omega = \int_M v \cdot \nu \d \hcal^{n-1}.
+\]
+\end{prop}
+
+\begin{thm}[divergence theorem]
+Suppose that $n \geq 2$ and $M \subset \R^n$ is a $C^2$ 
+$n$-manifold with boundary. Let $\nu$ be the outward pointing 
+unit normal vector field on $\dd M$. Suppose that 
+$v \in C^1(U ; \R^n)$ for an open set $U$ such that 
+$\bar{M} \subset U$ and one of the following holds: 
+\begin{enumerate}
+\item $\supp(v) \cap M$ is compact.
+\item $M$ is a closed subset of $\R^n$, $v$ is 
+$\hcal^{n-1}$-integrable on $\dd M$ and $\diverge v$ and $v$ 
+are $\hcal^n$-integrable on $M^\circ$.
+\end{enumerate}
+Then, 
+\[
+\int_{M^\circ} \diverge v \d \lambda = \int_{\dd M} 
+v \cdot \nu \d \hcal^{n-1}.
+\]
+\end{thm}
+
+\begin{proof}
+Equip $M$ with the natural orientation and note that a previous 
+proposition tells us that $\nu = n^{\text{out}}$. Define 
+$\omega \in C^1 (M ; \Lambda^{n-1} (\R^n))$ by 
+\[
+\omega(z) = \sum_{i=1}^n (-1)^{i-1} v_i(z) \hat{e}^i.
+\]
+Then we know 
+\[
+d \omega = (\diverge v) e^1 \wedge \dots \wedge e^n
+\]
+and thus 
+\[
+\int_{M^\circ} d \omega = \int_{M^\circ} \diverge 
+v \d \lambda.
+\]
+Now the previous proposition and the previous proposition
+implies that 
+\[
+\int_{M^\circ} d \omega = \int_{\dd M} \omega
+= \int_{\dd M} v \cdot \nu \d \hcal^{n-1}.
+\]
+\end{proof}
+
+We conclude our discussion of the fundamental theorems of 
+vector analysis with Stokes' theorem.
+
+\begin{thm}[Stokes' theorem in 3D]
+Suppose that $M \subset \R^3$ is an orientated $C^2$ 
+$2$-manifold with boundary. Let $\nu$ be the unit normal 
+$C^1$ vector field on $M$, and let $\tau$ be the $C^1$
+unit tangent vector field on $\dd M$. Suppose that 
+$v \in C^1(U; \R^3)$ for an open set $U$ such that $\bar{M}
+\subset U$ and one of the following holds: 
+\begin{enumerate}
+\item $\supp(v) \cap M$ is compact.
+\item $M$ is a closed subset of $\R^n$, $v$ is $\hcal^1$-integrable
+on $\dd M$ and $v$ and $\curl v$ are $\hcal^2$-integrable
+on $M^\circ$.
+\end{enumerate} 
+Then, 
+\[
+\int_{M^\circ} \curl v \cdot \nu = \int_{\dd M} v \cdot \tau.
+\]
+\end{thm}
+
+\begin{proof}
+Let $\omega \in C^1(M; \Lambda^1(\R^n))$ be defined by 
+$\omega(z) = \sum_{i=1}^3 v_i e^i$. Then, 
+\[
+d \omega = (\curl v)_1 \; e^2 \wedge e^3 
+- (\curl v)_2 \; e^1 \wedge e^3 
++ (\curl v)_3 \; e^1 \wedge e^2.
+\]
+Then previous proposition tells us
+\[
+\int_{M^\circ} d \omega 
+= \int_{M^\circ} (\curl v) \cdot \nu \d \hcal^2.
+\]
+On the other hand, Stokes-Cartan and previous proposition
+implies that 
+\[
+\int_{M^\circ} d \omega = \int_{\dd M} \omega
+= \int_{\dd M} v \cdot \tau d \hcal^1.
+\]
+\end{proof}
 
 \end{document}
