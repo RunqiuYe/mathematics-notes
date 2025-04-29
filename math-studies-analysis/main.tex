@@ -872,6 +872,9 @@ This shows (3), completing the proof.
 
 \subsection{Inverse and implicit function theorem}
 
+\subsubsection{Local injectivity and surjectivity 
+theorem}
+
 \begin{thm}[Local injectivity theorem]
 Let $X$ and $Y$ be Banach spaces, $z \in U \subset X$
 with $U$ open. Let $f: U \to Y$ differentiable with
@@ -975,6 +978,8 @@ If $f$ is a $C^k$ diffeomorphism for all $k \geq 1$,
 say $f$ is a smooth diffeomorphism.
 \end{defi}
 
+\subsubsection{Inverse function theorem}
+
 \begin{thm}[Inverse function theorem]
   Let $X$ and $Y$ be Banach spaces, $U \subset X$ open and
   $x_0 \in U$. Suppose $f: U \to Y$ differentiable,
@@ -1012,6 +1017,8 @@ say $f$ is a smooth diffeomorphism.
 \begin{proof}
   \TODO
 \end{proof}
+
+\subsubsection{Implicit function theorem}
 
 \begin{thm}[Implicit function theorem]
   Let $X$ and $Y$ be Banach spaces, $U \subset X \times Y$
@@ -1069,6 +1076,9 @@ are equivalent:
 \TODO
 \end{proof}
 
+\subsubsection{Left and right inverse function theorems and 
+flattening maps}
+
 \begin{thm}[left inverse function theorem]
 Let $X$ and $Y$ be Banach spaces. Suppose that $\emptyset \neq U
 \subset X$ is open and $f \in C^k(U; Y)$ for some $1 \leq k \leq
@@ -1119,10 +1129,9 @@ from the second and third item can be taken with $Y_0
 via $F^{-1} = G$ and $g = \pi_X \circ F$.
 \end{thm}
 
-\begin{figure}[h!]
+\begin{figure}[!ht]
   \centering
   \includegraphics[width=0.55\linewidth]{fig/left_inverse.pdf}
-  \caption{Depiction of the left inverse function theorem}
 \end{figure}
 
 \begin{proof}
@@ -1223,12 +1232,628 @@ from the second and third items can be taken with $X_0
 related via $F^{-1} = G$ and $g(y) = F(y, P x_0)$.
 \end{thm}
 
-\begin{figure}[h!]
+\begin{figure}[!ht]
   \centering
   \includegraphics[width=0.55\linewidth]{fig/right_inverse.pdf}
-  \caption{Depiction of the left inverse function theorem}
 \end{figure}
 
+\begin{proof}
+\TODO
+\end{proof}
+
+\begin{thm}[Constant rank theorem]
+Let $X$ and $Y$ be nontrivial Banach spaces, and suppose 
+that $X_0,X_1 \subset X$ and $Y_0,Y_1 \subset Y$ are 
+nontrivial closed subspaces such that $X = X_0 \oplus 
+X_1$ and $Y = Y_0 \oplus Y_1$.  Write $P_{X_i}$ and 
+$P_{Y_i}$ for the projectors onto $X_i$ and $Y_i$, 
+respectively, for $i=0,1$.  Let $U \subset X$ be 
+open and $x_0 \in U$.  Suppose that $f \in C^k(U;Y)$ 
+for $1 \le k\le \infty$ is such that $\ker Df(x_0) = 
+X_0$ and $\ran Df(x_0) = Y_0$, and write $y_0 = f(x_0)$.  
+Further suppose that $f$ satisfies the ``constant rank 
+condition'':
+\begin{equation*}
+Df(x) (X_1) = \ran Df(x) \text{ for all }x \in U. 
+\end{equation*}
+Then there exist open sets $x_0 \in \tilde{U} \subset U$ 
+and $y_0 \in S \subset Y$ such that $f(\tilde{U}) 
+\subset S$ and the following hold.
+\begin{enumerate} 
+\item There exist open sets $P_{Y_0} y_0 \in W \subset 
+Y_0$ and $P_{X_0} x_0 \in V \subset X_0$ and a $C^k$ 
+diffeomorphism $\Psi: W \times V \to \tilde{U}$ with 
+$\Psi(P_{Y_0} y_0, P_{X_0} x_0) = x_0$.
+
+\item There exists a $C^k$ diffeomorphism $\Phi : S \to 
+\Phi(S) \subset Y_0 \times Y_1$ with  
+and $\Phi(y_0) = (P_{Y_0} y_0, 0)$.
+
+\item We have that 
+\begin{equation*}
+\Phi \circ f \circ \Psi(w,v) = (w,0) \text{ for all } 
+(w, v) \in W \times V.
+\end{equation*}
+\end{enumerate}
+\end{thm}
+
+Prove the constant rank theorem by arguing as follows.
+
+NOTE: the final forms of the objects you're after won't 
+appear clearly until step 4. For instance, don't assume 
+that the $W$ from step 1 is the $W$ you're after; you 
+may need to shrink it.
+
+
+
+\begin{enumerate}
+\item Set $w_0 = P_{Y_0} y_0 \in Y_0$ and $v_0 = P_{X_0} 
+x_0 \in X_0$, and define the maps $f_i = P_{Y_i} \circ f$ 
+for $i=0,1$.  Prove that there exist open sets $x_0 \in 
+\tilde{U} \subset U$, $w_0  \in W \subset Y_0$, and 
+$v_0 \in V \subset X_0$ with $V$ connected, and a $C^k$ 
+diffeomorphism $\Psi : W \times V \to \Psi(W\times V) = 
+\tilde{U}$ such that $\Psi(w_0, v_0) = x_0$, 
+\begin{equation*} 
+f_0(\Psi(w,v)) = w \text{ for all }(w,v) \in W \times V,   
+\end{equation*}
+and 
+\begin{equation*} 
+D\Psi(w,v) \vert_{Y_0 \times \{0\}} \to X_1 \text{ is an 
+isomorphism for all } (w,v) \in W \times V.
+\end{equation*}
+
+\item Define $F : W \times V \to Y$ via $F = f \circ \Psi$. 
+Prove the following for all $(w,v) \in W \times V$.
+\begin{enumerate}
+\item $F(w,v) = w + \eta(w,v)$ for some $\eta \in C^k
+(W \times V ; Y_1)$.
+\item $\ran Df(\Psi(w,v)) = \ran DF(w,v) = DF(w,v)(Y_0 
+\times \{0\})$.
+\item The map  $T \in \L(Y ; Y_0 \times \{0\})$ defined 
+by $Th = (P_{Y_0} h, 0)$ is a left-inverse of the restriction 
+$DF(w,v) \vert_{Y_0 \times \{0\}}$.
+\item $DF(w,v) \vert_{Y_0 \times \{0\}}$ is injective 
+with closed and complemented range given by
+\[
+\ran DF(w,v) = \ran Df(\Psi(w,v)).
+\]
+\end{enumerate}
+
+\item Prove that  $DF(w,v) \circ T = I \text{ on } 
+DF(w,v)(Y_0 \times \{0\}) = \ran DF(w,v) \subset Y$  
+for $(w,v) \in W \times V$.  Use this to deduce that 
+$D_2 \eta(w,v) =0$ and hence that $D_2 F(w,v) =0$ for 
+$(w,v) \in W \times V$.  In turn, deduce that 
+\begin{equation*}
+F(w,v) = F(w,v_0) \text{ for all }(w,v) \in W \times V.
+\end{equation*}
+
+\item Define $G: W \to Y$ via $G(w) = F(w,v_0)$.  
+Apply the left inverse function theorem (HW1 P1) 
+to complete the proof.
+  
+  
+
+\end{enumerate}
+
+\begin{proof}
+{
+\newcommand{\py}{{P_{Y_0}}}
+\newcommand{\pyy}{{P_{Y_1}}}
+\newcommand{\px}{{P_{X_0}}}
+\newcommand{\pxx}{{P_{X_1}}}
+\begin{enumerate}
+\item Define a map $g: U \to Y_0 \times X_0$ by 
+\[
+g(x) = \left( P_{Y_0}(f(x)), P_{X_0}x \right).
+\]
+Then, the derivative of $g$ at $x \in U$ is 
+\[
+Dg(x) h = (P_{Y_0} \circ Df(x) (h), P_{X_0} h).
+\]
+Claim that $Dg(x_0)$ is an isomorphism. For surjectivity, 
+consider $(y, x) \in Y_0 \times X_0$. Since $\ran Df(x_0) = Y_0$,
+there is $v \in X$ such that $Df(x_0) (v) = y$. 
+Since $\ker Df(x_0) = X_0$ and $X_0 \oplus X_1 = X$, 
+we can assume WLOG 
+that $v \in X_1$. Now, let $h = v + x$. Then,
+\[
+\begin{aligned}
+Dg(x_0) h 
+= (\py \circ Df(x_0) (v) , \px x) 
+= (y, x).
+\end{aligned}
+\]
+Therefore, $Dg(x_0)$ is surjective. For injective, consider 
+$Dg(x_0) h = (0, 0)$ for some $h \in X$. It follows that 
+$\px h = 0$ and $Df(x_0) h = Df(x_0) (\pxx h) = 0$. 
+This implies $\pxx h \in X_1 \cap \ker Df(x_0) = X_1 \cap X_0$.
+Therefore, $h = 0$ and $Dg(x_0)$ is indeed an isomorphism.
+
+Now, the inverse function theorem gives bounded and open sets 
+$x_0 \in U' \subset U$ such that $g: U' \to 
+g(U')$ is a bi-Lipschitz homeomorphism, $Dg(x)$ an 
+isomorphism for all $x \in U'$, and $g^{-1}$ differentiable 
+on $g(U')$ with 
+\[
+Dg^{-1}(w, v) = [Dg(g^{-1}(w, v))]^{-1}.
+\]
+Further let $w_0 \in W \subset Y_0$ and 
+$v_0 \in V \subset X_0$ be small open balls such
+that $W \times V \subset g(U')$, 
+$\Psi: W \times V \to X$ be the inverse of $g$, and 
+$\tilde{U} = g(W \times V)$. 
+Now $x_0 \in \tilde{U}$ since $g(x_0) = (w_0, v_0)$,
+$v_0 \in V \subset X_0$ connected, and
+$\Psi : W \times V \to \tilde{U}$
+is a $C^k$ diffeomorphism.
+Additionally, for all $(w, v) \in W \times V \subset Y_0 \times X_0$,
+we have let $\Psi(w, v) = x$ for some $x \in \tilde{U}$. Then, we 
+know $\py \circ f(x) = w$. Therefore, 
+\[
+f_0(\Psi(w, v)) = w 
+\]
+for all $(w, v) \in W \times V$.
+
+To show $D \Psi(w, v) \vert_{Y_0 \times \left\{ 0 \right\}} \to X_1$
+is an isomorphism for all $(w,v) \in W \times V$, 
+note that $D\Psi(w,v)$ is already an 
+isomorphism and thus injective. Now for any $u \in X_1$, 
+we have 
+\[
+Dg(\Psi(w, v))u = (\py \circ Df(\Psi(w, v))(u), \px u).
+\]
+Note that $\px u = 0$ since $u \in X_1$ and 
+$\py \circ Df(\Psi(w, v))(u) \in Y_0$. 
+Also, $Dg(\Psi(w, v))$
+is an isomorphism, so 
+\[
+D\Psi(w, v) (\py \circ Df(\Psi(w, v))(u), 0) = u.
+\]
+This implies  
+that $D\Psi(w, v) (Y_0 \times \left\{ 0 \right\}) = X_1$.
+Therefore, $D \Psi(w, v) \vert_{Y_0 \times \left\{ 0 \right\}} \to X_1$
+is indeed an isomorphism for all $(w,v) \in W \times V$.
+
+\item \begin{enumerate}
+\item Define $\eta: W \times V \to Y_1$ by 
+\[
+\eta(w, v) = \pyy \circ f(\Psi(w, v)) = f_1 \circ \Psi(w, v).
+\]
+Then, $\eta \in C^k(W \times V ; Y_1)$ and 
+\[
+F(w, v) = f (\Psi(w, v)) = f_0 (\Psi (w, v)) 
++ f_1 (\Psi (w, v)) = w + \eta(w, v),
+\]
+as desired.
+
+\item First of all, it follows from the chain rule that 
+for all $(w,v) \in W \times V$,
+\[
+DF(w, v) = Df(\Psi(w, v)) D\Psi(w, v).
+\]
+Recall from part 1 that $D\Psi(w, v)$ is isomorphism, 
+so $\ran DF(w, v) = \ran Df(\Psi(w, v))$.
+Additionally, we have $Df(\Psi(w, v))(Y_0 \times \left\{ 0 \right\}) = X_1$
+and note that $Df(x)(X_1) = \ran Df(x)$ for all $x \in \tilde{U}$.
+Therefore,
+\[
+Df(\Psi(w, v)) D\Psi(w, v) (Y_0 \times \left\{ 0 \right\})
+= Df(\Psi(w, v))(X_1) = \ran Df(\Psi(w, v)).
+\]
+This implies that 
+\[
+\ran Df(\Psi(w, v)) = \ran DF(w, v) = DF(w, v) 
+(Y_0 \times \left\{ 0 \right\}),
+\]
+as desired.
+
+\item Let $y \in Y_0$. We want to show that 
+$T \circ DF(w, v) (y, 0) = (y, 0)$. Again, 
+note that 
+\[
+DF(w, v) = Df(\Psi(w, v)) D\Psi(w, v).
+\]
+Suppose $D \Psi(w, v)(y, 0) = h$. 
+As shown in part 1, we have 
+\[
+Dg(x) h = (\py \circ Df(x) (h), \px h).
+\]
+for all $x \in U$.
+It follows that 
+$\py \circ Df(\Psi(w, v)) h = y$ and $\px h = 0$. 
+Therefore, 
+\[
+\begin{aligned}
+  T \circ DF(w, v) (y, 0) 
+  = T \circ Df(\Psi(w, v)) h 
+  = (\py \circ Df(\Psi(w, v)) h, 0) = (y, 0).
+\end{aligned}
+\]
+This implies that $T \in \L(Y; Y_0 \times \left\{ 0 \right\})$
+defined by $Th = (\py h, 0)$ is a left inverse of $DF(w, v)$
+restricted on $Y_0 \times \left\{ 0 \right\}$.
+
+\item Since $DF(w, v) \vert_{Y_0 \times \left\{ 0 \right\}}$ 
+has a left inverse, $DF(w, v) \vert_{Y_0 \times \left\{ 0 \right\}}$
+is injective with its range closed and complemented. In addition,
+from part (b), we know that $\ran DF(w, v) = \ran Df(\Psi(w, v))$,
+as desired.
+
+\end{enumerate}
+
+\item Since $DF(w, v) \vert_{Y_0 \times \left\{ 0 \right\}}$
+is injective with closed and complemented range given by 
+\[
+\ran DF(w, v) = \ran Df(\Psi(w, v)),
+\]
+$DF(w,v) : 
+Y_0 \times \left\{ 0 \right\} \to \ran DF(w, v)$ 
+is an isomorphism.
+In particular, it is invertible. Since $T$ is the a left-inverse,
+$T$ must also be the right inverse. Therefore, 
+$DF(w, v) \circ T = I$ on $DF(w, v)(Y_0 \times \left\{ 0 \right\})
+= \ran DF(w, v) \subset Y$ for all $(w, v) \in W \times V$.
+
+Next we show $D_2 \eta (w, v) = 0$. Let $h \in X_0$ be 
+arbitrary. By the definition of $\eta$, we have 
+\[
+\begin{aligned}
+D_2 \eta (h) 
+&= \pyy \circ Df(\Psi(w, v)) D_2 \Psi(w, v) h \\
+&= \pyy \circ Df(\Psi(w, v)) D\Psi(0, h) \\
+&= \pyy \circ DF(w, v) (0, h).
+\end{aligned}
+\]
+Now, using the fact that $DF(w, v) \circ T = I$, we have 
+\[
+\begin{aligned}
+DF(w, v) (0, h) 
+&= DF(w, v) \circ T \circ DF(w, v) (0, h) \\ 
+&= DF(w, v) (\py \circ DF(w, v)(0, h), 0).
+\end{aligned}
+\]
+Claim that $\py \circ DF(w, v) (0, h) = 0$. Indeed, 
+let $D\Psi(w, v) (0, h)  = u$. Note that $D\Psi(w, v) 
+= [Dg(\Psi(w, v))]^{-1}$ and $Dg(x) k = (\py \circ Df(x) k, 
+\px k)$ for all $x \in U$ and $k \in X$. 
+It follows that $\py \circ Df(\Psi(w, v)) u = 0$.
+Therefore, 
+\[
+\py \circ DF(w, v) (0, h) = \py \circ Df(\Psi(w, v)) 
+D\Psi(w, v) (0, h) = \py \circ Df(\Psi(w, v)) u = 0.
+\]
+Hence, 
+\[
+D_2 \eta (h) = \pyy \circ DF(w, v) (0, h) 
+= \pyy \circ DF(w, v)(0, 0) 
+= 0.
+\]
+This implies that $D_2 \eta(w, v) = 0$, as desired.
+
+Now, by the equality in part 2(a), we have 
+\[
+D_2 F(w, v) = D_2 \eta(w, v) = 0.
+\]
+for all $(w, v) \in W \times V$.
+Now by the mean value theorem,
+\[
+\begin{aligned}
+\norm{F(w, v) - F(w, v_0)} 
+\leq \norm{v - v_0} \sup_{h \in V} \norm{D_2 F(w, h)} 
+= 0.
+\end{aligned}
+\]
+Therefore, $F(w, v) = F(w, v_0)$ for all $(w, v) 
+\in W \times V$.
+
+\item Define $G : W \to Y$ by $G(w) = F(w, v_0)$. Claim 
+that $DG(w_0) \in \L(Y_0; Y)$ is injective with 
+$\ran DG(w_0)$ closed and complemented. Indeed, 
+for any $Y_0 \in X$, we have 
+\[
+\begin{aligned}
+DG(w)h = D_1 F(w, v_0)h = DF(w, v_0)(h, 0).
+\end{aligned}
+\]
+Note that in part 2(d), we have shown that 
+$DF(w, v) \vert_{Y_0 \times \left\{ 0 \right\}}$
+is injective with closed and complemented range. 
+Therefore, $DG(w_0)$ is also injective with 
+closed and complemented range. In fact,
+\[
+\ran DG(w_0) = DF(w_0, v_0) (Y_0 \times \left\{ 0 \right\})
+= \ran Df(\Psi(w_0, v_0)) = \ran Df(x_0) = Y_0.
+\]
+Note that $Y_0 \oplus Y_1 = Y$.
+Now, by the left inverse function theorem, thre exists 
+open sets $w_0 \in \tilde{W} \subset W$, 
+$0 \in R \subset Y_1$, and 
+$S \subset Y$ and a map $\Phi \in C^k(S \to Y_0 \times Y_1)$
+such that $\Phi$ is a $C^k$ diffeomorphism from $S$
+to $\Phi(S) = \tilde{W} \times R \subset Y_0 \times Y_1$,
+$G(\tilde{W}) \subset S$, and 
+\[
+\Phi(G(w)) = (w, 0) 
+\]
+for all $w \in \tilde{W}$. In particular,
+\[
+\Phi(y_0) = \Phi(F(w_0, v_0)) = \Phi(G(w_0)) = (w_0, 0),
+\]
+and 
+\[
+\Phi \circ f \circ \Psi(w, v) = \Psi(F(w, v_0)) = 
+\Psi(G(w)) = (w, 0)
+\]
+for all $w \in \tilde{W}$. This completes the proof with 
+$\tilde{W}$ being the desired $W$ in the problem statement.
+\end{enumerate}  
+
+}
+\end{proof}
+
+Below is a naming sanity check for the constant rank theorem.
+
+\begin{thm}
+Let $X = \F^{n+r}$ and $Y = \F^{m+r}$ for $1\le m,n,r$.  
+Suppose that $U \subset X$ is open with $x_0 \in U$, 
+and $f \in C^k(U;Y)$ for $1 \le k \le \infty$.   
+Write  $\ker Df(x_0) = X_0$ and $\ran Df(x_0) = Y_0$.  
+In finite dimensions all subspaces are closed and 
+complemented, so we write $X = X_0 \oplus X_1$ and 
+$Y = Y_0 \oplus Y_1$.  Prove that the following are 
+equivalent.
+\begin{enumerate}
+ \item There exists an open set $x_0 \in \tilde{U} 
+ \subset U$ such that $\operatorname{rank} Df(x) = r$ 
+ for all $x \in \tilde{U}$.
+ \item We have that $\dim X_1 = \dim Y_0 = r$, 
+ and there exists an open set $x_0 \in \tilde{U} 
+ \subset U$ such that 
+\begin{equation*}
+ Df(x)(X_1) = \ran Df(x) \text{ for all }x \in \tilde{U}.
+\end{equation*}
+\end{enumerate}
+NOTE: this equivalence is where the constant rank 
+theorem gets its name.
+\end{thm}
+
+\begin{proof}
+{
+\newcommand{\py}{{P_{Y_0}}}
+\newcommand{\pyy}{{P_{Y_1}}}
+\newcommand{\px}{{P_{X_0}}}
+\newcommand{\pxx}{{P_{X_1}}}
+(1) $\implies$ (2). Suppose there exists an open set 
+$x_0 \in U' \subset U$ such that $\rank Df(x) = r$
+for all $x \in U'$. Note that $\ker Df(x_0) = X_0$, 
+$\ran Df(x_0) = Y_0$. 
+This implies that $\dim X_1 = \dim Y_0 = \rank Df(x_0) = r$.
+Additionally, 
+this implies that $Df(x_0)$ is injective with closed 
+range when restricted to $X_1$. Since the set of 
+injective maps with closed range is open and 
+$x_0 \in U'$ is open, we can find open set 
+$x_0 \in \tilde{U} \subset U'$
+so small that $Df(x)$ is injective with closed range 
+when restricted to $X_1$ for all $x \in \tilde{U}$. 
+It follows that for all $x \in \tilde{U}$, we have 
+\[
+\dim Df(x) (X_1) \geq \dim X_1 = r.
+\]
+However, note that 
+$\rank Df(x) = \dim \ran Df(x) = r$ 
+and $Df(x) (X_1) \subset \ran Df(x)$ for all $x \in \tilde{U}$.
+Therefore,
+\[
+Df(x) (X_1) = \ran Df(x)
+\] 
+for all $x \in \tilde{U}$.
+
+(2) $\implies$ (1).
+Suppose $\dim X_1 = \dim Y_0 = r$ and there exists an open 
+set $x_0 \in U' \subset U$ such that 
+\[
+Df(x)(X_1) = \ran Df(x)
+\]
+for all $x \in U'$.
+Let $y_0 = f(x_0)$.
+Then, by constant rank theorem in problem 4, 
+there exists open sets 
+$x_0 \in \tilde{U} \subset U'$, $\py y_0 \in W \subset Y_0$,
+and $\px x_0 \in V \subset X_0$, and a $C^k$ diffeomorphism 
+$\Psi: W \times V \to \tilde{U}$. 
+Additionally, let $F : W \times V \to Y$ by 
+$F = f \circ \Psi$. Then for all $x \in \tilde{U}$,
+we know $x = \Psi(w, v)$ for some $(w,v) \in W \times V$.
+Also, $\ran Df(x) = DF(w, v)(Y_0 \times \left\{ 0 \right\})$
+with $DF(w, v) \vert_{Y_0 \times \left\{ 0 \right\}}$ an 
+isomorphism from $Y_0 \times \left\{ 0 \right\}$ to 
+$DF(w, v) (Y_0 \times \left\{ 0 \right\})$. 
+It follows that 
+\[
+\rank Df(x) = \dim \ran Df(x) 
+= \dim DF(w, v) \vert_{Y \times \left\{ 0 \right\}}
+= \dim Y_0 = r.
+\]
+for all $x \in \tilde{U}$. This completes the proof.
+}
+
+\end{proof}
+
+We define now a nonlinear version of linear dependence.
+\begin{defi}
+Assume that $m,n \in \N \setminus \{0\}$.  Let 
+$\emptyset \neq U \subset \R^n$, and suppose that 
+$f_i: U \to \R$ for $i=1,\dotsc,m$.  Write 
+$f: U \to \R^m$ via $f = (f_1,\dotsc,f_m)$.  
+We say that $\{f_1,\dotsc,f_m\}$ are functionally 
+dependent in $U$ if there exists an open set 
+$V \subset \R^m$ with $f(U) \subset V$ and 
+a function $g \in C^1(V;\R)$ such that 
+\begin{equation*}
+ g(f_1(x),\dotsc,f_m(x)) =0 \text{ for all } x\in U
+\end{equation*}
+and $\nabla g(y) \neq 0$ for all $y \in V$.
+\end{defi}
+
+\begin{thm}
+Let $\emptyset \neq U \subset \R^n$ and $f \in 
+C^1(U;\R^m)$.
+
+\begin{enumerate}
+
+\item Prove that if $\{f_1,\dotsc,f_m\}$ are functionally 
+dependent on $U$, then for each $x_0 \in U$ there exists 
+an open set $V \subset U$ with $x_0 \in V$,  a function  
+$h \in C^1(W;\R)$, where $W\subset \R^{m-1}$ is an open 
+set, and an index $i \in\{1,\dotsc,m\}$ such that
+\begin{equation*}
+f_i(x) = h(f_1(x),\dotsc,f_{i-1}(x),f_{i+1}(x),
+\dotsc,f_m(x)) \text{ for all }x \in V.
+\end{equation*}
+In other words, at least one of the functions can be 
+written in terms of the other functions.
+
+
+
+\item Prove that if  $m \le n$ and $\{f_1,\dotsc,f_m\}$ 
+are functionally dependent on $U$, then 
+\begin{equation*}
+\text{rank}(Df(x)) \le m-1 \text{ for all }x \in U.
+\end{equation*}
+
+
+
+\item Suppose that $1 \le k < \min\{m,n\}$ and that $Df$ 
+is of constant rank $k$ on $U$.  Prove that for each 
+$x_0\in U$ there exists an open set $Z \subset U$ 
+such that $x_0 \in Z$ and  $\{f_1,\dotsc,f_m\}$ are 
+functionally dependent in $Z$.   
+\end{enumerate}
+  
+\end{thm}
+
+\begin{proof}
+{
+\newcommand{\py}{{P_{Y_0}}}
+\newcommand{\pyy}{{P_{Y_1}}}
+\newcommand{\px}{{P_{X_0}}}
+\newcommand{\pxx}{{P_{X_1}}} 
+\begin{enumerate}
+\item Let $x_0 \in U$ and $y_0 = f(x_0)$. Then, we have 
+\[
+\nabla g(y_0) = (D_1 g (y_0), \dots, D_m g(y_0)) \neq 0.
+\]
+It follows that there exists an index $i \in 
+\left\{ 1, \dots, m \right\}$ such that $D_i g(y_0) \neq 0$.
+WLOG assume $i = 1$.
+Now, by the implicit function theorem, there exists open 
+sets $(f_2(x_0), \dots, f_m(x_0)) \in W \subset \R^{m-1}$, 
+$f_1(x_0) \in \tilde{V} \subset \R$, and $0 \in S \subset \R$
+and $h \in C^1(W ; \R)$ such that 
+\[
+h(f_2(x_0), \dots, f_m(x_0)) = f_1(x_0)
+\]
+and 
+$(y_2, \dots, y_m, h(y_2, \dots, y_m, z)) \in W 
+\times \tilde{V}$ for all $(y_2, \dots, y_m, z) \in W \times S$.
+Additionally,
+\[
+g(y_2, \dots, y_m, h(y_2, \dots, y_m, z)) = z 
+\]
+for all $(y_2, \dots, y_m, z) \in W \times S$.
+Also, if $(y_1, y_2, \dots, y_m) \in \tilde{V} \times W$
+such that 
+\[
+g(y_1, y_2, \dots, y_m) = z
+\]
+for some $z \in S$,
+then $y_1 = h(y_2, \dots, y_m)$. 
+
+Since $f_i \in C^1(U; \R)$ for all $i = 1, \dots, m$, 
+we can select open set $x_0 \in V \subset U$ so small that 
+$f_1(x) \in \tilde{V}$ and $(f_2(x), \dots, f_m(x)) \in W$
+for all $x \in V$. It follows that 
+\[
+g(f_1(x), \dots, f_m(x)) = 0
+\]
+for all $x \in V$. This implies that $f_1(x) = h(f_2(x), 
+\dots, f_m(x))$ as argued above. 
+
+\item Since $g(f_1(x), \dots, f_m(x)) = g(f(x)) = 0$
+for all $x \in U$, we have 
+\[
+\nabla g(f(x)) \circ Df(x) = 0.
+\]
+Notice that $f(U) \subset V$ and $\nabla g(y) \neq 0$ 
+for all $y \in V$. It then follows that 
+$\nabla g(f(x)) (\R^m) \neq 0$
+for all $x \in U$.
+Suppose for contradiction that $\rank Df(x) = m$ for 
+some $x_0 \in U$. Then, $Df(x_0) (\R^n) = \R^m$.
+However, this will imply that $\nabla g(f(x_0)) \circ Df(x_0)
+\neq 0$, a contradiction. Therefore, 
+\[
+\rank Df(x) \leq m - 1
+\]
+for all $x \in \tilde{U}$. 
+
+\item Suppose that $1 \leq k < \min \left\{ m, n \right\}$
+and that $\rank Df(x) = k$ for all $x \in U$. 
+Fix $x_0 \in U$ and write $\ker Df(x_0) = X_0$ and 
+$\ran Df(x_0) = Y_0$, where $X_0$ and $Y_0$ are complemented 
+with $X_0 \oplus X_1 = \R^n$ and 
+$Y_0 \oplus Y_1 = \R^m$. 
+By problem 5, we know that 
+$\dim X_1 = \dim Y_0 = k$ and 
+there exists and open set $x_0 \in \tilde{U} \subset U$ 
+such that 
+\[
+Df(x)(X_1) = \ran Df(x) 
+\]
+for all $x \in \tilde{U}$. 
+
+Note that $k < \min \left\{ m, n \right\}$, so $X_i$ and 
+$Y_i$ are nontrivial for $i = 0, 1$.
+Set $y_0 = f(x_0)$. By constant rank theorem in problem 4, 
+there exists open sets $x_0 \in Z \subset U$ and 
+$y_0 \in S \subset Y$, $\py y_0 \in W \subset Y_0$, 
+and $\px x_0 \in V \subset X_0$, and $C^k$ diffeomorphisms 
+$\Psi: W \times V \to Z$ with $\Psi(\py y_0, \px x_0) = x_0$,
+$\Phi: S \to Y_0 \times Y_1$ with $\Phi(y_0) = (\py y_0, 0)$,
+and 
+\[
+\Phi \circ f \circ \Psi(w, v) = (w, 0)
+\]
+for all $w \in W$. Now define $g: S \to \R$ 
+by 
+\[
+g(y) = \pi_{k+1} \circ \Phi(y),
+\]
+where $\pi_{k+1}$ is projection onto the $(k+1)$-th index. 
+Notice first for all $y \in S$, we have 
+\[
+\nabla g(y) = \pi_{k+1} \circ D\Phi(y).
+\]
+Since $D\Phi(y)$ is an isomorphism and $\pi_{k+1}$ has 
+nonzero range, $\nabla g(y) \neq 0$ for all $y \in S$. 
+Additionally, for each $x \in Z$, there exists $(w, v)
+= \Psi^{-1}(x) \in W \times V$
+Therefore, for all $x \in Z$, 
+\[
+\begin{aligned}
+g(f(x)) = \pi_{k+1} \circ \Phi \circ f \circ \Psi(\Psi^{-1}(x)) 
+= \pi_{k+1} (w, 0) = 0.
+\end{aligned}
+\]
+This shows that $\left\{ f_1, \dots, f_m \right\}$
+are functionally dependent in $Z$.
+\end{enumerate}
+
+}
+\end{proof}
 
 \section{Measure and integration}
 
