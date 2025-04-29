@@ -4490,7 +4490,7 @@ Then for $f : \R^n \to V$ we have
 \]
 \end{eg}
 
-\subsection{Spaces of integrable functions}
+\subsection{The Lebesgue-Bochner $L^p$ spaces}
 
 In this subsection, $(X, \mf, \mu)$ will denote a measure
 space and $V$ will denote a Banach space.
@@ -5251,6 +5251,46 @@ D (g \circ f)(z) = D g (f(z)) D f(z).
 
 \begin{proof}
 \TODO
+\end{proof} 
+
+\begin{defi}
+Let $M_1$ and $M_2$ be $C^1$ manifolds and $f: M_1 \to M_2$
+be $C^1$. 
+\begin{enumerate}
+\item We say $f$ is a \textbf{submersion} at $z \in M$ if 
+$Df(z) \in \L(T_z M_1 ; T_{f(z)} M_2)$ is surjective. We 
+say $f$ is a submersion if $f$ is a submersion at each 
+$z \in M$.
+\item We say $f$ is an \textbf{immersion} at $z \in M$ if 
+$Df(z) \in \L(T_z M_1 ; T_{f(z)} M_2)$ is injective. We 
+say $f$ is an immersion if $f$ is an immersion at each 
+$z \in M$.
+\item We say $f$ is a \textbf{embedding} if it is an 
+immersion that is a homeomorphism from $M_1$ to $f(M_1) 
+\subset M_2$.
+\end{enumerate}
+\end{defi}
+
+\begin{defi}[diffeomorphism]
+Let $M_1$ and $M_2$ be $C^k$ manifolds. We say $f \in 
+C^k(M_1; M_2)$ is a \textbf{diffeomorphism} if $f$ is a 
+homeomorphism and $f^{-1} \in C^k(M_2; M_1)$.
+\end{defi}
+
+\begin{prop}
+The following holds for manifolds $M_1$, $M_2$: 
+\begin{enumerate}
+  \item If $f: M_1 \to M_2$ is a diffeomorphism, then 
+  $f$, $f^{-1}$ are embeddings.
+  \item If $M_1$ and $M_2$ are diffeomorphic, then $M_1$
+  and $M_2$ have the same dimension.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+From the chain rule, we know $Df^{-1}(f(z)) = [Df(z)]^{-1}$.
+Therefore, $T_z M_1$ and $T_{f(z)} M_2$ are isomophic for each 
+$z \in M$. This also shows that $f$, $f^{-1}$ are immersions.
 \end{proof}
 
 
@@ -5331,6 +5371,284 @@ can be written as
 
 \subsection{Stokes-Cartan and fundamental theorems
 of vector calculus}
+
+\subsubsection{Integration of differential forms on 
+orientated manifolds}
+
+Recall the definition and properties 
+of antisymmetric multilinear maps:
+
+\begin{defi}
+Let $k \in \N$. Let $V$, $W$ be vector spaces over $\F$.
+\begin{enumerate}
+\item $T \in L^k(V, W)$ is said to be \textbf{symmetric}
+if for every $v_1 , \dots, v_k \in V$ and $P \in S_k$, we
+have 
+\[
+T(v_1, \dots, v_k) = T(v_{P(1)}, \dots, v_{P(k)}).
+\]
+\item $T \in L^k(V, W)$ is said to be \textbf{antisymmetric}
+if for every $v_1, \dots, v_k \in V$ and $P \in S_k$, we have 
+\[
+T(v_{P(1)}, \dots, v_{P(K)}) = \sgn (P) T(v_1, \dots, v_k).
+\] 
+\end{enumerate}
+\end{defi}
+
+\begin{thm}
+Let $k \in \N$ and $V$, $W$ be vector spaces over $\F$. 
+Suppose $T \in L^k(V, W)$. Then following are equivalent:
+\begin{enumerate}
+\item $T$ is antisymmetric. 
+\item For every $v_1, \dots, v_k \in V$ and transposition 
+$P \in S_k$, we have 
+\[
+T(v_1, \dots, v_k) = -T (v_{P(1)}, \dots, v_{P(k)}).
+\]
+\item If $v_1, \dots, v_k$ is such that $v_i = v_j$ for some 
+$i \neq j$, then 
+\[
+T(v_1, \dots, v_k) = 0.
+\]
+\item If $v_1, \dots, v_l \in V$ are linearly dependent, 
+then 
+\[
+T(v_1, \dots, v_k) = 0.
+\]
+\end{enumerate}
+\end{thm}
+
+\begin{lemma}
+  Suppose that $V \subseteq \R^n$ is a subspace of dimension
+  $1\leq m \leq n$. Given $v_1,\dotsc,v_m \in V$ write
+  $\braket{v_1,\dotsc,v_m} \in \R^{n \times m}$ for the matrix
+  with $j$-th column given by $v_j$ for $1 \leq j \leq m$.
+  Suppose that $(v_1,\dotsc,v_m)$ and $(w_1,\dotsc,w_m)$ are
+  ordered bases of $V$, and let $B \in \R^{m \times m}$ denote
+  the change of basis matrix from $(v_1,\dotsc,v_m)$ to
+  $(w_1,\dotsc,w_m)$, i.e. $v_i = \sum_{j=1}^m B_{ij} w_j$
+  for each $1 \leq i \leq m$.
+  
+  
+  
+  \begin{enumerate}
+  \item Let $\alpha \in \acal(n,m)$. We then have 
+  \begin{equation*}
+  \frac{\det \braket{v_1,\dotsc,v_m}_\alpha }
+  {\bbracket{\braket{v_1,\dotsc,v_m}} }
+  = \frac{\det B}{\abs{\det B}}
+  \frac{\det \braket{w_1,\dotsc,w_m}_\alpha }
+  {\bbracket{\braket{w_1,\dotsc,w_m}} },
+  \end{equation*}
+  and in particular if $\det B >0$ then
+  \begin{equation*}
+  \frac{\det \braket{v_1,\dotsc,v_m}_\alpha }
+  {\bbracket{\braket{v_1,\dotsc,v_m}} }
+  = \frac{\det \braket{w_1,\dotsc,w_m}_\alpha }
+  {\bbracket{\braket{w_1,\dotsc,w_m}} }.
+  \end{equation*}
+  
+  
+  \item Suppose now that $\omega \in \L^m(\R^n;\R)$ is
+  antisymmetric. We then have
+  \begin{equation*}\label{im_df_density_lemma_01}
+  \frac{\omega(v_1,\dotsc,v_m)}{\bbracket{\braket{v_1,\dotsc,v_m}} }
+  = \frac{\det B}{\abs{\det B}} \frac{\omega(w_1,\dotsc,w_m)}
+  {\bbracket{\braket{w_1,\dotsc,w_m}}},
+  \end{equation*}
+  and in particular if $\det B > 0$ then
+  \begin{equation*}
+  \frac{\omega(v_1,\dotsc,v_m)}{\bbracket{\braket{v_1,\dotsc,v_m}}}
+  = \frac{\omega(w_1,\dotsc,w_m)}{\bbracket{\braket{w_1,\dotsc,w_m}}}.
+  \end{equation*}
+  \end{enumerate}
+\end{lemma}
+
+
+\begin{proof}
+\begin{enumerate}
+\item Let $V = \braket{v_1, \dots, v_m}$ and $W = \braket{w_1, \dots, 
+w_m}$. Then we have 
+\[
+V_{ki} = (v_i)_k = B_{ij} (w_j)_k = B_{ij} W_{kj}
+\]
+It follows that $V = W B^T$. Moreover, for all
+$\alpha \in \acal(n, m)$, we have $V_\alpha = W_\alpha B^T$.
+Therefore, 
+\[
+\begin{aligned}
+\frac{\det \braket{v_1, \dots, v_m}_\alpha}{\bbracket{\braket{v_1, 
+\dots, v_m}}}
+&= \frac{\det V_\alpha}{\sqrt{\det V^T V}} 
+= \frac{\det W_\alpha B^T}{\sqrt{\det B W^T W B^T}} \\
+&= \frac{\det B}{\abs{\det B}} \frac{\det W_\alpha}{\sqrt
+{\det W^T W}} 
+= \frac{\det B}{\abs{\det B}} \frac{\det \braket{w_1, \dots, 
+w_m}_\alpha}{\bbracket{\braket{w_1, \dots, w_m}}}.
+\end{aligned}
+\]
+In particular, $\det B > 0$, then $\frac{\det B}{\abs{\det B}}
+= 1$ and 
+\[
+\frac{\det \braket{v_1, \dots, v_m}_\alpha}{\bbracket{\braket{v_1, 
+\dots, v_m}}}
+= \frac{\det \braket{w_1, \dots, 
+w_m}_\alpha}{\bbracket{\braket{w_1, \dots, w_m}}}.
+\]
+
+\item Again we have 
+\[
+\bbracket{\braket{v_1, \dots, v_m}} 
+= \abs{\det B} \bbracket{\braket{w_1, \dots, w_m}}.
+\]
+For the numerator, we have 
+\[
+\begin{aligned}
+\omega(v_1, \dots, v_m) 
+&= \omega \left( \sum_{j=1}^m B_{1j} w_j, \; \cdots, \; 
+\sum_{j=1}^m B_{mj} w_j \right) \\
+&= \sum_{j_1 = 1}^m \dots \sum_{j_m = 1}^m 
+\prod_{k=1}^m B_{k j_k} \omega (w_{j_1}, \cdots, w_{j_m}).
+\end{aligned}
+\]
+However, we know $\omega(w_{j_1}, \dots, w_{j_m}) = 0$
+if there exists $k \neq l$ such that $w_{j_k} = w_{j_l}$.
+It follows that 
+\[
+\begin{aligned}
+\omega(v_1, \dots, v_m) 
+&= \sum_{P \in S_m} \prod_{k=1}^m B_{k P(k)} 
+\omega (w_{P(1)}, \dots, w_{P(m)}) \\
+&= \sum_{P \in S_m} \sgn(P) \prod_{k=1}^m B_{k P(k)} 
+\omega(w_1, \dots, w_m) \\
+&= \omega(w_1, \dots, w_m) \det B,
+\end{aligned}
+\]
+where we used the fact that 
+\[
+\det B = \sum_{P \in S_m} \sgn(P) 
+\prod_{k=1}^m B_{k P(k)}.
+\]
+This implies that 
+\[
+\frac{\omega(v_1, \dots, v_m)}{\bbracket{\braket{v_1, \dots, 
+v_m}}} = \frac{\det B}{\abs{\det B}} 
+\frac{\omega(w_1, \dots, w_m)}{\bbracket{\braket{w_1, 
+\dots, w_m}}}.
+\]
+In particular, if $\det B > 0$, then 
+$\frac{\det B}{\abs{\det B}} = 1$, and 
+\[
+\frac{\omega(v_1, \dots, v_m)}{\bbracket{\braket{v_1, \dots, 
+v_m}}} = \frac{\omega(w_1, \dots, w_m)}{\bbracket{\braket{w_1, 
+\dots, w_m}}},
+\]
+as desired.
+\end{enumerate}
+\end{proof}
+
+
+\begin{lemma}
+Let $\omega \in \Lambda^m(\R^n)$ and consider $V \subset \R^n$ 
+a subspace of dimension $m \leq n$. Then for linearly 
+independent $v_1, \dots, v_m \in V$, we have 
+\[
+\frac{\omega(v_1, \dots, v_m)}{\bbracket{\braket{v_1, \dots, v_m}}}
+= \sum_{\alpha \in \acal(n, m)} \omega_\alpha 
+\frac{\det \braket{v_1, \dots, v_m}_\alpha}
+{\bbracket{\braket{v_1, \dots, v_m}}}
+\]
+and 
+\[
+\frac{\abs{\omega(v_1, \dots, v_m)}}{\bbracket{\braket{v_1, \dots, v_m}}}
+\leq \norm{\omega}_{\Lambda^m}.
+\]
+\end{lemma}
+
+\begin{defi}
+Let $M \subset \R^n$ be a $C^1$ manifold of dimension 
+$1 \leq m \leq n$ with orientation $\ocal$. 
+\begin{enumerate}
+\item The \textbf{volume form} on $M$ is the map $\tau_M : M \to 
+\Lambda^m(\R^n)$ given by 
+\[
+\tau_M(z) = \frac{1}{\bbracket{\braket{v_1, \dots, v_m}}} 
+\sum_{\alpha \in \acal(m, n)} \det 
+{\braket{v_1, \dots, v_m}}_\alpha e^\alpha,
+\]
+where $(v_1, \dots, v_m)$ is any ordered basis in the orientation
+class induced on $T_z M$.
+
+\item Suppose $\omega : M \to \Lambda^m(\R^n)$. We define 
+the \textbf{density function} associated to $\omega$ on $M$
+to be $f_\omega : W \to \R$ by 
+\[
+f_\omega (z) = \braket{\tau_M(z), \omega(z)}_{\Lambda^m} 
+= \frac{\omega(v_1, \dots, v_m)}{\bbracket{\braket{v_1, \dots, v_m}}},
+\]
+where $(v_1, \dots, v_m)$ is any ordered basis in the orientation
+class induced on $T_z M$.
+\end{enumerate}
+\end{defi}
+
+\begin{defi}
+Let $M \subset \R^n$ be an orientated $C^1$ manifold
+of dimension $1 \leq m \leq n$. We say that $\omega$
+is \textbf{$M$-integrable} if $f_\omega : M \to \R$ is 
+$\hcal^m$-integrable on $M$, in which case we define 
+\[
+\int_M \omega = \int_M f_\omega \d \hcal^m.
+\]
+\end{defi}
+
+\begin{prop}
+Let $M \subset \R^n$ be a $C^k$ $m$-manifold with orientation 
+$\ocal$. Let $\omega \in C^0(M ; \Lambda^m(\R^n))$ and 
+suppose $\supp(\omega) \cap M \subset U \cap M$
+for some $(U, V, \phi) \in \ocal$. Then $\omega$ is 
+$M$-integrable if and only if $\phi^* \omega$ is $V$-integrable,
+and 
+\[
+\int_M \omega = \int_V \phi^* \omega = 
+\int_V \omega \circ \phi (\dd_1 \phi, \dots, \dd_m \phi) 
+\d \lambda.
+\]
+\end{prop}
+
+\begin{proof}
+We have 
+\[
+\begin{aligned}
+\int_M \omega = \int_M f_\omega \d \hcal^m 
+= \int_{M \cap U} f_\omega \d \hcal^m 
+= \int_{\phi(V)} f_\omega \d \hcal^m.
+\end{aligned}
+\]
+However, by change of variable, we have
+\[
+\int_{\phi(V)} f_\omega \d \hcal^m 
+= \int_V f_\omega \circ \phi J_\phi \d \hcal^m.
+\]
+Meanwhile, 
+\[
+f_\omega \circ \phi = 
+\frac{\omega \circ \phi (\dd_1 \phi, \dots, \dd_m \phi)}
+{\bbracket{D \phi}}
+\]
+and $J_\phi = \bbracket{D \phi}$. 
+Therefore, 
+\[
+\int_M \omega = \int_V \phi^* \omega = 
+\int_V \omega \circ \phi (\dd_1 \phi, \dots, \dd_m \phi) 
+\d \lambda.
+\]
+\end{proof}
+
+\subsubsection{Parition of unity}
+
+\begin{thm}[smooth parition of unity]
+
+\end{thm}
 
 \subsubsection{Stokes-Cartan theorem}
 
