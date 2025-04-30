@@ -5998,6 +5998,52 @@ $z \in M$. This also shows that $f$, $f^{-1}$ are immersions.
 
 \subsubsection{Manifolds with boundary}
 
+\begin{defi}
+Let $z \in M \subset \R^n$. WE say $z$ admits $C^k$ \textbf{local 
+boundary coordinates} if 
+\begin{enumerate}
+\item there exists open set $U \subset \R^n$ and $W \subset
+\R^m$ such that $z \in U$ and $W \cap \{x \in \R^m : x_m = 0\}
+\neq \emptyset$.
+
+\item There exists homeomorphism $\phi: V \to \phi(V) = U \cap M$
+where $V = W \cap \{x \in \R^m: x_m \geq 0\}$. 
+
+\item $\phi = \tilde{\phi} \vert_V$ where $\tilde{\phi} \in C^k 
+(W; \R^n)$ is such that $D \tilde{\phi}$ has rank $m$ everywhere.
+\end{enumerate}
+\end{defi}
+
+\begin{prop}
+Given a point $z \in M \subset \R^n$, \textbf{at most one}
+of the following can be true: 
+\begin{enumerate}
+\item $z$ admits $C^k$ local $m$-coordinates.
+\item $z$ admits $C^k$ local boundary coordinates.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+\TODO
+\end{proof}
+
+\begin{defi}
+A $C^k$ $m$-manifold with boundary is a set $\emptyset \neq
+M \subset \R^n$ such that $M = M^\circ \cup \dd M$, 
+where $M^\circ \neq \empty$, $\dd M \neq \emptyset$, and 
+\[
+\begin{aligned}
+M^\circ &= \{z \in M : \text{$z$ admits local 
+$C^k$ $m$-coordinates}\}, \\
+\dd M &= \{z \in M : \text{$z$ admits local $C^k$ boundary
+coordinates}\}.
+\end{aligned}
+\]
+We call $M^\circ$ the \textbf{interior} of $M$ and $\dd M$
+the \textbf{boundary} of $M$. Note that $M^\circ \cap \dd M 
+= \emptyset$.
+\end{defi}
+
 We have seen before that level sets are manifolds. Here 
 we have another version for manifolds with
 boundary.
@@ -6072,6 +6118,15 @@ and $\dd S = L$.
 \end{proof}
 
 \subsection{Differential forms}
+We can integrate functions on manifolds with respect to 
+$\hcal^m$, but manifolds come equipped with tangent spaces, 
+which these function cannot easily interact with. Therefore, 
+we want some sort of mathematical structure that 
+\begin{enumerate}
+\item interacts easily with $T_z M$ at each $z \in M$, 
+\item ``be integrable'',
+\item interact nicely with geometry.
+\end{enumerate}
 
 The solution is as follows:
 \begin{enumerate}
@@ -6192,7 +6247,140 @@ can be written as
 \]
 \end{enumerate}
 
-\TODO: add content for differential form
+\begin{prop} 
+Suppose $\omega_1, \dots, \omega_k \in \Lambda^1 
+(\R^n)$, then 
+\[
+(\omega_1 \wedge \dots \wedge \omega_k) 
+(v_1, \dots, v_k) = \det V,
+\]
+where $V \in \R^{k \times k}$ is such that $V_{ij} = \omega_i 
+(v_j)$.
+\end{prop}
+
+\begin{cor}
+Suppose $1 \leq k \leq n$ and $\alpha \in \acal(n, k)$. 
+If $v_1, \dots, v_k \in \R^n$ then 
+\[
+e^\alpha (v_1, \dots, v_k) = \det U,
+\]
+where $U \in \R^{k \times k}$ is such that 
+$U_{ij} = v_j \cdot e_{\alpha_i}$.
+\end{cor}
+
+\begin{cor}
+If $\omega \in \Lambda^k(\R^n)$, then $\omega \in \sum_{\alpha 
+\in \acal(n, k)} \omega_\alpha e^\alpha$, where 
+\[
+\omega_\alpha = \omega(e_{\alpha_1}, \dots, e_{\alpha_k}).
+\]
+\end{cor}
+
+\begin{prop}
+Suppose $\omega \in \Lambda^k(\R^n)$, then 
+\[
+\omega(v_1, \dots, v_n) = \omega(e_1, \dots, e_n) \det V,
+\]
+where $V \in \R^{n \times n}$ is such that 
+$V_{ij} = v_j \cdot e_i$.
+\end{prop}
+
+\begin{defi}[exterior derivative]
+Let $\emptyset \neq U \subset \R^n$ open and $1 \leq r \leq 
+\infty$. 
+\begin{enumerate}
+\item Given $\omega \in \Omega^{0, r}(U)$, we set 
+\[
+d \omega = \sum_{i=1}^n \dd_i \omega e^i \in \Omega^{1, r-1}
+(U).
+\]
+\item Given $\omega \in \Omega^{k, r}(U)$, write 
+$\omega = \sum_{\alpha \in \acal(n, k)} \omega_\alpha 
+e^\alpha$. We then define 
+\[
+d \omega
+= \sum_{\alpha \in \acal(n, k)} d \omega_\alpha \wedge 
+e^\alpha 
+= \sum_{\alpha \in \acal(n, k)} \sum_{i=1}^n 
+\dd_i \omega_\alpha e^i \wedge e^\alpha 
+\in \Omega^{k+1, r-1}(U).
+\]
+\end{enumerate}
+We call $d \omega$ the \textbf{exterior derivative} of $\omega$.
+\end{defi}
+
+\begin{thm}
+Let $\emptyset \neq U \subset \R^n$ be open and $r \geq 1$. 
+Then the following holds: 
+\begin{enumerate}
+\item $d : \Omega^{k, r}(U) \to \Omega^{k+1, r-1} (U)$
+is linear. 
+\item If $\omega \in \Omega^{k, r}(U)$ and 
+$\zeta \in \Omega^{j, r} (U)$, then 
+\[
+d (\omega \wedge \zeta) = d \omega \wedge \zeta 
++ (-1)^k \omega \wedge d \zeta.
+\]
+\item[\textbf{3.}] 
+\textbf{Suppose $r \geq 2$, then $d^2 = d \circ d = 0$.}
+\end{enumerate}
+\end{thm}
+
+\begin{defi}[pullback]
+Let $\emptyset \neq U \subset \R^n$ and $\emptyset \neq V 
+\subset \R^m$ be open and $\phi : V \to U$ be differentiable.
+For $\omega \in \Omega^k(U)$, we define $\phi^* \omega \in 
+\Omega^k(V)$, the \textbf{pullback} if $\omega$ by $\phi$, 
+by 
+\[
+\phi^* \omega (v_1, \dots, v_k) = 
+[\omega \circ \phi(x)] (D \phi(x) v_1, \dots, D \phi(x) v_k),
+\]
+for $v_1, \dots, v_k \in \R^m$ and $x \in V$.
+\end{defi}
+
+\begin{thm}
+Suppose $\emptyset \neq U \subset \R^n$ and 
+$\emptyset \neq V \subset \R^m$ open, and
+$\phi : V \to U$ be differentiable. 
+The following holds: 
+\begin{enumerate}
+\item If $\phi \in C^r$ with $r \geq 1$, 
+then the map $\phi^* : \Omega^{k, r-1}(U) 
+\to \Omega^{k, r-1}(V)$ is linear and well-defined.
+
+\item $\phi^* e^i = \sum_{j=1}^m \dd_j \phi_i e^j = d \phi_i$
+for each $1 \leq i \leq n$.
+
+\item If $\omega \in \Omega^k(U)$ and $\zeta \in \Omega^j(U)$, 
+then 
+\[
+\phi^* (\omega \wedge \zeta) = (\phi^* \omega) \wedge 
+(\phi^* \zeta).
+\]
+
+\item If $\omega \in \Omega^{k, 1} (U)$ and $\phi \in C^r$ 
+\textbf{with $r \geq 2$}, then 
+\[
+\phi^* (d \omega) = d (\phi^* \omega).
+\]
+
+\item Let $\omega = \sum_{\alpha \in \acal(n, k)} 
+\omega_\alpha e^\alpha$, then 
+\[
+\begin{aligned}
+\phi^* \omega
+&= \sum_{\alpha \in \acal(n, k)} \omega_\alpha \circ \phi 
+d \phi_1 \wedge \dots \wedge d \phi_k \\
+&= \sum_{\beta \in \acal(m, k)} 
+\left[ \sum_{\alpha \in \acal(n, k)} \omega_\beta \circ \phi 
+\det D_\beta \phi_\alpha \right] e^\beta,
+\end{aligned}
+\]
+where $D_\beta \phi_\alpha \in \R^{k \times k}$ is such that 
+$(D_\beta \phi_\alpha)_{ij} = \dd_{\beta_j} \phi_{\alpha_i}$.
+\end{enumerate}
+\end{thm}
 
 \subsection{Stokes-Cartan and fundamental theorems
 of vector calculus}
