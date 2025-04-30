@@ -25,9 +25,9 @@ Let $X$ be a metric space.
  \item We say that $E \subset X$ is nowhere dense if
  $(\bar{E})^\circ = \emptyset$.
  \item We say that $E \subset X$ is meager in $X$ if
-\begin{equation*}
+\[
  E = \bigcup_{\alpha \in A} E_\alpha,
-\end{equation*}
+\]
 where $A$ is a countable set and $E_\alpha \subset X$
 is nowhere dense for every $\alpha \in A$.
 \end{enumerate}
@@ -152,9 +152,9 @@ $T \in \L(X;Y)$.  Prove that the following are equivalent.
 
   \item There exists $C \ge 0$ such that for each $y \in Y$
   there exists $x \in X$ such that $Tx=y$ and
-\begin{equation*}
+\[
  \norm{x}_X \leq C \norm{y}_Y.
-\end{equation*}
+\]
 \end{enumerate}
 HINT: Prove that  $(1) \implies (2) \implies (3)
 \implies (4) \implies (5)  \implies (1)$, keeping
@@ -1253,9 +1253,9 @@ for $1 \le k\le \infty$ is such that $\ker Df(x_0) =
 X_0$ and $\ran Df(x_0) = Y_0$, and write $y_0 = f(x_0)$.  
 Further suppose that $f$ satisfies the ``constant rank 
 condition'':
-\begin{equation*}
+\[
 Df(x) (X_1) = \ran Df(x) \text{ for all }x \in U. 
-\end{equation*}
+\]
 Then there exist open sets $x_0 \in \tilde{U} \subset U$ 
 and $y_0 \in S \subset Y$ such that $f(\tilde{U}) 
 \subset S$ and the following hold.
@@ -1270,10 +1270,10 @@ $\Psi(P_{Y_0} y_0, P_{X_0} x_0) = x_0$.
 and $\Phi(y_0) = (P_{Y_0} y_0, 0)$.
 
 \item We have that 
-\begin{equation*}
+\[
 \Phi \circ f \circ \Psi(w,v) = (w,0) \text{ for all } 
 (w, v) \in W \times V.
-\end{equation*}
+\]
 \end{enumerate}
 \end{thm}
 
@@ -1294,14 +1294,14 @@ for $i=0,1$.  Prove that there exist open sets $x_0 \in
 $v_0 \in V \subset X_0$ with $V$ connected, and a $C^k$ 
 diffeomorphism $\Psi : W \times V \to \Psi(W\times V) = 
 \tilde{U}$ such that $\Psi(w_0, v_0) = x_0$, 
-\begin{equation*} 
+\[ 
 f_0(\Psi(w,v)) = w \text{ for all }(w,v) \in W \times V,   
-\end{equation*}
+\]
 and 
-\begin{equation*} 
+\[ 
 D\Psi(w,v) \vert_{Y_0 \times \{0\}} \to X_1 \text{ is an 
 isomorphism for all } (w,v) \in W \times V.
-\end{equation*}
+\]
 
 \item Define $F : W \times V \to Y$ via $F = f \circ \Psi$. 
 Prove the following for all $(w,v) \in W \times V$.
@@ -1325,9 +1325,9 @@ DF(w,v)(Y_0 \times \{0\}) = \ran DF(w,v) \subset Y$
 for $(w,v) \in W \times V$.  Use this to deduce that 
 $D_2 \eta(w,v) =0$ and hence that $D_2 F(w,v) =0$ for 
 $(w,v) \in W \times V$.  In turn, deduce that 
-\begin{equation*}
+\[
 F(w,v) = F(w,v_0) \text{ for all }(w,v) \in W \times V.
-\end{equation*}
+\]
 
 \item Define $G: W \to Y$ via $G(w) = F(w,v_0)$.  
 Apply the left inverse function theorem (HW1 P1) 
@@ -1611,9 +1611,9 @@ equivalent.
  \item We have that $\dim X_1 = \dim Y_0 = r$, 
  and there exists an open set $x_0 \in \tilde{U} 
  \subset U$ such that 
-\begin{equation*}
+\[
  Df(x)(X_1) = \ran Df(x) \text{ for all }x \in \tilde{U}.
-\end{equation*}
+\]
 \end{enumerate}
 NOTE: this equivalence is where the constant rank 
 theorem gets its name.
@@ -1692,9 +1692,9 @@ We say that $\{f_1,\dotsc,f_m\}$ are functionally
 dependent in $U$ if there exists an open set 
 $V \subset \R^m$ with $f(U) \subset V$ and 
 a function $g \in C^1(V;\R)$ such that 
-\begin{equation*}
+\[
  g(f_1(x),\dotsc,f_m(x)) =0 \text{ for all } x\in U
-\end{equation*}
+\]
 and $\nabla g(y) \neq 0$ for all $y \in V$.
 \end{defi}
 
@@ -1709,10 +1709,10 @@ dependent on $U$, then for each $x_0 \in U$ there exists
 an open set $V \subset U$ with $x_0 \in V$,  a function  
 $h \in C^1(W;\R)$, where $W\subset \R^{m-1}$ is an open 
 set, and an index $i \in\{1,\dotsc,m\}$ such that
-\begin{equation*}
+\[
 f_i(x) = h(f_1(x),\dotsc,f_{i-1}(x),f_{i+1}(x),
 \dotsc,f_m(x)) \text{ for all }x \in V.
-\end{equation*}
+\]
 In other words, at least one of the functions can be 
 written in terms of the other functions.
 
@@ -1720,9 +1720,9 @@ written in terms of the other functions.
 
 \item Prove that if  $m \le n$ and $\{f_1,\dotsc,f_m\}$ 
 are functionally dependent on $U$, then 
-\begin{equation*}
+\[
 \text{rank}(Df(x)) \le m-1 \text{ for all }x \in U.
-\end{equation*}
+\]
 
 
 
@@ -2367,6 +2367,84 @@ and the proof is complete.
 
 \begin{proof}
   \TODO
+\end{proof}
+
+\begin{thm}
+Let $(X,d)$ be a metric space and $\mu^*$ be an outer 
+measure on $X$. Write $\mf$ for the $\sigma$-algebra of 
+sets that are measurable with respect to $\mu^*$. Then 
+$\bfk(X) \subset \mf$ if and only if $\om$ is a metric 
+outer measure.
+\end{thm}
+
+\begin{proof}
+$(\implies)$. Suppose $\mu^*$ is a metric outer measure. 
+Following the hint, we proceed to show that all closed 
+sets are in $\mf$. Let $E \subset X$ be closed and 
+$A \subset X$ be arbitrary. For each $k \in \N$, let
+\[
+F_k = \left\{ x \in X : \dist(x, E) > 2^{-k} \right\}
+\subset E^c.
+\]
+It is easy to see that $F_k \subset F_{k+1}$ for each $k \in \N$.
+Also, since $E$ is closed, $\dist(x, E) > 0$ for each $x \in E^c$.
+It follows that $\cupinfk F_k = E^c$.
+Moreover, for any $x \in F_k$
+and $y \in F_{k+1}^c$, we have $\dist(x, E) > 2^{-k}$
+and $\dist(y, E) \leq 2^{-k-1}$. It follows that  
+$d(x, y) \geq 2^{-k-1}$ and thus for all $k \in \N$, 
+\[
+\inf_{x \in F_k} \dist(x, F_{k+1}^c) \geq 2^{-k-1} > 0.
+\]
+By the previous homework, this implies that 
+\[
+\mu^* (A \cap E^c) 
+= \mu^* \left( \cupinfk (A \cap F_k) \right)
+= \lim_{k \to \infty} \mu^* (A \cap F_k).
+\]
+
+In the mean time, 
+for each $k \in \N$ we have $\inf_{x \in A \cap F_k} 
+\dist(x, A \cap E) > 0$. This implies that
+\[
+\mu^*(A \cap F_k) = \mu^*(A \cap E) + \mu^* (A \cap F_k).
+\]
+Therefore, for each $k \in \N$, we have 
+\[
+\begin{aligned}
+\mu^*(A) 
+&\geq \mu^*((A \cap E) \cup (A \cap F_k)) \\
+&= \mu^* (A \cap E) + \mu^*(A \cap F_k).
+\end{aligned}
+\]
+Taking the limit as $k \to \infty$ gives 
+\[
+\mu^*(A) \geq \mu^*(A \cap E) + \mu^*(A \cap E^c).
+\]
+This shows that $E$ is measurable. Since 
+all closed sets are in $\mf$ and $\B_X$ is the smallest 
+$\sigma$-algebra containing all closed sets, we have 
+$\B_X \subset \mf$.
+
+$(\impliedby)$. 
+Suppose $\B_X \subset \mf$. Let $A, B \subset X$ be 
+such that $\Delta = 
+\inf \left\{ d(a, b) : a \in A, b \in B \right\} > 0$. 
+Now define $E \subset X$ by 
+\[
+E = \left\{ x \in X: \dist(x, A) < \frac{\Delta}{2} \right\}.
+\]
+This is an open set, so $E \in \mf$. 
+Additionally, $A \subset E$ and $B \subset E^c$. 
+It follows that 
+\[
+\begin{aligned}
+\mu^*(A \cup B) 
+&= \mu^*(A \cup B \cap E) + \mu^* (A \cup B \cap E^c) \\
+&= \mu^*(A) + \mu^*(B).
+\end{aligned}
+\]
+This implies that $\mu^*$ is an metric outer measure.
 \end{proof}
 
 \begin{thm}
@@ -4559,20 +4637,20 @@ Define the following $M = Df(z)$, $L \in \L(\R^m, \R^n)$
 such that $L M = I_n$, and $g = f \circ L$, so $f = g \circ M$.
 
 Let $0 < \epsilon < 1$ and pick $r > 0$ such that
-\begin{equation*}
+\[
   (1 - \epsilon) \norm{M (x - y)}
   \leq \norm{f(x) - f(y)} \leq
   (1 + \epsilon) \norm{M (y - x)}
   \tag{A}
-\end{equation*}
+\]
 for all $x, y \in B(z, r)$
 and
-\begin{equation*}
+\[
   (1 + \epsilon)^{-1} J_f(z)
   \leq J_f(x) \leq
   (1 - \epsilon)^{-1} J_f(z)
   \tag{B}
-\end{equation*}
+\]
 for all $x \in B(z, r)$. Note that
 \[
 \hcal^n (ME) = J_f(z) \lambda(E).
@@ -4635,9 +4713,9 @@ Q_{j,k}^\sharp$ as a disjoint union, where
 $\{Q_{j,k}\}_{j=0}^\infty$ denotes the dyadic cubes of 
 sidelength $2^{-k}$, and then study the maps $N_k : \R^m 
 \to [0,\infty]$ given by 
-\begin{equation*}
+\[
 N_k = \sum_{j=0}^\infty \chi_{f(E \cap Q_{j,k}^\sharp)}.
-\end{equation*}
+\]
 
 \begin{proof}
 Following the hint, for each $k \in \N$, write 
@@ -4845,11 +4923,11 @@ Then the following holds:
 \begin{enumerate}
 \item Suppose $g : E \to [0, \infty]$ is $\lambda$-measurable.
 Then the map
-\begin{equation*}
+\[
 \R^m \ni y \mapsto \int_{E \cap f^{-1}(\{y\})}
 g \d \hcal^0 \in [0, \infty]
 \tag{$*$}
-\end{equation*}
+\]
 is $\hcal^n$-measurable, and
 \[
 \int_E g J_f \d \lambda = \int_{\R^m} \int_{E \cap f^{-1}(\{y\})}
@@ -5403,11 +5481,11 @@ we can see that $M$ is a $C^\infty$ $2$-manifold.
 \end{enumerate}
 \end{eg}
 
-\begin{thm}
+\begin{thm}[level sets as manifolds]
 Let $\emptyset \neq U \subset \R^n$ be open, $f \in C^k(U;
-\R^r)$ for $1 \leq r < n$. Suppose $\bar{w} \in f(U)$ and
+\R^r)$ for $1 \leq r < n$. Suppose $w_0 \in f(U)$ and
 \[
-M = \{z \in U : f(z) = \bar{w} \text{ and } Df(z) \text{ had rank
+M = \{z \in U : f(z) = w_0 \text{ and } Df(z) \text{ had rank
 $r$}\} \neq \emptyset.
 \]
 Then $M$ is a $C^k$ $(n-r)$-manifold.
@@ -5419,11 +5497,11 @@ the \textbf{right inverse function theorem}.  This provides
 open sets $W \subset \R^r$ and $V \subset \R^{n-r}$, and
 a $C^k$ diffeomorphism
 $F : W \times V \to F(W \times V) \subset U$, such that
-$f(F(w, v)) = w$ for all $(w, v) \in W \times V$ and
-$\bar{w} \in W$. Let $\phi: V \to U$ via
-$\phi(v) = F(\bar{w}, v)$. Then
+$w_0 \in W$ and $f(F(w, v)) = w$ 
+for all $(w, v) \in W \times V$. Let $\phi: V \to U$ via
+$\phi(v) = F(w_0, v)$. Then
 \[
-f(\phi(v)) = f(F(\bar{w}, v)) = \bar{w}.
+f(\phi(v)) = f(F(w_0, v)) = w_0.
 \]
 Meanwhile, the right inverse function theorem
 guarantees that $D \phi$ has rank $n - r$ everywhere.
@@ -5553,10 +5631,10 @@ $U \subseteq \R^n$ with $z \in U$,
 \item a $C^k$ function $f : V \to \R^{n-m}$,
 \end{enumerate}
 such that $U \cap M = P \Gamma(f)$, where recall that
-\begin{equation*}
+\[
 \Gamma(f) = \{(x,f(x)) : x \in V\} \subseteq V \times
 \R^{n-m} \subseteq \R^n
-\end{equation*}
+\]
 is the graph of $f$.
 \end{enumerate}
 \end{thm}
@@ -5918,6 +5996,80 @@ Therefore, $T_z M_1$ and $T_{f(z)} M_2$ are isomophic for each
 $z \in M$. This also shows that $f$, $f^{-1}$ are immersions.
 \end{proof}
 
+\subsubsection{Manifolds with boundary}
+
+We have seen before that level sets are manifolds. Here 
+we have another version for manifolds with
+boundary.
+\begin{thm}[superlevel sets as manifolds with boundary]
+Let $\emptyset \neq U \subseteq \R^n$ be open and suppose
+that $f\in C^k(U;\R^r)$ for $1 \le r < n$.  If $r \ge 2$,
+write $f = (\tilde{f},f_r)$, i.e. $\tilde{f} = \sum_{i=1}^
+{r-1} f_i e_i$.  Let $z_0 \in U$ and set
+\[
+L = \{ z \in U : f(z) = f(z_0) \}
+\]
+and
+\[
+S = \{ z \in U : \tilde{f}(z) = \tilde{f}(z_0) \text{ and }
+f_r(z) \ge f_r(z_0) \}
+\]
+with the understanding that the $\tilde{f}$ condition is
+ignored if $r=1$. Finally, suppose that $Df(z)$ has rank $r$
+for every $z \in L$ and $D \tilde{f}(z)$ has rank $r-1$ for
+every $z \in S$. Prove that if $S$ and $L$ are nonempty,
+then $S$ is a $C^k$ $(n-r+1)$-manifold with boundary and
+that $\partial S = L$.
+\end{thm}
+
+\begin{proof}
+Suppose $S$ and $L$ are nonempty.
+
+We know that 
+\[
+\tilde{S} = \{z \in U : \tilde{f}(z) = \tilde{f} (z_0) 
+\text{ and } D \tilde{f} (z) \text{ has rank $r - 1$}\}
+\]
+is a $C^k$ $(n - r + 1)$-manifold. This implies that 
+for each $z \in \tilde{S}$, there exists 
+open set $W \subset \R^n$ with $z \in U$, open set $V \subset 
+\R^{n-r+1}$ and homeomorphism $\phi : V \to \phi(V) 
+= W \cap \tilde{S}$ such that $\phi$ is $C^k$
+and $D \phi(x)$ has rank $n-r+1$ for all $x \in W$. 
+Now, for $z \in S$ is such that $f_r(z) > 
+f_r(z_0)$ and let $(W, V, \phi)$ be the local coordinates
+correspond to $z$ in $\tilde{S}$. Then, because $\phi$ is a 
+homeomorphism, we can shrink $W$ and $V$ such that 
+$f_r(z) > f_r(z_0)$ for all $z \in W$. This then implies that 
+$\phi(V) = W \cap S$ and the new $(W, V, \phi)$ is a 
+local coordinates for $z \in S$. 
+
+It remains to find local boundary coordinates for $z \in L$.
+Since $Df(z)$ has rank $r$, $Df(z)$ is surjective.
+The right inverse function theorem then provides open 
+sets $W \subset \R^r$ with $f(z_0) \in W$
+and $V \subset \R^{n - r}$ and a 
+$C^k$ diffeomorphism $F : W \times V 
+\to F(W \times V) \subset U$ such that 
+$f(F(w, v)) = w$ for all $(w, v) \in W \times V$.
+Let $\epsilon > 0$ be small enough such that 
+\[
+\{\tilde{f}(z_0)\} \times (f_r(z_0) - \epsilon, 
+f_r(z_0) + \epsilon) \subset W.
+\]
+Now we define a function $\phi : V \times (- \epsilon, 
+\epsilon)$, via
+\[
+\phi(v, c) = F(\tilde{f}(z_0), f_r(z_0) + c, v).
+\]
+It is easy to verify that this gives a local boundary coordinates
+at $z \in L$. Indeed, $F$ being a $C^k$ diffeomorphism
+guarantees that $D \phi(v, c)$ has rank 
+$n - r + 1$ for all $(v, c) \in V \times (-\epsilon, 
+\epsilon)$. We can now conclude that $S$ is a 
+$C^k$ $(n - r + 1)$-manifold with boundary
+and $\dd S = L$.
+\end{proof}
 
 \subsection{Differential forms}
 
@@ -5945,6 +6097,49 @@ anti-symmetric}\}
 \]
 is the set of $k$-forms.
 
+Recall the definition and properties 
+of antisymmetric multilinear maps:
+
+\begin{defi}
+Let $k \in \N^+$. Let $V$, $W$ be vector spaces over $\F$.
+\begin{enumerate}
+\item $T \in L^k(V, W)$ is said to be \textbf{symmetric}
+if for every $v_1 , \dots, v_k \in V$ and $P \in S_k$, we
+have 
+\[
+T(v_1, \dots, v_k) = T(v_{P(1)}, \dots, v_{P(k)}).
+\]
+\item $T \in L^k(V, W)$ is said to be \textbf{antisymmetric}
+if for every $v_1, \dots, v_k \in V$ and $P \in S_k$, we have 
+\[
+T(v_{P(1)}, \dots, v_{P(K)}) = \sgn (P) T(v_1, \dots, v_k).
+\] 
+\end{enumerate}
+\end{defi}
+
+\begin{thm}
+Let $k \in \N^+$ and $V$, $W$ be vector spaces over $\F$. 
+Suppose $T \in L^k(V, W)$. Then following are equivalent:
+\begin{enumerate}
+\item $T$ is antisymmetric. 
+\item For every $v_1, \dots, v_k \in V$ and transposition 
+$P \in S_k$, we have 
+\[
+T(v_1, \dots, v_k) = -T (v_{P(1)}, \dots, v_{P(k)}).
+\]
+\item If $v_1, \dots, v_k$ is such that $v_i = v_j$ for some 
+$i \neq j$, then 
+\[
+T(v_1, \dots, v_k) = 0.
+\]
+\item If $v_1, \dots, v_l \in V$ are linearly dependent, 
+then 
+\[
+T(v_1, \dots, v_k) = 0.
+\]
+\end{enumerate}
+\end{thm}
+
 Some algebra facts follows from the definition.
 \begin{enumerate}
 \item If $\omega \in \Lambda^k$ and $\eta \in \Lambda^j$,
@@ -5953,7 +6148,12 @@ then
 \omega \wedge \eta = \frac{(k+j)!}{k! j!} \acal (\omega
 \otimes \eta) \in \Lambda^{k+j}(\R^n),
 \]
-where $\acal$ represents the anti-symmetrization.
+where $\acal$ represents the anti-symmetrization given by 
+\[
+\acal T(v_1, \dots, v_k) = \frac{1}{k!} 
+\sum_{P \in S_k} \sgn(P) T(v_1, \dots, v_k)
+\]
+for any $T \in L^k(\R^n)$. 
 However, this is not qiute commutative, as
 \[
 \omega \wedge \eta = (-1)^{jk} \eta \wedge \omega.
@@ -6000,49 +6200,6 @@ of vector calculus}
 \subsubsection{Integration of differential forms on 
 orientated manifolds}
 
-Recall the definition and properties 
-of antisymmetric multilinear maps:
-
-\begin{defi}
-Let $k \in \N^+$. Let $V$, $W$ be vector spaces over $\F$.
-\begin{enumerate}
-\item $T \in L^k(V, W)$ is said to be \textbf{symmetric}
-if for every $v_1 , \dots, v_k \in V$ and $P \in S_k$, we
-have 
-\[
-T(v_1, \dots, v_k) = T(v_{P(1)}, \dots, v_{P(k)}).
-\]
-\item $T \in L^k(V, W)$ is said to be \textbf{antisymmetric}
-if for every $v_1, \dots, v_k \in V$ and $P \in S_k$, we have 
-\[
-T(v_{P(1)}, \dots, v_{P(K)}) = \sgn (P) T(v_1, \dots, v_k).
-\] 
-\end{enumerate}
-\end{defi}
-
-\begin{thm}
-Let $k \in \N^+$ and $V$, $W$ be vector spaces over $\F$. 
-Suppose $T \in L^k(V, W)$. Then following are equivalent:
-\begin{enumerate}
-\item $T$ is antisymmetric. 
-\item For every $v_1, \dots, v_k \in V$ and transposition 
-$P \in S_k$, we have 
-\[
-T(v_1, \dots, v_k) = -T (v_{P(1)}, \dots, v_{P(k)}).
-\]
-\item If $v_1, \dots, v_k$ is such that $v_i = v_j$ for some 
-$i \neq j$, then 
-\[
-T(v_1, \dots, v_k) = 0.
-\]
-\item If $v_1, \dots, v_l \in V$ are linearly dependent, 
-then 
-\[
-T(v_1, \dots, v_k) = 0.
-\]
-\end{enumerate}
-\end{thm}
-
 \begin{lemma}
   Suppose that $V \subseteq \R^n$ is a subspace of dimension
   $1\leq m \leq n$. Given $v_1,\dotsc,v_m \in V$ write
@@ -6058,34 +6215,34 @@ T(v_1, \dots, v_k) = 0.
   
   \begin{enumerate}
   \item Let $\alpha \in \acal(n,m)$. We then have 
-  \begin{equation*}
+  \[
   \frac{\det \braket{v_1,\dotsc,v_m}_\alpha }
   {\bbracket{\braket{v_1,\dotsc,v_m}} }
   = \frac{\det B}{\abs{\det B}}
   \frac{\det \braket{w_1,\dotsc,w_m}_\alpha }
   {\bbracket{\braket{w_1,\dotsc,w_m}} },
-  \end{equation*}
+  \]
   and in particular if $\det B >0$ then
-  \begin{equation*}
+  \[
   \frac{\det \braket{v_1,\dotsc,v_m}_\alpha }
   {\bbracket{\braket{v_1,\dotsc,v_m}} }
   = \frac{\det \braket{w_1,\dotsc,w_m}_\alpha }
   {\bbracket{\braket{w_1,\dotsc,w_m}} }.
-  \end{equation*}
+  \]
   
   
   \item Suppose now that $\omega \in \L^m(\R^n;\R)$ is
   antisymmetric. We then have
-  \begin{equation*}\label{im_df_density_lemma_01}
+  \[\label{im_df_density_lemma_01}
   \frac{\omega(v_1,\dotsc,v_m)}{\bbracket{\braket{v_1,\dotsc,v_m}} }
   = \frac{\det B}{\abs{\det B}} \frac{\omega(w_1,\dotsc,w_m)}
   {\bbracket{\braket{w_1,\dotsc,w_m}}},
-  \end{equation*}
+  \]
   and in particular if $\det B > 0$ then
-  \begin{equation*}
+  \[
   \frac{\omega(v_1,\dotsc,v_m)}{\bbracket{\braket{v_1,\dotsc,v_m}}}
   = \frac{\omega(w_1,\dotsc,w_m)}{\bbracket{\braket{w_1,\dotsc,w_m}}}.
-  \end{equation*}
+  \]
   \end{enumerate}
 \end{lemma}
 
