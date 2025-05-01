@@ -1131,7 +1131,7 @@ via $F^{-1} = G$ and $g = \pi_X \circ F$.
 
 \begin{figure}[!ht]
   \centering
-  \includegraphics[width=0.55\linewidth]{fig/left_inverse.pdf}
+  \includegraphics[width=0.7\linewidth]{fig/left_inverse.pdf}
 \end{figure}
 
 \begin{proof}
@@ -1234,7 +1234,7 @@ related via $F^{-1} = G$ and $g(y) = F(y, P x_0)$.
 
 \begin{figure}[!ht]
   \centering
-  \includegraphics[width=0.55\linewidth]{fig/right_inverse.pdf}
+  \includegraphics[width=0.7\linewidth]{fig/right_inverse.pdf}
 \end{figure}
 
 \begin{proof}
@@ -1276,6 +1276,11 @@ and $\Phi(y_0) = (P_{Y_0} y_0, 0)$.
 \]
 \end{enumerate}
 \end{thm}
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.7\linewidth]{fig/constant_rank.pdf}
+\end{figure}
 
 Prove the constant rank theorem by arguing as follows.
 
@@ -1330,7 +1335,7 @@ F(w,v) = F(w,v_0) \text{ for all }(w,v) \in W \times V.
 \]
 
 \item Define $G: W \to Y$ via $G(w) = F(w,v_0)$.  
-Apply the left inverse function theorem (HW1 P1) 
+Apply the left inverse function theorem
 to complete the proof.
   
   
@@ -1659,7 +1664,7 @@ Df(x)(X_1) = \ran Df(x)
 \]
 for all $x \in U'$.
 Let $y_0 = f(x_0)$.
-Then, by constant rank theorem in problem 4, 
+Then, by constant rank theorem, 
 there exists open sets 
 $x_0 \in \tilde{U} \subset U'$, $\py y_0 \in W \subset Y_0$,
 and $\px x_0 \in V \subset X_0$, and a $C^k$ diffeomorphism 
@@ -1684,16 +1689,16 @@ for all $x \in \tilde{U}$. This completes the proof.
 
 We define now a nonlinear version of linear dependence.
 \begin{defi}
-Assume that $m,n \in \N \setminus \{0\}$.  Let 
+Assume that $m,n \in \N^+$.  Let 
 $\emptyset \neq U \subset \R^n$, and suppose that 
-$f_i: U \to \R$ for $i=1,\dotsc,m$.  Write 
-$f: U \to \R^m$ via $f = (f_1,\dotsc,f_m)$.  
-We say that $\{f_1,\dotsc,f_m\}$ are functionally 
+$f_i: U \to \R$ for $i=1,\dots,m$.  Write 
+$f: U \to \R^m$ via $f = (f_1,\dots,f_m)$.  
+We say that $\{f_1,\dots,f_m\}$ are functionally 
 dependent in $U$ if there exists an open set 
 $V \subset \R^m$ with $f(U) \subset V$ and 
 a function $g \in C^1(V;\R)$ such that 
 \[
- g(f_1(x),\dotsc,f_m(x)) =0 \text{ for all } x\in U
+ g(f_1(x),\dots,f_m(x)) =0 \text{ for all } x\in U
 \]
 and $\nabla g(y) \neq 0$ for all $y \in V$.
 \end{defi}
@@ -1704,21 +1709,21 @@ C^1(U;\R^m)$.
 
 \begin{enumerate}
 
-\item Prove that if $\{f_1,\dotsc,f_m\}$ are functionally 
+\item Prove that if $\{f_1,\dots,f_m\}$ are functionally 
 dependent on $U$, then for each $x_0 \in U$ there exists 
 an open set $V \subset U$ with $x_0 \in V$,  a function  
 $h \in C^1(W;\R)$, where $W\subset \R^{m-1}$ is an open 
-set, and an index $i \in\{1,\dotsc,m\}$ such that
+set, and an index $i \in\{1,\dots,m\}$ such that
 \[
-f_i(x) = h(f_1(x),\dotsc,f_{i-1}(x),f_{i+1}(x),
-\dotsc,f_m(x)) \text{ for all }x \in V.
+f_i(x) = h(f_1(x),\dots,f_{i-1}(x),f_{i+1}(x),
+\dots,f_m(x)) \text{ for all }x \in V.
 \]
 In other words, at least one of the functions can be 
 written in terms of the other functions.
 
 
 
-\item Prove that if  $m \le n$ and $\{f_1,\dotsc,f_m\}$ 
+\item Prove that if  $m \le n$ and $\{f_1,\dots,f_m\}$ 
 are functionally dependent on $U$, then 
 \[
 \text{rank}(Df(x)) \le m-1 \text{ for all }x \in U.
@@ -1729,7 +1734,7 @@ are functionally dependent on $U$, then
 \item Suppose that $1 \le k < \min\{m,n\}$ and that $Df$ 
 is of constant rank $k$ on $U$.  Prove that for each 
 $x_0\in U$ there exists an open set $Z \subset U$ 
-such that $x_0 \in Z$ and  $\{f_1,\dotsc,f_m\}$ are 
+such that $x_0 \in Z$ and  $\{f_1,\dots,f_m\}$ are 
 functionally dependent in $Z$.   
 \end{enumerate}
   
@@ -1806,7 +1811,7 @@ Fix $x_0 \in U$ and write $\ker Df(x_0) = X_0$ and
 $\ran Df(x_0) = Y_0$, where $X_0$ and $Y_0$ are complemented 
 with $X_0 \oplus X_1 = \R^n$ and 
 $Y_0 \oplus Y_1 = \R^m$. 
-By problem 5, we know that 
+By the previous sanity check, we know that 
 $\dim X_1 = \dim Y_0 = k$ and 
 there exists and open set $x_0 \in \tilde{U} \subset U$ 
 such that 
@@ -1817,7 +1822,7 @@ for all $x \in \tilde{U}$.
 
 Note that $k < \min \left\{ m, n \right\}$, so $X_i$ and 
 $Y_i$ are nontrivial for $i = 0, 1$.
-Set $y_0 = f(x_0)$. By constant rank theorem in problem 4, 
+Set $y_0 = f(x_0)$. By constant rank theorem, 
 there exists open sets $x_0 \in Z \subset U$ and 
 $y_0 \in S \subset Y$, $\py y_0 \in W \subset Y_0$, 
 and $\px x_0 \in V \subset X_0$, and $C^k$ diffeomorphisms 
@@ -5617,7 +5622,7 @@ follows immediately.
 Aside from flattening maps, we have another formulation 
 for manifolds and local coordinates.
 \begin{thm}
-Let $1 \leq m \leq n-1$ and $1 \leq k \in \N \cup \{\infty\}$.
+Let $1 \leq m \leq n-1$ and $1 \leq k \in \leq \infty$.
 Suppose that $M \subseteq \R^n$ and $z \in M$. Then 
 the following are equivalent.
 \begin{enumerate}
@@ -6390,13 +6395,13 @@ orientated manifolds}
 
 \begin{lemma}
   Suppose that $V \subseteq \R^n$ is a subspace of dimension
-  $1\leq m \leq n$. Given $v_1,\dotsc,v_m \in V$ write
-  $\braket{v_1,\dotsc,v_m} \in \R^{n \times m}$ for the matrix
+  $1\leq m \leq n$. Given $v_1,\dots,v_m \in V$ write
+  $\braket{v_1,\dots,v_m} \in \R^{n \times m}$ for the matrix
   with $j$-th column given by $v_j$ for $1 \leq j \leq m$.
-  Suppose that $(v_1,\dotsc,v_m)$ and $(w_1,\dotsc,w_m)$ are
+  Suppose that $(v_1,\dots,v_m)$ and $(w_1,\dots,w_m)$ are
   ordered bases of $V$, and let $B \in \R^{m \times m}$ denote
-  the change of basis matrix from $(v_1,\dotsc,v_m)$ to
-  $(w_1,\dotsc,w_m)$, i.e. $v_i = \sum_{j=1}^m B_{ij} w_j$
+  the change of basis matrix from $(v_1,\dots,v_m)$ to
+  $(w_1,\dots,w_m)$, i.e. $v_i = \sum_{j=1}^m B_{ij} w_j$
   for each $1 \leq i \leq m$.
   
   
@@ -6404,32 +6409,32 @@ orientated manifolds}
   \begin{enumerate}
   \item Let $\alpha \in \acal(n,m)$. We then have 
   \[
-  \frac{\det \braket{v_1,\dotsc,v_m}_\alpha }
-  {\bbracket{\braket{v_1,\dotsc,v_m}} }
+  \frac{\det \braket{v_1,\dots,v_m}_\alpha }
+  {\bbracket{\braket{v_1,\dots,v_m}} }
   = \frac{\det B}{\abs{\det B}}
-  \frac{\det \braket{w_1,\dotsc,w_m}_\alpha }
-  {\bbracket{\braket{w_1,\dotsc,w_m}} },
+  \frac{\det \braket{w_1,\dots,w_m}_\alpha }
+  {\bbracket{\braket{w_1,\dots,w_m}} },
   \]
   and in particular if $\det B >0$ then
   \[
-  \frac{\det \braket{v_1,\dotsc,v_m}_\alpha }
-  {\bbracket{\braket{v_1,\dotsc,v_m}} }
-  = \frac{\det \braket{w_1,\dotsc,w_m}_\alpha }
-  {\bbracket{\braket{w_1,\dotsc,w_m}} }.
+  \frac{\det \braket{v_1,\dots,v_m}_\alpha }
+  {\bbracket{\braket{v_1,\dots,v_m}} }
+  = \frac{\det \braket{w_1,\dots,w_m}_\alpha }
+  {\bbracket{\braket{w_1,\dots,w_m}} }.
   \]
   
   
   \item Suppose now that $\omega \in \L^m(\R^n;\R)$ is
   antisymmetric. We then have
-  \[\label{im_df_density_lemma_01}
-  \frac{\omega(v_1,\dotsc,v_m)}{\bbracket{\braket{v_1,\dotsc,v_m}} }
-  = \frac{\det B}{\abs{\det B}} \frac{\omega(w_1,\dotsc,w_m)}
-  {\bbracket{\braket{w_1,\dotsc,w_m}}},
+  \[
+  \frac{\omega(v_1,\dots,v_m)}{\bbracket{\braket{v_1,\dots,v_m}} }
+  = \frac{\det B}{\abs{\det B}} \frac{\omega(w_1,\dots,w_m)}
+  {\bbracket{\braket{w_1,\dots,w_m}}},
   \]
   and in particular if $\det B > 0$ then
   \[
-  \frac{\omega(v_1,\dotsc,v_m)}{\bbracket{\braket{v_1,\dotsc,v_m}}}
-  = \frac{\omega(w_1,\dotsc,w_m)}{\bbracket{\braket{w_1,\dotsc,w_m}}}.
+  \frac{\omega(v_1,\dots,v_m)}{\bbracket{\braket{v_1,\dots,v_m}}}
+  = \frac{\omega(w_1,\dots,w_m)}{\bbracket{\braket{w_1,\dots,w_m}}}.
   \]
   \end{enumerate}
 \end{lemma}
