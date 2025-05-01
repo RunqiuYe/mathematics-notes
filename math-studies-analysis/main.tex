@@ -5622,8 +5622,8 @@ follows immediately.
 Aside from flattening maps, we have another formulation 
 for manifolds and local coordinates.
 \begin{thm}
-Let $1 \leq m \leq n-1$ and $1 \leq k \in \leq \infty$.
-Suppose that $M \subseteq \R^n$ and $z \in M$. Then 
+Let $1 \leq m \leq n-1$ and $1 \leq k \leq \infty$.
+Suppose that $M \subset \R^n$ and $z \in M$. Then 
 the following are equivalent.
 \begin{enumerate}
 \item $M$ admits local $C^k$ $m$-coordinates at $z$.
@@ -5631,14 +5631,14 @@ the following are equivalent.
 $z$, i.e. there exist
 \begin{enumerate}
 \item a permutation matrix $P \in \R^{n \times n}$,
-\item open sets $\emptyset \neq V \subseteq \R^m$ and
-$U \subseteq \R^n$ with $z \in U$,
+\item open sets $\emptyset \neq V \subset \R^m$ and
+$U \subset \R^n$ with $z \in U$,
 \item a $C^k$ function $f : V \to \R^{n-m}$,
 \end{enumerate}
 such that $U \cap M = P \Gamma(f)$, where recall that
 \[
-\Gamma(f) = \{(x,f(x)) : x \in V\} \subseteq V \times
-\R^{n-m} \subseteq \R^n
+\Gamma(f) = \{(x,f(x)) : x \in V\} \subset V \times
+\R^{n-m} \subset \R^n
 \]
 is the graph of $f$.
 \end{enumerate}
@@ -5771,6 +5771,231 @@ Therefore, $\zeta = \phi_1^{-1} \circ \phi_0
 = \tilde{F} \circ \phi_0$
 near $x$. However $x \in \tilde{V_0}$ is arbitrary,
 so $\zeta$ is a $C^k$ diffeomorphism.
+\end{proof}
+
+\subsubsection{Hausdorff measure and integration on 
+manifolds}
+
+\begin{thm}
+Let $M \subset \R^n$ be a $C^k$ $m$-manifold.
+Prove that $M$ admits an atlas $\{(U_\alpha,B_\alpha,
+\phi_\alpha)\}_{\alpha \in A}$ satisfying the
+following properties.
+\begin{enumerate}
+\item $A$ is countable, and if $M$ is compact then $A$
+is finite.
+\item For each $\alpha \in A$ the set $B_\alpha \subset
+\R^m$ is an open ball.
+\item For each $\alpha \in A$ there exists an open set
+$V_\alpha \subset \R^m$ such that $\varnothing \neq
+B_\alpha \subset \bar{B_\alpha} \subset V_\alpha$ with
+$\bar{B_\alpha}$ compact, and $\phi_\alpha \in
+C^k(B_\alpha;\R^n)$ is the restriction to $B_\alpha$ of
+a map $\psi_\alpha \in C^k(V_\alpha;\R^n)$ such that
+$\psi_\alpha(V_\alpha) \subset M$. In particular
+$\phi_\alpha$ and all of its derivatives up to order
+$k$ are bounded on $B_\alpha$.
+
+\item $M = \bigcup_{\alpha \in A} \phi_\alpha(B_\alpha)
+= \bigcup_{\alpha \in A} \phi_{\alpha}(\bar{B_\alpha})$.
+
+\item $0 < \hcal^m(\phi_\alpha(\bar{B_\alpha})) < \infty$
+for every $\alpha \in A$.
+\end{enumerate}
+\end{thm}
+
+\begin{proof}
+For each $z \in M$, there exists $C^k$ local coordinates 
+$(W_z, V_z, \phi_z)$. Let $x \in \phi_z^{-1}(z) \in V_z$
+and pick a ball $B_z$ such that $x \in B_z \subset \bar{B_z}
+\subset V_z$. Let $\phi_z$ be the restriction on $B_z$.
+Note that $\phi_z(B_z)$ is relatively open, so we can select 
+open set $U_z \subset \R^n$ such that $U_z \cap M = \phi_z 
+(B_z)$. It is easy to check that $(U_z, B_z, \phi_z)$ 
+is $C^k$ local coordinates at $z \in M$, and thus 
+$\{(U_z, B_z, \phi_z)\}_{z \in M}$ is an atlas of $M$. 
+
+Now $\{U_z\}_{z \in M}$ is a open cover for $M$. If $M$ 
+is compact, select a finite subcover. Otherwise, select 
+a countable subcover by selecting a $U_z$ for each 
+rational ball with rational radius (Linderl\"of's theorem). 
+Denote the corresponding atlas by 
+$\{(U_\alpha, B_\alpha, \phi_\alpha)\}_{\alpha \in A}$.
+We proceed to show it satisfies the desired properties.
+
+\begin{enumerate}
+\item $\acal$ is clearly countable. Now suppose $M$ is 
+compact, then $\{U_\alpha\}_{\alpha \in A}$ admits a finite 
+subcover. By construction, $\acal$ is then finite.
+
+\item For each $\alpha \in A$, $B_{\alpha}$ is constrcted
+to be an open ball in $\R^m$.
+
+\item It is clear that $\bar{B_{\alpha}}$ is compact.
+Moreover, by construction $B_{\alpha} 
+\subset \bar{B_{\alpha}} \subset \tilde{V}_{\lambda_i}$, and 
+$\phi_{\alpha}$ is the restriction to $B_{\alpha}$
+of the map $\tilde{\phi}_{\lambda_i}$, 
+and $\tilde{\phi}_{\lambda_i}(\tilde{V}_{\lambda_i}) 
+\subset M$ because 
+$\lambda_i \in \Lambda$ is taken from the original atlas 
+$\{(U_\lambda, V_\lambda, \phi_\lambda)\}_{\lambda \in \Lambda}$.
+
+\item We already know that 
+\[
+U_\alpha \cap M 
+= \phi_{\alpha} (B_{\alpha})
+\subset \phi_{\alpha} ( \bar{B_{\alpha}} )
+\subset \tilde{\phi}_{\lambda_i} (\tilde{V}_{\lambda_i}) 
+\subset M.
+\]
+We also know that $\{U_\alpha\}_{\alpha}$ covers $M$.
+Therefore, 
+\[
+M = \bigcup_{\alpha \in A} \phi_{\alpha} (B_{\alpha})
+= \bigcup_{\alpha \in A} \phi_{\alpha} (\bar{B_{\alpha}})
+\]
+
+\item Note that $\bar{B_\alpha}$ is compact and $\phi_\alpha$
+and in particular all its derivatives up to order $k$ are bounded on 
+$\bar{B_\alpha}$. It follows that 
+$\hcal^m (\bar{B_\alpha}) < \infty$ and 
+$\phi_\alpha$ is Lipshitz on $\bar{B_\alpha}$. 
+Therefore, $\hcal^m (\phi_\alpha 
+(\bar{B_\alpha})) < \infty$. 
+
+Now, to show $\hcal^m (\phi(\bar{B_\alpha})) > 0$, note 
+that $\phi_\alpha$ is injective. Then, 
+from the area formula we have 
+\[
+\hcal^m (\phi_\alpha (\bar{B_\alpha})) 
+= \int_{\bar{B_\alpha}} J_{\phi_\alpha} \d \lambda
+\] 
+However, for all $x \in \bar{B_\alpha}$, 
+$D \phi_\alpha(x)$ has rank $m$ so $D \phi_\alpha(x)$ 
+is injective. This implies that 
+$J_{\phi_\alpha}(x) > 0$ for all $x \in \bar{B_\alpha}$. 
+Note also $\bar{B_\alpha}$ is compact so there exists 
+$\epsilon > 0$ such that $J_{\phi_\alpha} > \epsilon$ 
+on $\bar{B_\alpha}$. Therefore, 
+\[
+\hcal^m (\phi_\alpha(\bar{B_\alpha}))
+\geq \epsilon \hcal^m (\bar{B_\alpha}) 
+> 0,
+\]
+as desired.
+\end{enumerate}
+\end{proof}
+
+
+\begin{thm}
+Let $M\subset \R^n$ be a $C^1$ $m$-manifold. Prove that
+the following hold.
+\begin{enumerate}
+\item $M = \bigcup_{k=0}^\infty K_k$, where $K_k \subset
+\R^n$ is compact and $\hcal^m(K_k) < \infty$.
+In particular, $M$ is $\sigma$-compact.
+
+\item For each $E \subset M$ there exists $G \in
+\gd(M)$ such that $\hcal^m(E) = \hcal^m(G)$, and in
+particular the outer measure $\hcal^m$ is cover-regular
+on $M$.
+
+\item $(M, \hfk^m(M), \hcal^m)$ is a complete and
+$\sigma$-finite measure space such that $\bfk (M)
+\subset \hfk^m(M)$. Moreover, if $E \subset M$
+satisfies $\hcal^m(E) =0$ then $E \in \hfk^m(M)$.
+
+\item $\hfk^m(M) = \hfk^m(\R^n)_{M}$.
+
+\item The following are equivalent for $E \subset M$.
+\begin{enumerate}
+\item $E$ is measurable with respect to the outer measure
+$\hcal^m$, i.e. $E \in \hfk^m(M)$.
+\item There exists $G \in \gd(M)$ such that $E \subset G$
+and $\hcal^m(G \setminus E) =0$.
+\item There exists $F \in \fs(M)$ such that $F \subset E$
+and $\hcal^m(E \setminus F) =0$.
+\item For every $\epsilon >0$ there exists an open set
+$U\subset M$ such that $E \subset U$ and
+$\hcal^m(U \setminus E) < \epsilon$.
+\item For every $\epsilon >0$ there exists a closed set
+$C\subset M$ such that $C \subset E$ and
+$\hcal^m(E \setminus C) < \epsilon$.
+\end{enumerate}
+
+
+\item We have that
+\begin{equation*}
+\hfk^m(M) = \{ E\cup F : E \in \bfk (M) \text{ and } F
+\subset N \text{ for } N \in \bfk (M) \text{ such that }
+\hcal^m(N) = 0 \}.
+\end{equation*}
+
+\item $\dim_H(M) = m$.
+\end{enumerate}
+\end{thm}
+
+\begin{proof}
+Let $\{(U_\alpha, B_\alpha, \phi_\alpha)\}_{\alpha \in A}$
+be an atlas for $M$ that satisfies the properties listed 
+in the previous theorem.
+\begin{enumerate}
+\item Note that $M = \bigcup_{\alpha \in A} 
+\phi_\alpha (\bar{B_\alpha})$. Moreover,
+we know $\bar{B_\alpha}$ is compact
+so $\phi_\alpha (\bar{B_\alpha})$ is compact, and  
+$\hcal^m (\phi_\alpha (\bar{B_\alpha})) < \infty$
+for all $\alpha \in A$.
+
+\item Now $M$ is a metric space and $M = \cupinfk K_k$ 
+where $K_k \subset \R^n$ is compact with $\hcal^m (K_k) < \infty$.
+Therefore by a previous theorem, for each $E \subset M$,  
+there exists $G \in \gd (M)$ such that $\hcal^m (E)
+= \hcal^m (G)$. In particular, the outer measure 
+$\hcal^m$ is cover-regular on $M$.
+
+\item By a previous theorem, $(M, \hfk^m (M), 
+\hcal^m)$ is a complete and $\sigma$-finite measure space such 
+that $\bfk(M) \subset \hfk^m(M)$, and $\hcal^m (E) = 0$
+implies $E \in \hfk^m(M)$.
+
+\item Note that $M = \cupinfk K_k$ where $\hcal^m (K_k) < \infty$, 
+so a previous theorem gives $\hfk^m (M) = \hfk^m 
+(\R^n)_M$.
+
+\item Note that $M = \bigcup_{\alpha \in A} \phi_\alpha 
+(B_\alpha)$, $\phi_\alpha (B_\alpha) \subset M$ relatively 
+open in $M$, and 
+\[
+\hcal^m (\phi_\alpha(B_\alpha)) 
+\leq \hcal^m \phi_\alpha (\bar{B_\alpha}) < \infty.
+\]
+Therefore by a previous theorem, 
+the items (a) to (e) are equivalent.
+
+\item A previous theorem on Hausdorff measure space 
+gives that 
+\[
+\hfk^m (M) = \{E \cup F : \text{$E \in \bfk(M)$ 
+and $F \subset N$ for $N \in \bfk(M)$ such that 
+$\hcal^m(N) = 0$}\}.
+\]
+
+\item Note that $M = \bigcup_{\alpha \in A} \phi_\alpha 
+(\bar{B_\alpha})$ and $0 < \hcal^m (\phi_\alpha (\bar{B_\alpha})) 
+< \infty$. This implies that $\hcal^m (M) \leq \infty$ so 
+$\dim_H (M) \leq m$. On the other hand, for $0 \leq s < m$,
+we have $\hcal^s(\phi_\alpha (\bar{B_\alpha})) = 0$. 
+It follows that 
+\[
+\hcal^s (M) 
+= \sum_{\alpha \in A} \hcal^s (\phi_\alpha (\bar{B_\alpha}))
+= 0.
+\]
+Therefore, $\dim_H (M) \geq m$. This implies that 
+$\dim_H (M) = m$.
+\end{enumerate}
 \end{proof}
 
 \subsubsection{Tangent spaces}
@@ -6035,7 +6260,7 @@ of the following can be true:
 \begin{defi}
 A $C^k$ $m$-manifold with boundary is a set $\emptyset \neq
 M \subset \R^n$ such that $M = M^\circ \cup \dd M$, 
-where $M^\circ \neq \empty$, $\dd M \neq \emptyset$, and 
+where $M^\circ \neq \emptyset$, $\dd M \neq \emptyset$, and 
 \[
 \begin{aligned}
 M^\circ &= \{z \in M : \text{$z$ admits local 
@@ -6053,7 +6278,7 @@ We have seen before that level sets are manifolds. Here
 we have another version for manifolds with
 boundary.
 \begin{thm}[superlevel sets as manifolds with boundary]
-Let $\emptyset \neq U \subseteq \R^n$ be open and suppose
+Let $\emptyset \neq U \subset \R^n$ be open and suppose
 that $f\in C^k(U;\R^r)$ for $1 \le r < n$.  If $r \ge 2$,
 write $f = (\tilde{f},f_r)$, i.e. $\tilde{f} = \sum_{i=1}^
 {r-1} f_i e_i$.  Let $z_0 \in U$ and set
@@ -6394,7 +6619,7 @@ of vector calculus}
 orientated manifolds}
 
 \begin{lemma}
-  Suppose that $V \subseteq \R^n$ is a subspace of dimension
+  Suppose that $V \subset \R^n$ is a subspace of dimension
   $1\leq m \leq n$. Given $v_1,\dots,v_m \in V$ write
   $\braket{v_1,\dots,v_m} \in \R^{n \times m}$ for the matrix
   with $j$-th column given by $v_j$ for $1 \leq j \leq m$.
