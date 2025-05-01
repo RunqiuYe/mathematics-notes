@@ -6226,6 +6226,15 @@ Therefore, $T_z M_1$ and $T_{f(z)} M_2$ are isomophic for each
 $z \in M$. This also shows that $f$, $f^{-1}$ are immersions.
 \end{proof}
 
+\subsubsection{Orientation on manifolds}
+
+\TODO
+
+\subsubsection{Unit normals and orientations on codimension 
+one manifolds} 
+
+\TODO
+
 \subsubsection{Manifolds with boundary}
 
 \begin{defi}
@@ -6791,6 +6800,32 @@ class induced on $T_z M$.
 \end{enumerate}
 \end{defi}
 
+\begin{prop}
+Let $M \subset \R^n$ be a $C^k$ $m$-manifold with orientation 
+$\ocal$. The following holds: 
+\begin{enumerate}
+\item Let $\tau_M : M \to \Lambda^m(\R^n)$ be the volume
+form on $M$. Then, $\norm{\tau_M(z)}_{\Lambda^m} = 1$
+for all $z \in M$ and if $(U, V, \phi) \in \ocal$, then 
+\[
+\tau_M \circ \phi = 
+\frac{1}{\bbracket{D\phi}} \sum_{\alpha \in \acal(n, m)}
+\det (D \phi)_\alpha e^\alpha.
+\] 
+Moreover, 
+\[
+\phi^* \tau_M = \bbracket{D \phi} e^1 \wedge \dots \wedge 
+e^m = J_\phi e^1 \wedge \dots \wedge e^m.
+\]
+In particular, $\tau_M$ is $C^{k-1}$.
+
+\item If $\omega : M \to \Lambda^m(\R^n)$ is $C^r$ for 
+$0 \leq r \leq k - 1$, then the density function $f_\omega 
+: M \to \R$ is also $C^r$ and hence $\hcal^m$-measurable 
+on $M$.
+\end{enumerate}
+\end{prop}
+
 \begin{defi}
 Let $M \subset \R^n$ be an orientated $C^1$ manifold
 of dimension $1 \leq m \leq n$. We say that $\omega$
@@ -6853,7 +6888,11 @@ Suppose $U$ is an open set in a normed vector
 space $V$, we write 
 \[
 C_c^\infty (U; V) = \{f \in C^\infty (U; V): 
-\text{$\supp(f)$ is compact}\}.
+\text{$\supp(f)$ is compact}\},
+\]
+where 
+\[
+\supp(f) = \bar{\{x \in U : f(x) \neq 0\}}.
 \]
 \end{defi}
 
