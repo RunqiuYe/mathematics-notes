@@ -1135,7 +1135,69 @@ via $F^{-1} = G$ and $g = \pi_X \circ F$.
 \end{figure}
 
 \begin{proof}
-\TODO
+(1) $\implies$ (2). Write $Y_0 = \ran Df(x_0)$. 
+Since $Df(x_0)$ is injective with $\ran Df(x_0)$ closed 
+and complemented in $Y$, there exists nontrivial subspace 
+$Y_1$ such that $Y_0 \oplus Y_1 = Y$. 
+
+Now claim $DG(x_0, 0) \in \L(X \times Y_1; Y)$ 
+is an isomorphism. Indeed, we have 
+\[
+DG(x_0, 0) (h, k) = Df(x_0) h + k.
+\]
+It follows that the $\ran DG(x_0, 0) = \ran Df(x_0) + Y_1 
+= Y$, so $DG(x_0, 0)$ is surjective. On the other hand, 
+suppose $DG(x_0, 0)(h, k) = 0$. The direct sum composition
+implies that $k = 0$ and $Df(x_0) h = 0$. However, $Df(x_0)$
+is injective so we also have $h = 0$. This implies that
+$DG(x_0, 0)$ is injective, and $DG(x_0, 0) \in \L(X \times 
+Y_1; Y)$ is indeed an isomophism. 
+It is also clear that $DG(x_0, 0) (X \times \{0\}) = \ran
+Df(x_0) = Y_0$, and $DG(x_0, 0) \vert_{X \times \{0\}}$
+is an isomophism.
+
+Now the inverse function theorem then applies and gives 
+a bounded and open set $V \subset U \times Y_1$ with $
+(x_0, 0) \in V$ and $G$ is a $C^k$ diffeomorphism from 
+$V$ to $G(V)$. We can then choose open sets $x_0 \in \tilde{U}
+\subset U$ and $0 \in S \subset Y_1$ so that $\tilde{U} \times
+S \subset V$. It follows that $G : \tilde{U} \times S \to
+Y$ is a $C^k$ diffeomorphism onto its image. 
+
+(2) $\implies$ (3). Define $W = G(\tilde{U} \times S) 
+\subset Y$ and let $F = G^{-1}$. It follows that 
+$F$ is a $C^k$ diffeomorphism from $W$ to 
+$F(W) = \tilde{U} \times S$.
+We also know that $f(\tilde{U}) 
+\subset G(\tilde{U} \times S) = W$. Since $G(x, 0) = f(x)$ 
+for all $x \in \tilde{U}$, we have
+\[
+F(f(x)) = (x, 0)
+\]
+for all $x \in \tilde{U}$. 
+
+Moreover, note that $DF(y_0) = [DF(x_0, 0)]^{-1}$. Therefore, 
+$DF(y_0)(Y_0) = X \times \{0\}$ and the restriction 
+$DF(y_0) \vert_{Y_0} : Y_0 \to X \times \{0\}$ is an 
+isomophism.
+
+$(3) \implies (4)$. Let $g = \pi \circ F$ where $\pi$
+is the projection onto the first coordinate. Then 
+$g \in C^k(W; X)$
+and $g(f(x)) = x$ for all $x \in \tilde{U}$
+
+$(4) \implies (5)$. Since $g(f(x)) = x$ for all $x \in 
+\tilde{U}$, we have 
+\[
+D(g \circ f)(x) = Dg(f(x)) Df(x) = I_X.
+\]
+It follows that $Df(x) \in \L_L(X; Y)$ 
+for all $x \in \tilde{U}$, 
+and thus $Df(x) \in \L(X; Y)$ is injective with 
+$\ran Df(x)$ closed and complemented in $Y$ for all 
+$x \in \tilde{U}$.
+
+$(5) \implies (1)$. Trivially true since $x_0 \in \tilde{U}$.
 \end{proof}
 
 \begin{thm}[flattening map]
@@ -1176,7 +1238,59 @@ complemented in $Y$ for each $x \in V$.
 \end{thm}
 
 \begin{proof}
-\TODO
+$(1) \implies (2)$. By the left inverse function theorem,
+there exists open sets
+$x_0 \in \tilde{V} \subset V$ and $0 \in S \subset Y_1$ 
+such that the map $G : \tilde{V} \times S \to Y$ given by 
+$G(x, y) = f(x) + y$ is a $C^k$ diffeomorphism onto its image 
+$G(\tilde{V} \times S) \subset Y$. 
+
+Note that $f$ is a homeomorphism from $V$ to $f(V) = U \cap M$
+and $\tilde{V}$ is open, it follows that there exists 
+open set $R \subset U$ such that 
+\[
+G(\tilde{V} \times \{0\}) = f(\tilde{V}) = M \cap R.
+\]
+Now define $W = G(\tilde{V} \times S) \cap R \subset U$. 
+We then have $W \subset R$ and $G^{-1} (M \cap R) 
+= \tilde{V} \times \{0\}$. Also let $F$ be the inverse of 
+$G$ restricted to $W$, then $F$ is a $C^k$ diffeomorphism 
+from $W$ to $F(W)$ such that $DF(y_0)(Y_0) = X_0 \times \{0\}$.
+Using the fact that $G$ is a diffeomorphism, 
+it is also easy to verify that
+\[
+F(W \cap M) = F(W) \cap [X \times \{0\}].
+\]
+
+(2) $\implies$ (1). Let $U = W$ and $V = \{x \in X: (x, 0) 
+\in F(W)\}$. Also define $f : V \to Y$ by 
+\[
+f(x) = F^{-1} (x, 0).
+\]
+It is clear that $f \in C^k(V; Y)$, $f(V) = W \cap M$, 
+and $f$ is a homeomorphism.
+Since $y_0 \in W \cap M$, there exists a unique $x_0 \in X$ 
+such that $f(x_0) = y_0$. We can then compute 
+\[
+Df(x_0) h = DF^{-1} (x_0, 0) (h, 0) = [DF(y_0)]^{-1} (h, 0).
+\]
+It follows that 
+\[
+\ran Df(x_0) = \ran [DF(y_0)]^{-1} (X \times \{0\}) = Y_0.
+\]
+Finally, set $H : W \to V$ by $H = \pi \circ F$, where 
+$\pi$ is the projection onto the first coordinate. Then 
+$H(f(x)) = x$ for all $x \in V$, and hence 
+\[
+DH(f(x)) Df(x) = I_X
+\]
+for all $x \in V$. This implies that $Df(x) \in \L_L$, and 
+thus $Df(x)$ is injective with $\ran Df(x)$ closed and
+complemented in $Y$ for all $x \in V$, completing the proof 
+for (2) $\implies$ (1).
+
+(2) $\implies$ (3). This is easy, since $X$ is isomophic 
+to $Y_0$.
 \end{proof}
 
 \begin{thm}[right inverse function theorem]
@@ -6439,7 +6553,7 @@ Some algebra facts follows from the definition.
 \item If $\omega \in \Lambda^k$ and $\eta \in \Lambda^j$,
 then
 \[
-\omega \wedge \eta = \frac{(k+j)!}{k! j!} \acal (\omega
+\omega \wedge \eta = \frac{(k+j)!}{k! \; j!} \acal (\omega
 \otimes \eta) \in \Lambda^{k+j}(\R^n),
 \]
 where $\acal$ represents the anti-symmetrization given by 
@@ -6497,6 +6611,10 @@ where $V \in \R^{k \times k}$ is such that $V_{ij} = \omega_i
 (v_j)$.
 \end{prop}
 
+\begin{proof}
+\TODO
+\end{proof}
+
 \begin{cor}
 Suppose $1 \leq k \leq n$ and $\alpha \in \acal(n, k)$. 
 If $v_1, \dots, v_k \in \R^n$ then 
@@ -6523,6 +6641,10 @@ Suppose $\omega \in \Lambda^k(\R^n)$, then
 where $V \in \R^{n \times n}$ is such that 
 $V_{ij} = v_j \cdot e_i$.
 \end{prop}
+
+\begin{proof}
+\TODO
+\end{proof}
 
 \begin{defi}[exterior derivative]
 Let $\emptyset \neq U \subset \R^n$ open and $1 \leq r \leq 
@@ -6564,6 +6686,10 @@ d (\omega \wedge \zeta) = d \omega \wedge \zeta
 \textbf{Suppose $r \geq 2$, then $d^2 = d \circ d = 0$.}
 \end{enumerate}
 \end{thm}
+
+\begin{proof}
+\TODO
+\end{proof}
 
 \begin{defi}[pullback]
 Let $\emptyset \neq U \subset \R^n$ and $\emptyset \neq V 
@@ -6620,6 +6746,10 @@ where $D_\beta \phi_\alpha \in \R^{k \times k}$ is such that
 $(D_\beta \phi_\alpha)_{ij} = \dd_{\beta_j} \phi_{\alpha_i}$.
 \end{enumerate}
 \end{thm}
+
+\begin{proof}
+\TODO
+\end{proof}
 
 \subsection{Stokes-Cartan and fundamental theorems
 of vector calculus}
