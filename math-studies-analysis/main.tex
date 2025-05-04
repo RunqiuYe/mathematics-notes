@@ -1131,7 +1131,7 @@ via $F^{-1} = G$ and $g = \pi_X \circ F$.
 
 \begin{figure}[!ht]
   \centering
-  \includegraphics[width=0.7\linewidth]{fig/left_inverse.pdf}
+  \includegraphics[width=0.6\linewidth]{fig/left_inverse.pdf}
 \end{figure}
 
 \begin{proof}
@@ -1289,7 +1289,7 @@ thus $Df(x)$ is injective with $\ran Df(x)$ closed and
 complemented in $Y$ for all $x \in V$, completing the proof 
 for (2) $\implies$ (1).
 
-(2) $\implies$ (3). This is easy, since $X$ is isomophic 
+(2) $\implies$ (3). This is clear since $X$ is isomophic 
 to $Y_0$.
 \end{proof}
 
@@ -1348,11 +1348,87 @@ related via $F^{-1} = G$ and $g(y) = F(y, P x_0)$.
 
 \begin{figure}[!ht]
   \centering
-  \includegraphics[width=0.7\linewidth]{fig/right_inverse.pdf}
+  \includegraphics[width=0.6\linewidth]{fig/right_inverse.pdf}
 \end{figure}
 
 \begin{proof}
-\TODO
+(1) $\implies$ (2). Let $X_0 = \ker Df(x_0)$ and $P$ the 
+projection on to $X_0$, then there exists nontrivial 
+closed subspace $X_1 \subset X$ such that $X = X_0 \oplus
+X_1$. 
+
+Now claim $DG(x_0) \in \L(X; Y \times X_0)$ 
+is an isomophism. Indeed, we have 
+\[
+DG(x_0)h = (Df(x_0)h, Ph).
+\] 
+For injectivity, consider $D\Phi(x_0)h = (0, 0)$. Then,
+$Df(x_0) h = 0$ and $Ph = 0$. It follows that 
+$h \in \ker Df(x_0) = X_0$. Since $P$ restricted on 
+$\ran P = X_0$ is the identity, we must have $h = 0$.
+Hence, $D\Phi(x_0)$ is injective. For surjectivity, 
+consider $(y, k) \in Y \times X_0$. Since $Df(x_0)$ is 
+surjective with $\ker Df(x_0)$ complemented in $X$, 
+there exists $h \in X$ such that $Ph = 0$ and $Df(x_0) h = y$.
+Then, 
+\[
+D\Phi(x_0)(h + k) = (D\Phi(x_0)(h + k), P(h + k)) 
+= (D\Phi(x_0) h, Pk) = (y, k),
+\]
+where we utilized the fact that $k \in X_0 = \ker Df(x_0)$.
+This implies that $D\Phi(x_0)$ is a linear homeomorphism.
+It then follows from the inverse function theorem that 
+there exists open set $y_0 \in W \subset Y$, $P x_0 
+\in V \subset X$, and $x_0 \in \tilde{U} \subset U$ 
+such that $G : \tilde{U} \to Y \times X_0$ is a 
+$C^k$ diffeomorphism onto $G(\tilde{U}) = W \times V$.
+
+Note that $Df(x_0) \vert_{X_1} \in \L(X_1 ; Y)$ 
+is an isomophism. Hence, shrinking $\tilde{U}$ if necessary,
+we can assume $Df(x) \vert_{X_1}$ is an isomorphism for 
+all $x \in \tilde{U}$. For each $x \in \tilde{U}$, we have
+\[
+DG(x) (X_1) = Df(x) (X_1) \times P(X_1) = Df(x) (X_1) 
+\times \{0\}.
+\]
+It follows that $DG(x)(X_1) = Y \times \{0\}$
+and the restriction $DG(x) \vert_{X_1} : X_1 \to Y 
+\times \{0\}$ is an isomophism for all $x \in \tilde{U}$.
+
+(2) $\implies$ (3). Define $F = G^{-1}$. Then $F$ is a 
+$C^k$ diffeomorphism from $W \times V$ to $F(W \times V) 
+= \tilde{U}$. Also, for all 
+$(y, v) \in W \times V$, we have 
+\[
+G(F(y, v)) = (f(F(y, v)), P(F(y, v))) = (y, v).
+\]
+This implies that $f(F(y, v)) = y$ for all $(y, v) \in 
+W \times V$. Moreover, for all $(w, v) \in W \times V$, we
+know $DF(w, v) = [DG(F(y, v))]^{-1}$.  Therefore, $DF(w, v)
+(Y \times \{0\}) = X_1$ and the restriction $DF(w, v) 
+\vert_{Y \times \{0\}} : Y \times \{0\} \to X$ is an 
+isomophism.
+
+(3) $\implies$ (4). Define $g : W \to X$ by 
+$g(y) = F(y, P x_0)$. It then follows that 
+$g \in C^k(W; X)$, $g(W) \subset U$, 
+and $f(g(y)) = y$ for all $y \in W$.
+
+(4) $\implies$ (5). Since $f(g(y)) = y$ for all $y \in W$
+and $y_0 \in W$ we have 
+\[
+D(f \circ g) (y_0) = Df(g(y_0)) Dg(y_0) 
+= Df(x_0) Dg(y_0) = I_Y
+\]
+This implies that $Df(x_0) \in \L_R (X; Y)$. Recall 
+that the set of right invertible linear maps are open, so 
+we can select open set $x_0 \in \tilde{U} \subset U$ such 
+that $Df(x) \in \L_R(X; Y)$ for all $x \in \tilde{U}$. 
+This is equivalent to $Df(x) \in \L(X; Y)$ being surjective 
+with $\ker Df(x)$ closed and complemented in $X$ for all 
+$x \in \tilde{U}$. 
+
+(5) $\implies$ (1). Trivially true since $x_0 \in \tilde{U}$.
 \end{proof}
 
 \begin{thm}[Constant rank theorem]
@@ -1390,11 +1466,6 @@ and $\Phi(y_0) = (P_{Y_0} y_0, 0)$.
 \]
 \end{enumerate}
 \end{thm}
-
-\begin{figure}[!ht]
-  \centering
-  \includegraphics[width=0.7\linewidth]{fig/constant_rank.pdf}
-\end{figure}
 
 Prove the constant rank theorem by arguing as follows.
 
@@ -1451,10 +1522,14 @@ F(w,v) = F(w,v_0) \text{ for all }(w,v) \in W \times V.
 \item Define $G: W \to Y$ via $G(w) = F(w,v_0)$.  
 Apply the left inverse function theorem
 to complete the proof.
-  
-  
 
 \end{enumerate}
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.6\linewidth]{fig/constant_rank.pdf}
+\end{figure}
+
 
 \begin{proof}
 {
