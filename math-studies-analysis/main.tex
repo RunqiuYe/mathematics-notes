@@ -958,10 +958,158 @@ surjective. Then there exists $r_0, \; \gamma > 0$ such that
 \end{thm}
 
 \begin{proof}
+\textbf{Step 1: reduction} 
 
-\TODO
+WLOG we can suppose $z = 0$ and $f(z) = 0$. Indeed, suppose 
+the theorem holds in this special case and consider 
+the general hypotheses. Define $g : U - z \to Y$ by 
+$g(x) = f(x + z) - f(z)$. Then note that $z \in U$
+so $0 \in U - z$. Also, $g(0) = 0$ and $Dg(x) = Df(x + z)$.
+Therefore, $Dg(0) = Df(z)$ is surjective. Now apply the special
+case to $g$ to obtain $r_0, \; \gamma > 0$ such that 
+\begin{enumerate}
+  \item $B_X [0, r_0] \subset U - z$. 
+  \item $Dg(x)$ is surjective for $x \in B_X [0, r_0]$.
+  \item $B_Y [0, \gamma r] \subset g(B_X [0, r])$ 
+  for all $0 \leq r \leq r_0$.
+\end{enumerate}
+It follows that 
+\begin{enumerate}
+  \item $B_X[z, r_0] \subset U$.
+  \item $Df(x)$ surjective for all $x \in B_X[z, r_0]$.
+  \item $B_Y[f(z), \gamma r] \subset f(B_X[z, r])$ for all
+  $0 \leq r \leq r_0$.
+\end{enumerate}
 
+\textbf{Step 2: set up} 
+
+Suppose $z = 0$ and $f(z) = 0$. Write $T = Df(0) \in \L(X; Y)$,
+which is surjective. Then by open mapping theorem, there 
+exists $M > 0$ such that for each $y \in Y$, there is 
+$x \in X$ such that $T x = y$ and $\norm{x} \leq M \norm{y}$.
+We also know the set of surjective linear maps 
+in $\L(X; Y)$ is open, so there exists $\epsilon > 0$ such that 
+$\norm{S - T} < \epsilon$ implies $S$ surjective. 
+
+Let $\gamma = \frac{1}{2 M} > 0$ and use continuity to pick 
+$r_0 > 0$ such that $B_X[0, r_0] \subset U$ and 
+\[
+\norm{Df(x) - T} < \min\{\gamma, \epsilon\}
+\]
+for all $x \in B_X[0, r_0]$. In particular, $Df(x)$
+is surjective for all $x \in B_X [0, r_0]$. 
+
+Finally, by mean value theorem, if $u, v \in B_X[0, r_0]$,
+then 
+\begin{equation*}
+  \norm{f(u) - f(v) - T(u, v)} 
+  \leq \norm{u - v} \sup_{w \in B_X[0, r_0]} \norm{Df(w) - T} 
+  \leq \gamma \norm{u - v}.
+  \tag{$*$}
+\end{equation*}
 \end{proof}
+
+\textbf{Step 3: completion}
+
+Fix $0 < r \leq r_0$ and $y \in B_Y[0, \gamma r]$, we want 
+to show $y \in f (B_X [0, r])$. We now inductively 
+construct a sequence $\seqinfn{x_n}$. Let $x_0 = 0$.
+
+(Base case) Pick $x_1 \in X$ such that $T x_1 = y$ and 
+$\norm{x_1} \leq M \norm{y} \leq M \gamma r = \frac{r}{2} 
+< r$. Hence $x_1 \in B(0, r)$. Moreover, we have 
+\[
+T x_1 = y = y - f(x_0) + T x_0,
+\]
+and 
+\[
+\norm{x_1 - x_0} = \norm{x_1} \leq M \norm{y}.
+\]
+
+(Inductive step) Now suppose $1 \leq n \in \N$ and we 
+constructed $\{x_m\}_{m=0}^n \subset B_X(0, r)$ such that 
+$T x_m = y - f(x_{m - 1}) + T x_{m - 1}$, and
+$\norm{x_m - x_{m - 1}} \leq 2^{-m + 1} M 
+\norm{y}$ for all $1 \leq m \leq n$.
+Let $h \in X$ such that $T h = y - f(x_n)$ and 
+$\norm{h} \leq M \norm{y - f(x_n)}$. Set $x_{n + 1} 
+= x_n + h$. Note that now 
+\[
+T x_{n + 1} = T x_n + T h = y - f(x_n) + T x_n,
+\]
+and 
+\[
+\norm{x_{n + 1} - x_n} = \norm{h} \leq M \norm{y - f(x_n)}.
+\]
+Now we have $y = f(x_{n - 1}) + T(x_n - x_{n - 1})$, 
+so 
+\[
+y - f(x_n) = f(x_{n - 1}) - f(x_n) - T(x_{n - 1} - x_n).
+\]
+By $(*)$, we have $\norm{y - f(x_n)} \leq \gamma 
+\norm{x_{n - 1} - x_n}$, and thus
+\[
+\norm{x_{n + 1} - x_n} \leq M \norm{y - f(x_n)}
+\leq M \gamma \norm{x_{n - 1} - x_n} 
+\leq 2^{- n} M \norm{y}.
+\]
+In turn, 
+\[
+\begin{aligned}
+\norm{x_{n + 1}} = \norm{x_{n + 1} - x_0} 
+&\leq \sumk^n \norm{x_{k+1} - x_k} 
+< M \norm{y} \suminfk 2^{-k} 
+= 2 M \norm{y}.
+\end{aligned}
+\]
+However, $\gamma = \frac{1}{2 M}$. This then implies that
+$2 M \norm{y} = \frac{1}{\gamma} \norm{y} \leq r$
+since $y \in B_Y[0, \gamma r]$.
+Therefore, $x_{n + 1} \in B_X(0, r)$, completing
+the inductive construction.
+
+Note that $\seqinfn{x_n}$ is Cauchy and hence $x_n \to x$ 
+for some $x \in B_X[0, r]$ as $n \to \infty$. This then 
+implies that 
+\[
+\begin{aligned}
+  T x = \lim_{n \to \infty} T x_n 
+  &= \lim_{n \to \infty} [y - f(x_{n - 1}) - T x_{n - 1}] \\
+  &= y - f(x) + T x.
+\end{aligned}
+\]
+It follows that $y = f(x)$. Since $y \in B_Y [0, \gamma r]$
+is arbitrary, we have that $B_Y [0, \gamma r] 
+\subset f(B_X [0, r])$ for all $0 \leq r \leq r_0$, completing
+the proof for the theorem.
+
+\begin{remark}
+The argument in step 3 is in fact \textbf{Newton's method}. 
+The idea is as follows: Suppose $f : X \to Y$ is $C^1$ 
+and $Df(x)$ is an isomophism for all $x$. Say we want to 
+solve the equation $y = f(x)$ for $x$ and we know $y_0 
+= f(x_0)$ and $y \approx y_0$. 
+Now we have 
+\[
+\begin{aligned}
+  y = f(x_0) + Df(x_0) (x - x_0) 
+  = y_0 + Df(x_0) (x - x_0).
+\end{aligned}
+\]
+It follows that $y - y_0 = Df(x_0) (x - x_0)$ 
+and thus $x = x_0 + [Df (x_0)]^{-1} (y - y_0)$.
+
+This gives the following \textbf{algorithm} to solve 
+an equation. Define 
+\[
+x_{n + 1} = x_n + [Df(x_n)]^{-1} (y - f(x_n)).
+\]
+Suppose $x_n \to x$ as $n \to \infty$, then 
+\[
+x = x + [Df(x)]^{-1} (y - f(x))
+\]
+and thus $y = f(x)$.
+\end{remark}
 
 \begin{defi}[diffeomorphism]
 Let $X$ and $Y$ be normed vector spaces and suppose that
