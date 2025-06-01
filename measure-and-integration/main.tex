@@ -1,0 +1,93 @@
+\documentclass[a4paper]{article}
+\usepackage{parskip}
+\usepackage{lipsum}
+
+\def\nterm {Summer}
+\def\nyear {2025}
+\def\ncourse {Measure and Integration}
+
+\input{../header}
+
+\newcommand{\TODO}{\textcolor{red}{\textbf{*** TO-DO ***}}}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+\setcounter{section}{2}
+\section{Signed measure and differentiation}
+
+\begin{ex}[Folland 3.18]
+Let $\nu$ be a complex measure on $(X, \mf)$. Prove that 
+$L^1 (\nu) = L^1 (\abs{\nu})$ and if $f \in L^1 (\nu)$, then 
+$\abs{\int f \d \nu} \leq \int \abs{f} \d \abs{\nu}$.
+\end{ex}
+
+\begin{proof}
+For $L^1 (\nu) \subset L^1 (\abs{\nu})$, consider $f \in L^1 (\nu)$.
+Note that $\nu = \nu_r + i \nu_i$ and it is easy to 
+verify that $\abs{i \nu_i} = \abs{\nu_i}$.
+Therefore by Proposition 3.14, we have $\abs{\nu} \leq 
+\abs{\nu_r} + \abs{\nu_i}$. It follows that 
+\[
+\begin{aligned}
+\int \abs{f} \d \abs{\nu} 
+&\leq \int \abs{f} \d \abs{\nu_r} + \int \abs{f} \d
+\abs{\nu_i} \\
+&= \int \abs{f} \d \nu_r^+ + \int \abs{f} \d \nu_r^- 
++ \int \abs{f} \d \nu_i^+ + \int \abs{f} \d \nu_i^-.
+\end{aligned}
+\]
+Since $f \in L^1 (\nu)$, all four terms are finite and thus 
+$f \in L^1 (\abs{\nu})$. 
+
+For $L^1 (\abs{\nu}) \subset L^1 (\nu)$, consider $f \in L^1 
+(\abs{\nu})$. Then we have 
+\[
+\int \abs{f} \d \nu 
+= \int \abs{f} \frac{d \nu}{d \abs{\nu}} \d \abs{\nu} 
+\leq \int \abs{f} \abs{\frac{d \nu}{d \abs{\nu}}} \d \abs{\nu} 
+= \int \abs{f} \d \abs{\nu},
+\]
+where we have used the fact that $d \nu / d \abs{\nu}$ has 
+absolute value $1$ $\abs{\nu}$-a.e. This shows that 
+$f \in L^1 (\nu)$. 
+
+Moreover, we have that $\abs{\int f \d \nu} 
+\leq \int \abs{f} \d \nu$. Therefore,
+\[
+\abs{\int f \d \nu} \leq \int \abs{f} \d \abs{\nu},
+\]
+as desired.
+\end{proof}
+
+\begin{ex}[Folland 3.19]
+If $\nu, \mu$ are complex measures and $\lambda$ 
+is a positive measure, then $\nu \perp \mu$ if and only 
+if $\abs{\nu} \perp \abs{\mu}$, and $\nu \ll \lambda$ 
+if and only if $\abs{\nu} \ll \lambda$.
+\end{ex}
+
+\begin{proof}
+\TODO
+\end{proof}
+
+\begin{ex}[Folland 3.20]
+If $\nu$ is a complex measure on $(X, \mf)$ and 
+$\nu(X) = \abs{\nu}(X)$, then $\nu = \abs{\nu}$.
+\end{ex}
+
+\begin{proof}
+By Lebesgue-Randon-Nikodym theorem, we have 
+$d \nu = f \d \mu$ for some function $f$ and positive 
+measure $\mu$. It follows that $d \abs{\nu} 
+= \abs{f} \d \mu$ and 
+\[
+\int f \d \mu = \int \abs{f} \d \mu.
+\]
+This shows that $f = \abs{f}$ $\mu$-a.e., and thus 
+$\nu = \abs{\nu}$.
+\end{proof}
+
+\end{document}
