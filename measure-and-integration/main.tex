@@ -99,7 +99,18 @@ and $\mu \geq \nu^-$.
 \end{ex}
 
 \begin{proof}
-  \TODO
+Let $\nu = \nu^+ - \nu^-$ be the unique decomposition. 
+We then have $\lambda - \nu^+ = \mu - \nu^-$. Pick a set $E \in \mf$
+such that $\nu^- (E) = 0$. We then have 
+\[
+\lambda (E) - \nu^+ (E) = \mu (E) \geq 0.
+\]
+Therefore $\lambda (E) \geq \nu^+ (E)$. On the other hand,
+for $E \in \mf$ such that $\nu^+ (E) = 0$, we have 
+$\lambda (E) \geq 0 = \nu^+ (E)$. In light of the Hahn 
+decomposition for $\nu$ and the additivity of measure, 
+we can conclude that $\lambda \geq \nu^+$, and thus
+$\mu \geq \nu^-$.
 \end{proof}
 
 
@@ -111,13 +122,31 @@ Suppose $\nu$ is a signed measure on $(X, \mf)$ and $E \in \mf$.
 F \in \mf \right\}$. 
 
 \item $\abs{\nu}(E) = \sup \left\{ \sumj^n \abs{\nu(E_j)} 
-: \text{$n \in \N$, $E_1, \dots, E_j$ disjoint, and 
+: \text{$n \in \N$, $E_1, \dots, E_n$ disjoint, and 
 $\cupj^n E_j = E$} \right\}$.
 \end{enumerate}
 \end{ex}
 
 \begin{proof}
-\TODO
+\begin{enumerate}
+\item First let $F \subset E$, we have $\nu(F) = \nu^+(F) - \nu^-(F)$.
+It follows that $\nu(F) \leq \nu^+ (F) \leq \nu^+ (E)$. Let 
+$X = P \cup N$ be the Hahn decomposition for $\nu$, then we have 
+$\nu^+(E) = \nu(E \cap P)$. Similarly for $\nu^- (E)$. 
+
+\item Let $E_1, \dots, E_n$ be disjoint and $\cupj^n E_j = E$. 
+It follows that 
+\[
+\abs{\nu}(E) = \sumj^n \abs{\nu}(E_j) \geq \sumj^n \abs{\nu(E_j)}.
+\]
+Let $X = P \cup N$ be the Hahn decomposition for $\nu$, we 
+then have 
+\[
+\abs{\nu}(E) = \nu^+ (E) + \nu^-(E) = \nu^+ (E \cap P) 
++ \nu^- (E \cap N) = \abs{\nu (E \cap P)} + \abs{\nu (E \cap N)}.
+\]
+This completes the proof.
+\end{enumerate}
 \end{proof}
 
 \begin{ex}[Folland 3.8]
