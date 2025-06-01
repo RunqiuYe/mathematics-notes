@@ -18,6 +18,130 @@
 \setcounter{section}{2}
 \section{Signed measure and differentiation}
 
+\begin{ex}[Folland 3.2]
+If $\nu$ a signed measure, $E$ is $\nu$-null if and only if 
+$\abs{\nu}(E) = 0$. Also if $\nu$ and $\mu$ are signed measures,
+then $\nu \perp \mu$ if and only if $\abs{\nu} \perp \mu$ 
+if and only if $\nu^+ \perp \mu$ and $\nu^- \perp \mu$.
+\end{ex}
+
+\begin{proof}
+It is clear that $\abs{\nu}(E) = 0$ implies that $E$ is $\nu$-null.
+Now suppose $E$ is $\nu$-null and let $X = P \cup N$ be the 
+Hahn decomposition of $\nu$. Suppose for contradiction 
+that $\abs{\nu}(E) > 0$, then it follows that 
+$\nu^+(E) > 0$ and $\nu^- (E) > 0$. We then have 
+$\nu^+(E \cap P) = \nu^+ (E \cap P) + \nu^+ (E \cap N) = \nu^+(E)
+> 0$, but $\nu^- (E \cap P) \leq \nu^- (P) = 0$. Therefore, 
+$\nu(E \cap P) > 0$, a contradiction with $E$ being $\nu$-null.
+Therefore, $\abs{\nu}(E) = 0$.
+
+Suppose $\nu \perp \mu$, then there is $X = E \cup F$ such that 
+$E$ is $\nu$-null and $F$ is $\mu$-null. It follows that 
+$\abs{\nu}(E) = 0$, so $\abs{\nu} \perp \mu$. Therefore, 
+$\nu \perp \mu$ implies $\abs{\nu} \perp \mu$. It is clear 
+that $\abs{\nu} \perp \mu$ implies $\nu^+ \perp \mu$
+and $\nu^- \perp \mu$. Now suppose 
+$\nu^+ \perp \mu$ and $\nu^- \perp \mu$. Then we have 
+$X = E^+ \cup F^+ = E^- \cup F^-$ where $F^+$ is $\nu^+$ null,
+$F^-$ is $\nu^-$ null, and $E^\pm$ is $\mu$-null. Let 
+$E = E^+ \cup E^-$ and $F = F^+ \cap F^- = E^c$. Then we can 
+verify that $E$ is $\mu$-null and $F$ is $\nu$-null. Therefore, 
+$\nu \perp \mu$ and the proof is complete.
+\end{proof}
+
+\begin{ex}[Folland 3.3]
+Let $\nu$ be a signed measure on $(X, \mf)$. 
+\begin{enumerate}
+  \item $L^1 (\nu) = L^1(\abs{\nu})$.
+  \item If $f \in L^1 (\nu)$, then $\abs{\int f \d \nu}
+  \leq \int \abs{f} \d \abs{\nu}$.
+  \item If $E \in \mf$, $\abs{\nu}(E) = \sup 
+  \left\{ \abs{\int_E f \d \nu} : \abs{f} \leq 1 \right\}$
+\end{enumerate}  
+\end{ex}
+
+\begin{proof}
+\begin{enumerate}
+\item Since we have 
+\[
+\int \abs{f} \d \nu = \int \abs{f} \d \nu^+ - \int \abs{f} \d \nu^-, 
+\quad 
+\int \abs{f} \d \abs{\nu} = \int \abs{f} \d \nu^+ + \int \abs{f} 
+\d \nu^-,
+\]
+it follows immediately that $L^1 (\nu) = L^1 (\abs{\nu})$.
+
+\item We have 
+\[
+\begin{aligned}
+\abs{\int f \d \nu} = \abs{\int f d \nu^+ - \int f \d \nu^-} 
+\leq \int \abs{f} \d \nu^+ + \int f \d \nu^- 
+= \int \abs{f} \d \abs{\nu}.
+\end{aligned}
+\]
+
+\item By the previous item, we know
+\[
+\abs{\nu} (E) = \int_E 1 \d \abs{\nu} \geq \int_E \abs{f} 
+\d \abs{\nu} \geq \abs{\int f \d \nu}.
+\]
+for any $\abs{f} \leq 1$. Also, $\abs{\nu}(E) = 
+\int \abs{\chi_P + \chi_N} \d \nu$, where $X = P \cup N$ is the 
+Hahn decomposition so $\abs{\chi_P + \chi_N} = 1$.
+\end{enumerate}
+\end{proof}
+
+\begin{ex}[Folland 3.4]
+If $\nu$ is a signed measure and $\lambda, \mu$ are positive
+measures such that $\nu = \lambda - \mu$, then $\lambda \geq \nu^+$
+and $\mu \geq \nu^-$.
+\end{ex}
+
+\begin{proof}
+  \TODO
+\end{proof}
+
+
+\begin{ex}[Folland 3.7]
+Suppose $\nu$ is a signed measure on $(X, \mf)$ and $E \in \mf$.
+\begin{enumerate}
+\item $\nu^+ (E) = \sup \left\{ \nu(F) : F \subset E, F \in \mf 
+\right\}$ and $\nu^-(E) = - \inf \left\{ \nu(F) : F \subset E, 
+F \in \mf \right\}$. 
+
+\item $\abs{\nu}(E) = \sup \left\{ \sumj^n \abs{\nu(E_j)} 
+: \text{$n \in \N$, $E_1, \dots, E_j$ disjoint, and 
+$\cupj^n E_j = E$} \right\}$.
+\end{enumerate}
+\end{ex}
+
+\begin{proof}
+\TODO
+\end{proof}
+
+\begin{ex}[Folland 3.8]
+$\nu \ll \mu$ if and only if $\abs{\nu} \ll \mu$ 
+if and only if $\nu^+ \ll \mu$ and $\nu^- \ll \mu$.
+\end{ex}
+
+\begin{proof}
+It is clear that $\abs{\nu} \ll \mu$ implies 
+$\nu^+ \ll \mu$ and $\nu^- \ll \mu$ implies 
+$\nu \ll \mu$. It then remains to show that $\nu \ll \mu$ 
+implies $\abs{\nu} \ll \mu$. Let $X = P \cup N$ be the Hahn 
+decomposition for $\nu$ and $E \in \mf$ be such that 
+$\mu(E) = 0$. It follows that 
+$\mu(E \cap P) = 0$ and $\mu (E \cap N) = 0$. Then 
+$\nu(E \cap P) = \nu^+ (E \cap P) = 0$ and 
+$\nu(E \cap N) = \nu^- (E \cap N) = 0$. Therefore, 
+\[
+\nu (E) = \nu^+ (E \cap P) + \nu^- (E \cap N) = 0,
+\]
+as desired.
+\end{proof}
+
+
 \begin{ex}[Folland 3.18]
 Let $\nu$ be a complex measure on $(X, \mf)$. Prove that 
 $L^1 (\nu) = L^1 (\abs{\nu})$ and if $f \in L^1 (\nu)$, then 
@@ -70,7 +194,23 @@ if and only if $\abs{\nu} \ll \lambda$.
 \end{ex}
 
 \begin{proof}
-\TODO
+The ``if'' direction is clear for both propositions.
+
+Suppose $\nu \perp \mu$. Then $\nu_r \perp \mu_r$,
+$\nu_i \perp \mu_r$, $\nu_r \perp \mu_i$, and $\nu_i \perp \mu_i$.
+It follows that $\abs{\nu_r} \perp \mu_r$ and $\abs{\nu_i}
+\perp \mu_r$. Since $\abs{\nu} \leq \abs{\nu_r} + \abs{\nu_i}$, 
+we have $\abs{\nu} \perp \mu_r$. Similarly $\abs{\nu} \perp \mu_i$.
+Following the same reasoning, we obtain 
+$\abs{\nu} \perp \abs{\mu}$, as desired.
+
+Suppose $\nu \ll \lambda$. 
+Since $\nu = \nu_r + i \nu_i$, we have 
+$\nu_r \ll \lambda$ and $\nu_i \ll \lambda$. 
+Recall from Exercise 3.8 that this implies $\abs{\nu_r} \ll 
+\lambda$ and $\abs{\nu_i} \ll \lambda$. Moreover, 
+$\abs{\nu} \leq \abs{\nu_r} + \abs{\nu_i}$, so 
+$\abs{\nu} \ll \lambda$.
 \end{proof}
 
 \begin{ex}[Folland 3.20]
@@ -86,8 +226,19 @@ measure $\mu$. It follows that $d \abs{\nu}
 \[
 \int f \d \mu = \int \abs{f} \d \mu.
 \]
-This shows that $f = \abs{f}$ $\mu$-a.e., and thus 
-$\nu = \abs{\nu}$.
+Now let $E \in \mf$. We then have 
+\[
+\int_E f \d \mu + \int_{E^c} f \d \mu = 
+\int_E \abs{f} \d \mu + \int_{E^c} \abs{f} \d \mu.
+\]
+It follows that 
+\[
+0 \leq \int_{E} \abs{f} - \Re (f) \d \mu
+= \int_{E^c} \Re (f) - \abs{f} \d \mu \leq 0.
+\]
+Since $E \in \mf$ is arbitrary, 
+$\Re (f) = \abs{f}$ and $\Im (f) = 0$ a.e. It follows that 
+$d \nu = f \d \mu = \abs{f} \d \mu = d \abs{\nu}$.
 \end{proof}
 
 \end{document}
