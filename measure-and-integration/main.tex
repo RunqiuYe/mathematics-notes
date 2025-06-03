@@ -221,7 +221,16 @@ and if $\nu_j \ll \mu$ for all $j$, then $\suminfj \nu_j
 \end{ex}
 
 \begin{proof}
-\TODO
+Suppose $\nu_j \perp \mu$ for all $j$. 
+For each $j \in \N$, let $X = E_j \cup F_j$ where $\nu_j$
+is null on $E_j$ and $\mu$ is null on $F_j$. Let 
+$E = \capinfj E_j$ and $F = \cupinfj F_j = E^c$. Then it is 
+easy to verify that $\suminfj \nu_j$ is null on $E$ and 
+$\mu$ is null on $F$.
+
+Suppose $\nu_j \ll \mu$ for all $j$. Then for $E \in \mf$ such that 
+$\mu(E) = 0$, we have $\nu_j (E) = 0$ for all $j$. Therefore,
+$\suminfj \nu_j (E) = 0$ and thus $\suminfj \nu_j \perp \mu$.
 \end{proof}
 
 \subsection{Complex measures}
@@ -405,6 +414,64 @@ $E = \cupj^n E_j$. It follows that
 We know any function $f$ with $\abs{f} \leq 1$ can 
 be approximated by simple functions with absolute 
 value less than or equal to $1$, so $\mu_3 \leq \mu_1$. 
+The proof is then complete.
+\end{proof}
+
+\subsection{Differentiation on Euclidean spaces}
+
+\begin{ex}[Folland 3.22]
+If $f \in L^1 (\R^n)$, $f \neq 0$, then there exists 
+$C, R > 0$ such that $H f(x) \geq C \abs{x}^{-n}$ for 
+$\abs{x} > R$. Hence $m (\{x : H f(x) > \alpha\}) > C' / \alpha$ 
+when $\alpha$ is small, so the estimate in
+the maximal theorem is essentially sharp.
+\end{ex}
+
+\begin{proof}
+Recall that 
+\[
+H f (x) 
+= \sup_{r > 0} A_r \abs{f} (x)
+= \sup_{r > 0} \frac{1}{m( B(x, r) )} \int_{B(x, r)} \abs{f(y)}
+\d y.
+\]
+Taking $r = 2 \abs{x}$ we have 
+\[
+\begin{aligned}
+H f (x)
+\geq \frac{1}{2^n \abs{x}^n m( B(0, 1) )} 
+\int_{B(x, 2 \abs{x})} \abs{f(y)} \d y. 
+\end{aligned}
+\]
+However, we have 
+\[
+\lim_{t \to \infty} \int_{B(0, t)} \abs{f(y)} \d y 
+= \int_{\R^n} \abs{f(y)} \d y.
+\]
+Write $M = \int \abs{f(y)} \d y$. Since $f \in L^1 (\R^n)$
+and $f \neq 0$, we have $0 < M < \infty$. There then 
+exists an $R > 0$ such that 
+\[
+\int_{ B(0, R) } \abs{f(y)} \d y \geq \frac{M}{2}.
+\]
+Now for $\abs{x} > R$, we have $B(0, R) \subset B(x, 2 \abs{x})$,
+and thus 
+\[
+H f(x) \geq \frac{M}{2^{n + 1} m( B(0, 1) )} \abs{x}^{-n}.
+\]
+
+When $\alpha < \frac{1}{2} C R^{-n}$, we have 
+$C \abs{x}^{-n} > \alpha$ for $R < \abs{x} < (C / \alpha)^{1 / n}$
+and
+\[
+\frac{C}{\alpha} - R^n > \frac{C}{2 \alpha}.
+\]
+It follows that 
+\[
+m (\left\{ x : H f(x) > \alpha \right\})
+\geq m( B(0, 1) ) \left( \frac{C}{\alpha} - R^n \right)
+> \frac{C m ( B(0, 1) )}{2 \alpha}.
+\]
 The proof is then complete.
 \end{proof}
 
