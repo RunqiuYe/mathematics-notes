@@ -208,7 +208,7 @@ $\mu(E \cap P) = 0$ and $\mu (E \cap N) = 0$. Then
 $\nu(E \cap P) = \nu^+ (E \cap P) = 0$ and 
 $\nu(E \cap N) = \nu^- (E \cap N) = 0$. Therefore, 
 \[
-\nu (E) = \nu^+ (E \cap P) + \nu^- (E \cap N) = 0,
+\abs{\nu} (E) = \nu^+ (E \cap P) + \nu^- (E \cap N) = 0,
 \]
 as desired.
 \end{proof}
@@ -231,6 +231,16 @@ $\mu$ is null on $F$.
 Suppose $\nu_j \ll \mu$ for all $j$. Then for $E \in \mf$ such that 
 $\mu(E) = 0$, we have $\nu_j (E) = 0$ for all $j$. Therefore,
 $\suminfj \nu_j (E) = 0$ and thus $\suminfj \nu_j \perp \mu$.
+\end{proof}
+
+\begin{ex}[Follan 3.10]
+Theorem 3.5 might fail if $\nu$ is not finite. (Consider $d \nu (x) = dx / x 
+$ and $d \mu(x) = dx$ on $(0, 1)$, or $\nu$ counting measure and $\mu(E) 
+= \sum_{n \in E} 2^{-n}$ on $\N$).
+\end{ex}
+
+\begin{proof}
+\TODO
 \end{proof}
 
 \subsection{Complex measures}
@@ -262,8 +272,8 @@ $f \in L^1 (\abs{\nu})$.
 For $L^1 (\abs{\nu}) \subset L^1 (\nu)$, consider $f \in L^1 
 (\abs{\nu})$. Then we have 
 \[
-\int \abs{f} \d \nu 
-= \int \abs{f} \frac{d \nu}{d \abs{\nu}} \d \abs{\nu} 
+\int \abs{f} \d \nu_{ri}
+\leq \abs{\int \abs{f} \frac{d \nu}{d \abs{\nu}} \d \abs{\nu}}
 \leq \int \abs{f} \abs{\frac{d \nu}{d \abs{\nu}}} \d \abs{\nu} 
 = \int \abs{f} \d \abs{\nu},
 \]
@@ -271,10 +281,13 @@ where we have used the fact that $d \nu / d \abs{\nu}$ has
 absolute value $1$ $\abs{\nu}$-a.e. This shows that 
 $f \in L^1 (\nu)$. 
 
-Moreover, we have that $\abs{\int f \d \nu} 
-\leq \int \abs{f} \d \nu$. Therefore,
+Moreover, write $d \nu = g \d \mu$ so $d \abs{\nu} = \abs{g} d \mu$. Then
+we have 
 \[
-\abs{\int f \d \nu} \leq \int \abs{f} \d \abs{\nu},
+\abs{\int f \d \nu} 
+= \abs{\int f g \d \mu}
+\leq \int \abs{f} \abs{g} \d \mu 
+= \int \abs{f} \d \abs{\nu},
 \]
 as desired.
 \end{proof}
@@ -291,7 +304,7 @@ The ``if'' direction is clear for both propositions.
 
 Suppose $\nu \perp \mu$. Then $\nu_r \perp \mu_r$,
 $\nu_i \perp \mu_r$, $\nu_r \perp \mu_i$, and $\nu_i \perp \mu_i$.
-It follows that $\abs{\nu_r} \perp \mu_r$ and $\abs{\nu_i}
+It follows from Exercise 3.8 that $\abs{\nu_r} \perp \mu_r$ and $\abs{\nu_i}
 \perp \mu_r$. Since $\abs{\nu} \leq \abs{\nu_r} + \abs{\nu_i}$, 
 we have $\abs{\nu} \perp \mu_r$. Similarly $\abs{\nu} \perp \mu_i$.
 Following the same reasoning, we obtain 
