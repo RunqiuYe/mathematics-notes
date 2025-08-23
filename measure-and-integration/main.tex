@@ -15,6 +15,49 @@
 
 \tableofcontents
 
+\section{Measures}
+\setcounter{subsection}{4}
+\subsection{Borel measures on the real line}
+
+\begin{ex}
+Let $E \subset \R$ and assume that $m^* (E) < \infty$. 
+Prove that $E$ is measurable if and only if for every 
+$\epsilon > 0$, there exists a finite union of open intervals $U$ such that 
+$m^* (E \triangle A) < \epsilon$. 
+\end{ex}
+
+\begin{proof}
+($\implies$) Suppose $E$ is measurable and $m(E) < \infty$. There exists 
+open intervals $\seqinfn{I_n}$ such that $E \subset \cupinfn I_n = I$ 
+and $m (I) < m(E) + \epsilon$. Also, by monotone continuity,
+there exists $N$ such that
+\[
+m \left( \cupn^N I_n \right) \geq m \left( \cupinfn I_n \right) - \epsilon.
+\]
+Now let $U = \cupn^N I_n$. We then have $U^c \cap E \subset 
+\bigcup_{n = N + 1}^\infty I_n$ and thus $m (U^c \cap E) \leq \epsilon$.
+Additionally, since $U \subset I$, we have 
+$m (U \cap E^c) \leq m(I) - m(E) < \epsilon$. This shows that 
+\[
+m(U \triangle E) = m(U \cap E^c) + m (U^c \cap E) \leq 2 \epsilon.
+\]
+
+
+($\impliedby$) See more general case below.
+\end{proof}
+
+\begin{ex}[Folland 1.26]
+If $E \in \mf_\mu$ and $\mu(E) < \infty$, then for every 
+$\epsilon > 0$ there is a finite union of open itervals $U$ such that 
+$\mu(E \triangle U) < \epsilon$. This is known as \emph{Littlewood's first 
+principle}: every measurable set is almost a finite union of open 
+intervals.
+\end{ex}
+
+\begin{proof}
+\TODO
+\end{proof}
+
 \setcounter{section}{2}
 \section{Signed measure and differentiation}
 
