@@ -23,39 +23,70 @@
 Let $E \subset \R$ and assume that $m^* (E) < \infty$. 
 Prove that $E$ is measurable if and only if for every 
 $\epsilon > 0$, there exists a finite union of open intervals $U$ such that 
-$m^* (E \triangle A) < \epsilon$. 
+$m^* (E \triangle U) < \epsilon$. 
 \end{ex}
 
 \begin{proof}
-($\implies$) Suppose $E$ is measurable and $m(E) < \infty$. There exists 
-open intervals $\seqinfn{I_n}$ such that $E \subset \cupinfn I_n = I$ 
-and $m (I) < m(E) + \epsilon$. Also, by monotone continuity,
-there exists $N$ such that
-\[
-m \left( \cupn^N I_n \right) \geq m \left( \cupinfn I_n \right) - \epsilon.
-\]
-Now let $U = \cupn^N I_n$. We then have $U^c \cap E \subset 
-\bigcup_{n = N + 1}^\infty I_n$ and thus $m (U^c \cap E) \leq \epsilon$.
-Additionally, since $U \subset I$, we have 
-$m (U \cap E^c) \leq m(I) - m(E) < \epsilon$. This shows that 
-\[
-m(U \triangle E) = m(U \cap E^c) + m (U^c \cap E) \leq 2 \epsilon.
-\]
+($\implies$) See more general case below.
 
 
-($\impliedby$) See more general case below.
+($\impliedby$) Let $\epsilon > 0$ be given and let $A \subset \R$. 
+There then exists a finite 
+union of open intervals $U$ such that $m^* (E \triangle U) < \epsilon$.
+Note that $U$ is measurable, so 
+\[
+m^* (A \cap U) + m^* (A \cap U^c) = m^* (A)
+\]
+However, $E \subset U \cup (E \cap U^c)$ so
+\[
+m^* (A \cap E) \leq m^* (A \cap U) + m^* (A \cap E \cap U^c)
+\leq m^* (A \cap U) + \epsilon.
+\]
+Similarly, $E^c \subset (E^c \cap U) \cup U^c$
+\[
+\begin{aligned}
+  m^* (A \cap E^c) 
+  = m^* (A \cap E^c \cap U) + m^* (A \cap U^c)
+  \leq \epsilon + m^* (A \cap U^c).
+\end{aligned}
+\]
+This implies that 
+\[
+m^* (A \cap E) + m^* (A \cap E^c) \leq m^* (A) + 2 \epsilon.
+\]
+Since $\epsilon > 0$ is arbitrary this implies that $E$ 
+is measurable.
 \end{proof}
 
 \begin{ex}[Folland 1.26]
 If $E \in \mf_\mu$ and $\mu(E) < \infty$, then for every 
 $\epsilon > 0$ there is a finite union of open itervals $U$ such that 
-$\mu(E \triangle U) < \epsilon$. This is known as \emph{Littlewood's first 
-principle}: every measurable set is almost a finite union of open 
-intervals.
+$\mu(E \triangle U) < \epsilon$. 
 \end{ex}
 
 \begin{proof}
-\TODO
+Recall that 
+\[
+\mu(E) = \inf \left\{ \suminfj \mu((a_j, b_j)) : E 
+\subset \cupinfj (a_j, b_j) \right\}.
+\]
+It follows that there exists open intervals $\seqinfj{I_j}$ such that 
+$E \subset \cupinfj I_j$ and $\mu ( \cupinfj I_j ) 
+\leq \mu(E) + \epsilon$.
+By monotone continuity, there exists $N$ such that 
+\[
+\mu \left( \cupj^N I_j \right) \geq 
+\mu \left( \cupinfj I_j \right) - \epsilon.
+\]
+Let $U = \cupj^N I_j$. This is a finite union of open intervals.
+We then have $\mu(U \cap E^c) 
+\leq \mu ( \cupinfj I_j \setminus E ) \leq \epsilon$. 
+Meanwhile, $\mu(E \cap U^c) \leq \mu ( \bigcup_{j = N + 1}^\infty I_j 
+) \leq \epsilon$. This impies that 
+\[
+\mu(E \triangle U) = \mu(E \cap U^c) + \mu(E^c \cap U) \leq 2 \epsilon.
+\]
+Since $\epsilon$ is arbitrary this completes the proof.
 \end{proof}
 
 \setcounter{section}{2}
