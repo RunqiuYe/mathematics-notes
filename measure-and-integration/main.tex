@@ -606,8 +606,38 @@ of $\alpha \in (0, 1)$ or such that $D_E(x)$ does not exist.
 
 \begin{proof}
 \begin{enumerate}
-\item 
+\item Let $f = \chi_E$ then $f \in L^1_\loc$. It follows that 
+for a.e. $x \in E$ we have 
+\[
+D_E (x)
+= \lim_{r \to 0} \frac{m (E \cap B(x, r))}{ m (B(x, r)) } 
+= \lim_{r \to 0} \frac{1}{ m (B(x, r)) } \int_{B(x, r)} f(y) \d y
+= f(x) = 1. 
+\]
+Similarly, for a.e. $x \in E^c$ we have $D_E(x) = 0$.
+
+\item \TODO
 \end{enumerate}
+\end{proof} 
+
+\begin{ex}[Folland 3.26]
+If $\lambda$, $\mu$ are positive, mutually singular Borel measure on 
+$\R^n$ and $\lambda + \mu$ is regular, then so are $\lambda$ and $\mu$.
+\end{ex}
+
+\begin{proof}
+Let $K$ be compact. Since $\lambda + \mu$ is regular, 
+$(\lambda + \mu)(K) = \lambda (K) + \mu(K) < \infty$. This implies that 
+$\lambda (K) < \infty$ and $\mu (K) < \infty$.
+
+Let $\R^n = E \cup F$ such that $\lambda$ is null on $E$ and 
+$\mu$ is null on $F$. Since $\lambda + \mu$ is regular we know 
+\[
+(\lambda + \mu) (E) = \inf \left\{ (\lambda + \mu)(U) : 
+\text{$U$ open, $E \subset U$} \right\}.
+\]
+Since $\lambda$ and $\mu$ are mutually singular, the same open set 
+works. This completes the proof.
 \end{proof}
 
 \subsection{Functions of bounded variation}
