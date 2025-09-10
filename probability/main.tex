@@ -1,0 +1,78 @@
+\documentclass[a4paper]{article}
+\usepackage{parskip}
+\usepackage{lipsum}
+
+\def\nterm {Fall}
+\def\nyear {2025}
+\def\ncourse {Probability}
+
+\input{../header}
+
+\newcommand{\TODO}{\textcolor{red}{\textbf{*** TO-DO ***}}}
+
+\begin{document}
+\maketitle
+
+\setcounter{section}{1}
+\section{Laws of large numbers}
+
+\setcounter{subsection}{1}
+
+\subsection{Weak laws of large numbers}
+\begin{thm}[$L^2$ weak law]
+Let $X_1, X_2, \dots$ be uncorrelated random variables with $EX_i = \mu$
+and $E X_i^2 \leq C < \infty$. If $S_n = X_1 + \dots + X_n$ then 
+as $n \to \infty$, $S_n / n \to \mu$ in $L^2$ and in probability.
+\end{thm}
+
+
+\begin{lemma}
+  If $Y \geq 0$ and $p > 0$ then 
+  \[
+  E(Y^p) = \int_0^\infty p y^{p - 1} P(Y > y) \d y.
+  \]
+\end{lemma}
+
+\subsection{Borel-Cantelli Lemmas}
+
+\begin{defi}
+  Let $A_n$ be a sequence of subsets of $\Omega$, define 
+  \[
+  \begin{aligned}
+    \limsup A_n 
+    &= \bigcap_{m = 0}^\infty \bigcup_{n = m}^\infty A_n 
+    = \left\{ \omega \in A_n \text{ infintely often} \right\}, \\
+    \liminf A_n 
+    &= \bigcup_{m = 0}^\infty \bigcap_{n = m}^\infty A_n 
+    = \left\{ \text{$\omega$ in all but finitely many $A_n$} \right\}. \\
+  \end{aligned}
+  \]
+\end{defi}
+
+\begin{prop}
+  We have 
+  \[
+  \limsupn 1_{A_n} = 1_{\limsup A_n}, \quad 
+  \liminfn 1_{A_n} = 1_{\liminf A_n},
+  \]
+  and 
+  \[
+  P(\limsup A_n) \geq \limsup P(A_n), \quad 
+  P(\liminf A_n) \leq \liminf P(A_n).
+  \]
+\end{prop}
+
+\begin{thm}[Borel-Cantelli Lemma]
+  If $\suminfn P(A_n) < \infty$, then 
+  \[
+  P(A_n \text{ i.o.}) = 0.
+  \]
+\end{thm}
+
+\begin{thm}
+  $X_n \to X$ in probability iff for every subsequence $X_{n(m)}$, there 
+  is a further subsequence $X_{n(m_k)}$ such that $X_{n(m_k)}$ converges 
+  almost surely to $X$.
+\end{thm}
+
+\end{document}
