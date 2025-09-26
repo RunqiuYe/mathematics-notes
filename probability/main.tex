@@ -35,6 +35,38 @@ as $n \to \infty$, $S_n / n \to \mu$ in $L^2$ and in probability.
   \]
 \end{lemma}
 
+\begin{thm}[Weak law of triangular arrays]
+  For each $n$ let $X_{n, k}$, $1 \leq k \leq n$ be independent. 
+  Let $b_n > 0$ with $b_n \to \infty$, and let 
+  $\bar{X}_{n, k} = X_{n, k} \ind_{(\abs{X_{n, k}} < b_n)}$.
+  Suppose that as $n \to \infty$, 
+  \begin{enumerate}
+    \item $\sumk^n P(\abs{X_{n, k}} > b_n) \to 0$, and
+    \item $b_n^{-2} \sumk^n E \bar{X}_{n,k}^2 \to 0$.
+  \end{enumerate}
+  If we let $S_n = X_{n, 1} + \dots + X_{n, n}$ and put 
+  $a = \sumk^n E \bar{X}_{n, k}$, then
+  \[
+  \frac{S_n - a_n}{b_n} \to 0 \text{ in probability.}
+  \]
+\end{thm}
+
+\begin{thm}[Weak law of large numbers]
+  Let $X_1, X_2, \dots$ be i.i.d. with 
+  \[
+  x P(\abs{X_i} > x) \to 0
+  \]
+  as $x \to \infty$. Let $S_n = X_1 + \dots + X_n$ and let 
+  $\mu_n = E(X_1 \ind_{(\abs{X_1} \leq n)})$. Then 
+  $S_n / n - \mu_n \to 0$ in probability.
+\end{thm}
+
+\begin{thm}
+  Let $X_1, X_2, \dots$ be i.i.d. with $E \abs{X_i} < \infty$. 
+  Let $S = X_1 + \dots + X_n$ and let $\mu = E X_1$. Then 
+  $S_n / n \to \mu$ in probability.
+\end{thm}
+
 \subsection{Borel-Cantelli Lemmas}
 
 \begin{defi}
@@ -82,7 +114,7 @@ as $n \to \infty$, $S_n / n \to \mu$ in $L^2$ and in probability.
   If $S_n = X_1 + \dots + X_n$, then $S_n / n \to \mu$ a.s.
 \end{thm}
 
-\begin{thm}[The 2nd Borel-Cantelli Lemma]
+\begin{thm}[Second Borel-Cantelli Lemma]
   If events $A_n$ are independent, then $\suminfn P(A_n) = 1$ implies $
   P(A_n \text{ i.o.}) = 1$.
 \end{thm}
