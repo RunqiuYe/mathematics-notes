@@ -3,11 +3,14 @@
 \usepackage{lipsum}
 \usepackage{eucal}
 
-\def\nterm {Fall}
-\def\nyear {2025}
+\def\nterm {Spring}
+\def\nyear {2026}
 \def\ncourse {Probability}
 
 \input{../header}
+\author{Notes taken by \nauthor\vspace{5pt}\\ 
+Lectures by Konstantin Tikhomirov\vspace{5pt}\\
+Carnegie Mellon University}
 
 \newcommand{\TODO}{\textcolor{red}{\textbf{*** TO-DO ***}}}
 
@@ -19,6 +22,16 @@
 \section{Measure theory review}
 
 \subsection{Measurable space and mapping}
+
+\begin{defi}[$\sigma$-field]
+  A set of sets $\Sigma \subset 2^{\Omega}$ is a $\sigma$-field if 
+  \begin{itemize}
+    \item $\emptyset \in \Sigma$, 
+    \item If $A \in \Sigma$, then $A^c \in \Sigma$, 
+    \item If $\seqinfi{A_i} \subset \Sigma$, then $\cupinfi A_i \in \Sigma$.
+  \end{itemize}
+  The pair $(\Omega, \Sigma)$ is called a measurable space.
+\end{defi}
 
 \begin{defi}[atom]
 Let $\Sigma$ be a $\sigma$-field. Say $A \in \Sigma$ is an atom 
