@@ -267,7 +267,7 @@ but countably many indices.
   extension $\tilde{\mu}$ to $\sigma (S)$.
 \end{thm}
 
-\begin{defi}
+\begin{notation}
   Let $T$ be any set. Write
   \[
   \R^T = \left\{ \left( \omega_t \right)_{t \in T} :
@@ -278,7 +278,7 @@ but countably many indices.
   $I_t$ is either a semi-open interval of the form $(a, b]$
   with $a < b$ or $I_t = \R$, and $I_t = \R$ for all but finitely
   many $t \in T$.
-\end{defi}
+\end{notation}
 
 \begin{thm}[Kolmogorov's extension theorem]
   For each finite non-empty subset $J \subset T$,
@@ -402,12 +402,129 @@ in the course.
 
 \begin{thm}[Markov-Chebyshev inequality]
   Suppose we have probability measure space $(\Omega, \Sigma, \Pr)$
-  and $f \geq 0$. Suppose also $\int f \d \Pr < \infty$. Then,
-  for all $t > 0$, we have
+  and $f \geq 0$. Suppose also $\int f \d \Pr < \infty$. Then
   \[
   \Pr \left( \left\{ \omega : f(\omega) > t \right\} \right)
-  \leq t^{-1} \int f \d \Pr.
+  \leq \frac{1}{t} \int f \d \Pr.
+  \]
+  for all $t > 0$.
+\end{thm}
+
+\begin{remark}
+  Let $1 \leq p < \infty$. Suppose $f : (\Omega, \Sigma, \Pr) \to 
+  [0, \infty]$ and $\int f^p \d \Pr < \infty$. Then 
+  \[
+  \Pr \left( \left\{ \omega : f (\omega) > t \right\} \right) 
+  \leq \frac{1}{t^p} \int f^p \d \Pr.
+  \]
+  for all $t > 0$.
+\end{remark}
+
+\begin{remark}
+  Suppose $\int e^{\lambda f} \d \Pr < \infty$ for all 
+  $\lambda \in \R$ and $f : (\Omega, \Sigma, \Pr) \to [0, \infty]$.
+  Then 
+  \[
+  \Pr \left( \left\{ \omega : f (\omega) > t \right\} \right) 
+  \leq \frac{1}{e^{\lambda t}} \int e^{\lambda f} \d \Pr
+  \]
+  for all $t > 0$ and $\lambda > 0$.
+\end{remark}
+
+\begin{thm}[H\"older inequality]
+  Let $p, q \in [1, \infty]$ and $p^{-1} + q^{-1} = 1$. 
+  Let $(\Omega, \Sigma, \mu)$ be a probability space. For any 
+  measurable functions $f, g$, we have 
+  \[
+  \int \abs{f g} \d \Pr \leq \left( \int \abs{f}^p \d \Pr \right)^{1 / p}
+  \left( \int \abs{g}^q \d \Pr \right)^{1 / q}.
   \]
 \end{thm}
+
+\begin{thm}[Jensen's inequality]
+  Let $(\Omega, \Sigma, \mu)$ be a probability space and $f$ be
+  integrable. Let $\phi : \bar{\R} \to \bar{\R}$ be convex 
+  and suppose $\phi (\infty) = \lim_{x \to \infty} \phi(x)$
+  and $\phi (-\infty) = \lim_{x \to -\infty} \phi(x)$. Then 
+  \[
+  \phi \left( \int f \d \Pr \right) \leq \int \phi (f) \d \Pr.
+  \]
+\end{thm}
+
+\subsection{Product measures and Fubini theorem}
+Let $(\Omega_1, \Sigma_1, \mu_1)$, $(\Omega_2, \Sigma_2, \mu_2)$
+be $\sigma$-finite measure spaces. We already defined the product 
+$\Sigma_1 \otimes \Sigma_2$. To define a product measure, we first 
+consider the algebra of rectangles 
+\[
+S = \left\{ A \in \Sigma_1 \otimes \Sigma_2 : A = A_1 \times A_2 
+\text{ for some $A_1 \in \Sigma_1, A_2 \in \Sigma_2$} \right\}.
+\]
+Then we can define $\mu = \mu_1 \otimes \mu_2$ on $S$ by 
+\[
+\mu (A) = \mu_1 (A_1) \mu_2 (A_2)
+\]
+for $A = A_1 \times A_2$. We can check that the definition is 
+self-consistent. That is, if $A = A_1 \times A_2$ is a countable 
+union of disjoint rectangles
+$\seqinfj{A_1^{(j)} \times A_2^{(j)}}$, we have 
+\[
+\mu (A_1 \times A_2) = \suminfj \mu ( A_1^{(j)} \times A_2^{(j)} ).
+\]
+This can be verified with monotone convergence theorem.
+Now $\mu$ is a premeasure and can be uniquely 
+extended to $\Sigma_1 \otimes \Sigma_2$.
+
+\begin{thm}[Fubini-Tonelli]
+  Let $(\Omega_1, \Sigma_1, \mu_1)$, $(\Omega_2, \Sigma_2, \mu_2)$
+  be $\sigma$-finite measure spaces and let $(\Omega, \Sigma, \mu)$
+  be the product space. Suppose $f$ is measurable on the product space.
+  Suppose either $f$ is non-negative or $\int_\Omega \abs{f} \d \mu <
+  \infty$. Then 
+  \begin{itemize}
+    \item $y \mapsto f(x, y)$ is $\Sigma_2$ measurable for all $x \in \Omega_1$.
+    \item $x \mapsto \int_{\Omega_2} f(x, y) \d \mu_2 (y)$ is 
+    $\Sigma_1$ measurable.
+    \item We have
+    \[
+    \int_{\Omega_1} \int_{\Omega_2} f(x, y) \d \mu_2 (y) \d \mu_1 (x)
+    = \int_\Omega f(x, y) \d \mu(x, y).
+    \]
+  \end{itemize}
+\end{thm}
+
+\begin{proof}
+  First suppose $f = \ind_{A}$ for $A \in \Sigma$. 
+  Also suppose $\mu_1, \mu_2$ are finite. Define section 
+  \[
+  A_x = \left\{ y \in \Omega_2 : (x, y) \in A \right\}.
+  \]
+  The goal is to show that $A_x \in \Sigma_2$ for all $x \in \Omega_1$.
+  Define a family of sets 
+  \[
+  \fcal_x = \left\{ B \in \Sigma : \text{$B_x$ is $\Sigma_2$-measurable} \right\}.
+  \]
+  It can be verified that $\fcal_x$ is a $\sigma$-field for all $x \in \Omega_1$.
+  Also, $\fcal_x$ contains all rectangles and thus $\Sigma \subset \fcal_x$.
+  Hence, we have shown that $y \mapsto \ind_A (x, y) = \ind_{A_x} (y)$
+  is measurable for all $x \in \Omega_1$.
+
+  Next we show $x \mapsto \mu_2 (A_x)$ is measurable 
+  and its integral over $\Omega_1$ is equal to $\mu (A)$.
+  Define 
+  \[
+  \ucal = \left\{ B \in \Sigma : \text{$x \mapsto \mu_2(B_x)$ is 
+  $\Sigma_1$-measurable and $\int_{\Omega_1} \mu_2(B_x) \d \mu_1 = \mu (B)$} \right\}
+  \]
+  It can be verified that $\ucal$ is a $\lambda$-system. 
+  Note that $\ucal$ also contains all rectangles in $\Sigma$.
+  It follows that $\ucal = \Sigma$ and the proof for 
+  indicator functions are complete.
+
+  Then use linearity to extend to simple functions, and use monotone
+  convergence theorem to prove the statement for non-negative functions.
+  For the case where $f$ is integrable, consider the positive and 
+  negative part about $f$ to complete the proof.
+\end{proof}
 
 \end{document}
