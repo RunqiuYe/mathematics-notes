@@ -527,4 +527,145 @@ extended to $\Sigma_1 \otimes \Sigma_2$.
   negative part about $f$ to complete the proof.
 \end{proof}
 
+\section{Probability theory basics}
+
+\subsection{Distributions and densities}
+
+\begin{defi}
+  Let $F : \R \to [0, 1]$. Suppose $F$ is
+  \begin{itemize}
+    \item right-continuous.
+    \item non-decreasing.
+    \item $\lim_{t \to -\infty} F(t) = 0$ and 
+    $\lim_{t \to \infty} f(t) = 1$.
+  \end{itemize}
+  Then $F$ is a cumulative distribution function (CDF).
+\end{defi}
+
+\begin{remark}
+  If we want to define CDF in $\R^2$ then the axioms are 
+  \begin{itemize}
+    \item right-continuous: $F(\tilde{s}, \tilde{t})
+    \to F(s, t)$ as $t \downarrow \tilde{t}$ and 
+    $s \downarrow \tilde{s}$.
+    \item coordinate-wise non-decreasing.
+    \item $\lim_{s, t \to \infty} F(s, t) = 1$, 
+    $\lim_{s \to -\infty} F(s, t) = 0$ for any $t$, and 
+    $\lim_{t \to - \infty} F (s, t) = 0$ for any $s$.
+    \item For a rectangle with bottom left vertex $(a_1, a_2)$
+    and top right vertex $(b_1, b_2)$,
+    \[
+    F(b_1, b_2) - F(b_1, a_2) - F(a_1, b_2) + F(a_1, a_2) \geq 0. 
+    \]
+  \end{itemize}
+\end{remark}
+
+Now we can connect the notion of CDF with randomness.
+
+Suppose $X$-random real-valued variable on $(\Omega, \Sigma, \Pr)$
+that is almost everywhere finite. Define 
+\[
+F_X (t) = \Pr \left\{ X(\omega) \leq t \right\}
+\]
+for $- \infty < t < \infty$. It can be verified that 
+$F_X$ is a CDF.
+
+Conversely, for any CDF $F$, there exists a probability space 
+$(\Omega, \Sigma, \Pr)$ and a real valued random variable 
+on $(\Omega, \Sigma, \Pr)$ with CDF $F$.
+
+\begin{defi}
+  If $X$ is RV on $(\Omega, \Sigma, \Pr)$ real valued and a.e. finite.
+  Then we can define the induced Borel probability measure
+  $\mu_X$ on $(\R, \bcal_\R)$ by 
+  \[
+  \mu_X (B) := \Pr \left\{ X \in B \right\}
+  \]
+  for all $B \in \bcal_\R$.
+\end{defi}
+
+Now suppose $\mu$ is any Borel probability measure on $\R$. Consider 
+probability space $(\R, \bcal_\R, \mu)$ and formal identity mapping 
+$\id$ on $\R$. Then $\mu_{\id} \equiv \mu$.
+
+\begin{thm}
+  There is a one-to-one correspondence between the family of CDFs 
+  and the family of Borel probability measure on $\R$.
+\end{thm}
+
+\begin{proof}
+  For any Borel probability measure $\mu$, 
+  $F_\mu (t) = \mu((-\infty, t])$
+  is a valid CDF.
+
+  Conversely, for any CDF $F$, there exists unique probability
+  measure $\mu_F$ on $\R$ such that $\mu_F ((-\infty, t]) = F(t)$
+  for all $-\infty < t < \infty$. This is a corollary of Caratheorody
+  extension theorem. For detailed proof see notes or textbook.
+\end{proof}
+
+\begin{remark}
+  Suppose $X = (X_1, X_2)$ is a random vector in $\R^2$. We can 
+  define 
+  \[
+  F_X (s, t) = \Pr \left\{ X_1 \leq s, X_2 \leq t \right\}.
+  \]
+  Corresponding results are also true.
+\end{remark}
+
+\begin{defi}[Probability mass function]
+  Let $(\Omega, \Sigma, \Pr)$ be a probability space and $X: \Omega 
+  \to \R$ be RV. Suppose there exists $S \subset \R$ countable
+  such that $\Pr \left\{ X \in S \right\} = 1$. We can define 
+  the probability mass function (PMF) $f_X$ via 
+  \[
+  f_X (t) = \Pr \left\{ X = t \right\}
+  \] 
+  for $t \in \R$. Due to the restriction, this gives complete description 
+  of the distribution, and we can construct CDF $F_X$ via 
+  \[
+  F_X (t) = \sum_{s \leq t} f_X (s).
+  \]
+  This sum makes sense since the $f_X (s) = 0$ for all but countably many 
+  $s$. 
+  Conversely, we can also reconstruct $f_X$ from a CDF $F_X$.
+\end{defi}
+
+\begin{defi}[Probability density function]
+  Suppose $F$ is a CDF which is absolutely continuous. That is, 
+  there exists Borel measurable non-negative function $\rho$ on $\R$ 
+  such that 
+  \[
+  F(t) = \int_{-\infty}^t \rho (s) \d s
+  \]
+  for all $-\infty < t < \infty$. 
+  This implies $F$ is almost everywhere differentiable and the derivative 
+  is $\rho$. In this case, say $\rho$ is the density function.
+
+  If RV $X$ is such that $F_X$ is absolutely continuous, then the 
+  corresponding $\rho_X$ is the probability density function for $X$.
+\end{defi}
+
+\begin{remark}
+  Recall that a Borel $\sigma$-finite measure $\mu$ on the real line 
+  is absolutely continuous w.r.t the Lebesgue measure $m$ on $\R$ if 
+  $\mu (A) = 0$ whenever $A \in \bcal_\R$ is Lebesgue null.
+  In this case, Randon-Nikodym theorem implies existence of non-negative 
+  Borel measurable function $f$ such that $\mu (A) = \int_A f \d m$.
+\end{remark}
+
+\begin{thm}
+  Suppose $X$ RV on $(\Omega, \Sigma, \Pr)$ is real-valued and a.e. finite.
+  The following are equivalent:
+  \begin{enumerate}
+    \item $F_X$ is absolutely continuous.
+    \item $\mu_X$ is absolutely containing w.r.t. Lebesgue measure.
+  \end{enumerate}
+  Moreover, $\rho_X$ is also the derivative of $\mu_X$ w.r.t. Lebesgue 
+  measure. That is, for any $A \in \bcal_\R$, 
+  \[
+  \mu_X (A) = \int_A \rho_X (t) \d t.
+  \]
+\end{thm}
+
 \end{document}
