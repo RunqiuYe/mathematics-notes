@@ -895,7 +895,7 @@ Now we explore how this connect with product structure.
 \end{remark}
 
 \begin{remark}
-  If $X$ and $Y$ are two random variables and
+  If $X$ and $Y$ are two independent random variables and
   $\mu_X$ and $\mu_Y$ are the corresponding induced Borel measure $\R$,
   then $\mu_{X + Y} = \mu_X * \mu_Y$.
 \end{remark}
@@ -958,11 +958,11 @@ proposition.
 \begin{prop}
   Let $g$ be measurable and $X$ a random variable. Then, 
   \[
-  \E \abs{g(X)} = \int_\R g(t) \d \mu_X (t).
+  \E \abs{g(X)} = \int_\R \abs{g(t)} \d \mu_X (t).
   \]
   Moreover, if $\E \abs{g(X)} < \infty$, then 
   \[
-  \E \abs{g(X)} = \int_\R g(t) \d \mu_X (t).
+  \E g(X) = \int_\R g(t) \d \mu_X (t).
   \]
 \end{prop}
 
