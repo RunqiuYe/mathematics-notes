@@ -204,6 +204,13 @@ but countably many indices.
     \item for all countable collection of disjoint elements $A_i \in \L$,
     we have $\cupinfi A_i \in \L$.
   \end{itemize}
+
+  For an alternative definition, say $\L$ is a $\lambda$-system if 
+  \begin{itemize}
+    \item $\Omega \in \L$.
+    \item If $A, B \in \L$ and $A \subset B$, then $B \setminus A \in \L$.
+    \item If $A_n \in \L$ and $A_n \uparrow A$, then $A \in \L$.
+  \end{itemize}
 \end{defi}
 
 \begin{thm}[$\pi$-$\lambda$ theorem]
@@ -965,9 +972,7 @@ proposition.
     \E X = \int_\R t \d \mu_X (t).
   \]
   Moreover, if $X$ has distribution density $\rho_X$, then
-  \[
-    \E X = \int_\R t \rho_X (t) \d t.
-  \]
+  $\E X = \int_\R t \rho_X (t) \d t$.
 \end{cor}
 
 \begin{prop}
@@ -976,9 +981,7 @@ proposition.
   \E X = \int_0^\infty \Pr \left\{ X \geq t \right\} \d t.
   \]
   In particular, if $X$ is non-negative and integer valued, then
-  \[
-  \E X = \suminfi \Pr \left\{ X \geq i \right\}.
-  \]
+  $\E X = \suminfi \Pr \left\{ X \geq i \right\}$.
 \end{prop}
 
 \begin{proof}
@@ -1008,8 +1011,9 @@ proposition.
   with $X_i$, so 
   \[
   \E X_1 X_2 = \E \tilde{X_1} \tilde{X_2} = \E \tilde{X_1} \E 
-  \tilde{X_2} = \E X_1 \E X_2.
+  \tilde{X_2} = \E X_1 \E X_2,
   \]
+  where in the second equality we used Fubini-Tonelli.
 \end{proof}
 
 \end{document}
