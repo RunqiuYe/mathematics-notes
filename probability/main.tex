@@ -926,4 +926,90 @@ moments.
   and the standard deviation is $\sqrt{\var (X)}$.
 \end{defi}
 
+\begin{prop}
+  Let $X$ be random variable $(\Omega, \Sigma, \Pr)$ and 
+  $0 < p < q < \infty$. Then, 
+  \[
+  \left( \E \abs{X}^p \right)^{1 / p} \leq \left( \E \abs{X}^q \right)^{1 / q}.
+  \]
+\end{prop}
+
+\begin{proof}
+  Define $Y = \abs{X}^p$, then we want to show that 
+  $\E Y \leq (\E Y^{q / p})^{p / q}$. Note that $t \mapsto \abs{t}^{q / p}$
+  is convex. Therefore, by Jensen's inequality, 
+  \[
+  \left( \E Y \right)^{q / p}  \leq \E \left( Y^{q / p} \right).
+  \]
+\end{proof}
+
+Now we want to show that moments only depends on the distribution of the 
+random variable, and it does not carry unnecessary information about the 
+underlying probability space. To do this, we first show the following 
+proposition.
+
+\begin{prop}
+  Let $g$ be measurable and $X$ a random variable. Then, 
+  \[
+  \E \abs{g(X)} = \int_\R g(t) \d \mu_X (t).
+  \]
+  Moreover, if $\E \abs{g(X)} < \infty$, then 
+  \[
+  \E \abs{g(X)} = \int_\R g(t) \d \mu_X (t).
+  \]
+\end{prop}
+
+\begin{cor}
+  If $\E X$ is well-defined, then 
+  \[
+    \E X = \int_\R t \d \mu_X (t).
+  \]
+  Moreover, if $X$ has distribution density $\rho_X$, then
+  \[
+    \E X = \int_\R t \rho_X (t) \d t.
+  \]
+\end{cor}
+
+\begin{prop}
+  If $X \geq 0$, then
+  \[
+  \E X = \int_0^\infty \Pr \left\{ X \geq t \right\} \d t.
+  \]
+  In particular, if $X$ is non-negative and integer valued, then
+  \[
+  \E X = \suminfi \Pr \left\{ X \geq i \right\}.
+  \]
+\end{prop}
+
+\begin{proof}
+  With Fubini-Tonelli, we have
+  \[
+  \E X = \int_0^\infty s \d \mu_X (s) 
+  = \int_0^\infty \int_0^s 1 \d t \d \mu_X (s)
+  = \int_0^\infty \int_t^\infty 1 \d \mu_X \d t 
+  = \int_0^\infty \Pr \left\{ X \geq t \right\} \d t.
+  \]
+\end{proof}
+
+\begin{prop}
+  Let $X_1, \dots, X_n$ are random variables on $(\Omega, \Sigma, \Pr)$.
+  Suppose they are either all non-negative or all integrable. 
+  Suppose also that they are mutually independent. Then, 
+  \[
+  \E \left( \prod_{i=1}^n X_i \right) = \prod_{i=1}^n \E X_i.
+  \]
+\end{prop}
+
+\begin{proof}
+  It suffices to show the statement for $n = 2$. Define 
+  independent variables $\tilde{X_1}$ and $\tilde{X_2}$ 
+  on the product space $(\R^2, \bcal_{\R^2}, \mu_{X_1} \times \mu_{X_2})$
+  by coordinate projection. We know $\tilde{X_i}$ is equidistributed 
+  with $X_i$, so 
+  \[
+  \E X_1 X_2 = \E \tilde{X_1} \tilde{X_2} = \E \tilde{X_1} \E 
+  \tilde{X_2} = \E X_1 \E X_2.
+  \]
+\end{proof}
+
 \end{document}
