@@ -914,7 +914,7 @@ Now we explore how this connect with product structure.
 In this section we explore the computation and basic properties of 
 moments.
 
-\begin{defi}
+\begin{defi}[moments]
   Let $X$ be a random variable on $(\Omega, \Sigma, \Pr)$. 
   The $p$-th absolute moment of $X$ is 
   \[
@@ -1010,10 +1010,97 @@ proposition.
   by coordinate projection. We know $\tilde{X_i}$ is equidistributed 
   with $X_i$, so 
   \[
-  \E X_1 X_2 = \E \tilde{X_1} \tilde{X_2} = \E \tilde{X_1} \E 
-  \tilde{X_2} = \E X_1 \E X_2,
+  \E [X_1 X_2] = \E [\tilde{X_1} \tilde{X_2}] = \E [\tilde{X_1} \E 
+  \tilde{X_2}] = \E [X_1 \E X_2],
   \]
   where in the second equality we used Fubini-Tonelli.
 \end{proof}
+
+\begin{remark}
+  Recall that whenever $\E X$ is finite, $\var X = \E (X - \E X)^2
+  = \E X^2 - (\E X)^2$. If $X_1, \dots, X_n$ are pairwise independent
+  and have well-defined variances, then 
+  \[
+  \var (X_1 + \dots + X_n) = \sumi^n \var X_i.
+  \]
+\end{remark}
+
+\begin{defi}[moment generating function]
+  Let $X$ be a random variable, and $\lambda \in \R$. Define the 
+  moment generating function of $X$ via 
+  \[
+  M_X (\lambda) = \E \exp (\lambda X).
+  \] 
+\end{defi}
+
+Suppose $M_X (\lambda)$ is finite in some neighborhood of $0$. Then,
+\[
+M_X (\lambda) 
+= \E \left[ \suminfn \frac{(\lambda x)^n}{n!} \right]
+= \suminfn \frac{\lambda^n \E X^n}{n!}.
+\]
+It follows that $M_X' (0) = \E X$. Now to justify the exchang of 
+integral and summation, note that 
+\[
+S_N = \sumi^N \frac{(\lambda x)^n}{n!} \to e^{\lambda x},
+\]
+and 
+\[
+\abs{S_N} \leq \sumi^N \frac{\abs{\lambda x}^n}{n!} 
+\leq e^{\abs{\lambda x}}.
+\]
+However, $e^{\abs{\lambda X}} \leq e^{\lambda X} + e^{- \lambda X}$.
+The expectation of RHS is finite for small $\lambda$ by assumption,
+so the claim follows from dominated convergence theorem.
+
+\begin{prop}
+  Let $X$ be a non-negative random variable. Then TFAE:
+  \begin{enumerate}
+    \item $M_X$ is finite in some neighborhood of $0$.
+    \item $\sup_{p \to \infty} p^{-1} (\E X^p)^{1 / p} < \infty$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  Exercise.
+\end{proof}
+
+Now we present an example of moment method.
+\begin{eg}
+  Let $G \sim G(n, \frac{1}{2})$ be the Erdos-Renyi random graph. The goal 
+  is to estimate the number of triangles in $G$. Let $N$ be 
+  the number of triangles in $G$. We have 
+  \[
+  N = \sum_{\substack{S \subset [n] \\ \abs{S} = 3}} b_S,
+  \]
+  where $b_S$ is the indicator that $S$ is a triangle in $G$.
+  It follows that $\E N = \frac{1}{8} \binom{n}{3}$. Also, 
+  \[
+  \E N^2 = \sum_{\abs{S} = 3} \sum_{\abs{S'} = 3} \E [b_S b_{S'}]
+  \]
+  To compute this, we consider several cases. 
+  \begin{enumerate}
+    \item If $S \cap S' = \emptyset$, then $\E [b_S b_{S'}] = \frac{1}{64}$.
+    \item If $\abs{S \cap S'} = 1$, then $\E [b_S b_{S'}] = \frac{1}{64}$.
+    \item If $\abs{S \cap S'} = 3$, then $\E [b_S b_{S'}] = \frac{1}{8}$.
+    \item If $\abs{S \cap S'} = 2$, then $\E [b_S b_{S'}] = \frac{1}{32}$.
+  \end{enumerate}
+  Hence, 
+  \[
+  \E N^2 = \frac{1}{64} \binom{n}{3}^2 \pm O(n^4),
+  \]
+  where the $O(n^4)$ term comes from the cases where $\abs{S \cap S'} = 2$
+  or $3$. Therefore, 
+  \[
+  \var N = \E N^2 - (\E N)^2 = O(n^4).
+  \]
+  Using Chebyshev's inequality, for each $t > 0$ we have
+  \[
+  \Pr \left\{ \abs{N - \E N} \geq t \cdot \E N \right\}
+  \leq \frac{\var N}{t^2 (\E N)^2} = t^{-2} O(n^{-2})
+  \to 0.
+  \]
+  as $n \to \infty$.
+\end{eg}
 
 \end{document}
