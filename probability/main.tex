@@ -9,6 +9,10 @@
 \def\nyear {2026}
 \def\ncourse {Probability}
 
+\newcommand{\convd}{\xrightarrow{d}}
+\newcommand{\convw}{\xrightarrow{w}}
+\newcommand{\convp}{\xrightarrow{\Pr}}
+
 \input{../header}
 \author{Notes taken by \nauthor\vspace{5pt}\\
 Lectures by Konstantin Tikhomirov\vspace{5pt}\\
@@ -1057,15 +1061,42 @@ so the claim follows from dominated convergence theorem.
   Let $X$ be a non-negative random variable. Then TFAE:
   \begin{enumerate}
     \item $M_X$ is finite in some neighborhood of $0$.
-    \item $\sup_{p \to \infty} p^{-1} (\E X^p)^{1 / p} < \infty$.
+    \item $\sup_{p \geq 1} p^{-1} (\E X^p)^{1 / p} < \infty$.
   \end{enumerate}
 \end{prop}
 
 \begin{proof}
-  Exercise.
+  (1) $\implies$ (2). Suppose $M_X (\epsilon) = \E \left[ \suminfn \frac{\epsilon^n 
+  X_n}{n!} \right] < \infty$. This implies that $\sup_{n \geq 1} \E \left[ \frac{\epsilon^n X^n}{n!} \right] < \infty$.
+  Let $1 \leq C < \infty$ be such that $\E \left[ \frac{\epsilon^n X^n}{n!} \right] < C$
+  for all $n \geq 1$. We then have 
+  \[
+  \left( \frac{\epsilon}{n!} \right)^{1 / n} \left( \E X^n  \right)^{1 / n}
+  \leq C^{1 / n}
+  \] 
+  It follows from Sterling's formula $n! \sim \left( n / e \right)^n$
+  that 
+  \[
+  \frac{1}{n} \left( \E X^n \right)^{1 / n} \leq C
+  \]
+  for some other constant $C$.
+
+  (2) $\implies$ (1). Suppose $\sup_{p \geq 1} p^{-1} \left( \E X^p \right)
+  ^{1 / p} \leq C < \infty$. It follows that for any $n \geq 1$
+  \[
+  \frac{1}{n!} \left( \E X^n \right) \leq C^n \frac{n^n}{n!} \leq C^n
+  \]
+  for some other constant $C$.
+  Take $\epsilon = \frac{1}{2 C}$, we then have 
+  \[
+  \E \left[ \frac{\epsilon^n X^n}{n!} \right] \leq 2^{-n}.
+  \]
+  Therefore, $M_X (\epsilon) 
+  = \E \left[ \suminfn \frac{\epsilon^n X^n}{n!} \right] < \infty$.
 \end{proof}
 
-Now we present an example of moment method.
+Now we present an example of moment method for approximating random 
+variables.
 \begin{eg}
   Let $G \sim G(n, \frac{1}{2})$ be the Erdos-Renyi random graph. The goal 
   is to estimate the number of triangles in $G$. Let $N$ be 
@@ -1102,5 +1133,138 @@ Now we present an example of moment method.
   \]
   as $n \to \infty$.
 \end{eg}
+
+We have the following proposition on sub-Gaussian decay of moments.
+\begin{prop}
+  Let $X$ be a random variable, TFAE:
+  \begin{enumerate}
+    \item $\sup_{p \geq 1} (\E \abs{X}^p)^{1 / p} p^{-1/2} < \infty$.
+    \item there exists $c > 0$ such that $\Pr \left\{ \abs{X} > t \right\}
+    \leq 2 \exp (-c t^2)$ for all $t > 0$.
+  \end{enumerate}
+  If any of these statement is satisfied, $X$ is called a \emph{subgaussian 
+  variable}.
+\end{prop}
+
+\begin{proof}
+  Exercise.
+\end{proof}
+
+\begin{thm}[Khintchine's inequality]
+  There exists a universal constant $C < \infty$ such that for any
+  $n \in \N$, $a_1, \dots, a_n \in \R$, and $p \geq 1$, we have 
+  \[
+  \left( \E \abs{\sumi^n a_i r_i}^p \right)^{1 / p} \leq 
+  C \sqrt{p} \norm{a}_2,
+  \]
+  where $r_1, \dots, r_n$ are i.i.d. Rademacher variables:
+  $\Pr \left\{ r_i = 1 \right\} = \Pr \left\{ r_i = -1 \right\}
+  = \frac{1}{2}$.
+\end{thm}
+
+\begin{proof}
+  WLOG assume $\norm{a}_2= 1$. Let $\lambda > 0$. For any $t > 0$, we have
+  \begin{align*}
+    \Pr \left\{ \sumi^n a_i r_i > t \right\}
+    = \Pr \left\{ \exp \left( \lambda \sumi^n a_i r_i \right)
+    > \exp (\lambda t) \right\}
+    \leq \frac{\E \exp \left( \lambda \sumi^n a_i r_i \right)}
+    {\exp (\lambda t)}
+  \end{align*}
+  from Markov's inequality. By independence, we have 
+  \begin{align*}
+    \Pr \left\{ \sumi^n a_i r_i > t \right\}
+    \leq \frac{\prod_{i=1}^{n} \E \exp (\lambda a_i r_i) }{\exp (\lambda t)}
+    = \frac{\prod_{i=1}^n \frac{1}{2} \left( \exp (\lambda a_i) + 
+    \exp (- \lambda a_i) \right) }{\exp (\lambda t)}.
+  \end{align*}
+  Now we use $\exp (x) \leq x + \exp (x^2)$ to obtain
+  \begin{align*}
+    \Pr \left\{ \sumi^n a_i r_i > t \right\}
+    \leq \frac{\prod_{i=1}^n \exp (\lambda^2 a_i^2)}{\exp (\lambda t)} 
+    = \exp \left( \lambda^2 \norm{a}^2_2 - \lambda t \right).
+  \end{align*}
+  This holds for any $\lambda > 0$. Substituting $\lambda = 
+  \frac{1}{2} t \norm{a}^{-2}_2$, we have 
+  \[
+  \Pr \left\{ \sumi^n a_i r_i > t \right\} \leq \exp \left( -\frac{1}{4} 
+  \frac{t^2}{\norm{a}^2_2} \right)
+  \]
+  Similarly we can bound $\Pr \left\{ \sumi^n a_i r_i < -t \right\}$
+  as the Rademacher variables are symmetric. Hence we have 
+  \[
+  \Pr \left\{ \abs{\sumi^n a_i r_i} > t \right\} \leq 2
+  \exp \left( -\frac{1}{4} t^2 \right).
+  \]
+  The theorem follows from the previous proposition.
+\end{proof}
+
+\begin{thm}[Anti-concentration inequalities]
+  Let $X$ be a non-negative random variable and $1 \leq p < q < \infty$.
+  Suppose $\left( \E X^p \right)^{1 / p} \leq C \left( \E X^q \right)^{1 / q}$
+  for some constant $C$. Then there exsits $\epsilon > 0$ depending 
+  only on $p$, $q$, $C$ such that 
+  \[
+  \Pr \left\{ X \geq \epsilon \left( \E X^p \right)^{1 / p} \right\} 
+  \geq \epsilon.
+  \]
+\end{thm}
+
+\subsection{Convergence of random variable}
+
+\begin{defi}
+  Let $\seqinfn{X_n}$ be a sequence of random variables and $X$ is also 
+  a random variable.
+  Say $X_n$ converges to $X$ \emph{in distribution} or \emph{weakly} if 
+  for any compactly supported continuous function $f$, we have 
+  \[
+  \int_\R f(t) \d \mu_{X_n} (t) \to \int_\R f(t) \d \mu_X (t).
+  \]
+  Write $X_n \convd X$ or $X_n \convw X$.
+\end{defi}
+
+\begin{prop}
+  $X_n \convw X$ iff $F_{X_n} (t) \to F_X (t)$ at every point $t$ 
+  where $F_X$ is continuous.
+\end{prop}
+
+\begin{defi}
+  Let $\seqinfn{X_n}$ be a sequence of random variables and $X$ is also 
+  a random variable defined on the same probability space. 
+  Say $X_n$ converges to $X$ \emph{in probability} if 
+  for any $\epsilon > 0$, 
+  \[
+  \Pr \left\{ \abs{X_n - X} < \epsilon \right\} \to 1.
+  \]
+  Write $X_n \convp X$.
+\end{defi}
+
+\begin{prop}
+  If $X_n \convp X$, then $X_n \convd X$.
+\end{prop}
+
+\begin{proof}
+  Let $t \in \R$ be such that $F_X$ is continuous at point $t$
+  and let $\epsilon > 0$. Let $\delta > 0$ be such taht 
+  $F_X (t + \delta) \leq F_X (t) + \epsilon$ and 
+  $F_X (t - \delta) \geq F_X (t) - \epsilon$.
+  Since $\Pr \left\{ \abs{X - X_n} < \delta\right\}
+  \to 1$, there exists $n_0$ such that $n \geq n_0$ implies 
+  \[
+  \Pr \left\{ \abs{X_n - X} < \delta\right\}
+  \geq 1 - \epsilon.
+  \]
+  Take $n \geq n_0$. We have 
+  \begin{align*}
+    F_{X_n} (t) 
+    &= \Pr \left\{ X_n \leq t \right\} \\
+    &\leq \Pr \left\{ \abs{X_n - X} > \delta\right\}
+    + \Pr \left\{ X \leq t + \delta\right\} \\
+    &\leq \epsilon + F_X (t) + \epsilon \\
+    &\leq F_X (t) + 2 \epsilon.
+  \end{align*}
+  Similarly for the other side.
+\end{proof}
+
 
 \end{document}
