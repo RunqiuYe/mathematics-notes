@@ -1,7 +1,7 @@
 \documentclass[a4paper]{article}
 \usepackage{parskip}
 \usepackage{lipsum}
-\usepackage{newtxtext}
+% \usepackage{newtxtext}
 \usepackage{eucal}
 \linespread{1.15}
 
@@ -1264,6 +1264,122 @@ We have the following proposition on sub-Gaussian decay of moments.
     &\leq F_X (t) + 2 \epsilon.
   \end{align*}
   Similarly for the other side.
+\end{proof}
+
+\begin{prop}
+  If $X_n \to X$ a.s., then $X_n \convp X$.
+\end{prop}
+
+\begin{proof}
+  Let $\epsilon > 0$. For each $\omega \in \Omega$, define 
+  \[
+  n_\epsilon (\omega) = \min \left\{ n : \abs{X_m(\omega) - X(\omega)} 
+  \leq \epsilon \text{ for all $m \geq n$} \right\} < \infty.
+  \]
+  By continuity of measure, for any $\delta > 0$ there exists $N$ such that 
+  $\Pr \left\{ n_\epsilon \leq N \right\} \geq 1 - \delta$.
+  This implies that for all $m \geq N$, we have 
+  \[
+  \Pr \left\{ \abs{X_m - X} \leq \epsilon \right\} \leq 1 - \delta.
+  \]
+  Since $\delta > 0$ is arbitrary, this compeltes the proof.
+\end{proof}
+
+\begin{prop}
+  Let $c \in \R$ and suppose $\seqinfn{X_n}$ are random variables 
+  on a common probability space 
+  $(\Omega, \Sigma, \Pr)$. Then $X_n \convd c$ iff $X_n \convp c$.
+\end{prop}
+
+\begin{proof}
+  Just need to check that $X_n \convd c$ implies $X_n \convp c$.
+  We have 
+  \[
+  F_c (t) = \begin{cases}
+    1 & \text{if $t \geq c$,} \\
+    0 & \text{otherwise.}
+  \end{cases}
+  \]
+  Take $\epsilon > 0$, then $c \pm \epsilon$ are points of continuity.
+  It follows that $F_{X_n} (c + \epsilon) \to 1$ and $F_{X_n} (c - \epsilon)
+  \to 0$. This implies that 
+  \[
+  \Pr \left\{ \abs{X_n - c} > \epsilon \right\} \to 0.
+  \]
+\end{proof}
+
+
+Next we consider algebraic operations and convergence.
+It is clear that if $X_n \to X$ and $Y_n \to Y$ a.e., then $X_n + Y_n 
+\to X + Y$ a.e. Also, if $X_n \convp X$ and $Y_n \convp Y$, then 
+$X_n + Y_n \convp X + Y$. But for convergence in distribution, 
+the same statement need not be true without any extra assumptions.
+However, suppose $X_n$ and $Y_n$ are independent for each $n$, $X$ and $Y$
+are independent, $X_n \convd X$, and $Y_n \convd Y$. Then $X_n + Y_n 
+\convd X + Y$.
+
+
+\begin{eg}
+  Suppose $\seqinfi{a_i}$ are i.i.d. random variables and 
+  \[
+  \epsilon_n \sumi^n a_i \convd X
+  \]
+  for some random variable $X$ and sequence of positive 
+  numbers $\seqinfn{\epsilon_n}$.
+  Then we have 
+  \[
+  \epsilon_{2n} \sumi^{2n} a_i \convd X,
+  \]
+  and 
+  \[
+  \frac{\epsilon_{2n}}{\epsilon_n} \left( \epsilon_n \sumi^n a_i \right)
+  + \frac{\epsilon_{2n}}{\epsilon_n} \left( \epsilon_n \sum_{i=n+1}^{2n} a_i \right)
+  \convd X.
+  \]
+  If we further suppose that there is $\alpha > 0$ such that 
+  \[
+  \lim_{n \to \infty} \frac{\epsilon_{2n}}{\epsilon_n} = \alpha,
+  \]
+  we would have $\alpha X + \alpha \tilde{X} \sim X$, where 
+  $\tilde{X}$ is an independent copy of $X$. The only such distribution 
+  $X$ with bounded second moment is the Gaussian distribution.
+\end{eg}
+
+Recall that for independent random variables, we have a representation 
+theorem that create new independent random variables on the product space.
+We alos have a representation theorem for random variables converging 
+in distribution. On the new probability space, they will coneverge a.e.
+
+\begin{thm}[Skorokhod's representation theorem]
+  Suppose $X_n \convd X$ on some probability space $(\Omega, \Sigma, \Pr)$.
+  Then there exists another probability space $(\tilde{\Omega}, 
+  \tilde{\Sigma}, \tilde{\Pr})$ and random variables $\tilde{X}_n$, 
+  $\tilde{X}$ on it such that the following holds:
+  \begin{itemize}
+    \item $\tilde{X}_n \sim X_n$ for all $n$.
+    \item $\tilde{X} \sim X$.
+    \item $\tilde{X}_n \to \tilde{X}$ a.e.
+  \end{itemize}
+\end{thm}
+
+\begin{proof}
+  Suppose for simplicity that $F_{X_n}$ and $F_X$ are all continuous and 
+  strictly increasing. With this, we can easily construct random 
+  variables with the same distribution. Let $U \sim \unif([0, 1])$,
+  then $F_X^{-1} (U) \sim X$. Indeed, 
+  \[
+  \Pr \left\{ F_X^{-1} (U) \leq t \right\}
+  = \Pr \left\{ F_X (F_X^{-1} (U)) \leq F_X (t) \right\}
+  = F_X (t).
+  \] 
+
+  Take $([0, 1], \bcal_{[0, 1]}, m)$. 
+  Let $\tilde{X}_n = F_{X_n}^{-1} (\omega)$
+  and $\tilde{X} = F_X^{-1} (\omega)$. Then 
+  $\tilde{X}_n \sim X_n$ and $\tilde{X} \sim X$.
+  Note that $X_n \convd X$ 
+  implies $F_{X_n} \to F_X$ pointwise. Checking
+  $\tilde{X}_n \to \tilde{X}$ a.e. is left as an exercise.
 \end{proof}
 
 
