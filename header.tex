@@ -164,6 +164,8 @@ Carnegie Mellon University}
 \newtheorem*{thm}{Theorem}
 \newtheorem*{assumption}{Assumption}
 
+\AtEndEnvironment{eg}{\hfill$\triangle$}
+
 \newtheorem*{remark}{Remark}
 \newtheorem*{warning}{Warning}
 \newtheorem*{exercise}{Exercise}
@@ -181,7 +183,6 @@ Carnegie Mellon University}
 \let\stdsection\section
 \renewcommand\section{\newpage\stdsection}
 
-\newcommand\qedsym{\hfill\ensuremath{\square}}
 % Strike through
 \def\st{\bgroup \ULdepth=-.55ex \ULset}
 
@@ -350,6 +351,7 @@ Carnegie Mellon University}
 \DeclareMathOperator{\mse}{mse}
 \DeclareMathOperator{\multinomial}{multinomial}
 \DeclareMathOperator{\Poisson}{Poisson}
+\DeclareMathOperator{\Exp}{Exp}
 \DeclareMathOperator{\unif}{unif}
 \DeclareMathOperator{\var}{var}
 \newcommand{\E}{\mathbb{E}}
