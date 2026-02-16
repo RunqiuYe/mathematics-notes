@@ -460,7 +460,7 @@ in the course.
 \end{thm}
 
 \begin{thm}[Jensen's inequality]
-  Let $(\Omega, \Sigma, \mu)$ be a probability space and $f$ be
+  Let $(\Omega, \Sigma, \Pr)$ be a probability space and $f$ be
   integrable. Let $\phi : \bar{\R} \to \bar{\R}$ be convex
   and suppose $\phi (\infty) = \lim_{x \to \infty} \phi(x)$
   and $\phi (-\infty) = \lim_{x \to -\infty} \phi(x)$. Then
@@ -679,7 +679,7 @@ $\id$ on $\R$. Then $\mu_{\id} \equiv \mu$.
   The following are equivalent:
   \begin{enumerate}
     \item $F_X$ is absolutely continuous.
-    \item $\mu_X$ is absolutely containing w.r.t. Lebesgue measure.
+    \item $\mu_X$ is absolutely continuous w.r.t. Lebesgue measure.
   \end{enumerate}
   Moreover, $\rho_X$ is also the derivative of $\mu_X$ w.r.t. Lebesgue
   measure. That is, for any $A \in \bcal_\R$,
@@ -1075,7 +1075,7 @@ so the claim follows from dominated convergence theorem.
   Let $X$ be a non-negative random variable. Then TFAE:
   \begin{enumerate}
     \item $M_X$ is finite in some neighborhood of $0$.
-    \item $\sup_{p \geq 1} p^{-1} (\E X^p)^{1 / p} < \infty$.
+    \item $\limsup_{p \to \infty} p^{-1} (\E X^p)^{1 / p} < \infty$.
   \end{enumerate}
 \end{prop}
 
@@ -1095,7 +1095,7 @@ so the claim follows from dominated convergence theorem.
   \]
   for some other constant $C$.
 
-  (2) $\implies$ (1). Suppose $\sup_{p \geq 1} p^{-1} \left( \E X^p \right)
+  (2) $\implies$ (1). Suppose $\limsup_{p \to \infty} p^{-1} \left( \E X^p \right)
   ^{1 / p} \leq C < \infty$. It follows that for any $n \geq 1$
   \[
   \frac{1}{n!} \left( \E X^n \right) \leq C^n \frac{n^n}{n!} \leq C^n
@@ -1458,7 +1458,7 @@ $X \sim \Exp (\lambda)$ and $t > s > 0$. Then,
   \]
   Then $X_n \convd \Poisson (\lambda)$.
 
-  Let $k \geq 0$, we have
+  To prove this, let $k \geq 0$, we have
   \begin{align*}
     \Pr (X_n = k) 
     &= \binom{m_n}{k} \left( \frac{1}{n} \right)^k 
@@ -1521,5 +1521,67 @@ $X \sim \Exp (\lambda)$ and $t > s > 0$. Then,
   Then $Z_n \convd \xi$.
 
 \end{eg}
+
+\begin{eg}[Poisson process]
+  Let $\seqinfn{X_n}$ be a sequence of i.i.d. 
+  random variables that follows the exponential distribution 
+  $\Exp (\lambda)$. Define Poisson process $\{S_n\}_{n=0}^\infty$ via 
+  \[
+  S_n = \sumi^n X_i.
+  \]
+  This has 
+  two properties:
+  \begin{enumerate}
+    \item For each interval of length $1$ on $\R_+$, the number of 
+    $S_n$'s within this interval follows the Poission distribution 
+    with parameter $\lambda$.
+
+    \item For any finite collection of disjoint intervals, the variables
+    corresponding to the number of $S_n$'s within the intervals are 
+    mutually independent. This is because of the memoryless property 
+    of the exponential distribution.
+  \end{enumerate}
+\end{eg}
+
+\begin{thm}[Central limit theorem, basic form]
+  Let $\seqinfn{b_n}$ be i.i.d. random variables that are 
+  $\Bernoulli (\frac{1}{2})$. Define $S_n = \sumi b_i$.
+  Then 
+  \[
+  \frac{S_n - \frac{n}{2}}{\sqrt{n} / 2} \convd \ncal (0, 1).
+  \]
+\end{thm}
+
+\begin{proof}
+  Suppose $n$ and $k$ be some integer, then 
+  \begin{align*}
+    \Pr \left( S_{2n} = n + k \right)
+    &= \frac{(2n) !}{(n + k) ! (n - k)!} 2^{-2n}
+  \end{align*}
+  Using Sterling's formula $n! \sim \sqrt{2 \pi n} (\frac{n}{e})^n$, 
+  we have 
+  \begin{align*}
+    \frac{(2n) !}{(n + k) ! (n - k)!}
+    &\sim \frac{ (2n)^{2n} }{(n + k)^{n + k} (n - k)^{n - k}} 
+    \frac{\sqrt{2 \pi n}}{\sqrt{2 \pi (n + k)} \sqrt{2 \pi (n - k)}}
+  \end{align*}
+  Hence,
+  \begin{align*}
+    \Pr \left( S_n = \frac{n}{2} + k \right)
+    &\sim \left( 1 + \frac{k}{n} \right)^{- n - k - \frac{1}{2}} 
+    \left( 1 - \frac{k}{n} \right)^{-n + k - \frac{1}{2}} 
+    \left( \pi n \right)^{\frac{1}{2}}.
+  \end{align*}
+  We also have 
+  \[
+  \left( 1 + \frac{k}{n} \right)^{- n - k} 
+  \left( 1 - \frac{k}{n} \right)^{-n + k} 
+  = \left( 1 - \frac{k^2}{n^2} \right)^{-n} 
+  \left( 1 + \frac{k}{n} \right)^{-k} 
+  \left( 1 + \frac{k}{n} \right)^{k}.
+  \]
+  \TODO
+
+\end{proof}
 
 \end{document}
