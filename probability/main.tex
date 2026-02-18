@@ -1543,6 +1543,11 @@ $X \sim \Exp (\lambda)$ and $t > s > 0$. Then,
   \end{enumerate}
 \end{eg}
 
+\begin{lemma}
+  If $c_j \to 0$, $a_j \to \infty$ and $a_j c_j \to \lambda$, 
+  then $(1 + c_j)^{a_j} \to e^{\lambda}$.
+\end{lemma}
+
 \begin{thm}[Central limit theorem, basic form]
   Let $\seqinfn{b_n}$ be i.i.d. random variables that are 
   $\Bernoulli (\frac{1}{2})$. Define $S_n = \sumi b_i$.
@@ -1567,7 +1572,7 @@ $X \sim \Exp (\lambda)$ and $t > s > 0$. Then,
   \end{align*}
   Hence,
   \begin{align*}
-    \Pr \left( S_n = \frac{n}{2} + k \right)
+    \Pr \left( S_n = n + k \right)
     &\sim \left( 1 + \frac{k}{n} \right)^{- n - k - \frac{1}{2}} 
     \left( 1 - \frac{k}{n} \right)^{-n + k - \frac{1}{2}} 
     \left( \pi n \right)^{\frac{1}{2}}.
@@ -1578,10 +1583,89 @@ $X \sim \Exp (\lambda)$ and $t > s > 0$. Then,
   \left( 1 - \frac{k}{n} \right)^{-n + k} 
   = \left( 1 - \frac{k^2}{n^2} \right)^{-n} 
   \left( 1 + \frac{k}{n} \right)^{-k} 
-  \left( 1 + \frac{k}{n} \right)^{k}.
+  \left( 1 - \frac{k}{n} \right)^{k}.
   \]
-  \TODO
+  Letting $k = x \sqrt{n / 2}$, we know
+  \begin{align*}
+    \left( 1 - \frac{k^2}{n^2} \right)^{-n} 
+    \left( 1 + \frac{k}{n} \right)^{-k} 
+    \left( 1 + \frac{k}{n} \right)^{k}
+    &= \left( 1 - \frac{x^2}{2 n} \right)^{-n} 
+    \left( 1 + \frac{x}{\sqrt{2n}} \right)^{- x \sqrt{n/2}}
+    \left( 1 - \frac{x}{\sqrt{2n}} \right)^{- x \sqrt{n/2}} \\
+    &\to \exp \left( \frac{x^2}{2} \right) 
+    \exp \left( - \frac{x^2}{2} \right) 
+    \exp \left( - \frac{x^2}{2} \right) \\
+    &= \exp \left( - \frac{x^2}{2} \right)
+  \end{align*}
+  by the lemma above.
 
+  Therefore, if $2k / \sqrt{2n} \to x$, then 
+  \[
+  \Pr \left( S_{2n} = n + k \right)
+  \sim \left( \pi n \right)^{- 1 / 2} e^{- x^2 / 2}.
+  \]
+  Now, 
+  \begin{align*}
+    \Pr \left( a \leq \frac{S_{2n} - n}{ \sqrt{n / 2} } \leq b \right)
+   &= \Pr \left( n + a \sqrt{n / 2} \leq S_{2n} \leq n + b \sqrt{n / 2} \right) \\
+   &= \sum_{k \in \left[ a \sqrt{n / 2}, b \sqrt{n / 2} \right] \cap \Z}
+   \Pr \left( S_{2n} = n + k \right).
+  \end{align*}
+  Chaging variables $m = k \sqrt{n / 2}$, we then have 
+  \begin{align*}
+    \Pr \left( a \leq \frac{S_{2n} - n}{\sqrt{n / 2}} \leq b \right) 
+    &= \sum_{m \in [a, b] \cap \left( 2\Z / \sqrt{2n} \right)} 
+    (2 \pi)^{- 1 / 2} e^{-x^2 / 2} (2 / n)^{1 / 2} \\
+    &\approx \int_a^b \frac{1}{\sqrt{2 \pi}} e^{-x^2 / 2} \d x,
+  \end{align*}
+  using the definition of Riemann integral. The proof is  
+  now complete.
+
+\end{proof}
+
+\begin{defi}[Multivariate Gaussian]
+  There are two equivalent definitions of multivariate Gaussian.
+  \begin{enumerate}
+    \item $X \in \R^n$ has Gaussian distribution if there is non-random 
+    $n$-by-$n$ non-random matrix and $\mu \in \R^n$ such that 
+    $X \sim M G + \mu$, where $G$ is the standard Gaussian vector in $\R^n$.
+    That is, $G = (G_1, \dots, G_n)$ are random vector with 
+    i.i.d. $\ncal(0, 1)$ components. 
+
+    \item $X \in \R^n$ has Gaussian distribution if for all 
+    non-random $y \in \R^n$, $\bra X, y \ket$ is a scalar 
+    Gaussian random variables.
+  \end{enumerate}
+\end{defi}
+
+\begin{proof}
+  (1) $\implies$ (2). Exercise. \TODO
+
+  (2) $\implies$ (1). Later using characteristic functions.
+
+\end{proof}
+
+\section{Law of large numbers}
+
+\begin{thm}[Weak law of large numbers]
+  Suppose $\seqinfn{X_n}$ are mutually independent, identically 
+  distributed random variables. Suppose also $\E \abs{X_1} < \infty$.
+  Let $S_n = \suminfn X_i$, then $S_n / n \convp \E X_1$.
+\end{thm}
+
+\begin{proof}
+  We prove this using truncation method.
+  Let $\epsilon > 0$ and choose truncation level $M (\epsilon) > 0$ 
+  satisfying the following:
+  \begin{align*}
+    \E \abs{X_1 \ind_{\abs{X_1} > M}} < \epsilon^2.
+  \end{align*}
+  By dominated convergence theorem, there exists such an $M$. 
+  Note that this also implies 
+  \[
+  \abs{\E X_1 - \E \left( X_1 \ind_{\abs{X_1} \leq M} \right)} < \epsilon.
+  \]
 \end{proof}
 
 \end{document}
