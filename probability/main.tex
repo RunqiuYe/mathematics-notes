@@ -594,7 +594,7 @@ $(\Omega, \Sigma, \Pr)$ and a real valued random variable
 on $(\Omega, \Sigma, \Pr)$ with CDF $F$.
 
 \begin{defi}
-  If $X$ is random variable on $(\Omega, \Sigma, \Pr)$ real valued and a.e. finite.
+  If $X$ is random variable on $(\Omega, \Sigma, \Pr)$ real valued and \ae finite.
   Then we can define the induced Borel probability measure
   $\mu_X$ on $(\R, \bcal_\R)$ by
   \[
@@ -675,7 +675,7 @@ $\id$ on $\R$. Then $\mu_{\id} \equiv \mu$.
 \end{remark}
 
 \begin{thm}
-  Suppose $X$ RV on $(\Omega, \Sigma, \Pr)$ is real-valued and a.e. finite.
+  Suppose $X$ RV on $(\Omega, \Sigma, \Pr)$ is real-valued and \ae finite.
   The following are equivalent:
   \begin{enumerate}
     \item $F_X$ is absolutely continuous.
@@ -794,7 +794,7 @@ Now we explore how this connect with product structure.
 \begin{remark}
   Let $(\Omega, \Sigma, \Pr)$ be a probability space and suppose
   $X, Y$ be two random variables that are independent and
-  a.e. finite.
+  \ae finite.
   They then generate two Borel probability measure $\mu_X$ and
   $\mu_Y$ on $\R$.
   Define a product probability space as
@@ -850,7 +850,7 @@ Now we explore how this connect with product structure.
   {2 \epsilon}.
   \]
   The Lebesgue density theorem says this is well defined and
-  takes values in $\left\{ 0, 1 \right\}$ for $m$-a.e. $t \in [0, 1]$.
+  takes values in $\left\{ 0, 1 \right\}$ for $m$-\ae $t \in [0, 1]$.
 
   Suppose such $Y$ exists, we can vies $Y$ as an indicator of a set
   $A \subset [0, 1]$ of probability $\frac{1}{2}$. That is,
@@ -1331,8 +1331,8 @@ We have the following proposition on sub-Gaussian decay of moments.
 
 
 Next we consider algebraic operations and convergence.
-It is clear that if $X_n \to X$ and $Y_n \to Y$ a.e., then $X_n + Y_n 
-\to X + Y$ a.e. Also, if $X_n \convp X$ and $Y_n \convp Y$, then 
+It is clear that if $X_n \to X$ and $Y_n \to Y$ \ae, then $X_n + Y_n 
+\to X + Y$ \ae Also, if $X_n \convp X$ and $Y_n \convp Y$, then 
 $X_n + Y_n \convp X + Y$. But for convergence in distribution, 
 the same statement need not be true without any extra assumptions.
 However, suppose $X_n$ and $Y_n$ are independent for each $n$, $X$ and $Y$
@@ -1370,7 +1370,7 @@ are independent, $X_n \convd X$, and $Y_n \convd Y$. Then $X_n + Y_n
 Recall that for independent random variables, we have a representation 
 theorem that create new independent random variables on the product space.
 We alos have a representation theorem for random variables converging 
-in distribution. On the new probability space, they will coneverge a.e.
+in distribution. On the new probability space, they will coneverge \ae
 
 \begin{thm}[Skorokhod's representation theorem]
   Suppose $X_n \convd X$ on some probability space $(\Omega, \Sigma, \Pr)$.
@@ -1380,7 +1380,7 @@ in distribution. On the new probability space, they will coneverge a.e.
   \begin{itemize}
     \item $\tilde{X}_n \sim X_n$ for all $n$.
     \item $\tilde{X} \sim X$.
-    \item $\tilde{X}_n \to \tilde{X}$ a.e.
+    \item $\tilde{X}_n \to \tilde{X}$ \ae
   \end{itemize}
 \end{thm}
 
@@ -1401,7 +1401,7 @@ in distribution. On the new probability space, they will coneverge a.e.
   $\tilde{X}_n \sim X_n$ and $\tilde{X} \sim X$.
   Note that $X_n \convd X$ 
   implies $F_{X_n} \to F_X$ pointwise. Checking
-  $\tilde{X}_n \to \tilde{X}$ a.e. is left as an exercise.
+  $\tilde{X}_n \to \tilde{X}$ \ae is left as an exercise.
 
 \end{proof}
 
@@ -1648,6 +1648,8 @@ $X \sim \Exp (\lambda)$ and $t > s > 0$. Then,
 
 \section{Law of large numbers}
 
+\subsection{Weak law of large numbers}
+
 \begin{thm}[Weak law of large numbers]
   Suppose $\seqinfn{X_n}$ are mutually independent, identically 
   distributed random variables. Suppose also $\E \abs{X_1} < \infty$.
@@ -1666,6 +1668,114 @@ $X \sim \Exp (\lambda)$ and $t > s > 0$. Then,
   \[
   \abs{\E X_1 - \E \left( X_1 \ind_{\abs{X_1} \leq M} \right)} < \epsilon.
   \]
+  For each $n$, we have 
+  \[
+  S_n = \sumk^n X_k \ind_{\abs{X_k} \leq M} + 
+  \sumk^n X_k \ind_{\abs{X_k} > M}.
+  \]
+  Write
+  \[
+  T_n = \sumk^n X_k \ind_{\abs{X_k} \leq M} \quad
+  \text{and} \quad
+  R_n = \sumk^n X_k \ind_{\abs{X_k} > M}.
+  \]
+  For the first term, we can use Chebyshev's inequality to obtain
+  \begin{align*}
+    \Pr \left( \abs{\frac{T_n}{n} - 
+    \E [X_1 \ind_{\abs{X_1} \leq M}]} \geq \epsilon \right)  
+    &\leq \frac{1}{\epsilon^2} \var \left( \frac{T_n}{n} \right)\\
+    &= \frac{1}{n \epsilon^2} \var (X_1 \ind_{\abs{X_1} \leq M})  \\
+    &\leq \frac{4 M^2}{n \epsilon^2}
+  \end{align*}
+  Similarly, for the second term, we have 
+  \begin{align*}
+    \Pr \left( \abs{\frac{R_n}{n}} \geq \epsilon \right) 
+    &\leq \frac{1}{\epsilon} \E \abs{\frac{R_n}{n}} \leq \epsilon.
+  \end{align*}
+  It follows that 
+  \[
+  \Pr \left( \abs{\frac{S_n}{n} - \E X_1} \geq 
+  2 \epsilon + \epsilon^2 \right) 
+  \leq \frac{4 M^2}{n \epsilon^2} + \epsilon.
+  \]
 \end{proof}
+
+\begin{remark}
+  Note that the only step we use independence is when we calculate 
+  $\var (T_n / n)$. In fact, pairwise independence is sufficient 
+  for this step.
+\end{remark}
+
+\subsection{Borel-Cantelli lemmas}
+
+\begin{thm}[Borel-Cantelli lemmas]
+  Let $\seqinfn{A_n}$ be a sequence of events and 
+  \[
+  \Pr \left( A_n \text{ i.o.} \right)
+  = \Pr \left( \capinfk \bigcup_{n=k}^\infty A_n \right)
+  = \Pr \left( \limsup A_n \right)
+  \]
+  \begin{enumerate}
+    \item If $\suminfn \Pr (A_n) < \infty$, then 
+    $\Pr \left( A_n \text{ i.o.} \right) = 0$.
+
+    \item Suppose also $A_n$'s are mutually independent
+    and $\suminfn \Pr (A_n) = \infty$, then 
+    $\Pr \left( A_n \text{ i.o.} \right) = 1$.
+  \end{enumerate}
+\end{thm}
+
+\begin{proof}
+\begin{enumerate}
+  \item We have 
+  \begin{align*}
+    \Pr \left( A_n \text{ i.o.} \right) 
+    &= \Pr \left( \suminfn \ind_{A_n} = \infty \right).
+  \end{align*}
+  However, $\E [\suminfn \ind_{A_n}] = \suminfn \Pr (A_n) < \infty$,
+  so $\Pr (A_n \text{ i.o.}) = 0$.
+
+  \item We have 
+  \begin{align*}
+    \Pr \left( A_n \text{ i.o.} \right) 
+    = \Pr \left( \cupinfk \bigcap_{n = k}^\infty A_n^c \right)
+    \leq \suminfk \Pr \left( \bigcap_{n=k}^\infty A_n^c \right).
+  \end{align*}
+  Using independence and $1 - t \leq \exp (- t)$, 
+  we obtain 
+  \[
+  \Pr \left( \bigcap_{n=k}^M A_n \right)
+  = \prod_{n=k}^M (1 - \Pr (A_n)) 
+  \leq \exp \left( - \sum_{n=k}^M \Pr (A_n) \right) \to 0
+  \]
+  as $M \to \infty$. Hence, $\Pr \left( \bigcup_{n=k}^\infty A_n \right)
+  = 1$ for all $k$. Since $\bigcup_{n=k}^\infty A_n \downarrow \limsup A_n$,
+  it follows from monotone continuity that $\Pr (A_n \text{ i.o.}) = 1$.
+\end{enumerate}
+\end{proof}
+
+\begin{thm}
+  Let $\seqinfn{b_n}$ be mutually independent Bernoulli variables 
+  with parameters $\seqinfn{p_n}$ with $0 < p_n < 1$. 
+  Then, $b_n \to 0$ \ae iff $\suminfn p_n < \infty$.
+\end{thm}
+
+\begin{proof}
+  For any $\omega$, $b_n (\omega) \to 0$ as $n \to \infty$ iff 
+  $b_n (\omega) = 1$ for at most finitely many $n$'s. 
+  Let $A_n = \left\{ b_n = 1 \right\}$. Then, 
+  $b_n \to 0$ \ae iff for \ae $\omega$ is contained 
+  in finitely many $A_n$'s. That is, $\Pr (A_n \text{ i.o.}) = 0$.
+  The theorem then follows from Borel-Cantelli lemma.
+
+\end{proof}
+
+\subsection{Strong law of large numbers}
+
+\begin{thm}
+  Let $\seqinfn{X_n}$ be mutually independent identically distributed
+  random variables. Suppose $\E \abs{X_1} < \infty$. 
+  Then, $\frac{1}{n} \sumk^n X_k \to \E X_1$ \ae
+\end{thm}
 
 \end{document}
