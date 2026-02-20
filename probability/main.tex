@@ -594,7 +594,7 @@ $(\Omega, \Sigma, \Pr)$ and a real valued random variable
 on $(\Omega, \Sigma, \Pr)$ with CDF $F$.
 
 \begin{defi}
-  If $X$ is random variable on $(\Omega, \Sigma, \Pr)$ real valued and \ae finite.
+  If $X$ is random variable on $(\Omega, \Sigma, \Pr)$ real valued and a.e.\ finite.
   Then we can define the induced Borel probability measure
   $\mu_X$ on $(\R, \bcal_\R)$ by
   \[
@@ -675,7 +675,7 @@ $\id$ on $\R$. Then $\mu_{\id} \equiv \mu$.
 \end{remark}
 
 \begin{thm}
-  Suppose $X$ RV on $(\Omega, \Sigma, \Pr)$ is real-valued and \ae finite.
+  Suppose $X$ RV on $(\Omega, \Sigma, \Pr)$ is real-valued and a.e.\ finite.
   The following are equivalent:
   \begin{enumerate}
     \item $F_X$ is absolutely continuous.
@@ -794,7 +794,7 @@ Now we explore how this connect with product structure.
 \begin{remark}
   Let $(\Omega, \Sigma, \Pr)$ be a probability space and suppose
   $X, Y$ be two random variables that are independent and
-  \ae finite.
+  a.e.\ finite.
   They then generate two Borel probability measure $\mu_X$ and
   $\mu_Y$ on $\R$.
   Define a product probability space as
@@ -850,7 +850,7 @@ Now we explore how this connect with product structure.
   {2 \epsilon}.
   \]
   The Lebesgue density theorem says this is well defined and
-  takes values in $\left\{ 0, 1 \right\}$ for $m$-\ae $t \in [0, 1]$.
+  takes values in $\left\{ 0, 1 \right\}$ for $m$-a.e.\ $t \in [0, 1]$.
 
   Suppose such $Y$ exists, we can vies $Y$ as an indicator of a set
   $A \subset [0, 1]$ of probability $\frac{1}{2}$. That is,
@@ -1174,7 +1174,7 @@ We have the following proposition on sub-Gaussian decay of moments.
   \left( \E \abs{\sumi^n a_i r_i}^p \right)^{1 / p} \leq 
   C \sqrt{p} \norm{a}_2,
   \]
-  where $r_1, \dots, r_n$ are i.i.d. Rademacher variables:
+  where $r_1, \dots, r_n$ are i.i.d.\ Rademacher variables:
   $\Pr \left( r_i = 1 \right) = \Pr \left( r_i = -1 \right)
   = \frac{1}{2}$.
 \end{thm}
@@ -1331,8 +1331,8 @@ We have the following proposition on sub-Gaussian decay of moments.
 
 
 Next we consider algebraic operations and convergence.
-It is clear that if $X_n \to X$ and $Y_n \to Y$ \ae, then $X_n + Y_n 
-\to X + Y$ \ae Also, if $X_n \convp X$ and $Y_n \convp Y$, then 
+It is clear that if $X_n \to X$ and $Y_n \to Y$ a.e.\, then $X_n + Y_n 
+\to X + Y$ a.e.\ Also, if $X_n \convp X$ and $Y_n \convp Y$, then 
 $X_n + Y_n \convp X + Y$. But for convergence in distribution, 
 the same statement need not be true without any extra assumptions.
 However, suppose $X_n$ and $Y_n$ are independent for each $n$, $X$ and $Y$
@@ -1341,7 +1341,7 @@ are independent, $X_n \convd X$, and $Y_n \convd Y$. Then $X_n + Y_n
 
 
 \begin{eg}
-  Suppose $\seqinfi{a_i}$ are i.i.d. random variables and 
+  Suppose $\seqinfi{a_i}$ are i.i.d.\ random variables and 
   \[
   \epsilon_n \sumi^n a_i \convd X
   \]
@@ -1370,7 +1370,7 @@ are independent, $X_n \convd X$, and $Y_n \convd Y$. Then $X_n + Y_n
 Recall that for independent random variables, we have a representation 
 theorem that create new independent random variables on the product space.
 We alos have a representation theorem for random variables converging 
-in distribution. On the new probability space, they will coneverge \ae
+in distribution. On the new probability space, they will coneverge a.e.\
 
 \begin{thm}[Skorokhod's representation theorem]
   Suppose $X_n \convd X$ on some probability space $(\Omega, \Sigma, \Pr)$.
@@ -1380,7 +1380,7 @@ in distribution. On the new probability space, they will coneverge \ae
   \begin{itemize}
     \item $\tilde{X}_n \sim X_n$ for all $n$.
     \item $\tilde{X} \sim X$.
-    \item $\tilde{X}_n \to \tilde{X}$ \ae
+    \item $\tilde{X}_n \to \tilde{X}$ a.e.\
   \end{itemize}
 \end{thm}
 
@@ -1401,7 +1401,7 @@ in distribution. On the new probability space, they will coneverge \ae
   $\tilde{X}_n \sim X_n$ and $\tilde{X} \sim X$.
   Note that $X_n \convd X$ 
   implies $F_{X_n} \to F_X$ pointwise. Checking
-  $\tilde{X}_n \to \tilde{X}$ \ae is left as an exercise.
+  $\tilde{X}_n \to \tilde{X}$ a.e.\ is left as an exercise.
 
 \end{proof}
 
@@ -1451,7 +1451,7 @@ $X \sim \Exp (\lambda)$ and $t > s > 0$. Then,
   \lim_{n \to \infty} \frac{m_n}{n} = \lambda.
   \]
   Create a triangular array as follows: for any $n$, 
-  let $\left\{ U_{n, j} \right\}_{j=1}^{m_n}$ be i.i.d. uniform random 
+  let $\left\{ U_{n, j} \right\}_{j=1}^{m_n}$ be i.i.d.\ uniform random 
   variables on $[0, n]$. Now let
   \[
   X_n = \abs{ \left\{ i \leq m_n : U_{n, i} \in [0, 1] \right\} }.
@@ -1513,7 +1513,7 @@ $X \sim \Exp (\lambda)$ and $t > s > 0$. Then,
   vector in $\R^w$. We want to investigate the limiting distribution 
   of $\seqinfn{Z_n}$, if any exists.
 
-  \textbf{Claim:} let $\xi_1$, \dots, $\xi_w \sim \Exp (\lambda)$ be i.i.d.
+  \textbf{Claim:} let $\xi_1$, \dots, $\xi_w \sim \Exp (\lambda)$ be i.i.d.\
   Let the random vector 
   \[
   \xi = (\xi_1, \xi_1 + \xi_2, \dots, \xi_1 + \dots + \xi_w).
@@ -1523,7 +1523,7 @@ $X \sim \Exp (\lambda)$ and $t > s > 0$. Then,
 \end{eg}
 
 \begin{eg}[Poisson process]
-  Let $\seqinfn{X_n}$ be a sequence of i.i.d. 
+  Let $\seqinfn{X_n}$ be a sequence of i.i.d.\ 
   random variables that follows the exponential distribution 
   $\Exp (\lambda)$. Define Poisson process $\{S_n\}_{n=0}^\infty$ via 
   \[
@@ -1549,7 +1549,7 @@ $X \sim \Exp (\lambda)$ and $t > s > 0$. Then,
 \end{lemma}
 
 \begin{thm}[Central limit theorem, basic form]
-  Let $\seqinfn{b_n}$ be i.i.d. random variables that are 
+  Let $\seqinfn{b_n}$ be i.i.d.\ random variables that are 
   $\Bernoulli (\frac{1}{2})$. Define $S_n = \sumi b_i$.
   Then 
   \[
@@ -1631,7 +1631,7 @@ $X \sim \Exp (\lambda)$ and $t > s > 0$. Then,
     $n$-by-$n$ non-random matrix and $\mu \in \R^n$ such that 
     $X \sim M G + \mu$, where $G$ is the standard Gaussian vector in $\R^n$.
     That is, $G = (G_1, \dots, G_n)$ are random vector with 
-    i.i.d. $\ncal(0, 1)$ components. 
+    i.i.d.\ $\ncal(0, 1)$ components. 
 
     \item $X \in \R^n$ has Gaussian distribution if for all 
     non-random $y \in \R^n$, $\bra X, y \ket$ is a scalar 
@@ -1757,14 +1757,14 @@ $X \sim \Exp (\lambda)$ and $t > s > 0$. Then,
 \begin{thm}
   Let $\seqinfn{b_n}$ be mutually independent Bernoulli variables 
   with parameters $\seqinfn{p_n}$ with $0 < p_n < 1$. 
-  Then, $b_n \to 0$ \ae iff $\suminfn p_n < \infty$.
+  Then, $b_n \to 0$ a.e.\ iff $\suminfn p_n < \infty$.
 \end{thm}
 
 \begin{proof}
   For any $\omega$, $b_n (\omega) \to 0$ as $n \to \infty$ iff 
   $b_n (\omega) = 1$ for at most finitely many $n$'s. 
   Let $A_n = \left\{ b_n = 1 \right\}$. Then, 
-  $b_n \to 0$ \ae iff for \ae $\omega$ is contained 
+  $b_n \to 0$ a.e.\ iff for a.e.\ $\omega$ is contained 
   in finitely many $A_n$'s. That is, $\Pr (A_n \text{ i.o.}) = 0$.
   The theorem then follows from Borel-Cantelli lemma.
 
@@ -1775,7 +1775,7 @@ $X \sim \Exp (\lambda)$ and $t > s > 0$. Then,
 \begin{thm}
   Let $\seqinfn{X_n}$ be mutually independent identically distributed
   random variables. Suppose $\E \abs{X_1} < \infty$. 
-  Then, $\frac{1}{n} \sumk^n X_k \to \E X_1$ \ae
+  Then, $\frac{1}{n} \sumk^n X_k \to \E X_1$ a.e.\
 \end{thm}
 
 \end{document}
