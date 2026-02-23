@@ -1612,10 +1612,10 @@ $X \sim \Exp (\lambda)$ and $t > s > 0$. Then,
    &= \sum_{k \in \left[ a \sqrt{n / 2}, b \sqrt{n / 2} \right] \cap \Z}
    \Pr \left( S_{2n} = n + k \right).
   \end{align*}
-  Chaging variables $m = k \sqrt{n / 2}$, we then have 
+  Chaging variables $x = k \sqrt{n / 2}$, we then have 
   \begin{align*}
     \Pr \left( a \leq \frac{S_{2n} - n}{\sqrt{n / 2}} \leq b \right) 
-    &= \sum_{m \in [a, b] \cap \left( 2\Z / \sqrt{2n} \right)} 
+    &= \sum_{x \in [a, b] \cap \left( 2\Z / \sqrt{2n} \right)} 
     (2 \pi)^{- 1 / 2} e^{-x^2 / 2} (2 / n)^{1 / 2} \\
     &\approx \int_a^b \frac{1}{\sqrt{2 \pi}} e^{-x^2 / 2} \d x,
   \end{align*}
@@ -1754,11 +1754,11 @@ $X \sim \Exp (\lambda)$ and $t > s > 0$. Then,
 \end{enumerate}
 \end{proof}
 
-\begin{thm}
+\begin{prop}
   Let $\seqinfn{b_n}$ be mutually independent Bernoulli variables 
   with parameters $\seqinfn{p_n}$ with $0 < p_n < 1$. 
   Then, $b_n \to 0$ a.e.\ iff $\suminfn p_n < \infty$.
-\end{thm}
+\end{prop}
 
 \begin{proof}
   For any $\omega$, $b_n (\omega) \to 0$ as $n \to \infty$ iff 
@@ -1766,7 +1766,7 @@ $X \sim \Exp (\lambda)$ and $t > s > 0$. Then,
   Let $A_n = \left\{ b_n = 1 \right\}$. Then, 
   $b_n \to 0$ a.e.\ iff for a.e.\ $\omega$ is contained 
   in finitely many $A_n$'s. That is, $\Pr (A_n \text{ i.o.}) = 0$.
-  The theorem then follows from Borel-Cantelli lemma.
+  The proposition then follows from Borel-Cantelli lemma.
 
 \end{proof}
 
@@ -1774,8 +1774,53 @@ $X \sim \Exp (\lambda)$ and $t > s > 0$. Then,
 
 \begin{thm}
   Let $\seqinfn{X_n}$ be mutually independent identically distributed
-  random variables. Suppose $\E \abs{X_1} < \infty$. 
-  Then, $\frac{1}{n} \sumk^n X_k \to \E X_1$ a.e.\
+  random variables. Suppose $\E \abs{X_1} < \infty$
+  and let $S_n = \frac{1}{n} \sumk^n X_k$ 
+  Then, $S_n \to \E X_1$ a.e.\
 \end{thm}
+
+\begin{proof}
+  See notes for proof by Etemadi.
+\end{proof}
+
+\begin{eg}[Coupon collector]
+  Consider array of random variable $\seqinfn{\seqinfj{X_{j, n}}}$. 
+  For each $n$, the sequence $\seqinfj{X_{j, n}}$
+  are i.i.d.\ uniform on $\left\{ 1, \dots, n \right\}$.
+  Let 
+  \[
+  T_n = \min \left\{ m \geq 1 : \cupi^m \{X_{i, n}\} = \left\{ 1, \dots, n 
+  \right\} \right\}.
+  \]
+  We want to show $T_n / (n \log n) \convp 1$.
+
+  To show this, we use second moment method.
+  For each $k \leq n$, let $T_{n, k}$ be the first time $k$ coupons 
+  are collected. We then have $T_{n, 0} = 0$ and 
+  \[
+  T_n = \sumk^n (T_{n, k} - T_{n, k - 1}).
+  \]
+  Note that $T_{n, k} - T_{n, k - 1}$ follows a geometric distribution.
+  Hence,
+  \begin{align*}
+    &\E \left( T_{n, k} - T_{n, k - 1} \right) = \frac{n}{n - k + 1}, \\
+    &\var \left( T_{n, k} - T_{n, k - 1} \right) =  
+    \frac{k - 1}{n} \frac{1}{\left( 1 - \frac{k - 1}{n} \right)^2}.
+  \end{align*}
+  It follows that 
+  \[
+  \E T_n = n \sumk^n \frac{1}{n - k + 1} \sim n \log n.
+  \]
+  Also, 
+  \begin{align*}
+    \var T_n 
+    &= \sumk^n \var \left( T_{n, k} - T_{n, k - 1} \right)
+    = \sumk^n \frac{k - 1}{n} \frac{1}{\left( 1 - \frac{k - 1}{n} \right)^2}
+    = o(n^2 \log^2 n)
+  \end{align*}
+  It then follows from Chebyshev's inequality that 
+  $T_n / (n \log n) \convp 1$.
+
+\end{eg}
 
 \end{document}
