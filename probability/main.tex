@@ -1786,11 +1786,10 @@ $X \sim \Exp (\lambda)$ and $t > s > 0$. Then,
 \begin{eg}[Coupon collector]
   Consider array of random variable $\seqinfn{\seqinfj{X_{j, n}}}$. 
   For each $n$, the sequence $\seqinfj{X_{j, n}}$
-  are i.i.d.\ uniform on $\left\{ 1, \dots, n \right\}$.
+  are i.i.d.\ uniform on $[n] = \left\{ 1, \dots, n \right\}$.
   Let 
   \[
-  T_n = \min \left\{ m \geq 1 : \cupi^m \{X_{i, n}\} = \left\{ 1, \dots, n 
-  \right\} \right\}.
+  T_n = \min \left\{ m \geq 1 : \cupi^m \{X_{i, n}\} = [n] \right\}.
   \]
   We want to show $T_n / (n \log n) \convp 1$.
 
@@ -1822,5 +1821,134 @@ $X \sim \Exp (\lambda)$ and $t > s > 0$. Then,
   $T_n / (n \log n) \convp 1$.
 
 \end{eg}
+
+\begin{eg}
+  Let $v_0 \in \left\{ -1, 1 \right\}^n$ and define a sequence 
+  of random vectors $\seqinfi{X_i}$ inductively as follows:
+  define $X_0 = v_0$, and $X_{i + 1}$ is a random vector supported 
+  on $\left\{ -1, 1 \right\}^n$ obtained from $X_i$ by selecting 
+  a random nuber $m \in [n]$ uniformly at random and flipping 
+  $m$-th component of $X_i$ with probability $\frac{1}{2}$.
+
+  Now $X_k$ is a random vector for each $k$. 
+  Denote the uniform distribution on $\left\{ -1, 1 \right\}^n$ 
+  as $P$, and we are interested in 
+  \[
+  \norm{X_k - P}_{TV} 
+  = \inf_{\xi, \tilde{X}} \Pr \left( \xi \neq \tilde{X} \right),
+  \]
+  where the inf is taken over all pairs of random vectors 
+  $\xi$ and $\tilde{X}$ such that $\tilde{X} \sim X_k$ and 
+  $\xi \sim P$.
+
+  \textbf{Claim:} to make sure that $\norm{X_k - P}_{TV} = o(1)$,
+  we must have $k = \Omega (n \log n)$. 
+  
+  This is similar to the coupon collector problem. We need to have selected 
+  at least $n (1 - O( n^{-1/2} ))$ indicies for the distribution 
+  of $X_k$ to be roughly uniform. With a similar derivation 
+  to the coupon collector problem, this implies $k = \Omega (n \log n)$.
+
+
+\end{eg}
+
+\section{Central Limit theorem}
+
+\subsection{Characteristic Function}
+
+\begin{defi}[characteristic function]
+  Let $X$ be a random vector in $\R^n$, we define the 
+  characteristic function of $X : \R^n \to \C$ via 
+  \[
+  \phi_X (t) = \E e^{i \bra X, t \ket}
+  \]
+  Suppose $X$ has density $\rho_X$, then 
+  \[
+  \phi_X (t) = \int_{\R^n} \exp \left( i \bra s, t \ket \right) 
+  \rho_X (s) \d s.
+  \]
+  This is essentially the Fourier transform of $\rho_X$.
+\end{defi}
+
+\begin{prop}
+  Let $X$ be a random variable, its characteristic function 
+  $\phi_X$ is uniformly continuous.
+\end{prop}
+
+\begin{proof}
+  We have 
+  \begin{align*}
+    \abs{\phi_X (t + \delta) - \phi_X (t)} 
+    &= \abs{ \E e^{i \bra X, t \ket} \left( e^{i \bra x, \delta \ket} - 1 \right) }
+    \leq \E \abs{ e^{i \bra X, \delta \ket} - 1 }.
+  \end{align*}
+  Note that $\abs{e^{i \bra X, \delta \ket} - 1} \leq 2$. The proposition 
+  then immediately follows from dominated convergence theorem.
+\end{proof}
+
+\begin{prop}
+  If $X$ is a random variable with $\E \abs{X}^k < \infty$ 
+  for some $k \geq 1$. Then $\phi_X$ is $k$ times continuous 
+  differentiable and 
+  \[
+  \phi^{(k)}(0) = i^k \E X^k.
+  \]
+\end{prop}
+
+\begin{prop}
+  Suppose $X$ is random variable and $a, b \in \R$. Then 
+  \[
+  \phi_{aX + b} (t) = \exp (itb) \phi_X (at).
+  \]
+\end{prop}
+
+\begin{prop}
+  If $X_1, X_2, \dots, X_n$ are mutually independent and 
+  $S = X_1 + \dots + X_n$, then 
+  \[
+  \phi_S (t) = \prod_{k=1}^n \phi_{X_k} (t).
+  \]
+\end{prop}
+
+\begin{prop}
+  Suppose $X \sim \ncal (0, 1)$, then 
+  \[
+  \phi_X (t) = \exp \left( - \frac{t^2}{2} \right).
+  \]
+\end{prop}
+
+\begin{proof}
+  Suppose $Y \sim \ncal (0, 1)$, and $X$, $Y$ are independent.
+  It follows that 
+  \[
+  \phi_{X + Y} (t) = \phi_X (t) \phi_Y (t) = \phi_X (t)^2.
+  \]
+  Meanwhile,
+  \begin{align*}
+    \phi_{X + Y} (t) 
+    &= \frac{1}{2 \pi} \int_{-\infty}^\infty \int_{-\infty}^\infty 
+    \exp \left( i (x + y) t \right) 
+    \exp \left( - \frac{x^2}{2} \right)
+    \exp \left( - \frac{y^2}{2} \right) 
+    \d x \d y
+  \end{align*}
+  Using change of variable with $u = x + y$, $v = x - y$, we obtain 
+  \begin{align*}
+    \phi_{X + Y} (t) 
+    &= \frac{1}{4 \pi} \int_{-\infty}^\infty \int_{-\infty}^\infty 
+    \exp \left( -\frac{1}{2} \left( \frac{u^2}{2} 
+    + \frac{v^2}{2} \right) + i u t \right)
+    \d u \d v \\
+    &= \frac{1}{\sqrt{4 \pi}} \int \exp 
+    \left( - \frac{1}{4} u^2 + i t u \right) \d u \\
+    &= \phi_X (\sqrt{2} t).
+  \end{align*}
+  Now we have a function equation
+  \[
+  \phi_X (\sqrt{2} t) = \phi_X (t)^2.
+  \]
+  This implies that $\phi_X (t) = \exp (- t^2 / 2)$.
+
+\end{proof}
 
 \end{document}
