@@ -1858,7 +1858,7 @@ $X \sim \Exp (\lambda)$ and $t > s > 0$. Then,
 
 \begin{defi}[characteristic function]
   Let $X$ be a random vector in $\R^n$, we define the 
-  characteristic function of $X : \R^n \to \C$ via 
+  characteristic function (ch.f.) of $X : \R^n \to \C$ via 
   \[
   \phi_X (t) = \E e^{i \bra X, t \ket}
   \]
@@ -1950,5 +1950,112 @@ $X \sim \Exp (\lambda)$ and $t > s > 0$. Then,
   This implies that $\phi_X (t) = \exp (- t^2 / 2)$.
 
 \end{proof}
+
+
+Now we present inversion formula, which shows the important correspondence
+between the ch.f.\ $\phi_X$ and the induced Borel measure $\mu_X$ 
+of a random variable.
+
+\begin{thm}[inversion formula]
+  Let $X$ be a random variable. Let $\phi_X$ be the ch.f.\ and $\mu_X$
+  be the Borel measure on $\R$ induced by $X$. Suppose interval $(a, b]$ 
+  is such that $\mu_X (\{ a, b \}) = 0$. Then, 
+  \[
+  \mu_X ((a, b]) = 
+  \frac{1}{2 \pi} \lim_{T \to \infty}
+  \int_{-T}^T \left[ \frac{\exp (- i t a) - \exp (- i t b)}{i t} \phi 
+  (t) \right] \d t.
+  \]
+
+  This shows that there is a unique correspondence between $\mu_X$ and 
+  $\phi_X$.
+\end{thm} 
+
+\begin{proof}
+  Some application of Fubini-Tonelli theorem.
+\end{proof}
+
+\begin{remark}
+  Using the formula, we can compute $\mu_X ((a, b])$ in terms of 
+  $\phi_X$ even if $\mu_X (\{a, b\}) \neq 0$. 
+  Indeed, there are at most countably many $x$ such that $\mu_X (\{x\}) 
+  \neq 0$, so there exists a sequence $\epsilon_m$ such that 
+  $\epsilon_m \downarrow 0$, and $\mu_X (\{a + \epsilon_m, b + \epsilon_m\}) 
+  = 0$. Then 
+  \[
+  \mu_X ((a, b]) = \lim_{m \to \infty} \mu_X ((a_m, b_m]).
+  \]
+  It is important that $\epsilon_m \downarrow 0$ so that the 
+  approximation through monotone continuity is correct.
+\end{remark}
+
+The same is true in the $n$-dimensional setting. Now 
+\[
+  \phi_X (t) = \E \exp \left( i \bra t, X \ket \right).
+\]
+The induced Borel measure $\mu_X$ in $\R^n$ is uniquely determined by the 
+ch.f.\ $\phi_X$.
+
+\begin{thm}
+  If $X$ has distribution density $\phi_X$, it can be expressed 
+  as 
+  \[
+  \rho_X (t) = \frac{1}{2\pi} \int_\R \exp (- i t s) \phi_X (s) \d s.
+  \]
+\end{thm}
+
+\begin{thm}[Levy]
+  Let $\seqinfk{X_k}$ be a sequence of random vectors in $\R^n$ and 
+  let $\seqinfk{\phi_k}$ be the corresponding ch.f. Then the following
+  holds
+  \begin{enumerate}
+    \item Suppose $X_k \convd X$ and let $\phi$ be the ch.f.\ of $X$.
+    Then $\phi_k (t) \to \phi(t)$ as $k \to \infty$ for all $t \in \R^n$.
+
+    \item Suppose there exists $\phi$ that is continuous at zero and 
+    $\phi_k(t) \to \phi(t)$ for all $t \in \R^n$. Then, there exists $X$ 
+    such that $\phi_X = \phi$ and $X_k \convd X$.
+  \end{enumerate}
+\end{thm}
+
+With this result, we can prove the central limit theorem.
+\begin{thm}[central limit theorem]
+  Let $\seqinfn{X_n}$  be a sequence of i.i.d.\ random variable
+  such that $\E X_1$ and $\var X_1$ are well-defined and finite.
+  Let
+  \[
+  S_n = \frac{1}{\sqrt{n}} \sumk^n (X_k - \E X_k).
+  \]
+  Then $S_n \convd \ncal (0, \var X_1)$.
+\end{thm}
+
+\begin{proof}
+  WLOG assume $\E X_1 = 0$ and $\var X_1 = 1$. Then 
+  \[
+  \phi_{S_n} (t) 
+  = \prod_{k=1}^n \phi_{\frac{X_k}{\sqrt{n}}} (t) 
+  = \left( \phi_{X_1} \left( \frac{t}{\sqrt{n}} \right) \right)^n
+  \]
+  Now, using Taylor's formula, we have 
+  \[
+  \phi (\epsilon) = 1 - \frac{\epsilon^2}{2} + o(\epsilon^2).
+  \]
+  Therefore, 
+  \begin{align*}
+    \phi_{S_n} (t) 
+    = \left( 1 + \frac{t^2}{2 n} + o \left( \frac{t^2}{n} \right) \right)^n
+    \to \exp \left( - \frac{t^2}{2} \right),
+  \end{align*}
+  as $n \to \infty$ for any $t \in \R$. This completes the proof.
+
+\end{proof}
+
+\begin{remark}
+  Note that not only the partial sum $S_n$ converges to normal 
+  in distribution, but the sup norm of the CDF of $S_n$ and the 
+  CDF of normal distribution also converges to zero with a rate 
+  of $1 / \sqrt{n}$. This is the optimal rate and is achieved by 
+  Bernoulli $1/2$ variables.
+\end{remark}
 
 \end{document}
