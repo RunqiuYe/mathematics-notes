@@ -1,8 +1,6 @@
 \documentclass[a4paper]{article}
 \usepackage{parskip}
 \usepackage{lipsum}
-% \usepackage{newtxtext}
-\usepackage{eucal}
 \linespread{1.15}
 
 \def\nterm {Spring}
@@ -1027,8 +1025,8 @@ proposition.
   by coordinate projection. We know $\tilde{X_i}$ is equidistributed 
   with $X_i$, so 
   \[
-  \E [X_1 X_2] = \E [\tilde{X_1} \tilde{X_2}] = \E [\tilde{X_1} \E 
-  \tilde{X_2}] = \E [X_1 \E X_2],
+  \E [X_1 X_2] = \E [\tilde{X_1} \tilde{X_2}] = \E [\tilde{X_1} ] \E 
+  [ \tilde{X_2} ] = \E [X_1] \E [X_2] ,
   \]
   where in the second equality we used Fubini-Tonelli.
 
@@ -1997,7 +1995,7 @@ The induced Borel measure $\mu_X$ in $\R^n$ is uniquely determined by the
 ch.f.\ $\phi_X$.
 
 \begin{thm}
-  If $X$ has distribution density $\phi_X$, it can be expressed 
+  If $X$ has distribution density $\rho_X$, it can be expressed 
   as 
   \[
   \rho_X (t) = \frac{1}{2\pi} \int_\R \exp (- i t s) \phi_X (s) \d s.
@@ -2018,7 +2016,9 @@ ch.f.\ $\phi_X$.
   \end{enumerate}
 \end{thm}
 
-With this result, we can prove the central limit theorem.
+\subsection{Central Limit Theorem}
+
+With the results above, we can prove the central limit theorem.
 \begin{thm}[central limit theorem]
   Let $\seqinfn{X_n}$  be a sequence of i.i.d.\ random variable
   such that $\E X_1$ and $\var X_1$ are well-defined and finite.
@@ -2057,5 +2057,135 @@ With this result, we can prove the central limit theorem.
   of $1 / \sqrt{n}$. This is the optimal rate and is achieved by 
   Bernoulli $1/2$ variables.
 \end{remark}
+
+Now we present another characterization of central limit theorem 
+by Lindeberg. This characterization might provide more insight 
+and intuition compared to the computational approach we used above 
+with characteristic functions.
+
+\begin{defi}[Lindeberg condition]
+  Let $X_1, X_2, \dots$ be mutually independent random variables 
+  with zero mean. Suppose $\sigma_n^2 = \var X_n < \infty$ and 
+  $b_n^2 = \sumi^n 
+  \sigma_i^2$. Then $X_i$'s satisfy the \textbf{Lindeberg condition} 
+  if for any $\epsilon > 0$,  
+  \[
+  \lim_{n \to \infty} b_n^{-2}
+  \sumi^n \E \left[ X_i^2 \ind_{(\abs{X_i} > \epsilon b_n)} \right] = 0.
+  \]
+\end{defi}
+
+\begin{thm}[Lindeberg CLT]
+  Let $X_1, X_2, \dots$ be i.i.d.\ random variables that satisfy
+  the Lindeberg condition. Define 
+  \[
+  S_n = \frac{1}{b_n} \sumi^n X_i.
+  \]
+  Then $S_n \convd \ncal (0, 1)$.
+\end{thm}
+
+\begin{proof}
+  Use the definition of weak convergence in terms of test functions.
+  WLOG, we can work with functions $h \in C^\infty_c (\R)$, i.e.\ smooth 
+  and compactly supported functions. The goal is to show 
+  $\E h(S_n) \to \E h (\ncal(0, 1))$ as $n \to \infty$.
+
+  We need to use Taylor's formula: 
+  \[
+  h (x + u) = h(x) + u h' (x) + \frac{u^2}{2} h''(x) + 
+  O \left( \min \left\{ \abs{u}^2, \abs{u}^3 \right\} \right)
+  \]
+  Also, write 
+  \[
+  S_n^{(j)} = \sumi^j Y_j + \sum_{i = j + 1}^n X_i,
+  \]
+  where $Y_i, X_i$ are mutually independent and $Y_i \sim \ncal(0, \sigma_i^2)$.
+  Note that $b_n^{-1} S_n^{(n)} \sim \ncal(0, 1)$ and 
+  $S_n^{(0)} = \sumi^n X_i$, so the goal now is to show
+  \[
+  \abs{\E h \left( b_n^{-1} S_n^{(n)} \right) - \E \left( b_n^{-1} S_n^{(n)} \right)}
+  = o(1).
+  \]
+  It suffices to show that for all $1 \leq j \leq n$,
+  \[
+  \abs{\E h \left( b_n^{-1} S_n^{(j)} \right) - \E \left( b_n^{-1} S_n^{(j - 1)} \right)}
+  = o(b_n^{-2} \sigma_j^2)
+  \]
+  Now fix $1 \leq j \leq n$ and let 
+  \[
+  Z = \sumi^{j - 1} Y_i + \sum_{i = j + 1}^n X_i.
+  \]
+  Then, using Taylor's formula, we obatin
+  \begin{align*}
+    h \left( b_n^{-1} S_n^{(j)} \right) 
+    &=  h \left( b_n^{-1} Z \right) 
+    + h' \left( b_n^{-1} Z \right) \left( b_n^{-1} S_n^{(j)} - b_n^{-1} Z \right)
+    + \frac{1}{2} h'' \left( b_n^{-1} Z \right) \left( b_n^{-1} S_n^{(j)} - b_n^{-1} Z \right)^2 \\ 
+    & \quad + O \left( \min \left\{ b_n^{-2} (S_n^{j} - Z)^2, 
+    b_n^{-3} (S_n^{j} - Z)^3 \right\} \right).
+  \end{align*}
+  Note that $S_n^{(j)} - Z = Y_j$ is independent of $Z$.
+  It follows that 
+  \begin{align*}
+    \E h \left( b_n^{-1} S_n^{(j)} \right)
+    &= \E h \left( b_n^{-1} Z \right) 
+    + \frac{1}{2} \frac{\sigma_j^2}{b_n^2} \E h'' \left( b_n^{-1} Z \right) 
+    + O \left( \E \min \left\{ b_n^{-2} \abs{Y_j}^{2}, 
+    b_n^{-3} \abs{Y_j}^3 \right\} \right)
+  \end{align*}
+  Similarly, 
+  \begin{align*}
+    \E h \left( b_n^{-1} S_n^{(j - 1)} \right)
+    &= \E h \left( b_n^{-1} Z \right) 
+    + \frac{1}{2} \frac{\sigma_j^2}{b_n^2} \E h'' \left( b_n^{-1} Z \right) 
+    + O \left( \E \min \left\{ b_n^{-2} \abs{X_j}^{2}, 
+    b_n^{-3} \abs{X_j}^3 \right\} \right)
+  \end{align*}
+  Hence, 
+  \[
+  \abs{\E h\left( b_n^{-1} S_n^{(j)} \right) - \E h \left( b_n^{-1} S_n^{(j - 1)} \right)}
+  = O \left( \E b_n^{-3} \abs{Y_j}^3 
+    + \E \min \left\{ b_n^{-2} \abs{X_j}^{2}, 
+    b_n^{-3} \abs{X_j}^3 \right\} \right)
+  \]
+
+  For simplicity, consider the classical setting where $\sigma_j^2 = 1$ 
+  for all $j$. Now $b_n = \sqrt{n}$. Note that the 3rd absolute moment 
+  of standard Gaussian is finite, we have 
+  \[
+  \E
+    b_n^{-3} \abs{Y_j}^3 
+  \leq O(b_n^{-3}) = O(n^{-3/2}) = o(n^{-1}).
+  \]
+  For the second term, let $\epsilon > 0$ be given and consider truncation:
+  \begin{align*}
+    \E \min \left\{ b_n^{-2} \abs{X_j}^2, b_n^{-3} \abs{X_j}^{3} \right\}
+    &= \E \min \left\{ b_n^{-2} \abs{X_j}^2, b_n^{-3} \abs{X_j}^{3} \right\} 
+    \left( \ind_{(\abs{X_j} > M)} + \ind_{(\abs{X_j} \leq M)} \right) \\
+    &\leq \E \left( b_n^{-2} \abs{X_j}^2 \ind_{(\abs{X_j} > M)} \right) 
+    + \E \left( b_n^{-3} \abs{X_j}^3 \ind_{(\abs{X_j} \leq M)} \right)
+  \end{align*}
+  However, 
+  \[
+  \E b_n^{-2} \abs{X_j}^2 \ind_{(\abs{X_j} > M)}
+  = \frac{1}{n} \E \left( X_j \ind_{\abs{X_j} > M} \right)^2 \to 0
+  \]
+  as $M \to \infty$. We can then choose $M$ such that 
+  \[
+  \E \left( b_n^{-2} X_j^2 \ind_{(\abs{X_j} > M)} \right) \leq \frac{\epsilon}{n}
+  \]
+  Meanwhile, 
+  \[
+  \E \left( b_n^{-3} \abs{X_j}^3 \ind_{(\abs{X_j} \leq M)} \right)
+  \leq \frac{M^3}{n^{3/2}}.
+  \]
+  This shows that 
+  \[
+  \E \min \left\{ b_n^{-2} \abs{X_j}^2, b_n^{-3} \abs{X_j}^{3} \right\} 
+  = o(n^{-1})
+  \]
+  and the proof is complete.
+\end{proof}
+
 
 \end{document}
