@@ -1,7 +1,6 @@
 \documentclass[a4paper]{article}
 \usepackage{parskip}
 \usepackage{lipsum}
-\linespread{1.15}
 
 \def\nterm {Spring}
 \def\nyear {2026}
@@ -417,32 +416,32 @@ in the course.
 \end{proof}
 
 \begin{thm}[Markov-Chebyshev inequality]
-  Suppose we have probability measure space $(\Omega, \Sigma, \Pr)$
-  and $f \geq 0$. Suppose also $\int f \d \Pr < \infty$. Then
+  Suppose we have probability measure space $(\Omega, \Sigma, P)$
+  and $f \geq 0$. Suppose also $\int f \d P < \infty$. Then
   \[
-  \Pr \left( \left\{ \omega : f(\omega) > t \right\} \right)
-  \leq \frac{1}{t} \int f \d \Pr.
+  P \left( \left\{ \omega : f(\omega) > t \right\} \right)
+  \leq \frac{1}{t} \int f \d P.
   \]
   for all $t > 0$.
 \end{thm}
 
 \begin{remark}
-  Let $1 \leq p < \infty$. Suppose $f : (\Omega, \Sigma, \Pr) \to
-  [0, \infty]$ and $\int f^p \d \Pr < \infty$. Then
+  Let $1 \leq p < \infty$. Suppose $f : (\Omega, \Sigma, P) \to
+  [0, \infty]$ and $\int f^p \d P < \infty$. Then
   \[
-  \Pr \left( \left\{ \omega : f (\omega) > t \right\} \right)
-  \leq \frac{1}{t^p} \int f^p \d \Pr.
+  P \left( \left\{ \omega : f (\omega) > t \right\} \right)
+  \leq \frac{1}{t^p} \int f^p \d P.
   \]
   for all $t > 0$.
 \end{remark}
 
 \begin{remark}
-  Suppose $\int e^{\lambda f} \d \Pr < \infty$ for all
-  $\lambda \in \R$ and $f : (\Omega, \Sigma, \Pr) \to [0, \infty]$.
+  Suppose $\int e^{\lambda f} \d P < \infty$ for all
+  $\lambda \in \R$ and $f : (\Omega, \Sigma, P) \to [0, \infty]$.
   Then
   \[
-  \Pr \left( \left\{ \omega : f (\omega) > t \right\} \right)
-  \leq \frac{1}{e^{\lambda t}} \int e^{\lambda f} \d \Pr
+  P \left( \left\{ \omega : f (\omega) > t \right\} \right)
+  \leq \frac{1}{e^{\lambda t}} \int e^{\lambda f} \d P
   \]
   for all $t > 0$ and $\lambda > 0$.
 \end{remark}
@@ -452,18 +451,18 @@ in the course.
   Let $(\Omega, \Sigma, \mu)$ be a probability space. For any
   measurable functions $f, g$, we have
   \[
-  \int \abs{f g} \d \Pr \leq \left( \int \abs{f}^p \d \Pr \right)^{1 / p}
-  \left( \int \abs{g}^q \d \Pr \right)^{1 / q}.
+  \int \abs{f g} \d P \leq \left( \int \abs{f}^p \d P \right)^{1 / p}
+  \left( \int \abs{g}^q \d P \right)^{1 / q}.
   \]
 \end{thm}
 
 \begin{thm}[Jensen's inequality]
-  Let $(\Omega, \Sigma, \Pr)$ be a probability space and $f$ be
+  Let $(\Omega, \Sigma, P)$ be a probability space and $f$ be
   integrable. Let $\phi : \bar{\R} \to \bar{\R}$ be convex
   and suppose $\phi (\infty) = \lim_{x \to \infty} \phi(x)$
   and $\phi (-\infty) = \lim_{x \to -\infty} \phi(x)$. Then
   \[
-  \phi \left( \int f \d \Pr \right) \leq \int \phi (f) \d \Pr.
+  \phi \left( \int f \d P \right) \leq \int \phi (f) \d P.
   \]
 \end{thm}
 
@@ -579,24 +578,24 @@ extended to $\Sigma_1 \otimes \Sigma_2$.
 
 Now we can connect the notion of CDF with randomness.
 
-Suppose $X$-random real-valued variable on $(\Omega, \Sigma, \Pr)$
+Suppose $X$-random real-valued variable on $(\Omega, \Sigma, P)$
 that is almost everywhere finite. Define
 \[
-F_X (t) = \Pr \left( X(\omega) \leq t \right)
+F_X (t) = P \left( X(\omega) \leq t \right)
 \]
 for $- \infty < t < \infty$. It can be verified that
 $F_X$ is a CDF.
 
 Conversely, for any CDF $F$, there exists a probability space
-$(\Omega, \Sigma, \Pr)$ and a real valued random variable
-on $(\Omega, \Sigma, \Pr)$ with CDF $F$.
+$(\Omega, \Sigma, P)$ and a real valued random variable
+on $(\Omega, \Sigma, P)$ with CDF $F$.
 
 \begin{defi}
-  If $X$ is random variable on $(\Omega, \Sigma, \Pr)$ real valued and a.e.\ finite.
+  If $X$ is random variable on $(\Omega, \Sigma, P)$ real valued and a.e.\ finite.
   Then we can define the induced Borel probability measure
   $\mu_X$ on $(\R, \bcal_\R)$ by
   \[
-  \mu_X (B) := \Pr \left( X \in B \right)
+  \mu_X (B) := P \left( X \in B \right)
   \]
   for all $B \in \bcal_\R$.
 \end{defi}
@@ -626,18 +625,18 @@ $\id$ on $\R$. Then $\mu_{\id} \equiv \mu$.
   Suppose $X = (X_1, X_2)$ is a random vector in $\R^2$. We can
   define
   \[
-  F_X (s, t) = \Pr \left( X_1 \leq s, X_2 \leq t \right).
+  F_X (s, t) = P \left( X_1 \leq s, X_2 \leq t \right).
   \]
   Corresponding results are also true.
 \end{remark}
 
 \begin{defi}[Probability mass function]
-  Let $(\Omega, \Sigma, \Pr)$ be a probability space and $X: \Omega
+  Let $(\Omega, \Sigma, P)$ be a probability space and $X: \Omega
   \to \R$ be random variable. Suppose there exists $S \subset \R$ countable
-  such that $\Pr \left( X \in S \right) = 1$. We can define
+  such that $P \left( X \in S \right) = 1$. We can define
   the probability mass function (PMF) $f_X$ via
   \[
-  f_X (t) = \Pr \left( X = t \right)
+  f_X (t) = P \left( X = t \right)
   \]
   for $t \in \R$. Due to the restriction, this gives complete description
   of the distribution, and we can construct CDF $F_X$ via
@@ -673,7 +672,7 @@ $\id$ on $\R$. Then $\mu_{\id} \equiv \mu$.
 \end{remark}
 
 \begin{thm}
-  Suppose $X$ RV on $(\Omega, \Sigma, \Pr)$ is real-valued and a.e.\ finite.
+  Suppose $X$ RV on $(\Omega, \Sigma, P)$ is real-valued and a.e.\ finite.
   The following are equivalent:
   \begin{enumerate}
     \item $F_X$ is absolutely continuous.
@@ -690,27 +689,27 @@ $\id$ on $\R$. Then $\mu_{\id} \equiv \mu$.
 
 \begin{defi}
   Say two events $A, B \in \Sigma$ are independent if
-  $\Pr (A \cap B) = \Pr (A) \Pr (B)$.
+  $P (A \cap B) = P (A) P (B)$.
 \end{defi}
 
 It is easy to verify that $A, B$ are independent implies
 $A^c, B$ are independent.
 
 \begin{remark}
-  Suppose $\Pr (B) > 0$, then the conditional probability of $A$
+  Suppose $P (B) > 0$, then the conditional probability of $A$
   given $B$ is defined as
   \[
-  \Pr (A \mid B) = \frac{\Pr (A \cap B)}{\Pr (B)}.
+  P (A \mid B) = \frac{P (A \cap B)}{P (B)}.
   \]
   Then, independence of $A$ and $B$ is equivalent to
-  $\Pr (A \mid B) = \Pr (A)$.
+  $P (A \mid B) = P (A)$.
 \end{remark}
 
 \begin{defi}
   Let $A_1, \dots, A_n$ be events. Say they are mutually independent
   if for any $\emptyset \neq I \subset [n]$, we have
   \[
-  \Pr \left( \bigcap_{i \in I} A_i \right) = \prod_{i \in I} \Pr (A_i).
+  P \left( \bigcap_{i \in I} A_i \right) = \prod_{i \in I} P (A_i).
   \]
   This is equivalent to saying that for every $2 \leq i \leq n$,
   the event $A_i$ is independent from any event generated by
@@ -722,7 +721,7 @@ $A^c, B$ are independent.
   The events $A_1, \dots, A_n$ are called $k$-wise independent if
   any $k$-subset of the events are mutually independent. For $k < n$,
   this notion is strictly weaker than mutual independence of all
-  $n$ events. As an example, consider $\Pr$ to be the uniform distribution
+  $n$ events. As an example, consider $P$ to be the uniform distribution
   on $\left\{ 1, \dots, 4 \right\}$. Let $A_1 = \left\{ 1, 2 \right\}$,
   $A_2 = \left\{ 1, 3 \right\}$, and $A_3 = \left\{ 2, 3 \right\}$.
   Then they are pairwise independent but not mutually independent.
@@ -730,23 +729,23 @@ $A^c, B$ are independent.
 
 \begin{defi}
   A collection of events $\{A_\lambda\}_{\lambda \in \Lambda}$
-  on $(\Omega, \Sigma, \Pr)$ are mutually independent if any finite subset
+  on $(\Omega, \Sigma, P)$ are mutually independent if any finite subset
   of events are mutually independent.
 \end{defi}
 
 \begin{defi}
-  Let $(\Omega, \Sigma, \Pr)$ be a probability space. Two
+  Let $(\Omega, \Sigma, P)$ be a probability space. Two
   $\sigma$-subfields are independent if for any $A \in \Sigma_1$
   and $B \in \Sigma_2$, $A, B$ are independent.
 \end{defi}
 
 \begin{defi}
-  Let $(\Omega, \Sigma, \Pr)$ be a probability space and
+  Let $(\Omega, \Sigma, P)$ be a probability space and
   $X, Y$ be two real-valued random variables. Say $X$ and $Y$
   are independent if
   \[
-  \Pr \left( X \in A, Y \in B \right) = \Pr \left( X \in A \right)
-  \Pr \left( Y \in B \right)
+  P \left( X \in A, Y \in B \right) = P \left( X \in A \right)
+  P \left( Y \in B \right)
   \]
   for any $A, B \in \bcal_\R$.
 
@@ -759,9 +758,9 @@ Now we explore how this connect with product structure.
 
 \begin{prop}
   Let $(\Omega_1, \Sigma_1, \Pr_1)$ and $(\Omega_2, \Sigma_2, \Pr_2)$
-  be two probability spaces and let $(\Omega, \Sigma, \Pr)$ be the
+  be two probability spaces and let $(\Omega, \Sigma, P)$ be the
   product space. Let $X$ and $Y$ be two random variables on
-  $(\Omega, \Sigma, \Pr)$. Suppose there exists some measurable
+  $(\Omega, \Sigma, P)$. Suppose there exists some measurable
   functions such that $X (\omega_1, \omega_2) = g(\omega_1)$,
   and $Y(\omega_1, \omega_2) = h (\omega_2)$. Then $X$ and $Y$ are
   independent.
@@ -770,10 +769,10 @@ Now we explore how this connect with product structure.
 \begin{proof}
   Let $A, B \in \bcal_\R$. Then
   \begin{align*}
-    \Pr \left( X \in A, Y \in B \right)
-    &= \Pr \left( (\omega_1, \omega_2) : \omega_1 \in g^{-1} (A),
+    P \left( X \in A, Y \in B \right)
+    &= P \left( (\omega_1, \omega_2) : \omega_1 \in g^{-1} (A),
     \omega_2 \in h^{-1} (B) \right) \\
-    &= \Pr \left( \left\{ \omega_1 \in g^{-1} (A) \right\} \times
+    &= P \left( \left\{ \omega_1 \in g^{-1} (A) \right\} \times
     \left\{ \omega_2 \in h^{-1} (B) \right\} \right) \\
     &= \Pr_1 \left( \omega_1 \in g^{-1} (A) \right)
     \Pr_2 \left( \omega_2 \in h^{-1} (B) \right).
@@ -781,16 +780,16 @@ Now we explore how this connect with product structure.
   However,
   \begin{align*}
     \Pr_1 \left( \omega_1 \in g^{-1} (A) \right)
-    &= \Pr \left( (\omega_1, \omega_2) : \omega_1 \in g^{-1} (A),
+    &= P \left( (\omega_1, \omega_2) : \omega_1 \in g^{-1} (A),
     \omega_2 \in \Omega_2 \right) \\
-    &= \Pr \left( X \in A \right),
+    &= P \left( X \in A \right),
   \end{align*}
   and similarly for $Y$.
 
 \end{proof}
 
 \begin{remark}
-  Let $(\Omega, \Sigma, \Pr)$ be a probability space and suppose
+  Let $(\Omega, \Sigma, P)$ be a probability space and suppose
   $X, Y$ be two random variables that are independent and
   a.e.\ finite.
   They then generate two Borel probability measure $\mu_X$ and
@@ -815,7 +814,7 @@ Now we explore how this connect with product structure.
 \end{remark}
 
 \begin{remark}
-  Let $(\Omega, \Sigma, \Pr)$ be a probability space and suppose
+  Let $(\Omega, \Sigma, P)$ be a probability space and suppose
   $X, Y$ be two random variables that are independent. Suppose they have
   densities $\rho_X, \rho_Y$, then the distribution density of
   vector $(X, Y)$ is $\rho_{(X, Y)} (s, t) = \rho_X (s) \rho_Y (t)$.
@@ -827,7 +826,7 @@ Now we explore how this connect with product structure.
 \end{remark}
 
 \begin{remark}
-  Given probability space $(\Omega, \Sigma, \Pr)$ and random variable $X$.
+  Given probability space $(\Omega, \Sigma, P)$ and random variable $X$.
   It may not exists another random variable $Y$ that is independent from $X$
   on the same probability space.
   See the following example.
@@ -852,22 +851,22 @@ Now we explore how this connect with product structure.
 
   Suppose such $Y$ exists, we can vies $Y$ as an indicator of a set
   $A \subset [0, 1]$ of probability $\frac{1}{2}$. That is,
-  $Y = \ind_A$ and $\Pr (A) = \frac{1}{2}$. Choose any point $t \in (0, 1)$
+  $Y = \ind_A$ and $P (A) = \frac{1}{2}$. Choose any point $t \in (0, 1)$
   such that density of $A$ at $t$ is well-defined. WLOG assume
   the density is $1$. Pick $\epsilon > 0$ such that
   $m (A \cap [t - \epsilon, t + \epsilon]) \geq \frac{3}{2} \epsilon$.
   Now,
   \begin{align*}
     m (A \cap [t - \epsilon, t + \epsilon])
-    &= \Pr \left( Y = 1, X \in [t - \epsilon, t + \epsilon] \right) \\
-    &= \Pr \left( Y = 1 \right) \Pr \left( X \in [t - \epsilon, t + \epsilon]
+    &= P \left( Y = 1, X \in [t - \epsilon, t + \epsilon] \right) \\
+    &= P \left( Y = 1 \right) P \left( X \in [t - \epsilon, t + \epsilon]
     \right) \\
     &= \epsilon,
   \end{align*}
   a contradiction.
 
   Alternatively, we can derive a contradiction using
-  $m(A) = \Pr \left( Y = 1, X \in A \right)$.
+  $m(A) = P \left( Y = 1, X \in A \right)$.
 
 \end{proof}
 
@@ -928,38 +927,38 @@ In this section we explore the computation and basic properties of
 moments.
 
 \begin{defi}[moments]
-  Let $X$ be a random variable on $(\Omega, \Sigma, \Pr)$. 
+  Let $X$ be a random variable on $(\Omega, \Sigma, P)$. 
   The $p$-th absolute moment of $X$ is 
   \[
-  \E \abs{X}^p = \int_\Omega \abs{X}^p \d \Pr.
+  E \abs{X}^p = \int_\Omega \abs{X}^p \d P.
   \]
   This is always well-defined but can be infinite.
 
   If $p$ is positive integer, the $p$-th moment of $X$ is 
   \[
-  \E X^p = \int_\Omega X^p \d \Pr
+  E X^p = \int_\Omega X^p \d P
   \]
   whenever it is defined.
 
-  In particular, $\E X$ is the mean or expectation, the variance is 
-  $\var (X) = \E (X - \E X)^2$ whenever the expectation is defined,
+  In particular, $E X$ is the mean or expectation, the variance is 
+  $\var (X) = E (X - E X)^2$ whenever the expectation is defined,
   and the standard deviation is $\sqrt{\var (X)}$.
 \end{defi}
 
 \begin{prop}
-  Let $X$ be random variable $(\Omega, \Sigma, \Pr)$ and 
+  Let $X$ be random variable $(\Omega, \Sigma, P)$ and 
   $0 < p < q < \infty$. Then, 
   \[
-  \left( \E \abs{X}^p \right)^{1 / p} \leq \left( \E \abs{X}^q \right)^{1 / q}.
+  \left( E \abs{X}^p \right)^{1 / p} \leq \left( E \abs{X}^q \right)^{1 / q}.
   \]
 \end{prop}
 
 \begin{proof}
   Define $Y = \abs{X}^p$, then we want to show that 
-  $\E Y \leq (\E Y^{q / p})^{p / q}$. Note that $t \mapsto \abs{t}^{q / p}$
+  $E Y \leq (E Y^{q / p})^{p / q}$. Note that $t \mapsto \abs{t}^{q / p}$
   is convex. Therefore, by Jensen's inequality, 
   \[
-  \left( \E Y \right)^{q / p}  \leq \E \left( Y^{q / p} \right).
+  \left( E Y \right)^{q / p}  \leq E \left( Y^{q / p} \right).
   \]
 
 \end{proof}
@@ -972,49 +971,49 @@ proposition.
 \begin{prop}
   Let $g$ be measurable and $X$ a random variable. Then, 
   \[
-  \E \abs{g(X)} = \int_\R \abs{g(t)} \d \mu_X (t).
+  E \abs{g(X)} = \int_\R \abs{g(t)} \d \mu_X (t).
   \]
-  Moreover, if $\E \abs{g(X)} < \infty$, then 
+  Moreover, if $E \abs{g(X)} < \infty$, then 
   \[
-  \E g(X) = \int_\R g(t) \d \mu_X (t).
+  E g(X) = \int_\R g(t) \d \mu_X (t).
   \]
 \end{prop}
 
 \begin{cor}
-  If $\E X$ is well-defined, then 
+  If $E X$ is well-defined, then 
   \[
-    \E X = \int_\R t \d \mu_X (t).
+    E X = \int_\R t \d \mu_X (t).
   \]
   Moreover, if $X$ has distribution density $\rho_X$, then
-  $\E X = \int_\R t \rho_X (t) \d t$.
+  $E X = \int_\R t \rho_X (t) \d t$.
 \end{cor}
 
 \begin{prop}
   If $X \geq 0$, then
   \[
-  \E X = \int_0^\infty \Pr \left( X \geq t \right) \d t.
+  E X = \int_0^\infty P \left( X \geq t \right) \d t.
   \]
   In particular, if $X$ is non-negative and integer valued, then
-  $\E X = \suminfi \Pr \left( X \geq i \right)$.
+  $E X = \suminfi P \left( X \geq i \right)$.
 \end{prop}
 
 \begin{proof}
   With Fubini-Tonelli, we have
   \[
-  \E X = \int_0^\infty s \d \mu_X (s) 
+  E X = \int_0^\infty s \d \mu_X (s) 
   = \int_0^\infty \int_0^s 1 \d t \d \mu_X (s)
   = \int_0^\infty \int_t^\infty 1 \d \mu_X \d t 
-  = \int_0^\infty \Pr \left( X \geq t \right) \d t.
+  = \int_0^\infty P \left( X \geq t \right) \d t.
   \]
 
 \end{proof}
 
 \begin{prop}
-  Let $X_1, \dots, X_n$ are random variables on $(\Omega, \Sigma, \Pr)$.
+  Let $X_1, \dots, X_n$ are random variables on $(\Omega, \Sigma, P)$.
   Suppose they are either all non-negative or all integrable. 
   Suppose also that they are mutually independent. Then, 
   \[
-  \E \left( \prod_{i=1}^n X_i \right) = \prod_{i=1}^n \E X_i.
+  E \left( \prod_{i=1}^n X_i \right) = \prod_{i=1}^n E X_i.
   \]
 \end{prop}
 
@@ -1025,16 +1024,16 @@ proposition.
   by coordinate projection. We know $\tilde{X_i}$ is equidistributed 
   with $X_i$, so 
   \[
-  \E [X_1 X_2] = \E [\tilde{X_1} \tilde{X_2}] = \E [\tilde{X_1} ] \E 
-  [ \tilde{X_2} ] = \E [X_1] \E [X_2] ,
+  E [X_1 X_2] = E [\tilde{X_1} \tilde{X_2}] = E [\tilde{X_1} ] E 
+  [ \tilde{X_2} ] = E [X_1] E [X_2] ,
   \]
   where in the second equality we used Fubini-Tonelli.
 
 \end{proof}
 
 \begin{remark}
-  Recall that whenever $\E X$ is finite, $\var X = \E (X - \E X)^2
-  = \E X^2 - (\E X)^2$. If $X_1, \dots, X_n$ are pairwise independent
+  Recall that whenever $E X$ is finite, $\var X = E (X - E X)^2
+  = E X^2 - (E X)^2$. If $X_1, \dots, X_n$ are pairwise independent
   and have well-defined variances, then 
   \[
   \var (X_1 + \dots + X_n) = \sumi^n \var X_i.
@@ -1045,17 +1044,17 @@ proposition.
   Let $X$ be a random variable, and $\lambda \in \R$. Define the 
   moment generating function of $X$ via 
   \[
-  M_X (\lambda) = \E \exp (\lambda X).
+  M_X (\lambda) = E \exp (\lambda X).
   \] 
 \end{defi}
 
 Suppose $M_X (\lambda)$ is finite in some neighborhood of $0$. Then,
 \[
 M_X (\lambda) 
-= \E \left[ \suminfn \frac{(\lambda x)^n}{n!} \right]
-= \suminfn \frac{\lambda^n \E X^n}{n!}.
+= E \left[ \suminfn \frac{(\lambda x)^n}{n!} \right]
+= \suminfn \frac{\lambda^n E X^n}{n!}.
 \]
-It follows that $M_X' (0) = \E X$. Now to justify the exchang of 
+It follows that $M_X' (0) = E X$. Now to justify the exchang of 
 integral and summation, note that 
 \[
 S_N = \sumi^N \frac{(\lambda x)^n}{n!} \to e^{\lambda x},
@@ -1073,38 +1072,38 @@ so the claim follows from dominated convergence theorem.
   Let $X$ be a non-negative random variable. Then TFAE:
   \begin{enumerate}
     \item $M_X$ is finite in some neighborhood of $0$.
-    \item $\limsup_{p \to \infty} p^{-1} (\E X^p)^{1 / p} < \infty$.
+    \item $\limsup_{p \to \infty} p^{-1} (E X^p)^{1 / p} < \infty$.
   \end{enumerate}
 \end{prop}
 
 \begin{proof}
-  (1) $\implies$ (2). Suppose $M_X (\epsilon) = \E \left[ \suminfn \frac{\epsilon^n 
-  X_n}{n!} \right] < \infty$. This implies that $\sup_{n \geq 1} \E \left[ \frac{\epsilon^n X^n}{n!} \right] < \infty$.
-  Let $1 \leq C < \infty$ be such that $\E \left[ \frac{\epsilon^n X^n}{n!} \right] < C$
+  (1) $\implies$ (2). Suppose $M_X (\epsilon) = E \left[ \suminfn \frac{\epsilon^n 
+  X_n}{n!} \right] < \infty$. This implies that $\sup_{n \geq 1} E \left[ \frac{\epsilon^n X^n}{n!} \right] < \infty$.
+  Let $1 \leq C < \infty$ be such that $E \left[ \frac{\epsilon^n X^n}{n!} \right] < C$
   for all $n \geq 1$. We then have 
   \[
-  \left( \frac{\epsilon}{n!} \right)^{1 / n} \left( \E X^n  \right)^{1 / n}
+  \left( \frac{\epsilon}{n!} \right)^{1 / n} \left( E X^n  \right)^{1 / n}
   \leq C^{1 / n}
   \] 
   It follows from Sterling's formula $n! \sim \left( n / e \right)^n$
   that 
   \[
-  \frac{1}{n} \left( \E X^n \right)^{1 / n} \leq C
+  \frac{1}{n} \left( E X^n \right)^{1 / n} \leq C
   \]
   for some other constant $C$.
 
-  (2) $\implies$ (1). Suppose $\limsup_{p \to \infty} p^{-1} \left( \E X^p \right)
+  (2) $\implies$ (1). Suppose $\limsup_{p \to \infty} p^{-1} \left( E X^p \right)
   ^{1 / p} \leq C < \infty$. It follows that for any $n \geq 1$
   \[
-  \frac{1}{n!} \left( \E X^n \right) \leq C^n \frac{n^n}{n!} \leq C^n
+  \frac{1}{n!} \left( E X^n \right) \leq C^n \frac{n^n}{n!} \leq C^n
   \]
   for some other constant $C$.
   Take $\epsilon = \frac{1}{2 C}$, we then have 
   \[
-  \E \left[ \frac{\epsilon^n X^n}{n!} \right] \leq 2^{-n}.
+  E \left[ \frac{\epsilon^n X^n}{n!} \right] \leq 2^{-n}.
   \]
   Therefore, $M_X (\epsilon) 
-  = \E \left[ \suminfn \frac{\epsilon^n X^n}{n!} \right] < \infty$.
+  = E \left[ \suminfn \frac{\epsilon^n X^n}{n!} \right] < \infty$.
 
 \end{proof}
 
@@ -1118,30 +1117,30 @@ variables.
   N = \sum_{\substack{S \subset [n] \\ \abs{S} = 3}} b_S,
   \]
   where $b_S$ is the indicator that $S$ is a triangle in $G$.
-  It follows that $\E N = \frac{1}{8} \binom{n}{3}$. Also, 
+  It follows that $E N = \frac{1}{8} \binom{n}{3}$. Also, 
   \[
-  \E N^2 = \sum_{\abs{S} = 3} \sum_{\abs{S'} = 3} \E [b_S b_{S'}]
+  E N^2 = \sum_{\abs{S} = 3} \sum_{\abs{S'} = 3} E [b_S b_{S'}]
   \]
   To compute this, we consider several cases. 
   \begin{enumerate}
-    \item If $S \cap S' = \emptyset$, then $\E [b_S b_{S'}] = \frac{1}{64}$.
-    \item If $\abs{S \cap S'} = 1$, then $\E [b_S b_{S'}] = \frac{1}{64}$.
-    \item If $\abs{S \cap S'} = 3$, then $\E [b_S b_{S'}] = \frac{1}{8}$.
-    \item If $\abs{S \cap S'} = 2$, then $\E [b_S b_{S'}] = \frac{1}{32}$.
+    \item If $S \cap S' = \emptyset$, then $E [b_S b_{S'}] = \frac{1}{64}$.
+    \item If $\abs{S \cap S'} = 1$, then $E [b_S b_{S'}] = \frac{1}{64}$.
+    \item If $\abs{S \cap S'} = 3$, then $E [b_S b_{S'}] = \frac{1}{8}$.
+    \item If $\abs{S \cap S'} = 2$, then $E [b_S b_{S'}] = \frac{1}{32}$.
   \end{enumerate}
   Hence, 
   \[
-  \E N^2 = \frac{1}{64} \binom{n}{3}^2 \pm O(n^4),
+  E N^2 = \frac{1}{64} \binom{n}{3}^2 \pm O(n^4),
   \]
   where the $O(n^4)$ term comes from the cases where $\abs{S \cap S'} = 2$
   or $3$. Therefore, 
   \[
-  \var N = \E N^2 - (\E N)^2 = O(n^4).
+  \var N = E N^2 - (E N)^2 = O(n^4).
   \]
   Using Chebyshev's inequality, for each $t > 0$ we have
   \[
-  \Pr \left( \abs{N - \E N} \geq t \cdot \E N \right)
-  \leq \frac{\var N}{t^2 (\E N)^2} = t^{-2} O(n^{-2})
+  P \left( \abs{N - E N} \geq t \cdot E N \right)
+  \leq \frac{\var N}{t^2 (E N)^2} = t^{-2} O(n^{-2})
   \to 0.
   \]
   as $n \to \infty$.
@@ -1152,8 +1151,8 @@ We have the following proposition on sub-Gaussian decay of moments.
 \begin{prop}
   Let $X$ be a random variable, TFAE:
   \begin{enumerate}
-    \item $\sup_{p \geq 1} (\E \abs{X}^p)^{1 / p} p^{-1/2} < \infty$.
-    \item there exists $c > 0$ such that $\Pr \left( \abs{X} > t \right)
+    \item $\sup_{p \geq 1} (E \abs{X}^p)^{1 / p} p^{-1/2} < \infty$.
+    \item there exists $c > 0$ such that $P \left( \abs{X} > t \right)
     \leq 2 \exp (-c t^2)$ for all $t > 0$.
   \end{enumerate}
   If any of these statement is satisfied, $X$ is called a \emph{subgaussian 
@@ -1169,46 +1168,46 @@ We have the following proposition on sub-Gaussian decay of moments.
   There exists a universal constant $C < \infty$ such that for any
   $n \in \N$, $a_1, \dots, a_n \in \R$, and $p \geq 1$, we have 
   \[
-  \left( \E \abs{\sumi^n a_i r_i}^p \right)^{1 / p} \leq 
+  \left( E \abs{\sumi^n a_i r_i}^p \right)^{1 / p} \leq 
   C \sqrt{p} \norm{a}_2,
   \]
   where $r_1, \dots, r_n$ are i.i.d.\ Rademacher variables:
-  $\Pr \left( r_i = 1 \right) = \Pr \left( r_i = -1 \right)
+  $P \left( r_i = 1 \right) = P \left( r_i = -1 \right)
   = \frac{1}{2}$.
 \end{thm}
 
 \begin{proof}
   WLOG assume $\norm{a}_2= 1$. Let $\lambda > 0$. For any $t > 0$, we have
   \begin{align*}
-    \Pr \left( \sumi^n a_i r_i > t \right)
-    = \Pr \left( \exp \left( \lambda \sumi^n a_i r_i \right)
+    P \left( \sumi^n a_i r_i > t \right)
+    = P \left( \exp \left( \lambda \sumi^n a_i r_i \right)
     > \exp (\lambda t) \right)
-    \leq \frac{\E \exp \left( \lambda \sumi^n a_i r_i \right)}
+    \leq \frac{E \exp \left( \lambda \sumi^n a_i r_i \right)}
     {\exp (\lambda t)}
   \end{align*}
   from Markov's inequality. By independence, we have 
   \begin{align*}
-    \Pr \left( \sumi^n a_i r_i > t \right)
-    \leq \frac{\prod_{i=1}^{n} \E \exp (\lambda a_i r_i) }{\exp (\lambda t)}
+    P \left( \sumi^n a_i r_i > t \right)
+    \leq \frac{\prod_{i=1}^{n} E \exp (\lambda a_i r_i) }{\exp (\lambda t)}
     = \frac{\prod_{i=1}^n \frac{1}{2} \left( \exp (\lambda a_i) + 
     \exp (- \lambda a_i) \right) }{\exp (\lambda t)}.
   \end{align*}
   Now we use $\exp (x) \leq x + \exp (x^2)$ to obtain
   \begin{align*}
-    \Pr \left( \sumi^n a_i r_i > t \right)
+    P \left( \sumi^n a_i r_i > t \right)
     \leq \frac{\prod_{i=1}^n \exp (\lambda^2 a_i^2)}{\exp (\lambda t)} 
     = \exp \left( \lambda^2 \norm{a}^2_2 - \lambda t \right).
   \end{align*}
   This holds for any $\lambda > 0$. Substituting $\lambda = 
   \frac{1}{2} t \norm{a}^{-2}_2$, we have 
   \[
-  \Pr \left( \sumi^n a_i r_i > t \right) \leq \exp \left( -\frac{1}{4} 
+  P \left( \sumi^n a_i r_i > t \right) \leq \exp \left( -\frac{1}{4} 
   \frac{t^2}{\norm{a}^2_2} \right)
   \]
-  Similarly we can bound $\Pr \left( \sumi^n a_i r_i < -t \right)$
+  Similarly we can bound $P \left( \sumi^n a_i r_i < -t \right)$
   as the Rademacher variables are symmetric. Hence we have 
   \[
-  \Pr \left( \abs{\sumi^n a_i r_i} > t \right) \leq 2
+  P \left( \abs{\sumi^n a_i r_i} > t \right) \leq 2
   \exp \left( -\frac{1}{4} t^2 \right).
   \]
   The theorem follows from the previous proposition.
@@ -1217,11 +1216,11 @@ We have the following proposition on sub-Gaussian decay of moments.
 
 \begin{thm}[Anti-concentration inequalities]
   Let $X$ be a non-negative random variable and $1 \leq p < q < \infty$.
-  Suppose $\left( \E X^p \right)^{1 / p} \leq C \left( \E X^q \right)^{1 / q}$
+  Suppose $\left( E X^p \right)^{1 / p} \leq C \left( E X^q \right)^{1 / q}$
   for some constant $C$. Then there exsits $\epsilon > 0$ depending 
   only on $p$, $q$, $C$ such that 
   \[
-  \Pr \left( X \geq \epsilon \left( \E X^p \right)^{1 / p} \right) 
+  P \left( X \geq \epsilon \left( E X^p \right)^{1 / p} \right) 
   \geq \epsilon.
   \]
 \end{thm}
@@ -1250,7 +1249,7 @@ We have the following proposition on sub-Gaussian decay of moments.
   Say $X_n$ converges to $X$ \emph{in probability} if 
   for any $\epsilon > 0$, 
   \[
-  \Pr \left( \abs{X_n - X} < \epsilon \right) \to 1.
+  P \left( \abs{X_n - X} < \epsilon \right) \to 1.
   \]
   Write $X_n \convp X$.
 \end{defi}
@@ -1264,18 +1263,18 @@ We have the following proposition on sub-Gaussian decay of moments.
   and let $\epsilon > 0$. Let $\delta > 0$ be such taht 
   $F_X (t + \delta) \leq F_X (t) + \epsilon$ and 
   $F_X (t - \delta) \geq F_X (t) - \epsilon$.
-  Since $\Pr \left( \abs{X - X_n} < \delta\right)
+  Since $P \left( \abs{X - X_n} < \delta\right)
   \to 1$, there exists $n_0$ such that $n \geq n_0$ implies 
   \[
-  \Pr \left( \abs{X_n - X} < \delta\right)
+  P \left( \abs{X_n - X} < \delta\right)
   \geq 1 - \epsilon.
   \]
   Take $n \geq n_0$. We have 
   \begin{align*}
     F_{X_n} (t) 
-    &= \Pr \left( X_n \leq t \right) \\
-    &\leq \Pr \left( \abs{X_n - X} > \delta\right)
-    + \Pr \left( X \leq t + \delta\right) \\
+    &= P \left( X_n \leq t \right) \\
+    &\leq P \left( \abs{X_n - X} > \delta\right)
+    + P \left( X \leq t + \delta\right) \\
     &\leq \epsilon + F_X (t) + \epsilon \\
     &\leq F_X (t) + 2 \epsilon.
   \end{align*}
@@ -1294,10 +1293,10 @@ We have the following proposition on sub-Gaussian decay of moments.
   \leq \epsilon \text{ for all $m \geq n$} \right\} < \infty.
   \]
   By continuity of measure, for any $\delta > 0$ there exists $N$ such that 
-  $\Pr \left( n_\epsilon \leq N \right) \geq 1 - \delta$.
+  $P \left( n_\epsilon \leq N \right) \geq 1 - \delta$.
   This implies that for all $m \geq N$, we have 
   \[
-  \Pr \left( \abs{X_m - X} \leq \epsilon \right) \leq 1 - \delta.
+  P \left( \abs{X_m - X} \leq \epsilon \right) \leq 1 - \delta.
   \]
   Since $\delta > 0$ is arbitrary, this compeltes the proof.
 
@@ -1306,7 +1305,7 @@ We have the following proposition on sub-Gaussian decay of moments.
 \begin{prop}
   Let $c \in \R$ and suppose $\seqinfn{X_n}$ are random variables 
   on a common probability space 
-  $(\Omega, \Sigma, \Pr)$. Then $X_n \convd c$ iff $X_n \convp c$.
+  $(\Omega, \Sigma, P)$. Then $X_n \convd c$ iff $X_n \convp c$.
 \end{prop}
 
 \begin{proof}
@@ -1322,7 +1321,7 @@ We have the following proposition on sub-Gaussian decay of moments.
   It follows that $F_{X_n} (c + \epsilon) \to 1$ and $F_{X_n} (c - \epsilon)
   \to 0$. This implies that 
   \[
-  \Pr \left( \abs{X_n - c} > \epsilon \right) \to 0.
+  P \left( \abs{X_n - c} > \epsilon \right) \to 0.
   \]
 
 \end{proof}
@@ -1371,9 +1370,9 @@ We alos have a representation theorem for random variables converging
 in distribution. On the new probability space, they will coneverge a.e.\
 
 \begin{thm}[Skorokhod's representation theorem]
-  Suppose $X_n \convd X$ on some probability space $(\Omega, \Sigma, \Pr)$.
+  Suppose $X_n \convd X$ on some probability space $(\Omega, \Sigma, P)$.
   Then there exists another probability space $(\tilde{\Omega}, 
-  \tilde{\Sigma}, \tilde{\Pr})$ and random variables $\tilde{X}_n$, 
+  \tilde{\Sigma}, \tilde{P})$ and random variables $\tilde{X}_n$, 
   $\tilde{X}$ on it such that the following holds:
   \begin{itemize}
     \item $\tilde{X}_n \sim X_n$ for all $n$.
@@ -1388,8 +1387,8 @@ in distribution. On the new probability space, they will coneverge a.e.\
   variables with the same distribution. Let $U \sim \unif([0, 1])$,
   then $F_X^{-1} (U) \sim X$. Indeed, 
   \[
-  \Pr \left( F_X^{-1} (U) \leq t \right)
-  = \Pr \left( F_X (F_X^{-1} (U)) \leq F_X (t) \right)
+  P \left( F_X^{-1} (U) \leq t \right)
+  = P \left( F_X (F_X^{-1} (U)) \leq F_X (t) \right)
   = F_X (t).
   \] 
 
@@ -1412,9 +1411,9 @@ example presenting the law of rare events. First we need some definitions.
   Say random variable $X \sim \Poisson (\lambda)$ has Possion distribution 
   with parameter $\lambda$ for $\lambda > 0$ if 
   \[
-  \Pr \left( X = m \right) = \frac{\lambda^m e^{- \lambda}}{m!}.
+  P \left( X = m \right) = \frac{\lambda^m e^{- \lambda}}{m!}.
   \]
-  Then, $\E X = \lambda$, $\E X^2 = \lambda^2 + \lambda$, and 
+  Then, $E X = \lambda$, $E X^2 = \lambda^2 + \lambda$, and 
   $\var X = \lambda$.
 \end{defi}
 
@@ -1436,10 +1435,10 @@ example presenting the law of rare events. First we need some definitions.
 The exponential distribution is a memoryless distribution: suppose 
 $X \sim \Exp (\lambda)$ and $t > s > 0$. Then, 
 \[
-\Pr \left( X \geq t \mid X \geq s \right)
-= \frac{\Pr \left( X \geq t \right)}{\Pr \left( X \geq s \right)}
+P \left( X \geq t \mid X \geq s \right)
+= \frac{P \left( X \geq t \right)}{P \left( X \geq s \right)}
 = \exp (- \lambda (t - s)) 
-= \Pr \left( X \geq t - s \right).
+= P \left( X \geq t - s \right).
 \]
 
 \begin{eg}[law of rare events]
@@ -1458,7 +1457,7 @@ $X \sim \Exp (\lambda)$ and $t > s > 0$. Then,
 
   To prove this, let $k \geq 0$, we have
   \begin{align*}
-    \Pr (X_n = k) 
+    P (X_n = k) 
     &= \binom{m_n}{k} \left( \frac{1}{n} \right)^k 
     \left( 1 - \frac{1}{n} \right)^{m_n - k} \\
     &= (1 + o(1)) \frac{m_n^k}{k!} n^{-k} \exp \left( - \frac{m_n}{n} \right) \\
@@ -1490,10 +1489,10 @@ $X \sim \Exp (\lambda)$ and $t > s > 0$. Then,
 
   Let $t > 0$, then 
   \begin{align*}
-    \Pr \left( Y_n \leq t \right)
-    &= 1 - \Pr \left( Y_n > t \right) \\
-    &= 1 - \Pr \left( \bigcap_{i=1}^{m_n} U_{n, i} > t \right) \\
-    &= 1 - \Pr \left( U_{n, 1} > t \right)^{m_n} \\
+    P \left( Y_n \leq t \right)
+    &= 1 - P \left( Y_n > t \right) \\
+    &= 1 - P \left( \bigcap_{i=1}^{m_n} U_{n, i} > t \right) \\
+    &= 1 - P \left( U_{n, 1} > t \right)^{m_n} \\
     &= 1 - \left( \frac{n - t}{n} \right)^{m_n}  \\
     &\to 1 - \exp (- \lambda t)
   \end{align*}
@@ -1558,7 +1557,7 @@ $X \sim \Exp (\lambda)$ and $t > s > 0$. Then,
 \begin{proof}
   Suppose $n$ and $k$ be some integer, then 
   \begin{align*}
-    \Pr \left( S_{2n} = n + k \right)
+    P \left( S_{2n} = n + k \right)
     &= \frac{(2n) !}{(n + k) ! (n - k)!} 2^{-2n}
   \end{align*}
   Using Sterling's formula $n! \sim \sqrt{2 \pi n} (\frac{n}{e})^n$, 
@@ -1570,7 +1569,7 @@ $X \sim \Exp (\lambda)$ and $t > s > 0$. Then,
   \end{align*}
   Hence,
   \begin{align*}
-    \Pr \left( S_n = n + k \right)
+    P \left( S_n = n + k \right)
     &\sim \left( 1 + \frac{k}{n} \right)^{- n - k - \frac{1}{2}} 
     \left( 1 - \frac{k}{n} \right)^{-n + k - \frac{1}{2}} 
     \left( \pi n \right)^{\frac{1}{2}}.
@@ -1600,19 +1599,19 @@ $X \sim \Exp (\lambda)$ and $t > s > 0$. Then,
 
   Therefore, if $2k / \sqrt{2n} \to x$, then 
   \[
-  \Pr \left( S_{2n} = n + k \right)
+  P \left( S_{2n} = n + k \right)
   \sim \left( \pi n \right)^{- 1 / 2} e^{- x^2 / 2}.
   \]
   Now, 
   \begin{align*}
-    \Pr \left( a \leq \frac{S_{2n} - n}{ \sqrt{n / 2} } \leq b \right)
-   &= \Pr \left( n + a \sqrt{n / 2} \leq S_{2n} \leq n + b \sqrt{n / 2} \right) \\
+    P \left( a \leq \frac{S_{2n} - n}{ \sqrt{n / 2} } \leq b \right)
+   &= P \left( n + a \sqrt{n / 2} \leq S_{2n} \leq n + b \sqrt{n / 2} \right) \\
    &= \sum_{k \in \left[ a \sqrt{n / 2}, b \sqrt{n / 2} \right] \cap \Z}
-   \Pr \left( S_{2n} = n + k \right).
+   P \left( S_{2n} = n + k \right).
   \end{align*}
   Chaging variables $x = k \sqrt{n / 2}$, we then have 
   \begin{align*}
-    \Pr \left( a \leq \frac{S_{2n} - n}{\sqrt{n / 2}} \leq b \right) 
+    P \left( a \leq \frac{S_{2n} - n}{\sqrt{n / 2}} \leq b \right) 
     &= \sum_{x \in [a, b] \cap \left( 2\Z / \sqrt{2n} \right)} 
     (2 \pi)^{- 1 / 2} e^{-x^2 / 2} (2 / n)^{1 / 2} \\
     &\approx \int_a^b \frac{1}{\sqrt{2 \pi}} e^{-x^2 / 2} \d x,
@@ -1650,8 +1649,8 @@ $X \sim \Exp (\lambda)$ and $t > s > 0$. Then,
 
 \begin{thm}[Weak law of large numbers]
   Suppose $\seqinfn{X_n}$ are mutually independent, identically 
-  distributed random variables. Suppose also $\E \abs{X_1} < \infty$.
-  Let $S_n = \suminfn X_i$, then $S_n / n \convp \E X_1$.
+  distributed random variables. Suppose also $E \abs{X_1} < \infty$.
+  Let $S_n = \suminfn X_i$, then $S_n / n \convp E X_1$.
 \end{thm}
 
 \begin{proof}
@@ -1659,12 +1658,12 @@ $X \sim \Exp (\lambda)$ and $t > s > 0$. Then,
   Let $\epsilon > 0$ and choose truncation level $M (\epsilon) > 0$ 
   satisfying the following:
   \begin{align*}
-    \E \abs{X_1 \ind_{\abs{X_1} > M}} < \epsilon^2.
+    E \abs{X_1 \ind_{\abs{X_1} > M}} < \epsilon^2.
   \end{align*}
   By dominated convergence theorem, there exists such an $M$. 
   Note that this also implies 
   \[
-  \abs{\E X_1 - \E \left( X_1 \ind_{\abs{X_1} \leq M} \right)} < \epsilon.
+  \abs{E X_1 - E \left( X_1 \ind_{\abs{X_1} \leq M} \right)} < \epsilon.
   \]
   For each $n$, we have 
   \[
@@ -1679,20 +1678,20 @@ $X \sim \Exp (\lambda)$ and $t > s > 0$. Then,
   \]
   For the first term, we can use Chebyshev's inequality to obtain
   \begin{align*}
-    \Pr \left( \abs{\frac{T_n}{n} - 
-    \E [X_1 \ind_{\abs{X_1} \leq M}]} \geq \epsilon \right)  
+    P \left( \abs{\frac{T_n}{n} - 
+    E [X_1 \ind_{\abs{X_1} \leq M}]} \geq \epsilon \right)  
     &\leq \frac{1}{\epsilon^2} \var \left( \frac{T_n}{n} \right)\\
     &= \frac{1}{n \epsilon^2} \var (X_1 \ind_{\abs{X_1} \leq M})  \\
     &\leq \frac{4 M^2}{n \epsilon^2}
   \end{align*}
   Similarly, for the second term, we have 
   \begin{align*}
-    \Pr \left( \abs{\frac{R_n}{n}} \geq \epsilon \right) 
-    &\leq \frac{1}{\epsilon} \E \abs{\frac{R_n}{n}} \leq \epsilon.
+    P \left( \abs{\frac{R_n}{n}} \geq \epsilon \right) 
+    &\leq \frac{1}{\epsilon} E \abs{\frac{R_n}{n}} \leq \epsilon.
   \end{align*}
   It follows that 
   \[
-  \Pr \left( \abs{\frac{S_n}{n} - \E X_1} \geq 
+  P \left( \abs{\frac{S_n}{n} - E X_1} \geq 
   2 \epsilon + \epsilon^2 \right) 
   \leq \frac{4 M^2}{n \epsilon^2} + \epsilon.
   \]
@@ -1709,17 +1708,17 @@ $X \sim \Exp (\lambda)$ and $t > s > 0$. Then,
 \begin{thm}[Borel-Cantelli lemmas]
   Let $\seqinfn{A_n}$ be a sequence of events and 
   \[
-  \Pr \left( A_n \text{ i.o.} \right)
-  = \Pr \left( \capinfk \bigcup_{n=k}^\infty A_n \right)
-  = \Pr \left( \limsup A_n \right)
+  P \left( A_n \text{ i.o.} \right)
+  = P \left( \capinfk \bigcup_{n=k}^\infty A_n \right)
+  = P \left( \limsup A_n \right)
   \]
   \begin{enumerate}
-    \item If $\suminfn \Pr (A_n) < \infty$, then 
-    $\Pr \left( A_n \text{ i.o.} \right) = 0$.
+    \item If $\suminfn P (A_n) < \infty$, then 
+    $P \left( A_n \text{ i.o.} \right) = 0$.
 
     \item Suppose also $A_n$'s are mutually independent
-    and $\suminfn \Pr (A_n) = \infty$, then 
-    $\Pr \left( A_n \text{ i.o.} \right) = 1$.
+    and $\suminfn P (A_n) = \infty$, then 
+    $P \left( A_n \text{ i.o.} \right) = 1$.
   \end{enumerate}
 \end{thm}
 
@@ -1727,28 +1726,28 @@ $X \sim \Exp (\lambda)$ and $t > s > 0$. Then,
 \begin{enumerate}
   \item We have 
   \begin{align*}
-    \Pr \left( A_n \text{ i.o.} \right) 
-    &= \Pr \left( \suminfn \ind_{A_n} = \infty \right).
+    P \left( A_n \text{ i.o.} \right) 
+    &= P \left( \suminfn \ind_{A_n} = \infty \right).
   \end{align*}
-  However, $\E [\suminfn \ind_{A_n}] = \suminfn \Pr (A_n) < \infty$,
-  so $\Pr (A_n \text{ i.o.}) = 0$.
+  However, $E [\suminfn \ind_{A_n}] = \suminfn P (A_n) < \infty$,
+  so $P (A_n \text{ i.o.}) = 0$.
 
   \item We have 
   \begin{align*}
-    \Pr \left( A_n \text{ i.o.} \right) 
-    = \Pr \left( \cupinfk \bigcap_{n = k}^\infty A_n^c \right)
-    \leq \suminfk \Pr \left( \bigcap_{n=k}^\infty A_n^c \right).
+    P \left( A_n \text{ i.o.} \right) 
+    = P \left( \cupinfk \bigcap_{n = k}^\infty A_n^c \right)
+    \leq \suminfk P \left( \bigcap_{n=k}^\infty A_n^c \right).
   \end{align*}
   Using independence and $1 - t \leq \exp (- t)$, 
   we obtain 
   \[
-  \Pr \left( \bigcap_{n=k}^M A_n \right)
-  = \prod_{n=k}^M (1 - \Pr (A_n)) 
-  \leq \exp \left( - \sum_{n=k}^M \Pr (A_n) \right) \to 0
+  P \left( \bigcap_{n=k}^M A_n \right)
+  = \prod_{n=k}^M (1 - P (A_n)) 
+  \leq \exp \left( - \sum_{n=k}^M P (A_n) \right) \to 0
   \]
-  as $M \to \infty$. Hence, $\Pr \left( \bigcup_{n=k}^\infty A_n \right)
+  as $M \to \infty$. Hence, $P \left( \bigcup_{n=k}^\infty A_n \right)
   = 1$ for all $k$. Since $\bigcup_{n=k}^\infty A_n \downarrow \limsup A_n$,
-  it follows from monotone continuity that $\Pr (A_n \text{ i.o.}) = 1$.
+  it follows from monotone continuity that $P (A_n \text{ i.o.}) = 1$.
 \end{enumerate}
 \end{proof}
 
@@ -1763,7 +1762,7 @@ $X \sim \Exp (\lambda)$ and $t > s > 0$. Then,
   $b_n (\omega) = 1$ for at most finitely many $n$'s. 
   Let $A_n = \left\{ b_n = 1 \right\}$. Then, 
   $b_n \to 0$ a.e.\ iff for a.e.\ $\omega$ is contained 
-  in finitely many $A_n$'s. That is, $\Pr (A_n \text{ i.o.}) = 0$.
+  in finitely many $A_n$'s. That is, $P (A_n \text{ i.o.}) = 0$.
   The proposition then follows from Borel-Cantelli lemma.
 
 \end{proof}
@@ -1772,9 +1771,9 @@ $X \sim \Exp (\lambda)$ and $t > s > 0$. Then,
 
 \begin{thm}
   Let $\seqinfn{X_n}$ be mutually independent identically distributed
-  random variables. Suppose $\E \abs{X_1} < \infty$
+  random variables. Suppose $E \abs{X_1} < \infty$
   and let $S_n = \frac{1}{n} \sumk^n X_k$ 
-  Then, $S_n \to \E X_1$ a.e.\
+  Then, $S_n \to E X_1$ a.e.\
 \end{thm}
 
 \begin{proof}
@@ -1800,13 +1799,13 @@ $X \sim \Exp (\lambda)$ and $t > s > 0$. Then,
   Note that $T_{n, k} - T_{n, k - 1}$ follows a geometric distribution.
   Hence,
   \begin{align*}
-    &\E \left( T_{n, k} - T_{n, k - 1} \right) = \frac{n}{n - k + 1}, \\
+    &E \left( T_{n, k} - T_{n, k - 1} \right) = \frac{n}{n - k + 1}, \\
     &\var \left( T_{n, k} - T_{n, k - 1} \right) =  
     \frac{k - 1}{n} \frac{1}{\left( 1 - \frac{k - 1}{n} \right)^2}.
   \end{align*}
   It follows that 
   \[
-  \E T_n = n \sumk^n \frac{1}{n - k + 1} \sim n \log n.
+  E T_n = n \sumk^n \frac{1}{n - k + 1} \sim n \log n.
   \]
   Also, 
   \begin{align*}
@@ -1833,7 +1832,7 @@ $X \sim \Exp (\lambda)$ and $t > s > 0$. Then,
   as $P$, and we are interested in 
   \[
   \norm{X_k - P}_{TV} 
-  = \inf_{\xi, \tilde{X}} \Pr \left( \xi \neq \tilde{X} \right),
+  = \inf_{\xi, \tilde{X}} P \left( \xi \neq \tilde{X} \right),
   \]
   where the inf is taken over all pairs of random vectors 
   $\xi$ and $\tilde{X}$ such that $\tilde{X} \sim X_k$ and 
@@ -1858,7 +1857,7 @@ $X \sim \Exp (\lambda)$ and $t > s > 0$. Then,
   Let $X$ be a random vector in $\R^n$, we define the 
   characteristic function (ch.f.) of $X : \R^n \to \C$ via 
   \[
-  \phi_X (t) = \E e^{i \bra X, t \ket}
+  \phi_X (t) = E e^{i \bra X, t \ket}
   \]
   Suppose $X$ has density $\rho_X$, then 
   \[
@@ -1877,19 +1876,19 @@ $X \sim \Exp (\lambda)$ and $t > s > 0$. Then,
   We have 
   \begin{align*}
     \abs{\phi_X (t + \delta) - \phi_X (t)} 
-    &= \abs{ \E e^{i \bra X, t \ket} \left( e^{i \bra x, \delta \ket} - 1 \right) }
-    \leq \E \abs{ e^{i \bra X, \delta \ket} - 1 }.
+    &= \abs{ E e^{i \bra X, t \ket} \left( e^{i \bra x, \delta \ket} - 1 \right) }
+    \leq E \abs{ e^{i \bra X, \delta \ket} - 1 }.
   \end{align*}
   Note that $\abs{e^{i \bra X, \delta \ket} - 1} \leq 2$. The proposition 
   then immediately follows from dominated convergence theorem.
 \end{proof}
 
 \begin{prop}
-  If $X$ is a random variable with $\E \abs{X}^k < \infty$ 
+  If $X$ is a random variable with $E \abs{X}^k < \infty$ 
   for some $k \geq 1$. Then $\phi_X$ is $k$ times continuous 
   differentiable and 
   \[
-  \phi^{(k)}(0) = i^k \E X^k.
+  \phi^{(k)}(0) = i^k E X^k.
   \]
 \end{prop}
 
@@ -1989,7 +1988,7 @@ of a random variable.
 
 The same is true in the $n$-dimensional setting. Now 
 \[
-  \phi_X (t) = \E \exp \left( i \bra t, X \ket \right).
+  \phi_X (t) = E \exp \left( i \bra t, X \ket \right).
 \]
 The induced Borel measure $\mu_X$ in $\R^n$ is uniquely determined by the 
 ch.f.\ $\phi_X$.
@@ -2021,16 +2020,16 @@ ch.f.\ $\phi_X$.
 With the results above, we can prove the central limit theorem.
 \begin{thm}[central limit theorem]
   Let $\seqinfn{X_n}$  be a sequence of i.i.d.\ random variable
-  such that $\E X_1$ and $\var X_1$ are well-defined and finite.
+  such that $E X_1$ and $\var X_1$ are well-defined and finite.
   Let
   \[
-  S_n = \frac{1}{\sqrt{n}} \sumk^n (X_k - \E X_k).
+  S_n = \frac{1}{\sqrt{n}} \sumk^n (X_k - E X_k).
   \]
   Then $S_n \convd \ncal (0, \var X_1)$.
 \end{thm}
 
 \begin{proof}
-  WLOG assume $\E X_1 = 0$ and $\var X_1 = 1$. Then 
+  WLOG assume $E X_1 = 0$ and $\var X_1 = 1$. Then 
   \[
   \phi_{S_n} (t) 
   = \prod_{k=1}^n \phi_{\frac{X_k}{\sqrt{n}}} (t) 
@@ -2071,7 +2070,7 @@ with characteristic functions.
   if for any $\epsilon > 0$,  
   \[
   \lim_{n \to \infty} b_n^{-2}
-  \sumi^n \E \left[ X_i^2 \ind_{(\abs{X_i} > \epsilon b_n)} \right] = 0.
+  \sumi^n E \left[ X_i^2 \ind_{(\abs{X_i} > \epsilon b_n)} \right] = 0.
   \]
 \end{defi}
 
@@ -2088,7 +2087,7 @@ with characteristic functions.
   Use the definition of weak convergence in terms of test functions.
   WLOG, we can work with functions $h \in C^\infty_c (\R)$, i.e.\ smooth 
   and compactly supported functions. The goal is to show 
-  $\E h(S_n) \to \E h (\ncal(0, 1))$ as $n \to \infty$.
+  $E h(S_n) \to E h (\ncal(0, 1))$ as $n \to \infty$.
 
   We need to use Taylor's formula: 
   \[
@@ -2103,12 +2102,12 @@ with characteristic functions.
   Note that $b_n^{-1} S_n^{(n)} \sim \ncal(0, 1)$ and 
   $S_n^{(0)} = \sumi^n X_i$, so the goal now is to show
   \[
-  \abs{\E h \left( b_n^{-1} S_n^{(n)} \right) - \E \left( b_n^{-1} S_n^{(n)} \right)}
+  \abs{E h \left( b_n^{-1} S_n^{(n)} \right) - E \left( b_n^{-1} S_n^{(n)} \right)}
   = o(1).
   \]
   It suffices to show that for all $1 \leq j \leq n$,
   \[
-  \abs{\E h \left( b_n^{-1} S_n^{(j)} \right) - \E \left( b_n^{-1} S_n^{(j - 1)} \right)}
+  \abs{E h \left( b_n^{-1} S_n^{(j)} \right) - E \left( b_n^{-1} S_n^{(j - 1)} \right)}
   = o(b_n^{-2} \sigma_j^2)
   \]
   Now fix $1 \leq j \leq n$ and let 
@@ -2127,25 +2126,25 @@ with characteristic functions.
   Note that $S_n^{(j)} - Z = Y_j$ is independent of $Z$.
   It follows that 
   \begin{align*}
-    \E h \left( b_n^{-1} S_n^{(j)} \right)
-    &= \E h \left( b_n^{-1} Z \right) 
-    + \frac{1}{2} \frac{\sigma_j^2}{b_n^2} \E h'' \left( b_n^{-1} Z \right) 
-    + O \left( \E \min \left\{ b_n^{-2} \abs{Y_j}^{2}, 
+    E h \left( b_n^{-1} S_n^{(j)} \right)
+    &= E h \left( b_n^{-1} Z \right) 
+    + \frac{1}{2} \frac{\sigma_j^2}{b_n^2} E h'' \left( b_n^{-1} Z \right) 
+    + O \left( E \min \left\{ b_n^{-2} \abs{Y_j}^{2}, 
     b_n^{-3} \abs{Y_j}^3 \right\} \right)
   \end{align*}
   Similarly, 
   \begin{align*}
-    \E h \left( b_n^{-1} S_n^{(j - 1)} \right)
-    &= \E h \left( b_n^{-1} Z \right) 
-    + \frac{1}{2} \frac{\sigma_j^2}{b_n^2} \E h'' \left( b_n^{-1} Z \right) 
-    + O \left( \E \min \left\{ b_n^{-2} \abs{X_j}^{2}, 
+    E h \left( b_n^{-1} S_n^{(j - 1)} \right)
+    &= E h \left( b_n^{-1} Z \right) 
+    + \frac{1}{2} \frac{\sigma_j^2}{b_n^2} E h'' \left( b_n^{-1} Z \right) 
+    + O \left( E \min \left\{ b_n^{-2} \abs{X_j}^{2}, 
     b_n^{-3} \abs{X_j}^3 \right\} \right)
   \end{align*}
   Hence, 
   \[
-  \abs{\E h\left( b_n^{-1} S_n^{(j)} \right) - \E h \left( b_n^{-1} S_n^{(j - 1)} \right)}
-  = O \left( \E b_n^{-3} \abs{Y_j}^3 
-    + \E \min \left\{ b_n^{-2} \abs{X_j}^{2}, 
+  \abs{E h\left( b_n^{-1} S_n^{(j)} \right) - E h \left( b_n^{-1} S_n^{(j - 1)} \right)}
+  = O \left( E b_n^{-3} \abs{Y_j}^3 
+    + E \min \left\{ b_n^{-2} \abs{X_j}^{2}, 
     b_n^{-3} \abs{X_j}^3 \right\} \right)
   \]
 
@@ -2153,35 +2152,35 @@ with characteristic functions.
   for all $j$. Now $b_n = \sqrt{n}$. Note that the 3rd absolute moment 
   of standard Gaussian is finite, we have 
   \[
-  \E
+  E
     b_n^{-3} \abs{Y_j}^3 
   \leq O(b_n^{-3}) = O(n^{-3/2}) = o(n^{-1}).
   \]
   For the second term, let $\epsilon > 0$ be given and consider truncation:
   \begin{align*}
-    \E \min \left\{ b_n^{-2} \abs{X_j}^2, b_n^{-3} \abs{X_j}^{3} \right\}
-    &= \E \min \left\{ b_n^{-2} \abs{X_j}^2, b_n^{-3} \abs{X_j}^{3} \right\} 
+    E \min \left\{ b_n^{-2} \abs{X_j}^2, b_n^{-3} \abs{X_j}^{3} \right\}
+    &= E \min \left\{ b_n^{-2} \abs{X_j}^2, b_n^{-3} \abs{X_j}^{3} \right\} 
     \left( \ind_{(\abs{X_j} > M)} + \ind_{(\abs{X_j} \leq M)} \right) \\
-    &\leq \E \left( b_n^{-2} \abs{X_j}^2 \ind_{(\abs{X_j} > M)} \right) 
-    + \E \left( b_n^{-3} \abs{X_j}^3 \ind_{(\abs{X_j} \leq M)} \right)
+    &\leq E \left( b_n^{-2} \abs{X_j}^2 \ind_{(\abs{X_j} > M)} \right) 
+    + E \left( b_n^{-3} \abs{X_j}^3 \ind_{(\abs{X_j} \leq M)} \right)
   \end{align*}
   However, 
   \[
-  \E b_n^{-2} \abs{X_j}^2 \ind_{(\abs{X_j} > M)}
-  = \frac{1}{n} \E \left( X_j \ind_{\abs{X_j} > M} \right)^2 \to 0
+  E b_n^{-2} \abs{X_j}^2 \ind_{(\abs{X_j} > M)}
+  = \frac{1}{n} E \left( X_j \ind_{\abs{X_j} > M} \right)^2 \to 0
   \]
   as $M \to \infty$. We can then choose $M$ such that 
   \[
-  \E \left( b_n^{-2} X_j^2 \ind_{(\abs{X_j} > M)} \right) \leq \frac{\epsilon}{n}
+  E \left( b_n^{-2} X_j^2 \ind_{(\abs{X_j} > M)} \right) \leq \frac{\epsilon}{n}
   \]
   Meanwhile, 
   \[
-  \E \left( b_n^{-3} \abs{X_j}^3 \ind_{(\abs{X_j} \leq M)} \right)
+  E \left( b_n^{-3} \abs{X_j}^3 \ind_{(\abs{X_j} \leq M)} \right)
   \leq \frac{M^3}{n^{3/2}}.
   \]
   This shows that 
   \[
-  \E \min \left\{ b_n^{-2} \abs{X_j}^2, b_n^{-3} \abs{X_j}^{3} \right\} 
+  E \min \left\{ b_n^{-2} \abs{X_j}^2, b_n^{-3} \abs{X_j}^{3} \right\} 
   = o(n^{-1})
   \]
   and the proof is complete.
