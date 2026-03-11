@@ -2186,5 +2186,107 @@ with characteristic functions.
   and the proof is complete.
 \end{proof}
 
+\section{Martingales}
+
+\subsection{Information and independence}
+
+\begin{prop}
+  Suppose $\{\fcal_i\}_{i \in I}$ is a family of $\sigma$-fields, 
+  and $\fcal_i \subset \Sigma$ for some $(\Omega, \Sigma, P)$. 
+  Let $\ecal \in \Sigma$. Suppose 
+  for any finite $J \subset I$, $\ecal$ is independent from 
+  $\sigma (\{\fcal_j : j \in J\})$. Then $\ecal$ is independent from 
+  $\sigma (\{\fcal_i: i \in I\})$.
+\end{prop}
+
+\begin{proof}
+  Let $\Lambda$ be the collection of events in $\Sigma$ that are independent
+  from $\ecal$. Then $\Lambda$ is a $\lambda$-system from $\sigma$-addivity
+  of $P$. Now let 
+  \[
+  \Pi = \left\{ E \in \Sigma : E \in \sigma (\{ \fcal_j : j \in J \}) 
+  \text{ for some $j \in J$ finite} \right\}.
+  \]
+  Then, $\Pi \subset \Lambda$. Moreover, if $E_1, E_2 \in \Pi$
+  and let $J_1, J_2$ be the corresponding finite index set, then 
+  $E_1 \cap E_2 \in \sigma (\{ \fcal_j : j \in J_1 \cup J_2 \})$.
+  Hence $E_1 \cap E_2 \in \Pi$ and $\Pi$ is a $\pi$-system.
+  Therefore, by $\pi$-$\lambda$ theorem, we can conclude that 
+  $\Lambda \supset \sigma (\Pi) = \sigma (\{ \fcal_i : i \in I \})$.
+
+\end{proof}
+
+\begin{thm}[Kolmogorov's $0$-$1$ law]
+  Let $(\Omega, \Sigma, P)$ be probability space. 
+  Suppose $\seqinfi{\fcal_i}$ be a sequence of mutually independent
+  $\sigma$-field of $\Sigma$. 
+  Define tail $\sigma$-field:
+  \[
+  \tcal = \capinfk \sigma \left( \bigcup_{i=k}^\infty \fcal_i \right).
+  \]
+  Then $P(E) \in \{0, 1\}$ for any $E \in \tcal$.
+\end{thm}
+
+\begin{proof}
+  For any $k \geq 1$, we have $E \in \sigma (\bigcup_{i=k}^\infty \fcal_i)$,
+  so $E$ is independent from $\sigma (\fcal_1, \dots, \fcal_{k - 1})$.
+  The verification of the previous claim is left as an exercise.
+  Now from the previous proposition,
+  this implies that $E$ is independent from $\sigma (\cupinfi \fcal_i) 
+  \supset \tcal$. Therefore, $E$ is independent from $\tcal$ 
+  and thus $E$ is independent from itself. That is, 
+  \[
+  P(E) = P(E)^2,
+  \]
+  and the desired results immediately follows.
+
+\end{proof}
+
+\begin{ex}
+  Verify the claim in the proof above.
+\end{ex}
+
+\begin{proof}
+  We just need to verify that if $\fcal_1, \dots, \fcal_n$ are 
+  independent, then $\fcal_1, \dots, \fcal_{k - 1}, 
+  \sigma (\bigcup_{i = k}^n \fcal_i)$ are independent.
+  Fix $E_1 \in \fcal_1, \dots, E_{k - 1} \in \fcal_{k - 1}$ 
+  and let $\Lambda$ be the collection of sets $E \in \Sigma$ such
+  that $P (E \cap E_1 \cap \dots \cap E_{k - 1}) 
+  = P(E) P (E_1) \dots P(E_{k - 1})$. 
+  It can be easily verified that this is a $\lambda$-system. 
+  Now let $\Pi$ be the collection of sets in the form 
+  of $E_k \cap \dots \cap E_n$ where 
+  $E_k \in \fcal_k, \dots, E_n \in \fcal_n$. 
+  This is a $\pi$-system and generates $\sigma (\bigcup_{i=k}^n 
+  \fcal_i)$. Moreover, $\Pi \subset \Lambda$. 
+  The desired statement then follows from the $\pi$-$\lambda$ system.
+
+\end{proof}
+
+Now we present a simple applications of the Kolmogorov's $0$-$1$ law.
+
+\begin{prop}
+  Suppose $X_1, X_2, \dots$ are mutually independent random 
+  variables. Let $S_n = \sumi^n X_i$ and 
+  $\ecal = \{ \lim_{n \to \infty} S_n / n \text{ exists} \}$. 
+  Then, $P (\ecal) \in \{ 0, 1 \}$.
+\end{prop}
+
+\begin{proof}
+  Fix $k \geq 1$ and let $n \geq k$, then
+  \[
+  \frac{S_n}{n} 
+  = \frac{X_1 + \dots + X_k}{n} + \frac{1}{n} \sum_{i = k + 1}^n X_i.
+  \]
+  The first term goes to zero as $n \to \infty$.
+  Hence, $\lim_{n \to \infty} S_n / n$ exists 
+  iff $\lim_{n \to \infty} n^{-1} \sum_{i = k + 1}^n X_i$ exists.
+  This implies that $\ecal \in \sigma (\bigcup_{i = k + 1}^n X_i)$.
+  Since this is true for all $k \geq 1$, $\ecal$ is in the tail 
+  $\sigma$-field. The proposition then follows from Kolmogorov's 
+  $0$-$1$ law.
+
+\end{proof}
 
 \end{document}
