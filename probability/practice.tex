@@ -95,7 +95,25 @@ Carnegie Mellon University}
 \end{ex}
 
 \begin{proof}
-  \TODO
+  Consider 
+  \begin{align*}
+    E \left( n^{-1} \left( X_1 + \dots + X_n \right) \right)^2 
+    &= n^{-2} E \left( X_1 + \dots + X_n \right)^2 \\
+    &= n^{-2} \left( \sumi^n E X_i^2 + 2 \sum_{i < j} E X_i E_j \right) \\
+    &\leq n^{-2} \left( n r(0) + 2 \sumi^{n - 1} (n - i) r(i) \right).
+  \end{align*}
+  Let $\epsilon$ be arbitrary. 
+  Since $r(k) \to 0$ as $k \to \infty$, there is $N$ such that 
+  $r(k) \leq \epsilon$ for all $k \geq N$. Hence for $n \geq N$, we have 
+  \begin{align*}
+    E \left( n^{-1} (X_1 + \dots + X_n) \right)^2 
+    &\leq \frac{r(0)}{n} + \frac{2}{n^2} \sumi^N (n - i) r(i) 
+    + \frac{2}{n^2} \sum_{i = N + 1}^n (n - i) \epsilon \\
+    &\leq \frac{r(0)}{n} + \frac{2 N}{n} \sumi^N r(i) 
+    + 2 \epsilon.
+  \end{align*}
+  This shows that $(X_1 + \dots + X_n) / n \to 0$ in $L^2$ and thus 
+  in probability.
 
 \end{proof}
 
@@ -205,17 +223,124 @@ implies $\suminfn P(A_n) = \infty$ and hence $P(A_n \text{ i.o.}) = 1$.
 \end{ex}
 
 \begin{proof}
-  \TODO
+  Suppose for contradiction that $X_n$ does not converge to $X$ a.s. 
+  Then there is a set $A \subset \Omega$ such that $P(A) > 0$ and 
+  $X_n (\omega)$ does not converge to $X(\omega)$ for all $\omega \in A$.
+  Let
+  \[
+  B_r = \left\{ \omega : \abs{X_n (\omega) - X (\omega)}
+  > 2^{-r} \text{ i.o.} \right\},
+  \]
+  then $A = \bigcup_{r=1}^\infty B_r$. By continuity of measure, 
+  there exists $r$ such that $P (B_r) = \alpha > 0$
+  Since $B_r$ is countable, enumerate the elements in $B_r$ by 
+  $\seqinfi{\omega_i}$. Write $\epsilon = 2^{-r}$.
+
+  Now, there is a subsequence $n^1 (j)$ such that 
+  $\abs{X_{n^1 (j)} (\omega_1) - X(\omega_1)} > \epsilon$ for all $j$.
+  Once we construct $n^{k - 1} (j)$, there is a subsequence $n^{k} (j)$ 
+  such that $\abs{X_{n^k(j)} (\omega_k) - X (\omega_k)} > \epsilon$
+  for all $j$. Let $m(k) = n^k (k)$, then 
+  $\abs{X_{m(k)} (\omega) - X(\omega)} > \epsilon$ for all $k$ and 
+  all $\omega \in A$. This implies 
+  \[
+  P \left( \abs{X_{m(k)} - X(\omega)} > \epsilon \right) 
+  = \alpha > 0.
+  \]
+  Hence, $P (\abs{X_n - X} > \epsilon) = \alpha$ i.o.\ and $X_n$ does not 
+  converge to $X$ in probability, contradiction.
 
 \end{proof}
 
 \begin{ex}[Durrett 2.3.14]
-  Let $X_1, X_2, \dots$ be independent. Show that $\sup X_n < \infty$ a.s. if
-  and only if $\suminfn P(X_n > A) < \infty$ for some $A$.
+  Let $X_1, X_2, \dots$ be independent. Show that $\sup X_n < \infty$ a.s.\ 
+  if and only if $\suminfn P(X_n > A) < \infty$ for some $A$.
 \end{ex}
 
 \begin{proof}
+  ($\implies$) Suppose $\sup X_n = A < \infty$ a.s. Then, 
+  $P (X_n > A) = 0$ for all $n$. 
+
+  ($\impliedby$) Suppose $\suminfn P(X_n > A) < \infty$ for some $A$.
   \TODO
+
+\end{proof}
+
+\section{Central Limit Theorems}
+
+\setcounter{subsection}{2}
+
+\subsection{Characteristic functions}
+
+\begin{ex}[Durrett 3.3.10]
+  Using the identity $\sin t = 2 \sin \frac{t}{2} \cos \frac{t}{2}$ 
+  repeatedly leads to
+  \[
+  \frac{\sin t}{t} = \prod_{m=1}^\infty \cos \left( \frac{t}{2^m} \right).
+  \]
+  Prove the last identity by interpreting each 
+  side as a characteristic function.
+\end{ex}
+
+\begin{proof}
+  Note that 
+  \[
+  \frac{1}{2} \int_{-1}^1 e^{i t x} \d x = \frac{\sin t}{t}.
+  \]
+  Therefore, LHS can be interpreted as the ch.f. of a 
+  $\unif [-1, 1]$ random variable. Meanwhile, 
+  \[
+  \cos \left( 2^{-m} t \right) = \frac{1}{2} \exp (i t 2^{-m}) 
+  + \frac{1}{2} \exp (- i t 2^{-m}).
+  \]
+  Hence, $\cos (2^{-m} t)$ can be interpreted as ch.f. of a random variable 
+  $X_m$ that maps to $\pm 2^{-m}$ with probability $1/2$ each, 
+  and RHS can be interpreted as the sum of independent $X_m$'s.
+  Now we just need to show that $X_1 + \dots + X_n \convd \unif[-1, 1]$. 
+  To verify this, note that $X_m = 2^{-m} (2 b_m - 1)$ where 
+  $\seqinfm{b_m}$ are i.i.d.\ $\Bernoulli (1 / 2)$ random 
+  variables. Meanwhile, $\suminfm 2^{-m} b_m$ converges to 
+  $\unif[0, 1]$ by interpreting the sum as choosing binary digits. 
+  It then immediately follows that $X_1 + \dots + X_n \convd \unif [-1, 1]$.
+  More concretely, we can compute the probability of each dyadic intervals 
+  and approximate all intervals through them. This then uniquely determines 
+  the distribution.
+  By Levy's theorem, the proof for the desired inequality is complete.
+
+\end{proof}
+
+\begin{ex}[Durrett 3.3.20]
+  If $X_1, X_2, \dots$ are independent and have characteristic
+  function $\exp (- \abs{t}^\alpha)$ then 
+  $(X_1 + \dots + X_n) / n^{1 / \alpha}$ has the same distribution
+  as $X_1$.
+\end{ex}
+
+\begin{proof}
+  By independence, the ch.f. of $X_1 + \dots + X_n$ is 
+  $\exp ( - n \abs{t}^\alpha )$. Hence the ch.f. of 
+  $(X_1 + \dots + X_n) / n^{1 / \alpha}$ is 
+  \[
+  \exp \left( - n \abs{\frac{t}{n^{1 / \alpha}}}^\alpha \right) 
+  = \exp (- \abs{t}^\alpha ).
+  \]
+  This is the same ch.f. as $X_1$, so
+  $(X_1 + \dots + X_n) / n^{1 / \alpha}$ has the same distribution
+  as $X_1$.
+
+\end{proof}
+
+\begin{ex}[Durrett 3.3.23]
+  Show that if $X$ and $Y$ are independent and $X + Y$ and
+  $X$ have the same distribution then $Y = 0$ a.s.
+\end{ex}
+
+\begin{proof}
+  Since $X$ and $Y$ are independent, $\phi_{X + Y} = \phi_X \phi_Y$.
+  We are given that $\phi_X \phi_Y = \phi_X$, so 
+  $\phi_Y (t) = 1$ for all $t \in \R$. This coincides with 
+  the ch.f. of $\delta_0$, a point mass at $0$. Therefore, 
+  $Y = 0$ a.s.
 
 \end{proof}
 
