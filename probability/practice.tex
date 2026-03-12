@@ -258,11 +258,19 @@ implies $\suminfn P(A_n) = \infty$ and hence $P(A_n \text{ i.o.}) = 1$.
 \end{ex}
 
 \begin{proof}
-  ($\implies$) Suppose $\sup X_n = A < \infty$ a.s. Then, 
-  $P (X_n > A) = 0$ for all $n$. 
+  ($\implies$) Suppose for contradiction that 
+  $\suminfn P(X_n > A) = \infty$ for any $A < \infty$. 
+  By the second Borel-Cantelli lemma, 
+  we know $P(X_n > A \text{ i.o.}) = 1$ for any $A$. 
+  Since $A$ is arbitrary, this then implies $\sup X_n = \infty$ a.s., 
+  contradiction.
 
   ($\impliedby$) Suppose $\suminfn P(X_n > A) < \infty$ for some $A$.
-  \TODO
+  Then, Borel-Cantelli lemma implies $P (X_n > A \text{ i.o.}) = 0$.
+  That is, for almost sure $\omega \in \Omega$, there exists 
+  $N(\omega)$ such that $X_n(\omega) \leq A$ for all $n \geq N$.
+  For these $\omega$, $\sup X_n (\omega) < \infty$. Therefore, 
+  $\sup X_n < \infty$ a.s.
 
 \end{proof}
 
