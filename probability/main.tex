@@ -2289,4 +2289,116 @@ Now we present a simple applications of the Kolmogorov's $0$-$1$ law.
 
 \end{proof}
 
+\subsection{Conditional expectation}
+
+The notion of conditional expectation is used to study independence 
+between current element of a random process and its history.
+
+As a elementary definition and construction, 
+let $(\Omega, \Sigma, P)$ be a probability space. 
+Suppose $\{ A_j \}_{j \in J}$ be a finite partition of $\Omega$ 
+into disjoint events that has positive probability.
+Suppose also $X$ a random variable with $E \abs{X} < 
+\infty$. For each $j$, we can consider the conditional probability
+space and let $E_j$ be the expectation of the restriction of $X$.
+Then, 
+\[
+  E_j = \frac{1}{P (A_j)} E [X \ind_{A_j}]
+\]
+Now let $Y$ be a new random variable on $(\Omega, \Sigma, P)$ defined 
+via $Y (\omega) = E_j$ if $\omega \in A_j$. It follows that 
+\[
+  E Y 
+  = \sum_{j \in J} E_j P(A_j) 
+  = \sum_{j \in J} E [X \ind_{A_j}] 
+  = E X.
+\]
+Moreover, let $I \subset J$ and let $A_I = \bigcup_{j \in I} A_j$,
+then $\ind_{A_I} = \sum_{j \in I} \ind_{A_j}$.
+We can similarly obtain $E [Y \ind_{A_I}] = E [X \ind_{A_I}]$.
+
+Now we present the formal definition.
+\begin{defi}[Conditional expectation]
+  Let $(\Omega, \Sigma, P)$ be a probability space.
+  Suppose $\fcal \subset \Sigma$ be $\sigma$-field and random 
+  variable $X$ with $E \abs{X} < \infty$.
+  Then the conditional expectation of $X$ given $\fcal$ 
+  is a $\fcal$-measurable random variable, write $E [X \mid \fcal]$
+  such that for any $A \in \fcal$,
+  \[
+    \int_A X \d P = \int_A E [X \mid \fcal] \d P.
+  \]
+\end{defi}
+
+\begin{remark}
+  Note that if $\fcal$ is just $\{ \emptyset, \Omega \}$, then
+  the conditional expectation $E [X \mid \fcal] = E X$.
+\end{remark}
+
+\begin{thm}
+  Conditional expectation exists and is unique up to a null set.
+\end{thm}
+
+\begin{proof}
+  (Uniqueness) Suppose both $f$ and $g$ are  
+  conditional expectation of $X$. Then 
+  \[
+  \int_A f \d P = \int_A X \d P = \int_A g \d P
+  \]
+  for all $A \in \fcal$. Hence, $f = g$.
+
+  (Existence) First suppose $X$ is nonnegative.
+  Define measure $\nu$ on $\fcal$ via
+  \[
+    \nu (A) = \int_A X \d P
+  \]
+  for all $A \in \fcal$. This is a finite measure on $\fcal$, 
+  and it is absolutely continuous w.r.t.\ $P$. 
+  By Random-Nikodym theorem, there exists $\fcal$-measurable 
+  function $f \geq 0$ such that $\nu (A) = \int_A f \d P$.
+  Therefore, $f$ is a conditional expectation of $X$ given $\fcal$.
+  For real-valued $X$, let $f^\pm$ be the conditional expectation 
+  of $X^\pm$. Then, $f^+ - f^-$ is a conditional expectation for $X$.
+
+\end{proof}
+
+\begin{prop}
+  We have the following properties of conditional expectation:
+  \begin{enumerate}
+    \item Suppose $E \abs{X} < \infty$, $E \abs{Y} < \infty$, 
+    and $X \leq Y$ a.e. Then, $E[X \mid \fcal] \leq E[Y \mid \fcal]$.
+
+    \item Suppose $X_n \uparrow X$ a.e., $X \geq 0$ and 
+    $E \abs{X} < \infty$. Then, $E [X_n \mid \fcal] \uparrow 
+    E [X \mid \fcal]$ a.e.
+
+    \item If $X$ is $\fcal$-measurable, then $E [X \mid \fcal]
+    = X$.
+
+    \item If $X$ is independent of $\fcal$, then 
+    $E [X \mid \fcal] = E X$.
+
+    \item If $\fcal_1 \subset \fcal_2 \subset \fcal$, then 
+    $E[ E[X \mid \fcal_2] \mid \fcal_1] = E [X \mid \fcal_1]$.
+    
+  \end{enumerate}
+\end{prop}
+
+\begin{eg}
+  Let $\seqinfi{X_i}$ be i.i.d.\ $\pm 1$ symmetric variable,
+  then $\sumi^n X_i$ is the simple symmetric random walk on $\Z$.
+  Define $\fcal_n = \sigma (X_1, \dots, X_n)$, then 
+  $\seqinfn{\fcal_n}$ forms a filtration. We hope to compute 
+  the conditional expectation $E [S_n \mid \fcal_{n - 1}]$.
+
+  Since $S_n = X_n + S_{n - 1}$, we have 
+  \begin{align*}
+    E[S_n \mid \fcal_{n - 1}]
+    &= E[S_{n - 1} \mid \fcal_{n - 1}] + E[X_n \mid \fcal_{n - 1}] \\
+    &= S_{n - 1} + E X_n \\
+    &= S_{n - 1}.
+  \end{align*}
+
+\end{eg}
+
 \end{document}
