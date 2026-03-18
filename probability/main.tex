@@ -2401,4 +2401,81 @@ Now we present the formal definition.
 
 \end{eg}
 
+\begin{remark}
+  If $\seqinfn{Y_n}$ is a process such that $E (Y_n \mid Y_1, \dots, 
+  Y_{n - 1}) = Y_{n - 1}$, it is a discrete time martingale. 
+  In the example above $\seqinfn{S_n}$ is a discrete time martingale.
+\end{remark}
+
+\begin{remark}
+  If $\seqinfn{Y_n}$ is on a countable state space and 
+  $F_{(Y_n \mid Y_1, \dots Y_{n - 1})} = F_{(Y_n \mid Y_{n - 1})}$,
+  we say $\seqinfn{Y_n}$ satisfies Markov property and is a Markov process. 
+  In the example above $\seqinfn{S_n}$ is a Markov process.
+\end{remark}
+
+\subsection{Reflection principle}
+Consider a random walk $S_n$ on $\Z$.
+Let $\ell \leq 0$ and $u > \ell$ be integers and consider a $n$-time horizon. 
+Start with a realization of 
+$\seqinfk{S_k}$ such that $S_n = u$ and $S_k \leq k$ for some 
+$k \leq n$. Then there is a bijection between paths that end at $u$ 
+and paths that end at $2 \ell - u$. Let $M_n = \min_{0 \leq k \leq n} S_k$
+be the running minimum of the random walk, then we have 
+\[
+P \left( S_n = u, M_n \leq \ell \right)
+= P (S_n = 2l - u).
+\]
+
+\begin{eg}
+  Now we can compute the distribution of $M_n$. 
+  Take $\ell \leq 0$, we have 
+  \begin{align*}
+    P \left( M_n \leq \ell \right) 
+    &= P \left( M_n \leq \ell, S_n \leq \ell \right)  
+    + P \left( M_n \leq \ell , S_n > \ell \right) \\
+    &= P \left( S_n \leq \ell \right)  
+    + P \left( M_n \leq \ell , S_n > \ell \right) \\
+    &= P ( S_n \leq \ell ) 
+    + \sum_{u = \ell + 1}^\infty P \left( M_n \leq \ell , S_n = u \right) \\
+    &= P ( S_n \leq \ell ) + \sum_{u = \ell + 1}^\infty P (S_n = 2 \ell - u) \\
+    &= 2 P ( S_n < \ell ) + P (S_n = \ell).
+  \end{align*}
+  Therefore, 
+  \[
+  P \left( M_n = \ell \right) = P(S_n = \ell) + P(S_n = \ell - 1).
+  \]
+
+  Then we can compute expectation:
+  \begin{align*}
+    E \left[ M_n \right] 
+    &= \sum_{\ell = - \infty}^0 \ell P \left( M_n = \ell \right) \\ 
+    &= \sum_{\ell = - \infty}^0 \ell P \left( S_n = \ell \right) 
+    + \sum_{\ell = - \infty}^{-1} (\ell + 1) P(S_n = \ell) \\ 
+    &= \sum_{\ell = - \infty}^{0} \ell P ( S_n = \ell ) 
+    + \sum_{\ell = 1}^\infty (- \ell) P( S_n = \ell )
+    + \sum_{\ell = - \infty}^{-1} (\ell + 1) P(S_n = \ell) \\
+    &= E [- \abs{S_n}] + P (S_n < 0).
+  \end{align*}
+  As $n \to \infty$, we have 
+  \[
+  \frac{E [M_n]}{E \abs{S_n}} \to -1.
+  \]
+  Hence, 
+  \[
+  E \left[ M_n  \right] = - \sqrt{2 \pi^{-1}} \sqrt{n} + o( \sqrt{n} )
+  \]
+\end{eg}
+
+\begin{ex}
+  Use reflection principle to show that the distribution 
+  of the first return time $T = \min \{ n > 0: S_n = 0 \}$ is
+  \[
+  P(T = 2k) = \frac{1}{2 k - 1} 2^{-2 k} \binom{2k}{k}.
+  \]
+  Then show $P (T = \infty) = 0$. This is called the recurrence property.
+\end{ex}
+
+
+
 \end{document}
