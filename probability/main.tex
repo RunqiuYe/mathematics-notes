@@ -2588,8 +2588,8 @@ E [\tr X X^T] = E [X^T X] = E \norm{X}^2$.
   and $\cov [X] = \Sigma \in \R^{n \times n}$. If 
   for any $y \in \R^n$ and $t > 0$, 
   \[
-  P \left( \bra X, y \ket > t \left( E \bra X, y \ket^2 \right)^{1/2} 
-  \right) \leq 2 \exp \left( - \frac{t^2}{k^2} \right)
+  P \left\{ \bra X, y \ket > t \left( E \bra X, y \ket^2 \right)^{1/2} 
+  \right\} \leq 2 \exp \left( - \frac{t^2}{k^2} \right)
   \]
   We say $X$ is a sub-Gaussing vector.
 \end{defi}
@@ -2601,7 +2601,7 @@ the norm of $X$.
   Suppose $X$ is a sub-Gaussin random vector, then there exists 
   $C_k, c_k$ > 0 such that 
   \[
-  P \left( \norm{X}_2 > t \left( E \norm{X}_2^2 \right)^{1/2} \right)
+  P \left\{ \norm{X}_2 > t \left( E \norm{X}_2^2 \right)^{1/2} \right\}
   \leq C_k \exp (- c_k t^2)
   \]
   for all $t > 0$.
