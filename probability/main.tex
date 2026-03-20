@@ -1078,7 +1078,10 @@ so the claim follows from dominated convergence theorem.
 
 \begin{proof}
   (1) $\implies$ (2). Suppose $M_X (\epsilon) = E \left[ \suminfn \frac{\epsilon^n 
-  X_n}{n!} \right] < \infty$. This implies that $\sup_{n \geq 1} E \left[ \frac{\epsilon^n X^n}{n!} \right] < \infty$.
+  X_n}{n!} \right] < \infty$. This implies that
+  \[
+  \sup_{n \geq 1} E \left[ \frac{\epsilon^n X^n}{n!} \right] < \infty.
+  \]
   Let $1 \leq C < \infty$ be such that $E \left[ \frac{\epsilon^n X^n}{n!} \right] < C$
   for all $n \geq 1$. We then have 
   \[
@@ -2120,8 +2123,8 @@ with characteristic functions.
     &=  h \left( b_n^{-1} Z \right) 
     + h' \left( b_n^{-1} Z \right) \left( b_n^{-1} S_n^{(j)} - b_n^{-1} Z \right)
     + \frac{1}{2} h'' \left( b_n^{-1} Z \right) \left( b_n^{-1} S_n^{(j)} - b_n^{-1} Z \right)^2 \\ 
-    & \quad + O \left( \min \left\{ b_n^{-2} (S_n^{j} - Z)^2, 
-    b_n^{-3} (S_n^{j} - Z)^3 \right\} \right).
+    & \quad + O \left( \min \left\{ b_n^{-2} (S_n^{(j)} - Z)^2, 
+    b_n^{-3} (S_n^{(j)} - Z)^3 \right\} \right).
   \end{align*}
   Note that $S_n^{(j)} - Z = Y_j$ is independent of $Z$.
   It follows that 
@@ -2414,6 +2417,55 @@ Now we present the formal definition.
   In the example above $\seqinfn{S_n}$ is a Markov process.
 \end{remark}
 
+\begin{defi}[conditional probability]
+  The conditional probability $P(A \mid \fcal)$ is defined via 
+  \[
+  P (A \mid \fcal) = E [\ind_A \mid \fcal].
+  \]
+\end{defi}
+
+\begin{prop}
+  If $X$ and $Y$ are independent random variables, then 
+  $E[X \mid Y] = E X$.
+\end{prop}
+
+\begin{proof}
+  For any event $A \in \sigma (Y)$, we have 
+  \begin{align*}
+    \int_A E[X \mid Y] \d P = \int_A X \d P 
+    = \int X \ind_A \d P.
+  \end{align*}
+  However, 
+  \[
+  \int X \ind_A \d P = E[X] E[\ind_A] = P(A) E[X] = \int_A E X \d P.
+  \]
+  By uniqueness of conditional expectation, the proof is complete.
+
+\end{proof}
+
+\begin{prop}
+  If $X$ and $Y$ are independent random variables 
+  and $f$ is a Borel functions on $\R^2$,
+  then 
+  \[
+  E [f(X, Y) \mid X] = g(X),
+  \]
+  where $g(x) = E f(x, Y)$ for all $x \in \R$.
+\end{prop}
+
+\begin{proof}
+  Consider a setting where $X(\omega_1, \omega_2) = h(\omega_1)$,
+  $Y(\omega_1, \omega_2) = z(\omega_2)$ and $\Omega = \Omega_X \times
+  \Omega_Y$. Then for any event $A \in \Omega_X$, we have 
+  \begin{align*}
+    \int_A g(X) 
+    &= \int_A \int_{\Omega_Y} 
+    f(X(\omega_1), Y(\omega_2))  \d P(\omega_1) \d P(\omega_2) \\ 
+    &= \int_{A \times \Omega_Y} f(X(\omega_1), Y(\omega_2)) 
+    \d P(\omega_1, \omega_2).
+  \end{align*}
+\end{proof}
+
 \subsection{Reflection principle}
 Consider a random walk $S_n$ on $\Z$.
 Let $\ell \leq 0$ and $u > \ell$ be integers and consider a $n$-time horizon. 
@@ -2473,9 +2525,87 @@ P \left( S_n = u, M_n \leq \ell \right)
   \[
   P(T = 2k) = \frac{1}{2 k - 1} 2^{-2 k} \binom{2k}{k}.
   \]
-  Then show $P (T = \infty) = 0$. This is called the recurrence property.
+  Then show $P (T = \infty) = 0$. This is called the \emph{recurrence} 
+  property.
 \end{ex}
 
+\begin{eg}[recurrence]
+  From the previous exercise, we know the first return time $T$ 
+  is finite with probability one. It follows that
+  \[
+  P \left( S_n = 0 \text{ i.o.} \right) = 1.
+  \]
+  Let $T_1$ be the time of first return to zero, i.e.\ 
+  $T_1 = \min \{ t \geq 1 : S_t = 0 \}$, and define 
+  a random sequence $\seqinfn{S_{T_1 + n}}$. 
+  Let $i_1, \dots, i_k$ be fixed integers, we want to show 
+  \[
+  P \left( \cap_{j=1}^k S_{T_1 + j} = i_j \right)
+  = P \left( \cap_{j=1}^k S_j = i_j \right).
+  \]
+  Towards using Markov property of random walk, we have
+  \begin{align*}
+    P \left( \cap_{j=1}^k S_{T_1 + j} = i_j \right)
+    &= \sum_{\ell \geq 1}  \sum_{u_1, \dots, u_{\ell - 1}}
+    P \left( T_1 = \ell, \cap_{j=1}^{\ell - 1} S_j = u_j, 
+      \cap_{j=1}^k S_{\ell+ j} = i_j \right)
+  \end{align*}
+  For each term, we have 
+  \begin{align*}
+    P \left( T_1 = \ell, \cap_{j=1}^{\ell - 1} S_j = u_j, 
+    \cap_{j=1}^k S_{\ell + j} = i_j \right)
+    = P \left( T_1 = \ell, \cap_{j=1}^{\ell - 1} S_j = u_j \right)
+    P \left( \cap_{j=1}^k S_{\ell + j} = i_j \mid T_1 = \ell \right)
+  \end{align*}
+  The second term is the same for any $\ell \geq 0$, so the summation 
+  becomes 
+  \begin{align*}
+    P(\cap_{j=1}^k S_{T_1 + j} = i_j)
+    &= \sum_{\ell \geq 1} P(T_1 = \ell) 
+    P \left( \cap_{j=1}^k S_{\ell + j} = i_j \mid T_1 = \ell \right) \\
+    &= P(\cap_{j=1}^k S_{T_1 + j} = i_j)
+  \end{align*}
+  Therefore, $S_{T_1 + n} \sim S_n$ are equidistributed.
+  
+  Following this, we can also define $T_k$ inductively 
+  as the time of $k$-th return to zero, and it is easy to 
+  see that $P (\capk^\infty T_k < \infty) = 1$. Also, note that 
+  $\{ T_k \leq \ell \} \in \sigma (S_1, \dots, S_\ell)$, this is 
+  called the \emph{stopping time} property.
+\end{eg}
+
+\subsection{Sub-Gaussin random variables}
+
+The convariance matrix of $X \in \R^n$ with $E X = 0$ is defined as
+\[
+  \cov [X] = E [X X^T].
+\]
+Note that $\tr E[X X^T] = 
+E [\tr X X^T] = E [X^T X] = E \norm{X}^2$.
+
+\begin{defi}
+  Let $X$ be a random vector in $\R^n$. Suppose $EX = 0$
+  and $\cov [X] = \Sigma \in \R^{n \times n}$. If 
+  for any $y \in \R^n$ and $t > 0$, 
+  \[
+  P \left( \bra X, y \ket > t \left( E \bra X, y \ket^2 \right)^{1/2} 
+  \right) \leq 2 \exp \left( - \frac{t^2}{k^2} \right)
+  \]
+  We say $X$ is a sub-Gaussing vector.
+\end{defi}
+
+If $X$ is a sub-Gaussin vector, then we have some constraints on 
+the norm of $X$.
+
+\begin{thm}
+  Suppose $X$ is a sub-Gaussin random vector, then there exists 
+  $C_k, c_k$ > 0 such that 
+  \[
+  P \left( \norm{X}_2 > t \left( E \norm{X}_2^2 \right)^{1/2} \right)
+  \leq C_k \exp (- c_k t^2)
+  \]
+  for all $t > 0$.
+\end{thm}
 
 
 \end{document}
