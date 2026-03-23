@@ -2588,7 +2588,7 @@ E [\tr X X^T] = E [X^T X] = E \norm{X}^2$.
   and $\cov [X] = \Sigma \in \R^{n \times n}$. If 
   for any $y \in \R^n$ and $t > 0$, 
   \[
-  P \left\{ \bra X, y \ket > t \left( E \bra X, y \ket^2 \right)^{1/2} 
+  P \left\{ \bra X, y \ket > t ( E \bra X, y \ket^2 )^{1/2} 
   \right\} \leq 2 \exp \left( - \frac{t^2}{k^2} \right)
   \]
   We say $X$ is a sub-Gaussing vector.
@@ -2599,13 +2599,108 @@ the norm of $X$.
 
 \begin{thm}
   Suppose $X$ is a sub-Gaussin random vector, then there exists 
-  $C_k, c_k$ > 0 such that 
+  $C_k, c_k > 0$ such that 
   \[
-  P \left\{ \norm{X}_2 > t \left( E \norm{X}_2^2 \right)^{1/2} \right\}
+  P \left\{ \norm{X}_2 > t ( E \norm{X}_2^2 )^{1/2} \right\}
   \leq C_k \exp (- c_k t^2)
   \]
   for all $t > 0$.
 \end{thm}
+
+\begin{proof}
+  The idea of the proof is to use test vectors and conditional 
+  expectation. Let $V \sim \ncal (0, I_n)$ and independent from $X$.
+  Fix $t > 0$ and define event 
+  $A_t = \{ \norm{x} > t (E \norm{x}^2)^{1/2} \}$.
+  There exists some $c$ such that for any $\tilde{x} \in \R^n$, 
+  $P \{ \abs{\bra V, \tilde{x} \ket} \geq c \norm{\tilde{x}} \} \geq 
+  \frac{3}{4}$. Define also 
+  \[
+  f(\tilde{x}, \tilde{v}) = \ind_{\left( \abs{\bra \tilde{v}, 
+  \tilde{x} \ket} \geq c \norm{\tilde{x}} \right)}, 
+  \quad 
+  g(\tilde{x}) = E f(\tilde{x}, V) 
+  = P \{ \abs{\bra V, \tilde{x} \ket} \geq c \norm{\tilde{x}}\} 
+  \geq \frac{3}{4}.
+  \]
+  Since $V$ and $X$ are independent, $E [f(X, V) \mid X] = g(X)$ a.e. 
+  It follows that 
+  \[
+  P \{ \abs{\bra V, X \ket} \geq c \norm{X} \mid X \} \geq \frac{3}{4} \text{ a.e.}
+  \]
+  Next, we have $E (V^T \Sigma V) = \tr \Sigma = E \norm{X}^2$.
+  Note that $\Sigma$ is PSD, Markov inequality gives 
+  \[
+  P \{ V^T \Sigma V \leq 4 E \norm{X}^2 \} 
+  = P \{ V^T \Sigma V \leq 4 E \norm{X}^2 \mid X \} 
+  \geq \frac{3}{4}.
+  \]
+  Combining the two inequalities, we obtain 
+  \[
+  P \{ V^T \Sigma V \leq 4 E \norm{X}^2 \text{ and }
+  \abs{\bra V, X \ket} \geq c \norm{X} \mid X \} 
+  \geq \frac{1}{2} \text{ a.e.}
+  \]
+  Define event $A = \{ V^T \Sigma V \leq 4 E \norm{X}^2 \text{ and }
+  \abs{\bra V, X \ket} \geq c \norm{X} \mid X \}$.
+
+  Now we have $P(A \cap A_t) = P(A_t) P(A \mid A_t)$. Note that 
+  $A_t$ is $X$-measurable and $P( A \mid X ) \geq \frac{1}{2}$
+  a.e. Therefore, $P(A \cap A_t) \geq \frac{1}{2} P(A_t)$. 
+  Through computation we can obtain
+  \[
+  A \cap A_t \subset \left\{ \abs{ \bra V, X \ket }
+  \geq \frac{1}{2} ct \sqrt{V^T \Sigma V} \right\}.
+  \]
+  We now just need to bound the probability of the event on RHS.
+
+  For any $v \in \R^n$, define a new function $h$ via 
+  \begin{align*}
+    h (v) 
+    = E \ind_{ \left\{ \abs{\bra v, X \ket} \geq \frac{1}{2} 
+    c t \sqrt{ v^T \Sigma v} \right\} }
+    = E \ind_{ \left\{ \abs{\bra v, X \ket} \geq \frac{1}{2} c t 
+    \sqrt{E \bra v, X \ket^2} \right\} }
+  \end{align*}
+  Since $X$ is sub-Gaussian, $h(v) \leq 2 \exp \left( - \frac{c^2 t^2}{4 k^2} \right)$ a.e. 
+  Therefore, 
+  \[
+  E P \{\abs{V, X} \geq \frac{1}{2} c t \sqrt{V^T \Sigma V} \mid V\} 
+  = E h (V) \leq 2 \exp \left( - \frac{c^2 t^2}{4 k^2} \right).
+  \]
+  The LHS is exactly $P \{ \abs{\bra V, X \ket} \geq \frac{1}{2} 
+  c t \sqrt{ V^T \Sigma V } \} $, and the proof is complete.
+
+\end{proof}
+
+\subsection{Martingales}
+
+\begin{defi}
+  Let $\seqinfn{\fcal_n}$ be a filtration and $\seqinfn{X_n}$ be 
+  an adapted sequence, i.e.\ $X_n$ is $\fcal_n$ measurable. 
+  Suppose also $E \abs{X_n} < \infty$ for all $n$. Then 
+  \begin{enumerate}
+    \item $\seqinfn{X_n}$ is a submartingale if 
+    $E [X_{n + 1} \mid \fcal_n] \geq X_n$ for all $n$.
+    \item $\seqinfn{X_n}$ is a supermaritngale if 
+    $E [X_{n + 1} \mid \fcal_n] \leq X_n$ for all $n$.
+    \item $\seqinfn{X_n}$ is a martingale if 
+    $E [X_{n + 1} \mid \fcal_n] = X_n$ for all $n$
+  \end{enumerate}
+\end{defi}
+
+\begin{eg}
+  Suppose $\seqinfn{Y_n}$ are mutually independent nonnegative 
+  random variables with $E Y_n = 1$. Define $X_n = \prod_{j=1}^n Y_j$.
+  Under the filtration $\fcal_n = \sigma (Y_1, \dots, Y_n)$, 
+  $X_n$ is a martingale.
+\end{eg}
+
+\begin{eg}
+  Suppose $X$ is random variable with $E \abs{X} < \infty$ 
+  and $\fcal_0 \subset \fcal_1 \subset \cdots$ is a filtration.
+  Then $X_n = E [X \mid \fcal_n]$ is a martingale.
+\end{eg}
 
 
 \end{document}
