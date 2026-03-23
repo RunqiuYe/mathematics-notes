@@ -346,9 +346,23 @@ implies $\suminfn P(A_n) = \infty$ and hence $P(A_n \text{ i.o.}) = 1$.
 \begin{proof}
   Since $X$ and $Y$ are independent, $\phi_{X + Y} = \phi_X \phi_Y$.
   We are given that $\phi_X \phi_Y = \phi_X$, so 
-  $\phi_Y (t) = 1$ for all $t \in \R$. This coincides with 
-  the ch.f. of $\delta_0$, a point mass at $0$. Therefore, 
-  $Y = 0$ a.s.
+  \[
+  \phi_X (t) (\phi_Y (t) - 1) = 0
+  \]
+  for all $t \in \R$. Note that $\phi_X(0) = 1$ and $\phi_X$ is
+  continuous, so $\phi_Y = 0$ on a neighborhood of zero. 
+  Now show that this implies $Y = 0$ a.s.
+
+  Let $t$ be in this neighborhood, then $1 = E[\cos (t Y)]$. 
+  Note that $\cos (t Y) \leq 1$, so this implies 
+  $\cos (t Y) = 1$ a.s., and $t Y \in 2 \pi \Z$ a.s. Let 
+  $t_1, t_2$ be both in this neighborhood and $t_1 / t_2 \notin \Q$. 
+  Then $t_1 Y \in 2 \pi \Z$ and $t_2 Y \in 2 \pi \Z$ a.s. If 
+  $Y(\omega) \neq 0$, then 
+  \[
+  \frac{t_1}{t_2} = \frac{t_1 Y(\omega)}{t_2 Y(\omega)} \in \Q,
+  \]
+  a contradiction. Therefore, $Y = 0$ a.s.
 
 \end{proof}
 

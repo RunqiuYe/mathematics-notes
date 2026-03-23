@@ -1640,9 +1640,7 @@ P \left( X \geq t \mid X \geq s \right)
 \end{defi}
 
 \begin{proof}
-  (1) $\implies$ (2). Exercise. \TODO
-
-  (2) $\implies$ (1). Later using characteristic functions.
+  \TODO
 
 \end{proof}
 
@@ -2614,10 +2612,10 @@ the norm of $X$.
   $A_t = \{ \norm{x} > t (E \norm{x}^2)^{1/2} \}$.
   There exists some $c$ such that for any $\tilde{x} \in \R^n$, 
   $P \{ \abs{\bra V, \tilde{x} \ket} \geq c \norm{\tilde{x}} \} \geq 
-  \frac{3}{4}$. Define also 
+  \frac{3}{4}$. Define function $f$ and $g$ via
   \[
-  f(\tilde{x}, \tilde{v}) = \ind_{\left( \abs{\bra \tilde{v}, 
-  \tilde{x} \ket} \geq c \norm{\tilde{x}} \right)}, 
+  f(\tilde{x}, \tilde{v}) = \ind_{\left\{ \abs{\bra \tilde{v}, 
+  \tilde{x} \ket} \geq c \norm{\tilde{x}} \right\}}, 
   \quad 
   g(\tilde{x}) = E f(\tilde{x}, V) 
   = P \{ \abs{\bra V, \tilde{x} \ket} \geq c \norm{\tilde{x}}\} 
@@ -2628,7 +2626,8 @@ the norm of $X$.
   \[
   P \{ \abs{\bra V, X \ket} \geq c \norm{X} \mid X \} \geq \frac{3}{4} \text{ a.e.}
   \]
-  Next, we have $E (V^T \Sigma V) = \tr \Sigma = E \norm{X}^2$.
+  Next, since the componenets of $V$x are i.i.d.\ $\ncal(0, 1)$, 
+  we have $E (V^T \Sigma V) = \tr \Sigma = E \norm{X}^2$.
   Note that $\Sigma$ is PSD, Markov inequality gives 
   \[
   P \{ V^T \Sigma V \leq 4 E \norm{X}^2 \} 
@@ -2669,7 +2668,10 @@ the norm of $X$.
   = E h (V) \leq 2 \exp \left( - \frac{c^2 t^2}{4 k^2} \right).
   \]
   The LHS is exactly $P \{ \abs{\bra V, X \ket} \geq \frac{1}{2} 
-  c t \sqrt{ V^T \Sigma V } \} $, and the proof is complete.
+  c t \sqrt{ V^T \Sigma V } \} $, so 
+  \[
+  P(A_t) \leq 2 P(A \cap A_t) \leq 4 \exp \left( - \frac{c^2 t^2}{4 k^2} \right)
+  \]
 
 \end{proof}
 
@@ -2692,8 +2694,8 @@ the norm of $X$.
 \begin{eg}
   Suppose $\seqinfn{Y_n}$ are mutually independent nonnegative 
   random variables with $E Y_n = 1$. Define $X_n = \prod_{j=1}^n Y_j$.
-  Under the filtration $\fcal_n = \sigma (Y_1, \dots, Y_n)$, 
-  $X_n$ is a martingale.
+  Then $\fcal_n = \sigma (Y_1, \dots, Y_n)$ is a filtration, 
+  and with this filtration $X_n$ is a martingale.
 \end{eg}
 
 \begin{eg}
