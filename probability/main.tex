@@ -699,10 +699,10 @@ $A^c, B$ are independent.
   Suppose $P (B) > 0$, then the conditional probability of $A$
   given $B$ is defined as
   \[
-  P (A \mid B) = \frac{P (A \cap B)}{P (B)}.
+  P (A | B) = \frac{P (A \cap B)}{P (B)}.
   \]
   Then, independence of $A$ and $B$ is equivalent to
-  $P (A \mid B) = P (A)$.
+  $P (A | B) = P (A)$.
 \end{remark}
 
 \begin{defi}
@@ -1438,7 +1438,7 @@ example presenting the law of rare events. First we need some definitions.
 The exponential distribution is a memoryless distribution: suppose 
 $X \sim \Exp (\lambda)$ and $t > s > 0$. Then, 
 \[
-P \left( X \geq t \mid X \geq s \right)
+P \left( X \geq t | X \geq s \right)
 = \frac{P \left( X \geq t \right)}{P \left( X \geq s \right)}
 = \exp (- \lambda (t - s)) 
 = P \left( X \geq t - s \right).
@@ -2324,16 +2324,16 @@ Now we present the formal definition.
   Suppose $\fcal \subset \Sigma$ be $\sigma$-field and random 
   variable $X$ with $E \abs{X} < \infty$.
   Then the conditional expectation of $X$ given $\fcal$ 
-  is a $\fcal$-measurable random variable, write $E [X \mid \fcal]$
+  is a $\fcal$-measurable random variable, write $E [X | \fcal]$
   such that for any $A \in \fcal$,
   \[
-    \int_A X \d P = \int_A E [X \mid \fcal] \d P.
+    \int_A X \d P = \int_A E [X | \fcal] \d P.
   \]
 \end{defi}
 
 \begin{remark}
   Note that if $\fcal$ is just $\{ \emptyset, \Omega \}$, then
-  the conditional expectation $E [X \mid \fcal] = E X$.
+  the conditional expectation $E [X | \fcal] = E X$.
 \end{remark}
 
 \begin{thm}
@@ -2367,20 +2367,20 @@ Now we present the formal definition.
   We have the following properties of conditional expectation:
   \begin{enumerate}
     \item Suppose $E \abs{X} < \infty$, $E \abs{Y} < \infty$, 
-    and $X \leq Y$ a.e. Then, $E[X \mid \fcal] \leq E[Y \mid \fcal]$.
+    and $X \leq Y$ a.e. Then, $E[X | \fcal] \leq E[Y | \fcal]$.
 
     \item Suppose $X_n \uparrow X$ a.e., $X \geq 0$ and 
-    $E \abs{X} < \infty$. Then, $E [X_n \mid \fcal] \uparrow 
-    E [X \mid \fcal]$ a.e.
+    $E \abs{X} < \infty$. Then, $E [X_n | \fcal] \uparrow 
+    E [X | \fcal]$ a.e.
 
-    \item If $X$ is $\fcal$-measurable, then $E [X \mid \fcal]
+    \item If $X$ is $\fcal$-measurable, then $E [X | \fcal]
     = X$.
 
     \item If $X$ is independent of $\fcal$, then 
-    $E [X \mid \fcal] = E X$.
+    $E [X | \fcal] = E X$.
 
     \item If $\fcal_1 \subset \fcal_2 \subset \fcal$, then 
-    $E[ E[X \mid \fcal_2] \mid \fcal_1] = E [X \mid \fcal_1]$.
+    $E[ E[X | \fcal_2] | \fcal_1] = E [X | \fcal_1]$.
     
   \end{enumerate}
 \end{prop}
@@ -2390,12 +2390,12 @@ Now we present the formal definition.
   then $\sumi^n X_i$ is the simple symmetric random walk on $\Z$.
   Define $\fcal_n = \sigma (X_1, \dots, X_n)$, then 
   $\seqinfn{\fcal_n}$ forms a filtration. We hope to compute 
-  the conditional expectation $E [S_n \mid \fcal_{n - 1}]$.
+  the conditional expectation $E [S_n | \fcal_{n - 1}]$.
 
   Since $S_n = X_n + S_{n - 1}$, we have 
   \begin{align*}
-    E[S_n \mid \fcal_{n - 1}]
-    &= E[S_{n - 1} \mid \fcal_{n - 1}] + E[X_n \mid \fcal_{n - 1}] \\
+    E[S_n | \fcal_{n - 1}]
+    &= E[S_{n - 1} | \fcal_{n - 1}] + E[X_n | \fcal_{n - 1}] \\
     &= S_{n - 1} + E X_n \\
     &= S_{n - 1}.
   \end{align*}
@@ -2403,34 +2403,34 @@ Now we present the formal definition.
 \end{eg}
 
 \begin{remark}
-  If $\seqinfn{Y_n}$ is a process such that $E (Y_n \mid Y_1, \dots, 
+  If $\seqinfn{Y_n}$ is a process such that $E (Y_n | Y_1, \dots, 
   Y_{n - 1}) = Y_{n - 1}$, it is a discrete time martingale. 
   In the example above $\seqinfn{S_n}$ is a discrete time martingale.
 \end{remark}
 
 \begin{remark}
   If $\seqinfn{Y_n}$ is on a countable state space and 
-  $F_{(Y_n \mid Y_1, \dots Y_{n - 1})} = F_{(Y_n \mid Y_{n - 1})}$,
+  $F_{(Y_n | Y_1, \dots Y_{n - 1})} = F_{(Y_n | Y_{n - 1})}$,
   we say $\seqinfn{Y_n}$ satisfies Markov property and is a Markov process. 
   In the example above $\seqinfn{S_n}$ is a Markov process.
 \end{remark}
 
 \begin{defi}[conditional probability]
-  The conditional probability $P(A \mid \fcal)$ is defined via 
+  The conditional probability $P(A | \fcal)$ is defined via 
   \[
-  P (A \mid \fcal) = E [\ind_A \mid \fcal].
+  P (A | \fcal) = E [\ind_A | \fcal].
   \]
 \end{defi}
 
 \begin{prop}
   If $X$ and $Y$ are independent random variables, then 
-  $E[X \mid Y] = E X$.
+  $E[X | Y] = E X$.
 \end{prop}
 
 \begin{proof}
   For any event $A \in \sigma (Y)$, we have 
   \begin{align*}
-    \int_A E[X \mid Y] \d P = \int_A X \d P 
+    \int_A E[X | Y] \d P = \int_A X \d P 
     = \int X \ind_A \d P.
   \end{align*}
   However, 
@@ -2446,7 +2446,7 @@ Now we present the formal definition.
   and $f$ is a Borel functions on $\R^2$,
   then 
   \[
-  E [f(X, Y) \mid X] = g(X),
+  E [f(X, Y) | X] = g(X),
   \]
   where $g(x) = E f(x, Y)$ for all $x \in \R$.
 \end{prop}
@@ -2553,14 +2553,14 @@ P \left( S_n = u, M_n \leq \ell \right)
     P \left( T_1 = \ell, \cap_{j=1}^{\ell - 1} S_j = u_j, 
     \cap_{j=1}^k S_{\ell + j} = i_j \right)
     = P \left( T_1 = \ell, \cap_{j=1}^{\ell - 1} S_j = u_j \right)
-    P \left( \cap_{j=1}^k S_{\ell + j} = i_j \mid T_1 = \ell \right)
+    P \left( \cap_{j=1}^k S_{\ell + j} = i_j | T_1 = \ell \right)
   \end{align*}
   The second term is the same for any $\ell \geq 0$, so the summation 
   becomes 
   \begin{align*}
     P(\cap_{j=1}^k S_{T_1 + j} = i_j)
     &= \sum_{\ell \geq 1} P(T_1 = \ell) 
-    P \left( \cap_{j=1}^k S_{\ell + j} = i_j \mid T_1 = \ell \right) \\
+    P \left( \cap_{j=1}^k S_{\ell + j} = i_j | T_1 = \ell \right) \\
     &= P(\cap_{j=1}^k S_{T_1 + j} = i_j)
   \end{align*}
   Therefore, $S_{T_1 + n} \sim S_n$ are equidistributed.
@@ -2621,30 +2621,30 @@ the norm of $X$.
   = P \{ \abs{\bra V, \tilde{x} \ket} \geq c \norm{\tilde{x}}\} 
   \geq \frac{3}{4}.
   \]
-  Since $V$ and $X$ are independent, $E [f(X, V) \mid X] = g(X)$ a.e. 
+  Since $V$ and $X$ are independent, $E [f(X, V) | X] = g(X)$ a.e. 
   It follows that 
   \[
-  P \{ \abs{\bra V, X \ket} \geq c \norm{X} \mid X \} \geq \frac{3}{4} \text{ a.e.}
+  P \{ \abs{\bra V, X \ket} \geq c \norm{X} | X \} \geq \frac{3}{4} \text{ a.e.}
   \]
   Next, since the componenets of $V$x are i.i.d.\ $\ncal(0, 1)$, 
   we have $E (V^T \Sigma V) = \tr \Sigma = E \norm{X}^2$.
   Note that $\Sigma$ is PSD, Markov inequality gives 
   \[
   P \{ V^T \Sigma V \leq 4 E \norm{X}^2 \} 
-  = P \{ V^T \Sigma V \leq 4 E \norm{X}^2 \mid X \} 
+  = P \{ V^T \Sigma V \leq 4 E \norm{X}^2 | X \} 
   \geq \frac{3}{4}.
   \]
   Combining the two inequalities, we obtain 
   \[
   P \{ V^T \Sigma V \leq 4 E \norm{X}^2 \text{ and }
-  \abs{\bra V, X \ket} \geq c \norm{X} \mid X \} 
+  \abs{\bra V, X \ket} \geq c \norm{X} | X \} 
   \geq \frac{1}{2} \text{ a.e.}
   \]
   Define event $A = \{ V^T \Sigma V \leq 4 E \norm{X}^2 \text{ and }
-  \abs{\bra V, X \ket} \geq c \norm{X} \mid X \}$.
+  \abs{\bra V, X \ket} \geq c \norm{X} | X \}$.
 
-  Now we have $P(A \cap A_t) = P(A_t) P(A \mid A_t)$. Note that 
-  $A_t$ is $X$-measurable and $P( A \mid X ) \geq \frac{1}{2}$
+  Now we have $P(A \cap A_t) = P(A_t) P(A | A_t)$. Note that 
+  $A_t$ is $X$-measurable and $P( A | X ) \geq \frac{1}{2}$
   a.e. Therefore, $P(A \cap A_t) \geq \frac{1}{2} P(A_t)$. 
   Through computation we can obtain
   \[
@@ -2664,7 +2664,7 @@ the norm of $X$.
   Since $X$ is sub-Gaussian, $h(v) \leq 2 \exp \left( - \frac{c^2 t^2}{4 k^2} \right)$ a.e. 
   Therefore, 
   \[
-  E P \{\abs{V, X} \geq \frac{1}{2} c t \sqrt{V^T \Sigma V} \mid V\} 
+  E P \{\abs{V, X} \geq \frac{1}{2} c t \sqrt{V^T \Sigma V} | V\} 
   = E h (V) \leq 2 \exp \left( - \frac{c^2 t^2}{4 k^2} \right).
   \]
   The LHS is exactly $P \{ \abs{\bra V, X \ket} \geq \frac{1}{2} 
@@ -2683,11 +2683,11 @@ the norm of $X$.
   Suppose also $E \abs{X_n} < \infty$ for all $n$. Then 
   \begin{enumerate}
     \item $\seqinfn{X_n}$ is a submartingale if 
-    $E [X_{n + 1} \mid \fcal_n] \geq X_n$ for all $n$.
+    $E [X_{n + 1} | \fcal_n] \geq X_n$ for all $n$.
     \item $\seqinfn{X_n}$ is a supermaritngale if 
-    $E [X_{n + 1} \mid \fcal_n] \leq X_n$ for all $n$.
+    $E [X_{n + 1} | \fcal_n] \leq X_n$ for all $n$.
     \item $\seqinfn{X_n}$ is a martingale if 
-    $E [X_{n + 1} \mid \fcal_n] = X_n$ for all $n$
+    $E [X_{n + 1} | \fcal_n] = X_n$ for all $n$
   \end{enumerate}
 \end{defi}
 
@@ -2701,7 +2701,7 @@ the norm of $X$.
 \begin{eg}
   Suppose $X$ is random variable with $E \abs{X} < \infty$ 
   and $\fcal_0 \subset \fcal_1 \subset \cdots$ is a filtration.
-  Then $X_n = E [X \mid \fcal_n]$ is a martingale.
+  Then $X_n = E [X | \fcal_n]$ is a martingale.
 \end{eg}
 
 
