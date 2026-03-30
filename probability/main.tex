@@ -1150,7 +1150,7 @@ variables.
 
 \end{eg}
 
-We have the following proposition on sub-Gaussian decay of moments.
+We have the following proposition on subgaussian decay of moments.
 \begin{prop}
   Let $X$ be a random variable, TFAE:
   \begin{enumerate}
@@ -2661,7 +2661,7 @@ the norm of $X$.
     = E \ind_{ \left\{ \abs{\bra v, X \ket} \geq \frac{1}{2} c t 
     \sqrt{E \bra v, X \ket^2} \right\} }
   \end{align*}
-  Since $X$ is sub-Gaussian, $h(v) \leq 2 \exp \left( - \frac{c^2 t^2}{4 k^2} \right)$ a.e. 
+  Since $X$ is subgaussian, $h(v) \leq 2 \exp \left( - \frac{c^2 t^2}{4 k^2} \right)$ a.e. 
   Therefore, 
   \[
   E P \left\{ \abs{V, X} \geq \frac{1}{2} c t \sqrt{V^T \Sigma V} | V \right\}
@@ -2933,6 +2933,84 @@ to stopping times.
   so $H_i$ is a predicatble sequence. By the previous theorem, 
   the statement follows.
 \end{eg}
+
+Next we consider the important optional stopping time theorem.
+
+\begin{thm}[Optional stopping time theorem]
+  Let $\seqinfn{\fcal_n}$ be a filtration, $T$ be a stopping time,
+  and $\seqinfn{X_n}$ an adapted sequence. Then 
+  if $\seqinfn{X_n}$ is a submartingale (resp.\ supermaritngale), then 
+  $\seqinfn{X_{n \wedge T}}$ is also a submartingale (resp.\ supermaritngale)
+  w.r.t\ the same filtration $\seqinfn{\fcal_n}$. Moreover, there exists 
+  $M \geq 0$ such that $\seqinfn{X_{(n \vee T) \wedge M}}$
+  is a submartingale (resp.\ supermaritngale) w.r.t\ the filtration
+  $\seqinfm{\sigma (X_{(j \vee T) \wedge M}, 0 \leq j \leq m)}$
+\end{thm}
+
+\begin{proof}
+  For the first part, we have 
+  \[
+  X_{T \wedge n} - X_0 = \sumk^n \ind_{\{T \geq k\}} (X_k - X_{k - 1}).
+  \]
+  Since $\ind_{T \leq k}$ is a predicatble sequences, $X_{T \wedge n}$ 
+  is a submartingale.
+
+  For the second part, write $\gcal_{m} = \sigma (X_{(j \vee T) \wedge M}, 
+  0 \leq j \leq m)$. Fix any $A \in \gcal_{n-1}$ with $P(A) > 0$ and 
+  any $k \in \N \cup \{\infty\}$ such that $P(A \cap \{T = k\}) > 0$.
+  The event $A$ is representable as 
+  $\{ (X_{M \wedge (n \vee T)})_{m=0}^{n - 1} \in B \}$ for some 
+  $B \in \bcal(\R^n)$. Next consider 
+  \begin{align*}
+    E \left[ X_{M \wedge (T \vee n)} - X_{M \wedge (T \vee (n - 1))}
+    | A \cap \{T = k\} \right].
+  \end{align*}
+  There are several cases. 
+
+  If $k \geq n$, then $T \wedge n = T \wedge (n - 1) = T = k$ 
+  on $\{T = k\}$, and the conditional expectation is zero.
+
+  If $k \leq n - 1$, then $T \wedge n = n$ and $T \wedge (n - 1) = n - 1$.
+  The conditional expectation becomes 
+  \[
+  E \left[ X_{M \wedge n} - X_{M \wedge (n - 1)} | A \cap \{T = k\} \right].
+  \]
+  If $M \leq n - 1$, then this becomes zero too. Therefore the only
+  nontrivial case is when $M \geq n$. For this case, the conditional
+  expectation becomes $E [X_n - X_{n - 1} \mid A \cap \{ T = k \}]$.
+  Note that on the event $\{ T = k \}$ with $k \leq n - 1$, we have 
+  \[
+  (j \vee T) \wedge M = (j \vee (n - 1)) \wedge M \leq n - 1
+  \]
+  for all $1 \leq j \leq n - 1$. Therefore, $A$ is 
+  $\fcal_{n - 1}$-measurable. Also, $T$ is a stopping time, so 
+  $\{ T = k \}$ is also $\fcal_{n - 1}$-measurable. Now 
+  submartingale property implies 
+  \begin{align*}
+    E [X_n - X_{n - 1} \mid A \cap \{ T = k \}] 
+    = E [\ind_{A \cap \{T = k\}} E[X_n - X_{n - 1} | \fcal_{n - 1}]] 
+    \geq 0.
+  \end{align*}
+  Therefore, 
+  \[
+  E \left[ X_{M \wedge (T \vee n)} - X_{M \wedge (T \vee (n - 1))}
+    | A \cap \{T = k\} \right] \geq 0.
+  \]
+  Now since $A = \bigsqcup_{k \in \N \cup \{\infty\}} A \cap \{T = k\}$, 
+  we have
+  \[
+  E \left[ X_{M \wedge (T \vee n)} - X_{M \wedge (T \vee (n - 1))}
+    | A \right] = \sum_{k \in \N \cup \{\infty\}} 
+  E \left[ \ind_{A \cap \{T = k\}} (X_{M \wedge (T \vee n)} - X_{M \wedge (T \vee (n - 1))})
+  \right] \geq 0.  
+  \]
+  for any $A \in \gcal_{n - 1}$. This then implies that 
+  \[
+  E \left[ X_{M \wedge (T \vee n)} - X_{M \wedge (T \vee (n - 1))}
+    | \gcal_{n - 1} \right] \geq 0,
+  \]
+  as desired.
+\end{proof}
 
 
 
