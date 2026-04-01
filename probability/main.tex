@@ -2572,7 +2572,7 @@ P \left( S_n = u, M_n \leq \ell \right)
   called the \emph{stopping time} property.
 \end{eg}
 
-\subsection{Sub-Gaussin random variables}
+\subsection{Subgaussian random variables}
 
 The convariance matrix of $X \in \R^n$ with $E X = 0$ is defined as
 \[
@@ -2589,14 +2589,14 @@ E [\tr X X^T] = E [X^T X] = E \norm{X}^2$.
   P \left\{ \bra X, y \ket > t ( E \bra X, y \ket^2 )^{1/2} 
   \right\} \leq 2 \exp \left( - \frac{t^2}{k^2} \right)
   \]
-  We say $X$ is a sub-Gaussing vector.
+  We say $X$ is a subgaussian vector.
 \end{defi}
 
-If $X$ is a sub-Gaussin vector, then we have some constraints on 
+If $X$ is a subgaussian vector, then we have some constraints on 
 the norm of $X$.
 
 \begin{thm}
-  Suppose $X$ is a sub-Gaussin random vector, then there exists 
+  Suppose $X$ is a subgaussian random vector, then there exists 
   $C_k, c_k > 0$ such that 
   \[
   P \left\{ \norm{X}_2 > t ( E \norm{X}_2^2 )^{1/2} \right\}
@@ -2609,7 +2609,7 @@ the norm of $X$.
   The idea of the proof is to use test vectors and conditional 
   expectation. Let $V \sim \ncal (0, I_n)$ and independent from $X$.
   Fix $t > 0$ and define event 
-  $A_t = \{ \norm{x} > t (E \norm{x}^2)^{1/2} \}$.
+  $A_t = \{ \norm{X} > t (E \norm{X}^2)^{1/2} \}$.
   There exists some $c$ such that for any $\tilde{x} \in \R^n$, 
   $P \{ \abs{\bra V, \tilde{x} \ket} \geq c \norm{\tilde{x}} \} \geq 
   \frac{3}{4}$. Define function $f$ and $g$ via
@@ -2626,7 +2626,7 @@ the norm of $X$.
   \[
   P \{ \abs{\bra V, X \ket} \geq c \norm{X} | X \} \geq \frac{3}{4} \text{ a.e.}
   \]
-  Next, since the componenets of $V$x are i.i.d.\ $\ncal(0, 1)$, 
+  Next, since the componenets of $V$ are i.i.d.\ $\ncal(0, 1)$, 
   we have $E (V^T \Sigma V) = \tr \Sigma = E \norm{X}^2$.
   Note that $\Sigma$ is PSD, Markov inequality gives 
   \[
@@ -2641,7 +2641,7 @@ the norm of $X$.
   \geq \frac{1}{2} \text{ a.e.}
   \]
   Define event $A = \{ V^T \Sigma V \leq 4 E \norm{X}^2 \text{ and }
-  \abs{\bra V, X \ket} \geq c \norm{X} | X \}$.
+  \abs{\bra V, X \ket} \geq c \norm{X} \}$.
 
   Now we have $P(A \cap A_t) = P(A_t) P(A | A_t)$. Note that 
   $A_t$ is $X$-measurable and $P( A | X ) \geq \frac{1}{2}$
@@ -2734,7 +2734,7 @@ based on martingales.
   \end{align*}
   No we need to use martingale property of $X_n$. However, we 
   are dealing with the expectation of an exponential. Using 
-  $\exp x < x + \exp (x^2)$ for all $x \in \R$, we have 
+  $\exp x \leq x + \exp (x^2)$ for all $x \in \R$, we have 
   \begin{align*}
     E [\exp (\lambda (X_N - X_{N - 1})) | \fcal_{N - 1}] 
     &\leq E [\lambda (X_N - X_{N - 1}) + \exp (\lambda^2 (X_N - X_{N - 1})^2) 
@@ -2917,10 +2917,10 @@ to stopping times.
 \end{defi}
 
 \begin{eg}
-  Let $\seqinfn{X_n}$ be a martingale w.r.t\
-  filtration $\seqinfn{\fcal_n}$ with $\fcal_0$ being the trivial 
+  Let $\zseqinfn{X_n}$ be a martingale w.r.t\
+  filtration $\zseqinfn{\fcal_n}$ with $\fcal_0$ being the trivial 
   $\sigma$-field. Let $T$ be 
-  a stopping time w.r.t.\ $\seqinfn{\fcal_n}$ 
+  a stopping time w.r.t.\ $\zseqinfn{\fcal_n}$ 
   such that there exists $M < \infty$ satisfying $P \{ T \leq M \} = 1$.
   Then $E X_T = X_0$.
 
@@ -2937,14 +2937,14 @@ to stopping times.
 Next we consider the important optional stopping time theorem.
 
 \begin{thm}[Optional stopping time theorem]
-  Let $\seqinfn{\fcal_n}$ be a filtration, $T$ be a stopping time,
-  and $\seqinfn{X_n}$ an adapted sequence. Then 
-  if $\seqinfn{X_n}$ is a submartingale (resp.\ supermaritngale), then 
-  $\seqinfn{X_{n \wedge T}}$ is also a submartingale (resp.\ supermaritngale)
-  w.r.t\ the same filtration $\seqinfn{\fcal_n}$. Moreover, there exists 
-  $M \geq 0$ such that $\seqinfn{X_{(n \vee T) \wedge M}}$
+  Let $\zseqinfn{\fcal_n}$ be a filtration, $T$ be a stopping time,
+  and $\zseqinfn{X_n}$ an adapted sequence. Then 
+  if $\zseqinfn{X_n}$ is a submartingale (resp.\ supermaritngale), then 
+  $\zseqinfn{X_{n \wedge T}}$ is also a submartingale (resp.\ supermaritngale)
+  w.r.t\ the same filtration $\zseqinfn{\fcal_n}$. Moreover, there exists 
+  $M \geq 0$ such that $\zseqinfn{X_{(n \vee T) \wedge M}}$
   is a submartingale (resp.\ supermaritngale) w.r.t\ the filtration
-  $\seqinfm{\sigma (X_{(j \vee T) \wedge M}, 0 \leq j \leq m)}$
+  $\zseqinfm{\sigma (X_{(j \vee T) \wedge M}, 0 \leq j \leq m)}$
 \end{thm}
 
 \begin{proof}
@@ -3011,6 +3011,119 @@ Next we consider the important optional stopping time theorem.
   \]
   as desired.
 \end{proof}
+
+\begin{thm}[maximal inequalities]
+  Let $\zseqinfn{X_n}$ be a submartingale. Then, 
+  \[
+  a P \left\{ \max_{0 \leq i \leq n} X_i > a \right\}
+  \leq E \left[ X_n \ind_{\{\max_{0 \leq i \leq n} X_i > a \}} \right]
+  \leq E \abs{X_n}
+  \]
+  for any $a > 0$.
+\end{thm}
+
+\begin{proof}
+  Let stopping time $T = \inf \left\{ m \geq 0 : X_m > 0 \right\}$.
+  Then, 
+  \begin{align*}
+    a P \{\max X_i > a\}
+    &\leq E \left[ \ind_{\{ \max X_i > a \}} X_{T \wedge n} \right] \\
+    &= E X_{T \wedge n} - E [\ind_{\{\max X_i \leq a\}} X_{T \wedge n}] \\
+    &=  E X_{T \wedge n} - E [\ind_{\{\max X_i \leq a\}} X_{n}] \\
+  \end{align*}
+  By optional stopping time theorem, $\seqinfm{X_{n \wedge (T \vee m)}}$
+  is a submartingale. Then the expectation of 
+  the $n$-th element is at least the expectation of 
+  the $0$-th element. This implies $E X_{T \wedge n} \leq E X_n$.
+  Rearranging the inequality gives the desired result.
+
+\end{proof}
+
+\begin{cor}[Kolmogorov's maximal inequality]
+  Let $\seqinfn{X_n}$ be mutually independent, $E X_n = 0$, 
+  and $\var X_n < \infty$. Then, 
+  \[
+  P \left\{ \max_{1 \leq n \leq m} \abs{\sumi^n X_i} > a \right\}
+  \leq \frac{1}{a^2} \sumn^m \var X_n
+  \]
+  for any $a > 0$.
+\end{cor}
+
+\begin{proof}
+  Let $Y_n = \left( \sumi^{\min(n, m)} X_i \right)^2$ for $n \geq 1$.
+  We can verify that $Y_n$ is a submartingale. It then 
+  follows from the previous theorem that 
+  \[
+  P \left\{ \max_{1 \leq n \leq m} Y_n > a^2 \right\}
+  \leq \frac{1}{a^2} E \abs{Y_m} = \frac{1}{a^2} \sumn^m \var X_n,
+  \]
+  as desired.
+\end{proof}
+
+Without martingale theory, we can also provide a more elementary
+proof for Kolmogorov's inequality for symmetric variables. 
+
+\begin{thm}
+  Let $\seqinfn{X_n}$ be mutually independent and symmetric random 
+  variables. Suppose also $E X_n = 0$, 
+  and $\var X_n < \infty$. Then, 
+  \[
+  P \left\{ \max_{1 \leq n \leq m} \sumi^n X_i > a \right\}
+  \leq \frac{1}{a^2} \sumn^m \var X_n
+  \]
+  for any $a > 0$.
+\end{thm}
+
+\begin{proof}
+  Write $S_n = \sumi^n X_i$. We have 
+  \begin{align*}
+    P \left\{ \max_{1 \leq i \leq m} S_i > a \right\} 
+    &\leq P \left\{ S_m > a \right\}
+    + P \left\{ \exists i < m : S_i > a \text{ and } S_m < S_i \right\} \\
+    &= P \left\{ S_m > a \right\} 
+    + \sumi^{m - 1} P \left\{ S_i > a \text{, and } S_r \leq a
+    \text{ for all $r < i$, and } S_m - S_i < 0 \right\} \\
+    &= P \left\{ S_m > a \right\} 
+    + \sumi^{m - 1} P \left\{ S_i > a \text{, and } S_r \leq a
+    \text{ for all $r < i$, and } S_m - S_i > 0 \right\},
+  \end{align*}
+  where in the last step we used the fact that $X_i$'s are symmetric.
+  Then, combining $S_i > a$ and $S_m - S_i > 0$, we can obtain 
+  \[
+  P \left\{ \max S_i > a \right\} 
+  \leq 2 P \left\{ S_m > a \right\} 
+  = P \left\{ \abs{S_m} > a \right\}
+  \leq \frac{1}{a^2} \sumi^m \var X_i.
+  \]
+
+\end{proof}
+
+\begin{thm}[upcrossing lemma]
+  Let $\zseqinfn{X_n}$ be a submartingale and fix $a < b$.
+  Next define stopping times $\zseqinfk{T_k}$ taking values
+  in $\N \cup \{\infty, 0, -1\}$ via $T_0 = -1$, and for 
+  $k \geq 1$,
+  \[
+  T_{2k - 1} = \inf \{l > T_{2k-2} : X_l \leq a\}, \quad 
+  T_{2k} = \inf \{l > T_{2k-1}: X_l \geq b\}.
+  \]
+  Also, for all $m \geq 0$, let $U_m = \max \{k \geq 0:  T_{2k} \leq m \}$.
+  Then, for any $m \geq 0$,
+  \[
+  (b - a) E [U_m] \leq E [\max (X_m - a, 0)] - E [\max(X_0 - a, 0)].
+  \]
+\end{thm}
+
+\begin{remark}
+  If $X_n$ is a submartingale, then $\max (X_n - a, 0)$ is also a 
+  submartingale. Indeed, since $\phi(x) = \max(x, 0)$ is convex and 
+  monotone,
+  \[
+  E [\phi(X_{m + 1}) | \fcal_m] \geq \phi (E [X_{m + 1} | \fcal_m])
+  \geq \phi(X_m).
+  \]
+\end{remark}
+
 
 
 
