@@ -2684,7 +2684,7 @@ the norm of $X$.
   \begin{enumerate}
     \item $\seqinfn{X_n}$ is a submartingale if 
     $E [X_{n + 1} | \fcal_n] \geq X_n$ for all $n$.
-    \item $\seqinfn{X_n}$ is a supermaritngale if 
+    \item $\seqinfn{X_n}$ is a supermartingale if 
     $E [X_{n + 1} | \fcal_n] \leq X_n$ for all $n$.
     \item $\seqinfn{X_n}$ is a martingale if 
     $E [X_{n + 1} | \fcal_n] = X_n$ for all $n$
@@ -2891,8 +2891,8 @@ for $n \geq 0$.
 
 \begin{thm}
   Suppose $\{ H_n \}$ is non-negative predicatble sequence
-  and $\{ X_n \}$ is a submartingale (resp.\ supermaritngale). Then 
-  $\{H \cdot X\}_n$ is a submartingale (resp.\ supermaritngale).
+  and $\{ X_n \}$ is a submartingale (resp.\ supermartingale). Then 
+  $\{H \cdot X\}_n$ is a submartingale (resp.\ supermartingale).
 \end{thm}
 
 \begin{proof}
@@ -2939,11 +2939,11 @@ Next we consider the important optional stopping time theorem.
 \begin{thm}[Optional stopping time theorem]
   Let $\zseqinfn{\fcal_n}$ be a filtration, $T$ be a stopping time,
   and $\zseqinfn{X_n}$ an adapted sequence. Then 
-  if $\zseqinfn{X_n}$ is a submartingale (resp.\ supermaritngale), then 
-  $\zseqinfn{X_{n \wedge T}}$ is also a submartingale (resp.\ supermaritngale)
+  if $\zseqinfn{X_n}$ is a submartingale (resp.\ supermartingale), then 
+  $\zseqinfn{X_{n \wedge T}}$ is also a submartingale (resp.\ supermartingale)
   w.r.t\ the same filtration $\zseqinfn{\fcal_n}$. Moreover, there exists 
   $M \geq 0$ such that $\zseqinfn{X_{(n \vee T) \wedge M}}$
-  is a submartingale (resp.\ supermaritngale) w.r.t\ the filtration
+  is a submartingale (resp.\ supermartingale) w.r.t\ the filtration
   $\zseqinfm{\sigma (X_{(j \vee T) \wedge M}, 0 \leq j \leq m)}$
 \end{thm}
 
@@ -3124,7 +3124,210 @@ proof for Kolmogorov's inequality for symmetric variables.
   \]
 \end{remark}
 
+\begin{proof}
+  For $n \geq 1$, define 
+  \[
+    H_n = \ind_{\{T_{2k-1} < n \leq T_{2k} \text{ for some $k \geq 1$}\}}.
+  \]
+  Claim that $H_n$ is predicatble. Indeed, note that 
+  $H_n = 1$ iff $\max \{l : T_l < n\}$ is odd, and this is 
+  $\fcal_{n - 1}$ measurable. Write $Z_n = \max (X_n - a, 0)$. 
+  Claim that 
+  \begin{align*}
+    (b - a) U_m 
+    \leq \sum_{i=1}^{\max \{T_{2l} : T_{2l} \leq m\}}
+    H_i (Z_i - Z_{i - 1})
+    = (H \cdot Z)_{\max \{T_{2l} : T_{2l} \leq m\}}.
+  \end{align*}
+  Indeed, each upcrossing contributes at least $b - a$ to the summation.
+  By the condition of $H_n = 1$ above, each downcrossing is filtered 
+  out in the summation. That is, 
+  \[
+  \sum_{i = \max \{T_{2l} : T_{2l} \leq m\} + 1}^m H_i (Z_i - Z_{i - 1}) \geq 0.
+  \]
+  Hence, $(b - a) U_m = (H \cdot Z)_m$. Now note that $Z$ is a 
+  submartingale and $1 - H$ is predicatble, so 
+  $\seqinfm{((1 - H) \cdot Z)_m}$ is also a submartingale. Therefore,
+  \begin{align*}
+    (b - a) E[U_m] 
+    &\leq E (H \cdot Z)_m \\
+    &\leq E (H \cdot Z)_m + E ((1 - H) \cdot Z)_m \\
+    &= E (1 \cdot Z)_m \\
+    &= E Z_m - E Z_0. 
+  \end{align*}
+\end{proof}
 
+Now an application of the upcrossing lemma.
+
+\begin{eg}
+  Suppose $E [(X_n - a, 0)^+]$ is uniformly bounded, i.e.\ 
+  \[
+  \sup_n E [(X_n - a, 0)^+] < \infty.
+  \]
+  This implies that $E U_m$ is also uniformly bounded.
+
+  Consider the event $A$ that there is infinitely many oscillations.
+  Then everywhere on $A$, we have $\lim_{m \to \infty} U_m = \infty$.
+  Hence if $P(A) > 0$, then $E U_m \to \infty$ as $m \to \infty$, a 
+  contradiction. 
+\end{eg}
+
+We can also use this to consider a symmetric random walk on 
+the real numbers.
+
+\begin{eg}
+  Fix $0 < \gamma < 1$. 
+  Let $\seqinfn{Y_n}$ be mutually independent and symmetric
+  random variable with 
+  \[
+  P \left\{ Y_n = n^{-\gamma} \right\}
+  = P \left\{ Y_n = - n^{-\gamma} \right\}
+  = \frac{1}{2}.
+  \]
+  Let $X_n = \sumj^n Y_j$. Then $X_n$ is a martingale and 
+  we hope to investigate the trajectory of $X_n$. 
+
+  We have 
+  \[
+  \var X_n = \sumk^n \frac{1}{k^{2 \gamma}}.
+  \]
+  Hence, if $\gamma > \frac{1}{2}$, the variance of $X_n$ are 
+  uniformly bounded. Therefore, for any $a \in \R$, 
+  $E [(X_n - a)^+]$ is also uniformly bounded, and thus 
+  by our previous example, for any $a < b$, 
+  there are finitely many oscillations with probability $1$.
+  With some extra argument, we can derive that the random walk 
+  converges to a limit that is nonzero. \TODO
+\end{eg}
+
+\begin{thm}[submartingale convergence theorem]
+  Let $\seqinfn{X_n}$ is a submartingale with 
+  \[
+    \sup_n E[X_n^+] < \infty.
+  \]
+  Then there exists random variable $X$ such that
+  $E \abs{X} < \infty$ and $X_n \to X$ a.e.
+\end{thm}
+
+\begin{proof}
+  Let $S = \limsup X_n$ and $L = \liminf X_n$.
+  Fatou's lemma gives $E [L^+] < \infty$.
+  Also,
+  \[
+  \limsup E[(-X_n)^+] = \limsup \left( E [X_n^+] - E X_n \right)
+  < \infty.
+  \]
+  By Fatou's lemma again, we have $E [(- S)^+] < \infty$.
+
+  Now suppose $P \{ S - L > \epsilon \} > 0$.
+  Then there exists $a < b$ such that $P \{ L < a < b < 
+  S \} > 0$. This implies that there is a positive probability 
+  that infinitely oscillations happens between $a, b$ and thus 
+  $E U_m \to \infty$ as $m \to \infty$, a 
+  contradiction with $\sup_n E[X_n^+] < \infty$.
+
+\end{proof}
+
+\begin{cor}
+  Let $\seqinfn{X_n}$ be a non-negative supermartingale. 
+  Then there exists random variable $X$ such that 
+  $E X \leq E X_n$ for any $n \geq 0$ and $X_n \to X$ a.e.
+\end{cor}
+
+\begin{proof}
+  Note that $-X_n$ is a submartingale and $-X_n \leq 0$.
+  Hence $\sup_n E [(-X_n)^+] \leq 0$ and $E X \leq E X_n$ 
+  follows from Fatou's lemma.
+\end{proof}
+
+\begin{eg}
+  Let $\xi_1, \xi_2, \dots$ i.i.d.\ non-negative random variables
+  with $E \xi_1 \leq 1$. Then $X_n = \prod_{i=1}^n \xi_i$  
+  is a supermartingale, and $X_n \to 0$ a.e.\ unless $\xi_1 = 1$ a.e.
+
+  To prove this,
+  suppose $\xi_1 \not\equiv 1$ then there exists $\epsilon > 0$ such that 
+  $P \left\{ \abs{\xi_1 - 1} > \epsilon \right\} > \epsilon$.
+  Then, the event $A = \{ \abs{\xi_1 - 1} \geq \epsilon \text{ i.o.} \}$
+  has probability one.
+  On event $A$,
+  \[
+  \abs{X_{m + 1} - X_m} = 
+  \abs{\prod_{i=1}^{m + 1} \xi_i - \prod_{i=1}^m \xi_i} \geq 
+  \epsilon \prod_{i=1}^m \xi_i
+  \]
+  for all $m$ such that $\abs{\xi_{m+1} - 1} \geq \epsilon$, 
+  and i.e.\ for infinitely many indices. By convergence theorem,
+  there exists random variable $X$ such that $X_n \to X$ a.e. 
+  Let $B$ be the event $X_n \to X$. 
+
+  To show $X = 0$, suppose for contradiction that 
+  there exist $\delta > 0$ such that $ P \left\{ X > \delta \right\}
+  > \delta$, then let event $C = \{ X > \delta \}$. 
+  Consider the intersection $A \cap B \cap C$.
+  Let $\omega \in A \cap B \cap C$. Then for all sufficient 
+  large $n$, $X_n (\omega) > \delta$. Then for infinitely many $m$'s 
+  we have $\abs{X_{m + 1} (\omega) - X_{m} (\omega)} \geq \epsilon \delta$.
+  Therefore, $\lim_{n \to \infty} X_n (\omega)$ does not exist, a 
+  contradiction.
+  
+\end{eg}
+
+\begin{eg}[discrete-time birth process]
+  Let $\{ \xi_{g, i} \}_{g, i = 1}^\infty$ be i.i.d.\ non-negative
+  integer valued random variables. Define $\seqinfn{X_n}$ inductively
+  by $X_0 = 1$ and $X_n = \sum_{i=1}^{X_{n-1}} \xi_{n, i}$ for $n \geq 1$.
+  We hope to investigae $P \{ x_n > 0 \text{ for all $n \geq 1$} \}$.
+  Claim that 
+  \begin{itemize}
+    \item $E \xi_{1, 1} > 1$ implies $P \{ x_n > 0 \text{ for all $n \geq 1$} \} > 0$.
+    \item $E \xi_{1, 1} < 1$ implies $P \{ x_n > 0 \text{ for all $n \geq 1$} \} = 0$.
+    \item $E \xi_{1, 1} = 1$ and $\xi_{1, 1} \not\equiv 1$ 
+    implies $P \{ x_n > 0 \text{ for all $n \geq 1$} \} > 0$.
+  \end{itemize}
+
+  First consider the caes where $E \xi_{1, 1} < 1$. Claim that 
+  $X_n$ is non-negative supermartingale. Indeed, 
+  \begin{align*}
+    E [X_n | \fcal_{n - 1}] 
+    &= E \left[ \sum_{i=1}^{X_{n-1}} \xi_{n, i} \middle| \fcal_{n - 1} \right]  \\
+    &= E \left[ \suminfi \xi_{n, i} \ind_{\{i \leq X_{n - 1}\}}
+    \middle| \fcal_{n - 1} \right]  \\
+    &= \suminfi \ind_{\{i \leq X_{n - 1}\}} E \xi_{1, 1} \\
+    &\leq X_{n - 1}.
+  \end{align*}
+  Then there exists non-negative $X$ such that $X_n \to X$ a.e. 
+  Also, $\lim_{n \to \infty} E X_n = 0$. Moreover, by Fatou's lemma, 
+  $0 = \lim_{n \to \infty} E X_n \geq E \lim_{n \to \infty} X_n$,
+  which implies $E X = 0$ and thus $X = 0$ a.e.
+
+  Next consider the case where $E \xi_{1,1} = 1$ with $\xi_{1,1}$ 
+  non-constant. We still have that $X_n$ is a non-negative 
+  supermartingale. Therefore, there exists $X \geq 0$ such that 
+  $X_n \to X$ a.e. It is easy to see that $X$ is integer-valued. 
+  Suppose there exists $m \geq 1$ such that $P \{ X = m \} > 0$.
+  On the event $\{ X = m \}$, $X_n = m$ for all but finitely many $n$'s.
+  However, \TODO 
+  \begin{align*}
+    P \left\{ X_n = m \text{ for all $n_0 \leq n \leq N$} \right\}
+    &= \prod_{n = n_0 + 1}^N P \left\{ X_n = m | X_j = m 
+    \text{ for all $n_0 \leq j \leq n$} \right\}  \\
+    &\leq (1 - \delta)^{N - n_0},
+  \end{align*}
+  a contradiction.
+
+  Finally, consider the last case where $E \xi_{1,1} > 1$. 
+  We first introduce the concept of \textbf{stochastic domination}.
+  We say random variable $Z$ \textbf{stochastically dominates} 
+  $W$ if $P \{W \leq t\} \geq P \{Z \leq t\}$ for all $t \in \R$.
+  In this case, there exists $\tilde{W} \sim W$ and $\tilde{Z} \sim Z$
+  on the same probability space such that $\tilde{W} \leq \tilde{Z}$ a.e.
+
+  Let $M > 0$ and $\epsilon > 0$ be such that $\tilde{\xi}_{1,1}
+  = \min (\xi_{1,1}, M)$ satisfy $E \tilde{\xi}_{1,1} \geq 1 + \epsilon$.
+  Also define $\tilde{X}_n = \sumi^{\tilde{X}_{n - 1}} \tilde{\xi}_{n, i}$.
+  Claim that $\tilde{X}_n \leq X_n$ with probability one for any $n$.
+\end{eg}
 
 
 \end{document}
