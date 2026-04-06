@@ -2728,7 +2728,7 @@ based on martingales.
     E \exp (\lambda (X_N - X_0))
     &= E \exp \left( \lambda \sumi^N (X_i - X_{i - 1}) \right) \\
     &= E \left[ E \left[ \exp \left( \lambda \sumi^N (X_i - X_{i - 1}) 
-    \right) |  \fcal_{N - 1} \right] \right] \\
+    \right) \middle|  \fcal_{N - 1} \right] \right] \\
     &= E \left[ \exp \left( \lambda \sumi^N (X_i - X_{i - 1}) \right)
     E \left[ \exp (\lambda (X_N - X_{N - 1})) | \fcal_{N- 1} \right] \right]
   \end{align*}
@@ -2817,16 +2817,18 @@ based on martingales.
   Consider a discrete cube $\{-1, 1\}^n$ with the Hamming metric, i.e.\
   the distance is the number of coordinates that does not agree.
   Suppose $f : \left\{ -1, 1 \right\}^n \to \R$ is Lipschitz
-  with constant $1$. Then, by previous theorems,
+  with constant $1$. Then, by previous theorems, we have
   \[
-  P \left\{ \abs{f(V) - E f(V)} \right\} 
+  P \left\{ \abs{f(V) - E f(V)} > t \right\} 
   \leq 2 \exp \left( - \frac{t^2}{4 n} \right)
   \]
   for all $t > 0$, where $V$ is the uniform random distribution 
   on $\{ -1, 1 \}^n$. 
 
   Now let $A \subset \{-1, 1\}^n$ with $\abs{A} = 2^{n - 1}$.
-  Claim that $E [\dist (A, V)] = O(\sqrt{n})$.
+  Claim that $E [\dist (A, V)] = O(\sqrt{n})$. 
+  
+  \TODO
 \end{eg}
 
 Next we present a combinatorial application of martingale method.
@@ -2863,12 +2865,12 @@ Next we present a combinatorial application of martingale method.
   an edge of $\Gamma$. That is, the graphs can only disagree on edges 
   incident from $l$. Then we have 
   \[
-  E_{b_{lj} : l > j} \chi(G) = \frac{1}{\abs{T(G)}} \sum_{\tilde{\Gamma}
+  E_{b_{lj} : l > j} [\chi(G)] = \frac{1}{\abs{T(G)}} \sum_{\tilde{\Gamma}
   \in T(G)} \chi (\tilde{\Gamma}).
   \]
   This implies that $d_l \leq 1$ a.e., since disagreeing on 
   one vertex change the chromatic by at most one. Thus $\var \chi(G) = O(n)$
-  and $\chi(G) = \E [\chi(G)] (1 \pm o(1))$. Note $\E [\chi(G)] \sim 
+  and $\chi(G) = E [\chi(G)] (1 \pm o(1))$. Note $E [\chi(G)] \sim 
   \frac{n}{\log n}$.
 
 \end{eg}
@@ -2898,7 +2900,7 @@ for $n \geq 0$.
 \begin{proof}
   Note that 
   \begin{align*}
-    E \left[ \summ^n H_m (X_m - X_{m - 1}) | \fcal_{n - 1} \right] 
+    E \left[ \summ^n H_m (X_m - X_{m - 1}) \middle| \fcal_{n - 1} \right] 
     &= \summ^{n - 1} H_m (X_m - X_{m - 1})
     + E[H_n (X_n - X_{n - 1}) | \fcal_{n - 1}] \\
     &= \summ^{n - 1} H_m (X_m - X_{m - 1})
@@ -2941,10 +2943,10 @@ Next we consider the important optional stopping time theorem.
   and $\zseqinfn{X_n}$ an adapted sequence. Then 
   if $\zseqinfn{X_n}$ is a submartingale (resp.\ supermartingale), then 
   $\zseqinfn{X_{n \wedge T}}$ is also a submartingale (resp.\ supermartingale)
-  w.r.t\ the same filtration $\zseqinfn{\fcal_n}$. Moreover, there exists 
-  $M \geq 0$ such that $\zseqinfn{X_{(n \vee T) \wedge M}}$
+  w.r.t\ the same filtration $\zseqinfn{\fcal_n}$. Moreover, for any fixed 
+  $M \geq 0$, the sequence $\zseqinfn{X_{(n \vee T) \wedge M}}$
   is a submartingale (resp.\ supermartingale) w.r.t\ the filtration
-  $\zseqinfm{\sigma (X_{(j \vee T) \wedge M}, 0 \leq j \leq m)}$
+  $\zseqinfm{\sigma (X_{(j \vee T) \wedge M}, 0 \leq j \leq m)}$.
 \end{thm}
 
 \begin{proof}
@@ -2959,7 +2961,7 @@ Next we consider the important optional stopping time theorem.
   0 \leq j \leq m)$. Fix any $A \in \gcal_{n-1}$ with $P(A) > 0$ and 
   any $k \in \N \cup \{\infty\}$ such that $P(A \cap \{T = k\}) > 0$.
   The event $A$ is representable as 
-  $\{ (X_{M \wedge (n \vee T)})_{m=0}^{n - 1} \in B \}$ for some 
+  $\{ (X_{M \wedge (m \vee T)})_{m=0}^{n - 1} \in B \}$ for some 
   $B \in \bcal(\R^n)$. Next consider 
   \begin{align*}
     E \left[ X_{M \wedge (T \vee n)} - X_{M \wedge (T \vee (n - 1))}
@@ -3023,13 +3025,16 @@ Next we consider the important optional stopping time theorem.
 \end{thm}
 
 \begin{proof}
-  Let stopping time $T = \inf \left\{ m \geq 0 : X_m > 0 \right\}$.
+  Let stopping time $T = \inf \left\{ m \geq 0 : X_m > a \right\}$.
   Then, 
   \begin{align*}
-    a P \{\max X_i > a\}
-    &\leq E \left[ \ind_{\{ \max X_i > a \}} X_{T \wedge n} \right] \\
-    &= E X_{T \wedge n} - E [\ind_{\{\max X_i \leq a\}} X_{T \wedge n}] \\
-    &=  E X_{T \wedge n} - E [\ind_{\{\max X_i \leq a\}} X_{n}] \\
+    a P \left\{ \max_{0 \leq i \leq n} X_i > a \right\}
+    &\leq E \left[ \ind_{\{ \max_{0 \leq i \leq n}
+     X_i > a \}} X_{T \wedge n} \right] \\
+    &= E X_{T \wedge n} - 
+    E [\ind_{\{\max_{0 \leq i \leq n} X_i \leq a\}} X_{T \wedge n}] \\
+    &= E X_{T \wedge n} - 
+    E [\ind_{\{\max_{0 \leq i \leq n} X_i \leq a\}} X_{n}] \\
   \end{align*}
   By optional stopping time theorem, $\seqinfm{X_{n \wedge (T \vee m)}}$
   is a submartingale. Then the expectation of 
@@ -3050,7 +3055,7 @@ Next we consider the important optional stopping time theorem.
 \end{cor}
 
 \begin{proof}
-  Let $Y_n = \left( \sumi^{\min(n, m)} X_i \right)^2$ for $n \geq 1$.
+  Let $Y_n = \left( \sumi^n X_i \right)^2$ for $n \geq 1$.
   We can verify that $Y_n$ is a submartingale. It then 
   follows from the previous theorem that 
   \[
@@ -3081,10 +3086,10 @@ proof for Kolmogorov's inequality for symmetric variables.
     &\leq P \left\{ S_m > a \right\}
     + P \left\{ \exists i < m : S_i > a \text{ and } S_m < S_i \right\} \\
     &= P \left\{ S_m > a \right\} 
-    + \sumi^{m - 1} P \left\{ S_i > a \text{, and } S_r \leq a
+    + \sumi^{m - 1} P \left\{ S_i > a, \; S_r \leq a
     \text{ for all $r < i$, and } S_m - S_i < 0 \right\} \\
     &= P \left\{ S_m > a \right\} 
-    + \sumi^{m - 1} P \left\{ S_i > a \text{, and } S_r \leq a
+    + \sumi^{m - 1} P \left\{ S_i > a, \; S_r \leq a
     \text{ for all $r < i$, and } S_m - S_i > 0 \right\},
   \end{align*}
   where in the last step we used the fact that $X_i$'s are symmetric.
@@ -3110,12 +3115,12 @@ proof for Kolmogorov's inequality for symmetric variables.
   Also, for all $m \geq 0$, let $U_m = \max \{k \geq 0:  T_{2k} \leq m \}$.
   Then, for any $m \geq 0$,
   \[
-  (b - a) E [U_m] \leq E [\max (X_m - a, 0)] - E [\max(X_0 - a, 0)].
+  (b - a) E [U_m] \leq E [(X_m - a)^+] - E [(X_0 - a)^+].
   \]
 \end{thm}
 
 \begin{remark}
-  If $X_n$ is a submartingale, then $\max (X_n - a, 0)$ is also a 
+  If $X_n$ is a submartingale, then $(X_n - a)^+$ is also a 
   submartingale. Indeed, since $\phi(x) = \max(x, 0)$ is convex and 
   monotone,
   \[
@@ -3131,7 +3136,7 @@ proof for Kolmogorov's inequality for symmetric variables.
   \]
   Claim that $H_n$ is predicatble. Indeed, note that 
   $H_n = 1$ iff $\max \{l : T_l < n\}$ is odd, and this is 
-  $\fcal_{n - 1}$ measurable. Write $Z_n = \max (X_n - a, 0)$. 
+  $\fcal_{n - 1}$ measurable. Write $Z_n = (X_n - a)^+$. 
   Claim that 
   \begin{align*}
     (b - a) U_m 
@@ -3140,12 +3145,11 @@ proof for Kolmogorov's inequality for symmetric variables.
     = (H \cdot Z)_{\max \{T_{2l} : T_{2l} \leq m\}}.
   \end{align*}
   Indeed, each upcrossing contributes at least $b - a$ to the summation.
-  By the condition of $H_n = 1$ above, each downcrossing is filtered 
-  out in the summation. That is, 
+  By the condition of $H_n = 1$ above, we can verify that
   \[
   \sum_{i = \max \{T_{2l} : T_{2l} \leq m\} + 1}^m H_i (Z_i - Z_{i - 1}) \geq 0.
   \]
-  Hence, $(b - a) U_m = (H \cdot Z)_m$. Now note that $Z$ is a 
+  Hence, $(b - a) U_m \geq (H \cdot Z)_m$. Now note that $Z$ is a 
   submartingale and $1 - H$ is predicatble, so 
   $\seqinfm{((1 - H) \cdot Z)_m}$ is also a submartingale. Therefore,
   \begin{align*}
@@ -3160,9 +3164,9 @@ proof for Kolmogorov's inequality for symmetric variables.
 Now an application of the upcrossing lemma.
 
 \begin{eg}
-  Suppose $E [(X_n - a, 0)^+]$ is uniformly bounded, i.e.\ 
+  Suppose $E [(X_n - a)^+]$ is uniformly bounded, i.e.\ 
   \[
-  \sup_n E [(X_n - a, 0)^+] < \infty.
+  \sup_n E [(X_n - a)^+] < \infty.
   \]
   This implies that $E U_m$ is also uniformly bounded.
 
@@ -3196,8 +3200,8 @@ the real numbers.
   $E [(X_n - a)^+]$ is also uniformly bounded, and thus 
   by our previous example, for any $a < b$, 
   there are finitely many oscillations with probability $1$.
-  With some extra argument, we can derive that the random walk 
-  converges to a limit that is nonzero. \TODO
+  From the previous example and some extra argument, 
+  we can derive that the random walk converges to a limit that is nonzero.
 \end{eg}
 
 \begin{thm}[submartingale convergence theorem]
@@ -3210,21 +3214,30 @@ the real numbers.
 \end{thm}
 
 \begin{proof}
-  Let $S = \limsup X_n$ and $L = \liminf X_n$.
-  Fatou's lemma gives $E [L^+] < \infty$.
+  Let $S = \limsup_n X_n$ and $L = \liminf_n X_n$.
+  Then we have $L^+ \leq \liminf_n X_n^+$ and it follows from 
+  Fatou's lemma that
+  \[
+  E [L^+] \leq E[\liminf_n X_n^+] \leq \liminf_n E[X_n^+] < \infty
+  \]
   Also,
   \[
-  \limsup E[(-X_n)^+] = \limsup \left( E [X_n^+] - E X_n \right)
+  \sup_n E[(-X_n)^+] = \sup_n \left( E [X_n^+] - E X_n \right)
+  \leq \sup_n E[X_n^+] - E X_1
   < \infty.
   \]
-  By Fatou's lemma again, we have $E [(- S)^+] < \infty$.
+  Now $-S = \liminf_n (- X_n)$ so it follows similarly from 
+  Fatou's lemma that $E [(- S)^+] < \infty$. Therefore, 
+  $S \neq \infty$ and $L \neq - \infty$ a.e.
 
   Now suppose $P \{ S - L > \epsilon \} > 0$.
   Then there exists $a < b$ such that $P \{ L < a < b < 
   S \} > 0$. This implies that there is a positive probability 
   that infinitely oscillations happens between $a, b$ and thus 
   $E U_m \to \infty$ as $m \to \infty$, a 
-  contradiction with $\sup_n E[X_n^+] < \infty$.
+  contradiction with $\sup_n E[X_n^+] < \infty$. Moreover,
+  $E \abs{X} < \infty$ since $E [X^+] = E [L^+] < \infty$
+  and $E [X^-] = E [(-S)^+] < \infty$.
 
 \end{proof}
 
@@ -3235,9 +3248,14 @@ the real numbers.
 \end{cor}
 
 \begin{proof}
-  Note that $-X_n$ is a submartingale and $-X_n \leq 0$.
-  Hence $\sup_n E [(-X_n)^+] \leq 0$ and $E X \leq E X_n$ 
-  follows from Fatou's lemma.
+  Note that $-X_n$ is a submartingale and $-X_n = 0 < \infty$.
+  Hence $\sup_n E [(-X_n)^+] \leq 0$ so existence of $X$ is guaranteed
+  by the previous theorem. Moreover, 
+  \[
+  E[X] \leq \liminf_{n \to \infty} E[X_n] = \inf_n E[X_n]
+  \]
+  since $X_n$ is a supermartingale, completing the proof.
+
 \end{proof}
 
 \begin{eg}
