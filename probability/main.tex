@@ -3103,6 +3103,8 @@ proof for Kolmogorov's inequality for symmetric variables.
 
 \end{proof}
 
+\subsection{Martingale convergence}
+
 \begin{thm}[upcrossing lemma]
   Let $\zseqinfn{X_n}$ be a submartingale and fix $a < b$.
   Next define stopping times $\zseqinfk{T_k}$ taking values
@@ -3345,7 +3347,106 @@ the real numbers.
   = \min (\xi_{1,1}, M)$ satisfy $E \tilde{\xi}_{1,1} \geq 1 + \epsilon$.
   Also define $\tilde{X}_n = \sumi^{\tilde{X}_{n - 1}} \tilde{\xi}_{n, i}$.
   Claim that $\tilde{X}_n \leq X_n$ with probability one for any $n$.
+
+  \TODO
 \end{eg}
+
+\begin{thm}[uniform integrability]
+  Let $\seqinfn{X_n}$ are random variables with $E \abs{X_n} < \infty$.
+  Suppose $X$ is another random variable such that $X_n$ converges 
+  to $X$ in probability. Then the following are equivalent:
+  \begin{enumerate}
+    \item $X_n \to X$ in $L^1$. 
+    \item $\seqinfn{X_n}$ is uniformly integrable, i.e.\ 
+    \[
+    \lim_{M \to \infty} \sup_n E \left[ \abs{X_n} \ind_{\{\abs{X_n} > M\}}
+     \right] = 0.
+    \]
+  \end{enumerate}
+\end{thm}
+
+\begin{proof}
+  (1) $\implies$ (2). Suppose $X_n \to X$ in $L^1$, then $E \abs{X} < \infty$
+  and $s = \sup_n E \abs{X_n} < \infty$. Fix $\epsilon > 0$, then 
+  there exists $\delta > 0$ such that $A \in \Sigma$
+  with $P (A) \leq \delta$ implies $E [\abs{X} \ind_A] < \epsilon$.
+  Let $n_0$ be such that $n \geq n_0$ implies 
+  $E \abs{X - X_n} \leq \epsilon$. There also exists $M_0 < \infty$ 
+  such that 
+  \[
+  \max_{n < n_0} E \left[ \abs{X_n} \ind_{\{\abs{X_n} \geq M_0 \}} \right]
+  < \epsilon.
+  \]
+  Now let $M = \max (M_0, \delta^{-1} s)$. Then for $n \geq n_0$, 
+  we have 
+  \begin{align*}
+    E \left[ \abs{X_n} \ind_{\{\abs{X_n} \geq M\}} \right] 
+    \leq E \abs{X - X_n} + E \left[ \abs{X} \ind_{\{\abs{X_n} \geq M\}} \right]
+    \leq 2 \epsilon,
+  \end{align*}
+  where for the second term we used Markov inequality 
+  to obtain $P \{\abs{X_n} \geq M\} \leq M^{-1} s \leq \delta$.
+
+  (2) $\implies$ (1). Suppose $X_n$ does not converge to $X$ 
+  in $L^1$. Then there is a subsequence $\seqinfk{X_{n(k)}}$ and 
+  $\epsilon > 0$ such that $E \abs{X_{n(k)} - X} \geq \epsilon$ for 
+  all $k$. Now to simplify notation and without loss of generality,
+  consider $X_n$ with $E \abs{X_n - X} \geq \epsilon$ for all $n$.
+
+  In the case where $E \abs{X} = \infty$, with $X_n \convp X$ 
+  claim that $\lim_{n \to \infty} E \abs{X_n} = \infty$. The 
+  verification of this is left as an exercise.
+  With $E\abs{X_n} \to \infty$, $\{ X_n \}$ is not uniformly integrable, as 
+  \[
+  E \left[ \abs{X_n} \ind_{\{\abs{X_n} > M\}} \right]
+  = E \abs{X_n} - E \left[ \abs{X_n} \ind_{\{\abs{X_n} \leq M\}} \right] 
+  \geq E \abs{X_n} - M \to \infty,
+  \]
+  as $n \to \infty$.
+
+  Now suppose $E \abs{X} < \infty$. Fix $\epsilon > 0$. 
+  There is $\delta > 0$ such that 
+  $E \left[ \abs{X_n} \ind_A \right] \leq \frac{\epsilon}{4}$.
+  Since $X_n - X \convp 0$, we have 
+  $P \left\{ \abs{X_n - X} \geq 1 \right\} \to 0$
+  and also
+  \[
+  \lim_{n \to \infty} 
+  E \left[ \abs{X_n - X} \ind_{\{\abs{X_n - X} < 1\}}\right] = 0.
+  \]
+  Now for $n$ large enough, 
+  \begin{align*}
+    E \left[ \abs{X_n} \ind_{\{\abs{X - X_n} \geq 1\}} \right] + \frac{\epsilon}{4}
+    &\geq E \left[ \abs{X_n} \ind_{\{\abs{X - X_n} \geq 1\}} \right]
+    + E \left[ \abs{X} \ind_{\{\abs{X - X_n} \geq 1\}} \right] \\
+    &\geq E \left[ \abs{X - X_n} \ind_{\{\abs{X_n - X} \geq 1\}} \right] \\
+    &\geq E \abs{X - X_n} - \frac{\epsilon}{4} \\
+    &\geq \frac{3 \epsilon}{4}.
+  \end{align*}
+  Let $P \left\{ \abs{X_n - X} \geq 1 \right\} = \delta_n$, then 
+  $\delta_n \to 0$. We then have 
+  \begin{align*}
+    \liminf_n E \left[ \abs{X_n} - 
+    \ind_{\{\abs{X_n} > \delta_n^{-1/2}\}} \right]
+    &\geq \liminf_n E \left[ \abs{X_n} \ind_{\{\abs{X_n} > \delta_n^{-1/2}\}}
+    \ind_{\{\abs{X_n - X} \geq 1\}} \right].
+  \end{align*}
+  However, 
+  \begin{align*}
+    E \left[ \abs{X_n} \ind_{\{\abs{X_n} > \delta_n^{-1/2}\}}
+    \ind_{\{\abs{X_n - X} \geq 1\}} \right]
+    &= E \left[ \abs{X_n} \ind_{\abs{X - X_n} \geq 1} \right]
+    - E \left[ \abs{X_n} \ind_{\{\abs{X_n} \leq \delta_n^{-1/2}\}}
+    \ind_{\abs{X_n - X} \geq 1} \right] \\
+    &\geq \frac{\epsilon}{2} - \delta_n^{1/2}.
+  \end{align*}
+  Therefore, $\liminf_n E \left[ \abs{X_n} - \ind_{\{\abs{X_n} 
+  > \delta_n^{-1/2}\}} \right] \geq \frac{\epsilon}{2}$ 
+  and thus $\seqinfn{X_n}$ is not uniformly integrable.
+  
+
+\end{proof}
+
 
 
 \end{document}
