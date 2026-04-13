@@ -2709,7 +2709,7 @@ based on martingales.
 
 \begin{thm}[Azuma's inequality]
   Let $(\Omega, \Sigma, P)$ be a probability space. 
-  Suppose $\seqi{\fcal_i}^N$ be a filteration with $N < \infty$.
+  Suppose $\seqi{\fcal_i}^N$ be a filtration with $N < \infty$.
   Suppose $\seqi{X_i}^N$ is a martingale
   and suppose the $L^\infty$ norm 
   $d_i = \norm{X_i - X_{i - 1}}_\infty < \infty$ for any $i \leq N$.
@@ -2913,7 +2913,7 @@ The main applications of predicatble sequences are related
 to stopping times.
 
 \begin{defi}[stopping time]
-  A random variable $T$ is a stopping time w.r.t.\ filteration 
+  A random variable $T$ is a stopping time w.r.t.\ filtration 
   $\seqinfn{\fcal_n}$ if for any $k \in \N$, 
   the event $\{ T \leq k \}$ is $\fcal_k$-measurable.
 \end{defi}
@@ -3445,10 +3445,107 @@ the real numbers.
   Therefore, $\liminf_n E \left[ \abs{X_n} - \ind_{\{\abs{X_n} 
   > \delta_n^{-1/2}\}} \right] \geq \frac{\epsilon}{2}$ 
   and thus $\seqinfn{X_n}$ is not uniformly integrable.
-  
 
 \end{proof}
 
+\begin{thm}
+  Let $X$ be a random variable with $E \abs{X} < \infty$ and 
+  $\seqinfn{\fcal_n}$ be a filtration. Then, the sequence 
+  $\seqinfn{E [X | \fcal_n]}$ is uniformly integrable.
+\end{thm}
 
+\begin{proof}
+  Fix $\epsilon > 0$. Let $\delta > 0$ be such that for any event $A$
+  with $P(A) \leq \delta$, we have $E [\abs{X} \ind_A] < \epsilon$. 
+  Also, let $M = \delta^{-1} E \abs{X}$. Claim that for 
+  any $n$, we have 
+  \[
+  E \left[ \abs{E [X | \fcal_n]} \ind_{\{E[X | \fcal_n] \geq M\}}\right] 
+  \leq \epsilon.
+  \]
+  Write event $A_M = \{E[X | \fcal_n] \geq M\}$. First of all, 
+  from Jensen's inequality, we have 
+  \[
+  \abs{E [X | \fcal_n]} \ind_{A_M} 
+  \leq E[\abs{X} | \fcal_n] \ind_{A_M}
+  \]
+  Note that $\ind_{A_M}$ is $\fcal_n$-measurable, so 
+  \[
+  E[ E[\abs{X} | \fcal_n] \ind_{A_M} ] 
+  = E[ E[\abs{X} \ind_{A_M} | \fcal_n] ]
+  = E [\abs{X} \ind_{A_M}].
+  \]
+  With Markov's inequality, we know $P(A_M) \leq \delta$.
+  By the way $\delta$ is chosen, the proof is complete.
+
+\end{proof}
+
+\begin{thm}
+  Let $X$ be a random variable with $E \abs{X} < \infty$ and 
+  $\seqinfn{\fcal_n}$ be a filtration.
+  Also write $\fcal_\infty = \sigma (\fcal_n : n \geq 1)$.
+  Then $E[X | \fcal_n]$ converges to $X$ a.e.\ and in $L^1$.
+\end{thm}
+
+\begin{proof}
+  Towards applying submartingale convergence theorem, we have
+  \begin{align*}
+    E \left[ E[X | \fcal_n]^+ \right] 
+    \leq E [ \abs{ E[ X | \fcal_n] } ] \leq E \abs{X}
+  \end{align*}
+  from Jensen's inequality. By submartingale convergence theorem. 
+  there exists random variable $Z$ with $E \abs{X} < \infty$ 
+  such that $E [X | \fcal_n] \to Z$ a.e., which implies 
+  $E [X | \fcal_n] \to Z$ in probability. Together with previous 
+  theorems, we also have $E [X | \fcal_n] \to Z$ in $L^1$.
+
+  Now the goal is to to show that $Z = E [X | \fcal_\infty]$ 
+  a.e. Let event $A \in \fcal_m$, then for any $n \geq m$, 
+  $\ind_A E[X | \fcal_n] = E [X \ind_{A} | \fcal_n]$.
+  This implies $E [\ind_A E [X | \fcal_n]] = E [\ind_A X]$. 
+  Now, $E [X | \fcal_n] \to Z$ in $L^1$ implies 
+  $E [\ind_A E [X | \fcal_n]] \to E [\ind_A Z]$. Therefore, 
+  $E [\ind_A X] = E [\ind_A Z]$ for any $A \in
+  \cupinfm \fcal_m$. Note that $\cupinfm \fcal_m$ is a $\pi$-system 
+  that generates $\fcal_\infty$. We can also check that 
+  all sets $A \in \fcal_\infty$ that satisfy 
+  $E[\ind_A X] = E [\ind_A Z]$ is a $\lambda$-system. 
+  The theorem then follows from $\pi$-$\lambda$ system.
+
+\end{proof}
+
+\begin{cor}[Levy $0$-$1$ law]
+  let $\seqinfn{\fcal_n}$ be a filtration and let $\fcal_\infty 
+  = \sigma (\fcal_n : n \geq 1)$. 
+  Then, $E [\ind_A | \fcal_n] \to \ind_A$ a.e. for any $A \in \fcal_\infty$.
+\end{cor}
+
+\begin{remark}
+  This implies Kolmogorov $0$-$1$ law. Indeed, suppose 
+  $\seqinfn{X_n}$ are mutually independent and let $\tcal = 
+  \capinfm \sigma \left( X_n : n \geq m \right)$
+  be the tail $\sigma$-field. Also let $\fcal_n = 
+  \sigma (X_1, \dots, X_n)$. Take $A \in \tcal$, then 
+  $A$ is independent of any $\fcal_n$. Therefore 
+  $E [\ind_A | \fcal_n] = P(A)$. By Levy $0$-$1$ law,
+  we can conlude that $P(A) \in \{ 0, 1 \}$.
+\end{remark}
+
+\begin{eg}
+  Let $\seqinfn{Y_n}$ be mean zero, mutually independent 
+  random variables. immediately $\seqinfn{Y_n}$ is a martingale. 
+  Suppose also $\suminfn E Y_n^2 < \infty$.
+  Define $S_n = \sumk^n Y_k$, then 
+  \[
+  E [S_n^+] \leq E \abs{S_n} \leq ( E \abs{S_n}^2 )^{1/2}
+  \]
+  by Jensen's inequality. Now submartingale convergence theorem
+  gives a random variable $X$ with 
+  $E \abs{X} < \infty$ such that $\suminfk Y_k = X$ a.e.
+
+  Claim that $E [X | Y_1, \dots, Y_n] = \sumk^n Y_k$. \TODO
+
+  Now, by previous theorems, we have $\suminfk Y_k \to X$ in $L^1$.
+\end{eg}
 
 \end{document}
