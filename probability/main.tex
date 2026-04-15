@@ -3294,6 +3294,7 @@ the real numbers.
 \end{eg}
 
 \begin{eg}[discrete-time birth process]
+  \def\tx{\tilde{X}}
   Let $\{ \xi_{g, i} \}_{g, i = 1}^\infty$ be i.i.d.\ non-negative
   integer valued random variables. Define $\seqinfn{X_n}$ inductively
   by $X_0 = 1$ and $X_n = \sum_{i=1}^{X_{n-1}} \xi_{n, i}$ for $n \geq 1$.
@@ -3303,7 +3304,7 @@ the real numbers.
     \item $E \xi_{1, 1} > 1$ implies $P \{ x_n > 0 \text{ for all $n \geq 1$} \} > 0$.
     \item $E \xi_{1, 1} < 1$ implies $P \{ x_n > 0 \text{ for all $n \geq 1$} \} = 0$.
     \item $E \xi_{1, 1} = 1$ and $\xi_{1, 1} \not\equiv 1$ 
-    implies $P \{ x_n > 0 \text{ for all $n \geq 1$} \} > 0$.
+    implies $P \{ x_n > 0 \text{ for all $n \geq 1$} \} = 0$.
   \end{itemize}
 
   First consider the caes where $E \xi_{1, 1} < 1$. Claim that 
@@ -3345,11 +3346,85 @@ the real numbers.
 
   Let $M > 0$ and $\epsilon > 0$ be such that $\tilde{\xi}_{1,1}
   = \min (\xi_{1,1}, M)$ satisfy $E \tilde{\xi}_{1,1} \geq 1 + \epsilon$.
-  Also define $\tilde{X}_n = \sumi^{\tilde{X}_{n - 1}} \tilde{\xi}_{n, i}$.
-  Claim that $\tilde{X}_n \leq X_n$ with probability one for any $n$.
+  Also define an auxilary process via $\tilde{X}_0 = 1$
+  and $\tilde{X}_n = \sumi^{\tilde{X}_{n - 1}} \tilde{\xi}_{n, i}$.
+  We can verify that $X_n$ stochastically dominates 
+  $\tilde{X}_n$ and $\tilde{X}_n \leq X_n$ a.e.\ for any $n$.
 
-  \TODO
+  Claim that $P \{ \tilde{X}_n > 0 \text{ for all } n \geq 1 \} > 0$.
+  Write $\fcal_n = \sigma (\tx_1, \dots, \tx_{n})$.
+  Since $E \tilde{\xi}_{1,1} \geq 1 + \epsilon$, we have 
+  $E [\tilde{X}_n | \tx_{n - 1}] \geq (1 + \epsilon) \tilde{X}_{n - 1}$
+  a.e. Hence,
+  \begin{align*}
+    P \left\{ \tilde{X}_n \leq \left( 1 + \frac{\epsilon}{2} 
+    \tilde{X}_{n - 1} \right) \middle| \fcal_{n - 1} \right\}
+    &\leq P \left\{ \tilde{X}_n \leq \frac{1 + \frac{\epsilon}{2}}
+    {1 + \epsilon} E [\tilde{X}_n | \tx_{n - 1}] 
+    \middle| \fcal_{n - 1} \right\} \\
+    &\leq P \left\{ \tx_n \leq \left( 1 - \frac{\epsilon}{4} \right)
+    E [\tx_n | \tx_{n - 1}] \middle| \fcal_{n - 1} \right\},
+  \end{align*}
+  where in the last step we chose $\epsilon > 0$ to be small 
+  enough such that 
+  \[
+  \frac{1 + \frac{\epsilon}{2}}{1 + \epsilon} \leq 1 - \frac{\epsilon}{4}.
+  \]
+  Write $A_k = \{ \tx_{n - 1} = k \}$ with $P(A_k) > 0$, then
+  for $k > 0$ we have
+  \begin{align*}
+    P \left\{ \tx_n \leq \left( 1 - \frac{\epsilon}{4} \right) 
+    E [\tx_n | \tx_{n - 1} = k ] \middle| \tx_{n - 1} = k \right\}
+    &\leq \frac{\var [\tx_n | \tx_{n - 1} = k]}{(\frac{\epsilon}{4})^2 
+    E[\tx_n | \tx_{n - 1} = k]^2}.
+  \end{align*}
+  For $k = 0$ simply bound the probability with $1$. Now, 
+  \[
+  \var [\tx_n | \tx_{n - 1} = k]
+  = k \var \tilde{\xi}_{1,1} \leq k M^2
+  \]
+  and 
+  \[
+  E [\tx_n | \tx_{n - 1} = k] = k E \tilde{\xi}_{1,1}
+  \geq k.
+  \]
+  Therefore, 
+  \begin{align*}
+    P \left\{ \tx_n \leq \left( 1 - \frac{\epsilon}{4} \right) 
+    E [\tx_n | \tx_{n - 1} = k ] \middle| \tx_{n - 1} = k \right\}
+    &\leq \frac{16 M^2}{\epsilon^2 k}
+  \end{align*}
+  and thus
+  \[
+  P \left\{ \tilde{X}_n \leq \left( 1 + \frac{\epsilon}{2} 
+  \tilde{X}_{n - 1} \right) \middle| \fcal_{n - 1} \right\}  
+  \leq \frac{16 M^2}{\epsilon^2 \tx_{n - 1}}
+  \]
+  Define $n_0 = \ceil{64 M^2 \epsilon^{-3}}$, 
+  and event $B_n = \left\{ \tx_{n} \geq \left( 1 + \frac{\epsilon}{2} \right)^{n - n_0}
+  64 M^2 \epsilon^{-3} \right\}$ for $n \geq n_0$. 
+  Since $E \tilde{\xi}_{1,1} > 1$, $P(B_{n_0}) > 0$. Also 
+  It follows that 
+  \[
+  P (B_{n_0 + 1} | B_{n_0}) \geq 1 - \frac{16 M^2}{\epsilon^2
+  \cdot 64 M^2 \epsilon^{-3}} = 1 - \frac{\epsilon}{4}.
+  \]
+  Similarly, we have $P(B_{n_0 + 2} | B_{n_0 + 1} \cap B_{n_0})
+  \geq 1 - \frac{1}{4} (1 + \frac{\epsilon}{2})^{-1} \epsilon$, 
+  etc. Therefore, 
+  for the event $C = \left\{ \tx_n \geq \left( 1 + \frac{\epsilon}{2} 
+    \right)^{n - n_0} \tx_{n_0} 
+    \text{ for all } n > n_0 \text{ and }
+    \tx_{n_0} \geq 64 M^2 \epsilon^{-3} \right\}$, we have
+  \begin{align*}
+    P (C) \geq P \left\{ \tx_{n_0} \geq 64 M^2 \epsilon^{-3} \right\}
+    \prod_{n = n_0 + 1}^\infty \left( 1 - 
+    \frac{1}{4} \left( 1 + \frac{\epsilon}{2} \right)^{n_0 - n} 
+    \epsilon \right) > 0.
+  \end{align*}
+
 \end{eg}
+
 
 \subsection{Unifrom integrability, convergence in $L^1$}
 
@@ -3547,5 +3622,21 @@ the real numbers.
 
   Now, by previous theorems, we have $\suminfk Y_k \to X$ in $L^1$.
 \end{eg}
+
+\subsection{Backward martingales}
+
+\begin{defi}[backward martingale]
+  Let $\{\fcal_n\}_{n = -\infty}^{-1}$ be a filtration 
+  such that $\fcal_{-k} \subset \fcal_{-k-1}$ for all $k \geq 1$.
+  Let $\{X_n\}_{n = -\infty}^0$ be adapted to the filtration.
+  Suppose $E \abs{X_n} < \infty$ for all $n \leq 0$. 
+  If $E [X_{n + 1} | \fcal_n] = X_n$ for all $n \leq -1$, 
+  then say $\{X_n\}_{n = -\infty}^0$ is a \emph{backward martingale}.
+\end{defi}
+
+\begin{thm}
+  If $\fcal_{-\infty} = \bigcap_{m = -\infty}^{-1} \fcal_m$, 
+  then $X_m \to E[X_0 | \fcal_{-\infty}]$ a.e.\ as $m \to -\infty$.
+\end{thm}
 
 \end{document}
