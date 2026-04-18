@@ -2067,11 +2067,11 @@ with characteristic functions.
   Let $X_1, X_2, \dots$ be mutually independent random variables 
   with zero mean. Suppose $\sigma_n^2 = \var X_n < \infty$ and 
   $b_n^2 = \sumi^n 
-  \sigma_i^2$. Then $X_i$'s satisfy the \textbf{Lindeberg condition} 
+  \sigma_i^2$. Then $X_i$'s satisfy the \emph{Lindeberg condition} 
   if for any $\epsilon > 0$,  
   \[
   \lim_{n \to \infty} b_n^{-2}
-  \sumi^n E \left[ X_i^2 \ind_{(\abs{X_i} > \epsilon b_n)} \right] = 0.
+  \sumi^n E \left[ X_i^2 \ind_{\{\abs{X_i} > \epsilon b_n\}} \right] = 0.
   \]
 \end{defi}
 
@@ -2103,12 +2103,12 @@ with characteristic functions.
   Note that $b_n^{-1} S_n^{(n)} \sim \ncal(0, 1)$ and 
   $S_n^{(0)} = \sumi^n X_i$, so the goal now is to show
   \[
-  \abs{E h \left( b_n^{-1} S_n^{(n)} \right) - E \left( b_n^{-1} S_n^{(n)} \right)}
+  \abs{E h \left( b_n^{-1} S_n^{(n)} \right) - E h \left( b_n^{-1} S_n^{(0)} \right)}
   = o(1).
   \]
   It suffices to show that for all $1 \leq j \leq n$,
   \[
-  \abs{E h \left( b_n^{-1} S_n^{(j)} \right) - E \left( b_n^{-1} S_n^{(j - 1)} \right)}
+  \abs{E h \left( b_n^{-1} S_n^{(j)} \right) - E h \left( b_n^{-1} S_n^{(j - 1)} \right)}
   = o(b_n^{-2} \sigma_j^2)
   \]
   Now fix $1 \leq j \leq n$ and let 
@@ -2498,22 +2498,22 @@ P \left( S_n = u, M_n \leq \ell \right)
 
   Then we can compute expectation:
   \begin{align*}
-    E \left[ M_n \right] 
+    E M_n 
     &= \sum_{\ell = - \infty}^0 \ell P \left( M_n = \ell \right) \\ 
     &= \sum_{\ell = - \infty}^0 \ell P \left( S_n = \ell \right) 
     + \sum_{\ell = - \infty}^{-1} (\ell + 1) P(S_n = \ell) \\ 
     &= \sum_{\ell = - \infty}^{0} \ell P ( S_n = \ell ) 
     + \sum_{\ell = 1}^\infty (- \ell) P( S_n = \ell )
-    + \sum_{\ell = - \infty}^{-1} (\ell + 1) P(S_n = \ell) \\
+    + \sum_{\ell = - \infty}^{-1} P(S_n = \ell) \\
     &= E [- \abs{S_n}] + P (S_n < 0).
   \end{align*}
   As $n \to \infty$, we have 
   \[
-  \frac{E [M_n]}{E \abs{S_n}} \to -1.
+  \frac{E M_n}{E \abs{S_n}} \to -1.
   \]
   Hence, 
   \[
-  E \left[ M_n  \right] = - \sqrt{2 \pi^{-1}} \sqrt{n} + o( \sqrt{n} )
+  E M_n = - \sqrt{2 \pi^{-1}} \sqrt{n} + o( \sqrt{n} )
   \]
 \end{eg}
 
@@ -2567,7 +2567,7 @@ P \left( S_n = u, M_n \leq \ell \right)
   
   Following this, we can also define $T_k$ inductively 
   as the time of $k$-th return to zero, and it is easy to 
-  see that $P (\capk^\infty T_k < \infty) = 1$. Also, note that 
+  see that $P (T_k < \infty \text{ for all $k$}) = 1$. Also, note that 
   $\{ T_k \leq \ell \} \in \sigma (S_1, \dots, S_\ell)$, this is 
   called the \emph{stopping time} property.
 \end{eg}
@@ -2656,15 +2656,15 @@ the norm of $X$.
   For any $v \in \R^n$, define a new function $h$ via 
   \begin{align*}
     h (v) 
-    = E \ind_{ \left\{ \abs{\bra v, X \ket} \geq \frac{1}{2} 
-    c t \sqrt{ v^T \Sigma v} \right\} }
-    = E \ind_{ \left\{ \abs{\bra v, X \ket} \geq \frac{1}{2} c t 
-    \sqrt{E \bra v, X \ket^2} \right\} }
+    = E \left[ \ind_{ \left\{ \abs{\bra v, X \ket} \geq \frac{1}{2} 
+    c t \sqrt{ v^T \Sigma v} \right\} } \right]
+    = E \left[ \ind_{ \left\{ \abs{\bra v, X \ket} \geq \frac{1}{2} c t 
+    \sqrt{E \bra v, X \ket^2} \right\} } \right]
   \end{align*}
   Since $X$ is subgaussian, $h(v) \leq 2 \exp \left( - \frac{c^2 t^2}{4 k^2} \right)$ a.e. 
   Therefore, 
   \[
-  E P \left\{ \abs{V, X} \geq \frac{1}{2} c t \sqrt{V^T \Sigma V} | V \right\}
+  E \left[ P \left\{ \abs{V, X} \geq \frac{1}{2} c t \sqrt{V^T \Sigma V} \middle| V \right\} \right]
   = E h (V) \leq 2 \exp \left( - \frac{c^2 t^2}{4 k^2} \right).
   \]
   The LHS is exactly $P \{ \abs{\bra V, X \ket} \geq \frac{1}{2} 
@@ -2825,10 +2825,14 @@ based on martingales.
   for all $t > 0$, where $V$ is the uniform random distribution 
   on $\{ -1, 1 \}^n$. 
 
-  Now let $A \subset \{-1, 1\}^n$ with $\abs{A} = 2^{n - 1}$.
-  Claim that $E [\dist (A, V)] = O(\sqrt{n})$. 
-  
-  \TODO
+  Moreover, for $A \subset \{-1, 1\}^n$ with $\abs{A} = 2^{n - 1}$.
+  We have the following \emph{Hamming concentration inequality}:
+  \[
+  P \left\{ \dist(X, A) \geq t \right\}
+  \leq 2 \exp \left( - \frac{C t^2}{n} \right)
+  \]
+  for some universal constant $C$.
+  From this we can obtain $E [\dist (A, V)] = O(\sqrt{n})$. 
 \end{eg}
 
 Next we present a combinatorial application of martingale method.
@@ -2887,7 +2891,7 @@ Next we present a combinatorial application of martingale method.
 Now let $X_n$ be an adapted sequence, and define 
 a sequence $\{ H \cdot X \}_n$ via 
 \[
-(H \cdot X)_n = \summ^n H_m (X_m - X_{m - 1})
+(H \cdot X)_n = \sumi^n H_m (X_i - X_{i - 1})
 \]
 for $n \geq 0$.
 
@@ -2900,10 +2904,10 @@ for $n \geq 0$.
 \begin{proof}
   Note that 
   \begin{align*}
-    E \left[ \summ^n H_m (X_m - X_{m - 1}) \middle| \fcal_{n - 1} \right] 
-    &= \summ^{n - 1} H_m (X_m - X_{m - 1})
+    E \left[ \sumi^n H_i (X_i - X_{i - 1}) \middle| \fcal_{n - 1} \right] 
+    &= \sumi^{n - 1} H_i (X_i - X_{i - 1})
     + E[H_n (X_n - X_{n - 1}) | \fcal_{n - 1}] \\
-    &= \summ^{n - 1} H_m (X_m - X_{m - 1})
+    &= \sumi^{n - 1} H_i (X_i - X_{i - 1})
     + H_n E[X_n - X_{n - 1} | \fcal_{n - 1}].
   \end{align*}
   The statement then follows immediately.
@@ -2964,48 +2968,52 @@ Next we consider the important optional stopping time theorem.
   $\{ (X_{M \wedge (m \vee T)})_{m=0}^{n - 1} \in B \}$ for some 
   $B \in \bcal(\R^n)$. Next consider 
   \begin{align*}
-    E \left[ X_{M \wedge (T \vee n)} - X_{M \wedge (T \vee (n - 1))}
-    | A \cap \{T = k\} \right].
+    E \left[ \left( X_{M \wedge (T \vee n)} - X_{M \wedge (T \vee (n - 1))} \right)
+    \ind_{ A \cap \{T = k\} } \right].
   \end{align*}
   There are several cases. 
 
-  If $k \geq n$, then $T \wedge n = T \wedge (n - 1) = T = k$ 
+  If $k \geq n$, then $T \vee n = T \vee (n - 1) = T = k$ 
   on $\{T = k\}$, and the conditional expectation is zero.
 
-  If $k \leq n - 1$, then $T \wedge n = n$ and $T \wedge (n - 1) = n - 1$.
+  If $k \leq n - 1$, then $T \vee n = n$ and $T \vee (n - 1) = n - 1$.
   The conditional expectation becomes 
   \[
-  E \left[ X_{M \wedge n} - X_{M \wedge (n - 1)} | A \cap \{T = k\} \right].
+  E \left[ \left( X_{M \wedge n} - X_{M \wedge (n - 1)} \right) 
+  \ind_{ A \cap \{T = k\} } \right].
   \]
   If $M \leq n - 1$, then this becomes zero too. Therefore the only
   nontrivial case is when $M \geq n$. For this case, the conditional
   expectation becomes $E [X_n - X_{n - 1} \mid A \cap \{ T = k \}]$.
-  Note that on the event $\{ T = k \}$ with $k \leq n - 1$, we have 
+  Note that on the event $\{ T = k \}$ with $k \leq n - 1$, 
+  for all $1 \leq j \leq n - 1$ we have 
   \[
-  (j \vee T) \wedge M = (j \vee (n - 1)) \wedge M \leq n - 1
+  (j \vee T) \wedge M \leq (j \vee (n - 1)) \wedge M \leq n - 1.
   \]
-  for all $1 \leq j \leq n - 1$. Therefore, $A$ is 
+  Therefore, $A$ is 
   $\fcal_{n - 1}$-measurable. Also, $T$ is a stopping time, so 
   $\{ T = k \}$ is also $\fcal_{n - 1}$-measurable. Now 
   submartingale property implies 
   \begin{align*}
-    E [X_n - X_{n - 1} \mid A \cap \{ T = k \}] 
+    E [\left( X_n - X_{n - 1} \right) \ind_{A \cap \{ T = k \}}] 
     = E [\ind_{A \cap \{T = k\}} E[X_n - X_{n - 1} | \fcal_{n - 1}]] 
     \geq 0.
   \end{align*}
   Therefore, 
   \[
-  E \left[ X_{M \wedge (T \vee n)} - X_{M \wedge (T \vee (n - 1))}
-    | A \cap \{T = k\} \right] \geq 0.
+  E \left[ \left( X_{M \wedge (T \vee n)} - X_{M \wedge (T \vee (n - 1))} \right)
+    \ind_{A \cap \{T = k\}} \right] \geq 0.
   \]
   Now since $A = \bigsqcup_{k \in \N \cup \{\infty\}} A \cap \{T = k\}$, 
   we have
-  \[
-  E \left[ X_{M \wedge (T \vee n)} - X_{M \wedge (T \vee (n - 1))}
-    | A \right] = \sum_{k \in \N \cup \{\infty\}} 
-  E \left[ \ind_{A \cap \{T = k\}} (X_{M \wedge (T \vee n)} - X_{M \wedge (T \vee (n - 1))})
-  \right] \geq 0.  
-  \]
+  \begin{align*}
+    E \left[ \left( X_{M \wedge (T \vee n)} - X_{M \wedge (T \vee (n - 1))} \right)
+    \ind_A \right] 
+    &= \sum_{k \in \N \cup \{\infty\}} 
+    E \left[ \ind_{A \cap \{T = k\}} (X_{M \wedge (T \vee n)} - X_{M \wedge (T \vee (n - 1))})
+    \right] \\
+    &\geq 0.
+  \end{align*}
   for any $A \in \gcal_{n - 1}$. This then implies that 
   \[
   E \left[ X_{M \wedge (T \vee n)} - X_{M \wedge (T \vee (n - 1))}
@@ -3040,6 +3048,10 @@ Next we consider the important optional stopping time theorem.
   is a submartingale. Then the expectation of 
   the $n$-th element is at least the expectation of 
   the $0$-th element. This implies $E X_{T \wedge n} \leq E X_n$.
+  Alternatively, we can also see this from 
+  \[
+  X_n - X_{n \wedge T} = \sumi^n \ind_{\{T < i\}} (X_i - X_{i - 1}).
+  \]
   Rearranging the inequality gives the desired result.
 
 \end{proof}
@@ -3153,7 +3165,7 @@ proof for Kolmogorov's inequality for symmetric variables.
   \]
   Hence, $(b - a) U_m \geq (H \cdot Z)_m$. Now note that $Z$ is a 
   submartingale and $1 - H$ is predicatble, so 
-  $\seqinfm{((1 - H) \cdot Z)_m}$ is also a submartingale. Therefore,
+  $((1 - H) \cdot Z)$ is also a submartingale. Therefore,
   \begin{align*}
     (b - a) E[U_m] 
     &\leq E (H \cdot Z)_m \\
@@ -3204,6 +3216,8 @@ the real numbers.
   there are finitely many oscillations with probability $1$.
   From the previous example and some extra argument, 
   we can derive that the random walk converges to a limit that is nonzero.
+  Indeed, the variance is nonzero, so the limit is not a.s.\ equal to zero.
+  From Kolmogorov $0$-$1$ law, the limit is nonzero a.s.
 \end{eg}
 
 \begin{thm}[submartingale convergence theorem]
@@ -3250,8 +3264,8 @@ the real numbers.
 \end{cor}
 
 \begin{proof}
-  Note that $-X_n$ is a submartingale and $-X_n = 0 < \infty$.
-  Hence $\sup_n E [(-X_n)^+] \leq 0$ so existence of $X$ is guaranteed
+  Note that $-X_n$ is a submartingale and $-X_n \leq 0$.
+  Hence $\sup_n E [(-X_n)^+] = 0$, so existence of $X$ is guaranteed
   by the previous theorem. Moreover, 
   \[
   E[X] \leq \liminf_{n \to \infty} E[X_n] = \inf_n E[X_n]
@@ -3268,7 +3282,7 @@ the real numbers.
   To prove this,
   suppose $\xi_1 \not\equiv 1$ then there exists $\epsilon > 0$ such that 
   $P \left\{ \abs{\xi_1 - 1} > \epsilon \right\} > \epsilon$.
-  Then, the event $A = \{ \abs{\xi_1 - 1} \geq \epsilon \text{ i.o.} \}$
+  Then, the event $A = \{ \abs{\xi_i - 1} \geq \epsilon \text{ i.o.} \}$
   has probability one.
   On event $A$,
   \[
@@ -3318,7 +3332,8 @@ the real numbers.
     &\leq X_{n - 1}.
   \end{align*}
   Then there exists non-negative $X$ such that $X_n \to X$ a.e. 
-  Also, $\lim_{n \to \infty} E X_n = 0$. Moreover, by Fatou's lemma, 
+  Moreover, it is easy to verify that $\lim_{n \to \infty} E X_n = 0$.
+  Hence by Fatou's lemma, 
   $0 = \lim_{n \to \infty} E X_n \geq E \lim_{n \to \infty} X_n$,
   which implies $E X = 0$ and thus $X = 0$ a.e.
 
@@ -3328,7 +3343,9 @@ the real numbers.
   $X_n \to X$ a.e. It is easy to see that $X$ is integer-valued. 
   Suppose there exists $m \geq 1$ such that $P \{ X = m \} > 0$.
   On the event $\{ X = m \}$, $X_n = m$ for all but finitely many $n$'s.
-  However, \TODO 
+  However, since $\xi_{1,1} \not \equiv 1$, $X_n$ does not 
+  a.s.\ equals $m$ given $X_{n-1} = m$. Therefore, for 
+  some $\delta > 0$,
   \begin{align*}
     P \left\{ X_n = m \text{ for all $n_0 \leq n \leq N$} \right\}
     &= \prod_{n = n_0 + 1}^N P \left\{ X_n = m | X_j = m 
@@ -3338,8 +3355,8 @@ the real numbers.
   a contradiction.
 
   Finally, consider the last case where $E \xi_{1,1} > 1$. 
-  We first introduce the concept of \textbf{stochastic domination}.
-  We say random variable $Z$ \textbf{stochastically dominates} 
+  We first introduce the concept of \emph{stochastic domination}.
+  We say random variable $Z$ \emph{stochastically dominates} 
   $W$ if $P \{W \leq t\} \geq P \{Z \leq t\}$ for all $t \in \R$.
   In this case, there exists $\tilde{W} \sim W$ and $\tilde{Z} \sim Z$
   on the same probability space such that $\tilde{W} \leq \tilde{Z}$ a.e.
@@ -3467,13 +3484,14 @@ the real numbers.
   (2) $\implies$ (1). Suppose $X_n$ does not converge to $X$ 
   in $L^1$. Then there is a subsequence $\seqinfk{X_{n(k)}}$ and 
   $\epsilon > 0$ such that $E \abs{X_{n(k)} - X} \geq \epsilon$ for 
-  all $k$. Now to simplify notation and without loss of generality,
+  all $k$. To simplify notation without loss of generality,
   consider $X_n$ with $E \abs{X_n - X} \geq \epsilon$ for all $n$.
 
   In the case where $E \abs{X} = \infty$, with $X_n \convp X$ 
   claim that $\lim_{n \to \infty} E \abs{X_n} = \infty$. The 
   verification of this is left as an exercise.
-  With $E\abs{X_n} \to \infty$, $\{ X_n \}$ is not uniformly integrable, as 
+  With $E\abs{X_n} \to \infty$, $\seqinfn{X_n}$ 
+  is not uniformly integrable, since 
   \[
   E \left[ \abs{X_n} \ind_{\{\abs{X_n} > M\}} \right]
   = E \abs{X_n} - E \left[ \abs{X_n} \ind_{\{\abs{X_n} \leq M\}} \right] 
@@ -3482,15 +3500,16 @@ the real numbers.
   as $n \to \infty$.
 
   Now suppose $E \abs{X} < \infty$. Fix $\epsilon > 0$. 
-  There is $\delta > 0$ such that 
+  There is $\delta > 0$ such that $P(A) \leq \delta$ implies
   $E \left[ \abs{X_n} \ind_A \right] \leq \frac{\epsilon}{4}$.
   Since $X_n - X \convp 0$, we have 
   $P \left\{ \abs{X_n - X} \geq 1 \right\} \to 0$
-  and also
+  and thus
   \[
-  \lim_{n \to \infty} 
-  E \left[ \abs{X_n - X} \ind_{\{\abs{X_n - X} < 1\}}\right] = 0.
+  E \left[ \abs{X_n - X} \ind_{\{\abs{X_n - X} < 1\}}\right]
+  \leq P \left\{ \abs{X_n - X} \geq 1 \right\} \to 0
   \]
+  as $n \to \infty$.
   Now for $n$ large enough, 
   \begin{align*}
     E \left[ \abs{X_n} \ind_{\{\abs{X - X_n} \geq 1\}} \right] + \frac{\epsilon}{4}
@@ -3503,18 +3522,18 @@ the real numbers.
   Let $P \left\{ \abs{X_n - X} \geq 1 \right\} = \delta_n$, then 
   $\delta_n \to 0$. We then have 
   \begin{align*}
-    \liminf_n E \left[ \abs{X_n} - 
+    \liminf_{n \to \infty} E \left[ \abs{X_n} - 
     \ind_{\{\abs{X_n} > \delta_n^{-1/2}\}} \right]
-    &\geq \liminf_n E \left[ \abs{X_n} \ind_{\{\abs{X_n} > \delta_n^{-1/2}\}}
+    &\geq \liminf_{n \to \infty} E \left[ \abs{X_n} \ind_{\{\abs{X_n} > \delta_n^{-1/2}\}}
     \ind_{\{\abs{X_n - X} \geq 1\}} \right].
   \end{align*}
   However, 
   \begin{align*}
-    E \left[ \abs{X_n} \ind_{\{\abs{X_n} > \delta_n^{-1/2}\}}
-    \ind_{\{\abs{X_n - X} \geq 1\}} \right]
-    &= E \left[ \abs{X_n} \ind_{\abs{X - X_n} \geq 1} \right]
+    & E \left[ \abs{X_n} \ind_{\{\abs{X_n} > \delta_n^{-1/2}\}}
+    \ind_{\{\abs{X_n - X} \geq 1\}} \right] \\
+    &= E \left[ \abs{X_n} \ind_{\{\abs{X - X_n} \geq 1\}} \right]
     - E \left[ \abs{X_n} \ind_{\{\abs{X_n} \leq \delta_n^{-1/2}\}}
-    \ind_{\abs{X_n - X} \geq 1} \right] \\
+    \ind_{\{\abs{X_n - X} \geq 1\}} \right] \\
     &\geq \frac{\epsilon}{2} - \delta_n^{1/2}.
   \end{align*}
   Therefore, $\liminf_n E \left[ \abs{X_n} - \ind_{\{\abs{X_n} 
@@ -3535,10 +3554,10 @@ the real numbers.
   Also, let $M = \delta^{-1} E \abs{X}$. Claim that for 
   any $n$, we have 
   \[
-  E \left[ \abs{E [X | \fcal_n]} \ind_{\{E[X | \fcal_n] \geq M\}}\right] 
+  E \left[ \abs{E [X | \fcal_n]} \ind_{\{\abs{E[X | \fcal_n]} \geq M\}}\right] 
   \leq \epsilon.
   \]
-  Write event $A_M = \{E[X | \fcal_n] \geq M\}$. First of all, 
+  Write event $A_M = \{\abs{E[X | \fcal_n]} \geq M\}$. First of all, 
   from Jensen's inequality, we have 
   \[
   \abs{E [X | \fcal_n]} \ind_{A_M} 
@@ -3585,12 +3604,13 @@ the real numbers.
   that generates $\fcal_\infty$. We can also check that 
   all sets $A \in \fcal_\infty$ that satisfy 
   $E[\ind_A X] = E [\ind_A Z]$ is a $\lambda$-system. 
-  The theorem then follows from $\pi$-$\lambda$ system.
+  Applying $\pi$-$\lambda$ theorem and recall the 
+  definition of conditional expectation compeltes the proof.
 
 \end{proof}
 
 \begin{cor}[Levy $0$-$1$ law]
-  let $\seqinfn{\fcal_n}$ be a filtration and let $\fcal_\infty 
+  Let $\seqinfn{\fcal_n}$ be a filtration and let $\fcal_\infty 
   = \sigma (\fcal_n : n \geq 1)$. 
   Then, $E [\ind_A | \fcal_n] \to \ind_A$ a.e. for any $A \in \fcal_\infty$.
 \end{cor}
@@ -3600,7 +3620,9 @@ the real numbers.
   $\seqinfn{X_n}$ are mutually independent and let $\tcal = 
   \capinfm \sigma \left( X_n : n \geq m \right)$
   be the tail $\sigma$-field. Also let $\fcal_n = 
-  \sigma (X_1, \dots, X_n)$. Take $A \in \tcal$, then 
+  \sigma (X_1, \dots, X_n)$. Note that 
+  $\tcal \subset \fcal_\infty$.
+  Now take $A \in \tcal$, then 
   $A$ is independent of any $\fcal_n$. Therefore 
   $E [\ind_A | \fcal_n] = P(A)$. By Levy $0$-$1$ law,
   we can conlude that $P(A) \in \{ 0, 1 \}$.
@@ -3608,7 +3630,7 @@ the real numbers.
 
 \begin{eg}
   Let $\seqinfn{Y_n}$ be mean zero, mutually independent 
-  random variables. immediately $\seqinfn{Y_n}$ is a martingale. 
+  random variables. Immediately $\seqinfn{Y_n}$ is a martingale. 
   Suppose also $\suminfn E Y_n^2 < \infty$.
   Define $S_n = \sumk^n Y_k$, then 
   \[
@@ -3617,17 +3639,16 @@ the real numbers.
   by Jensen's inequality. Now submartingale convergence theorem
   gives a random variable $X$ with 
   $E \abs{X} < \infty$ such that $\suminfk Y_k = X$ a.e.
-
-  Claim that $E [X | Y_1, \dots, Y_n] = \sumk^n Y_k$. \TODO
-
+  As an exercise, we can verify that 
+  $E [X | Y_1, \dots, Y_n] = \sumk^n Y_k$.
   Now, by previous theorems, we have $\suminfk Y_k \to X$ in $L^1$.
 \end{eg}
 
 \subsection{Backward martingales}
 
 \begin{defi}[backward martingale]
-  Let $\{\fcal_n\}_{n = -\infty}^{-1}$ be a filtration 
-  such that $\fcal_{-k} \subset \fcal_{-k-1}$ for all $k \geq 1$.
+  Let $\{\fcal_n\}_{n = -\infty}^0$ be a filtration 
+  such that $\fcal_{-k} \subset \fcal_{-k+1}$ for all $k \geq 1$.
   Let $\{X_n\}_{n = -\infty}^0$ be adapted to the filtration.
   Suppose $E \abs{X_n} < \infty$ for all $n \leq 0$. 
   If $E [X_{n + 1} | \fcal_n] = X_n$ for all $n \leq -1$, 
@@ -3636,8 +3657,8 @@ the real numbers.
 
 \begin{thm}
   Let $\{X_n\}_{n = -\infty}^0$ be a backward martingale
-  under the filtration $\{\fcal_n\}_{n = -\infty}^{-1}$.
-  Write $\fcal_{-\infty} = \bigcap_{m = -\infty}^{-1} \fcal_m$, 
+  under the filtration $\{\fcal_n\}_{n = -\infty}^0$.
+  Write $\fcal_{-\infty} = \bigcap_{m = -\infty}^0 \fcal_m$, 
   then $X_m \to E[X_0 | \fcal_{-\infty}]$ a.e.\ as $m \to -\infty$.
 \end{thm}
 
@@ -3701,8 +3722,9 @@ With this, we can revisit law of large numbers.
   \end{align*}
   Let $A \in \sigma (\sumi^n X_i, X_{n + 1}, X_{n + 2}, \dots)$. 
   This means $A = \{ (\sumi^n X_i, X_{n + 1}, X_{n + 2}, \dots)
-  \in B \}$ for some Borel set $B$. Since $X_i$'s are i.i.d., 
-  we must have 
+  \in B \}$ for some Borel set $B$. Since $X_i$'s are i.i.d.\
+  and $A$ only depends on $X_1, \dots, X_n$ through
+  $\sumi^n X_i$, by symmetry we must have
   \[
   P (A \cap \{ X_i \in C \}) = P(A \cap \{ X_j \in C \})
   \]
