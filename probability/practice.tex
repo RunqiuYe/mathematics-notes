@@ -514,4 +514,140 @@ implies $\suminfn P(A_n) = \infty$ and hence $P(A_n \text{ i.o.}) = 1$.
 
 \subsection{Martingales, almost sure convergence}
 
+\begin{ex}[Durret 4.2.1]
+  Suppose $X_n$ is a martingale w.r.t.\ $\gcal_n$ and let 
+  $\fcal_n = \sigma (X_1, \dots, X_n)$. Then $\gcal_n \supset 
+  \fcal_n$ and $X_n$ is a martingale w.r.t\ $\fcal_n$.
+\end{ex}
+
+\begin{proof}
+  By assumption, $X_1, \dots, X_n$ are all $\gcal_n$ measurable.
+  Therefore it is clear that $\gcal_n \supset \fcal_n$. 
+  Moreover,
+  \[
+  E[X_{n + 1} | \fcal_n] = E[E[X_{n+1} | \gcal_n] | \fcal_n]
+  = E[X_n | \fcal_n] = X_n,
+  \]
+  so $X_n$ is a martingale w.r.t.\ $\fcal_n$.
+
+\end{proof}
+
+\begin{ex}[Durret 4.2.5]
+  Give an example of a martingale $X_n$ with $X_n \to - \infty$ a.s.
+  Hint: Let $X_n = \xi_1 + \dots + \xi_n$ where the $\xi_i$ are 
+  independent (but not identically distributed) with $E \xi_i = 0$.
+\end{ex}
+
+\begin{proof}
+  Define $\xi_n$ via $P \{\xi_n = - n^{-1}\} = 1 - n^{-2}$
+  and $P\{\xi_n = n - n^{-1}\} = n^{-2}$. Then 
+  \[
+  E \xi_n = - \left( 1 - \frac{1}{n^2} \right) \frac{1}{n}
+  + \frac{1}{n^2} \left( n - \frac{1}{n} \right) = 0.
+  \]
+  Therefore $X_n = \xi_1 + \dots + \xi_n$ is a martingale. To show 
+  $X_n \to -\infty$ a.s., note that 
+  \[
+  \suminfi P\{\xi_n = n - n^{-1}\} = \suminfi \frac{1}{n^2} < \infty.
+  \]
+  Borel-Cantelli lemma then implies that $P \{\xi_n = n - n^{-1} 
+  \text{ i.o.}\} = 0$. On the complementary event $\{\xi_n = -n^{-1} 
+  \text{ for all but finitely many $n$}\}$, it is clear that 
+  $X_n \to -\infty$.
+
+\end{proof}
+
+\begin{ex}[Durret 4.2.8]
+  Let $X_n$ and $Y_n$ be positive integrable and adapted to $\fcal_n$.
+  Suppose 
+  \[
+  E[X_{n + 1} | \fcal_n] \leq (1 + Y_n) X_n
+  \]
+  with $\sum Y_n < \infty$ a.s. Prove that $X_n$ converges to a finite
+  limit by finding a closely related supermartingale to which 
+  Theorem 4.2.12 can be applied.
+\end{ex}
+
+\begin{proof}
+  Define $A_n = \prod_{k=1}^{n-1} (1 + Y_k)$ and $Z_n = \frac{X_n}{A_n}$.
+  Since $Y_k$ is $\fcal_k$-measurable for each $k$, $A_n$ is 
+  $\fcal_n$-measurable. 
+  Also, since $A_n \geq 1$ a.s.\ and $X_n$ 
+  is integrable, $Z_n$ is also integrable. Now we have
+  $A_{n + 1} = A_n (1 + Y_n)$, and thus 
+  \begin{align*}
+    E[Z_{n + 1} | \fcal_n]
+    = E \left[ \frac{X_{n + 1}}{A_n (1 + Y_n)} \middle| \fcal_n \right]
+    = \frac{E[X_{n + 1} | \fcal_n]}{A_n (1 + Y_n)} 
+    \leq \frac{X_n}{A_n}
+    = Z_n.
+  \end{align*}
+  Therefore, $Z_n$ is a supermartingale and thus converges to some 
+  finite limit $Z$ a.s.
+
+  Now consider $A_n$. Using $\log (1 + x) \leq x$ for $x > 0$, we have 
+  \[
+  \sumk^{n-1} \log (1 + Y_k)
+  \leq \sumk^{n - 1} Y_n
+  \leq \suminfn Y_n < \infty \text{ a.s.}
+  \]
+  Therefore, the series $\sum \log(1 + Y_k)$ converges a.s.
+  and thus $A_n = \exp (\sumk^{n-1} \log(1 + Y_k))$ converges
+  to a finite limit $A$ a.s. This implies $X_n \to Z A$ a.s.
+
+\end{proof}
+
+\begin{ex}[Durret 4.2.9]
+  \textbf{The switching principle}. Suppose $X_n^1$ and $X_n^2$ are 
+  supermartingales with respect to $\fcal_n$ and $N$ is stopping time 
+  so that $X_N^1 \geq X_N^2$. Then 
+  \begin{align*}
+    Y_n = X_n^1 \ind_{\{N > n\}} + X_n^2 \ind_{\{N \leq n\}}
+    \text{ is a supermartingale.} \\
+    Z_n = X_n^1 \ind_{\{N \geq n\}} + X_n^2 \ind_{\{N < n\}}
+    \text{ is a supermartingale.} \\
+  \end{align*}
+\end{ex}
+
+\begin{proof}
+  To show $Y_n$ is a supermartingale, note that 
+  \[
+  Y_{n + 1} = X_{n + 1}^1 \ind_{\{N > n + 1\}} + X_{n + 1}^2 \ind_{\{N \leq n + 1\}}
+  \]
+  However, $\ind_{\{N > n + 1\}} + \ind_{\{N = n + 1\}} = \ind_{\{N > n\}}$
+  and $\ind_{\{N \leq n + 1\}} = \ind_{\{N \leq n\}} + \ind_{\{N = n + 1\}}$.
+  It follows that 
+  \[
+  Y_{n + 1} = X_{n + 1}^1 \ind_{\{N > n\}}
+  + X_{n + 1}^2 \ind_{\{N \leq n\}}
+  + (X_{n+1}^2 - X_{n+1}^1) \ind_{\{N = n + 1\}}.
+  \]
+  Note that $\ind_{\{N \leq n\}}$ and 
+  $\ind_{\{N > n\}}$ are both $\fcal_n$-measurable, and 
+  $X_{n+1}^1 \geq X_{n+1}^2$ on the event $\{N = n + 1\}$.
+  Taking the conditional expectation w.r.t.\ $\fcal_n$ gives
+  \begin{align*}
+    E[Y_{n + 1}] 
+    &\leq \ind_{\{N > n\}} E[X_{n+1}^1 | \fcal_n]
+    + \ind_{\{N \leq n\}} E[X_{n+1}^2 | \fcal_n] \\
+    &\leq \ind_{\{N > n\}} X_n^1 + \ind_{\{N \leq n\}} X_{n+1}^2 \\
+    &= Y_n,
+  \end{align*}
+  showing $Y_n$ is a supermartingale.
+
+  To show $Z_n$ is a supermartingale, note that $\ind_{\{N \geq n + 1\}}$ 
+  and $\ind_{\{N < n + 1\}}$ are $\fcal_n$-measurable. It follows that
+  \begin{align*}
+    E[Z_{n + 1} | \fcal_n]
+    &= E[X_{n + 1}^1 \ind_{\{N \geq n + 1\}} + X_{n + 1}^2 \ind_{\{N < n + 1\}} | \fcal_n] \\
+    &= E[X_{n + 1}^1 | \fcal_n] \ind_{\{N \geq n + 1\}} + E[X_{n + 1}^2  | \fcal_n] \ind_{\{N < n + 1\}} \\
+    &\geq X_n^1 \ind_{\{N \geq n + 1\}} + X_n^2 \ind_{\{N < n + 1\}}.
+  \end{align*}
+  Now we can use a similar decomposition to see
+  $E[Z_{n + 1} | \fcal_n] \geq Z_n$.
+  
+\end{proof}
+
+
+
 \end{document}
