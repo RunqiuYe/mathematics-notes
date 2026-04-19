@@ -3729,9 +3729,9 @@ With this, we can revisit law of large numbers.
   P (A \cap \{ X_i \in C \}) = P(A \cap \{ X_j \in C \})
   \]
   for any $1 \leq i,j \leq n$ and any $C \subset \bcal_\R$.
-  Therefore, $E [X_i | A]$ is the same for all $1 \leq i \leq n - 1$
-  and thus $E [\sumi^{n-1} X_i | A] = (n - 1) E [X_1 | A]$. Similarly,
-  $E [\sumi^n X_i | A] = n E[X_1 | A]$. This proves the equation 
+  Therefore, $E [X_i \ind_A]$ is the same for all $1 \leq i \leq n - 1$
+  and thus $E [\sumi^{n-1} X_i \ind_A] = (n - 1) E [X_1 \ind_A]$. Similarly,
+  $E [\sumi^n X_i \ind_A] = n E[X_1 \ind_A]$. This proves the equation 
   and confirms that $Y_n$ is a backward martingale.
   
   With the previous theorem, we have $Y_{-n} \to E[Y_{-1} | \fcal_{-\infty}]$

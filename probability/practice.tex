@@ -366,4 +366,152 @@ implies $\suminfn P(A_n) = \infty$ and hence $P(A_n \text{ i.o.}) = 1$.
 
 \end{proof}
 
+\section{Martingales}
+
+\subsection{Conditional expectation}
+
+\begin{ex}[Durrett 4.1.2]
+  Prove \textbf{Chebyshev's inequality}. If $a > 0$ then 
+  \[
+  P \{ \abs{X} \geq a | \fcal \} \leq a^{-2} E[X^2 | \fcal].
+  \]
+\end{ex}
+
+\begin{proof}
+  Let $A \in \fcal$, we have 
+  \begin{align*}
+    \int_A E[ \ind_{\{\abs{X} \geq a\}} | \fcal] \d P 
+    &= \int_A \ind_{\{\abs{X} \geq a\}} \d P.
+  \end{align*}
+  On the event $\{\abs{X} \geq a\}$, $a^{-2} X^2 \geq 1$, so 
+  \begin{align*}
+    \int_A E[ \ind_{\{\abs{X} \geq a\}} | \fcal] \d P 
+    &\leq \int_A a^{-2} X^2 \d P \\
+    &= a^{-2} \int_A X^2 \d P \\
+    &= a^{-2} \int_A E [X^2 | \fcal] \d P.
+  \end{align*}
+  Since $A \in \fcal$ is arbitrary, this completes the proof.
+
+\end{proof}
+
+\begin{ex}[Durrett 4.1.5]
+  Give an example on $\Omega = \{a, b, c\}$ in which 
+  \[
+  E [E [X | \fcal_1] | \fcal_2] \neq E [E [X | \fcal_2] | \fcal_1].
+  \]
+\end{ex}
+
+\begin{proof}
+  Let $P$ be the uniform distribution and $X = \ind_{\{a\}}$. 
+  Also let 
+  \[
+  \fcal_1 = \{ \{a, b\}, \{c\}, \emptyset, \Omega\}, \quad 
+  \fcal_2 = \{ \{b, c\}, \{a\}, \emptyset, \Omega\}.
+  \]
+  Then $E[X | \fcal_2] = X$. Meanwhile, $E[X | \fcal_1] (c) = 0$
+  and $E[X | \fcal_1] (a) = E[X | \fcal_1] (b) = \frac{1}{2}$. With this, 
+  we can also compute $E[E[X | \fcal_1] | \fcal_2] (a) = \frac{1}{2}$
+  and $E[E[X | \fcal_1] | \fcal_2] (b) = E[E[X | \fcal_1] | \fcal_2] (c)
+  = \frac{1}{2}$. This shows that $E [E [X | \fcal_1] | \fcal_2] \neq 
+  E [E [X | \fcal_2] | \fcal_1]$, as desired.
+
+\end{proof}
+
+\begin{ex}[Durrett 4.1.6]
+  Show that if $\gcal \subset \fcal$ and $E X^2 < \infty$ then 
+  \[
+  E \left[ (X - E[X | \fcal])^2 \right]
+  + E \left[ (E [X | \fcal] - E[X | \gcal])^2 \right]
+  = E \left[ (X - E [X | \gcal])^2 \right].
+  \]
+\end{ex}
+
+\begin{proof}
+  For LHS, we have 
+  \begin{align*}
+    &(X - E[X | \fcal])^2 + (E[X | \fcal] - E [X | \gcal])^2 \\
+    &= X^2 + 2 E[X | \fcal]^2 - 2 X E[X | \fcal] - 2 E[X | \fcal]
+    E [X | \gcal] + E[X | \gcal]^2
+  \end{align*}
+  For RHS, we have 
+  \begin{align*}
+    (X - E[X | \gcal])^2 = X^2 + E[X | \gcal]^2 - 2 X E[X | \gcal].
+  \end{align*}
+  Hence, we just need to show 
+  \[
+  E[E[X | \fcal]^2 - X E[X | \fcal] - E[X | \fcal]
+    E [X | \gcal]]
+  = E[- X E[X | \gcal]].
+  \]
+  Using the tower property and taking conditional expectation 
+  w.r.t.\ $\fcal$ first and then taking the unconditional 
+  expectation, we have 
+  \begin{align*}
+    & E[E[X | \fcal]^2 - X E[X | \fcal] - E[X | \fcal]
+    E [X | \gcal]] \\
+    &= E[E[X | \fcal]^2] - E[E[X | \fcal]^2]
+    - E[E[X | \fcal] E[X | \gcal]]  \\
+    &= - E[E[X | \fcal] E[X | \gcal]],
+  \end{align*}
+  Similarly, we have 
+  \begin{align*}
+    E[- X E[X | \gcal]]
+    &= - E[E[X | \fcal] E[X | \gcal]],
+  \end{align*}
+  where we used the fact that $E[X | \gcal]$ is $\gcal$-measurable
+  and thus $\fcal$-measurable. 
+
+\end{proof}
+
+\begin{ex}[Durrett 4.1.8]
+  Let $Y_1, Y_2, \dots$ be i.i.d.\ with mean $\mu$ and variance 
+  $\sigma^2$, $N$ an independent positive integer valued r.v.\
+  with $E N^2 < \infty$ and $X = Y_1 + \dots + Y_N$. Show that 
+  \[
+  \var (X) = \sigma^2 E N + \mu^2 \var (N).
+  \]
+  To understand and 
+  help remember the formula, think about the two special cases 
+  in which $N$ or $Y$ is constant.
+\end{ex}
+
+\begin{proof}
+  It is easy to see that $E[Y_1^2]= \sigma^2 + \mu^2$. Then, 
+  we have 
+  \begin{align*}
+    E[X] = E[E[X | N]] = E[\mu N] = \mu EN,
+  \end{align*}
+  and
+  \begin{align*}
+    E[X^2] = E[E[X^2 | N]]
+    = E[N (\sigma^2 + \mu^2) + N (N - 1) \mu^2]
+    = \mu^2 E[N^2] + \sigma^2 E N.
+  \end{align*}
+  Subtrating these two expressions gives $\var X = \sigma^2 EN + \mu^2 
+  \var N$, as desired.
+\end{proof}
+
+\begin{ex}[Durrett 4.1.9]
+  Show that if $X$ and $Y$ are random variables with $E[Y | \gcal] = X$ 
+  and $E Y^2 = E X^2 < \infty$, then $X = Y$ a.s.
+\end{ex}
+
+\begin{proof}
+  Since $X = E[Y | \gcal]$, $X$ is $\gcal$-measurable. It follows that 
+  \begin{align*}
+    E[(Y - X) X | \gcal] 
+    = E[(Y - X) X | \gcal]
+    = X (E[Y | \gcal] - E[X])
+    = X (X - X) = 0,
+  \end{align*}
+  so $E[(Y - X) X] = 0$ i.e.\ $E[XY] = E[X^2]$. Now we have
+  \[
+  E[(Y - X)^2] = E[Y^2] - 2 E[XY] + E[X^2]
+  = E[Y^2] - E[X^2] = 0.
+  \]
+  Therefore, $X = Y$ a.s.
+\end{proof}
+
+\subsection{Martingales, almost sure convergence}
+
 \end{document}
