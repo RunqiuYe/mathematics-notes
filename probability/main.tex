@@ -2891,7 +2891,7 @@ Next we present a combinatorial application of martingale method.
 Now let $X_n$ be an adapted sequence, and define 
 a sequence $\{ H \cdot X \}_n$ via 
 \[
-(H \cdot X)_n = \sumi^n H_m (X_i - X_{i - 1})
+(H \cdot X)_n = \sumi^n H_i (X_i - X_{i - 1})
 \]
 for $n \geq 0$.
 
@@ -3488,16 +3488,15 @@ the real numbers.
   consider $X_n$ with $E \abs{X_n - X} \geq \epsilon$ for all $n$.
 
   In the case where $E \abs{X} = \infty$, with $X_n \convp X$ 
-  claim that $\lim_{n \to \infty} E \abs{X_n} = \infty$. The 
-  verification of this is left as an exercise.
-  With $E\abs{X_n} \to \infty$, $\seqinfn{X_n}$ 
-  is not uniformly integrable, since 
+  claim that $\sup_n E \abs{X_n} = \infty$. Indeed, 
+  since $X_n \to X$ in probability, there is a subsequence $X_{n(k)}$
+  such that $X_{n(k)} \to X$ a.s. If $\sup_n E \abs{X_n}$ 
+  is finite, Fatou's lemma then gives 
   \[
-  E \left[ \abs{X_n} \ind_{\{\abs{X_n} > M\}} \right]
-  = E \abs{X_n} - E \left[ \abs{X_n} \ind_{\{\abs{X_n} \leq M\}} \right] 
-  \geq E \abs{X_n} - M \to \infty,
+  E \abs{X} \leq \liminf E \abs{X_n} < \infty, 
   \]
-  as $n \to \infty$.
+  a contradiction. Therefore, $\sup_n E \abs{X_n} = \infty$
+  and $X_n$ is not uniformly integrable.
 
   Now suppose $E \abs{X} < \infty$. Fix $\epsilon > 0$. 
   There is $\delta > 0$ such that $P(A) \leq \delta$ implies
@@ -3522,7 +3521,7 @@ the real numbers.
   Let $P \left\{ \abs{X_n - X} \geq 1 \right\} = \delta_n$, then 
   $\delta_n \to 0$. We then have 
   \begin{align*}
-    \liminf_{n \to \infty} E \left[ \abs{X_n} - 
+    \liminf_{n \to \infty} E \left[ \abs{X_n} 
     \ind_{\{\abs{X_n} > \delta_n^{-1/2}\}} \right]
     &\geq \liminf_{n \to \infty} E \left[ \abs{X_n} \ind_{\{\abs{X_n} > \delta_n^{-1/2}\}}
     \ind_{\{\abs{X_n - X} \geq 1\}} \right].
@@ -3536,7 +3535,7 @@ the real numbers.
     \ind_{\{\abs{X_n - X} \geq 1\}} \right] \\
     &\geq \frac{\epsilon}{2} - \delta_n^{1/2}.
   \end{align*}
-  Therefore, $\liminf_n E \left[ \abs{X_n} - \ind_{\{\abs{X_n} 
+  Therefore, $\liminf_n E \left[ \abs{X_n} \ind_{\{\abs{X_n} 
   > \delta_n^{-1/2}\}} \right] \geq \frac{\epsilon}{2}$ 
   and thus $\seqinfn{X_n}$ is not uniformly integrable.
 
